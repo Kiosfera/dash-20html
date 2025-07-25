@@ -28,6 +28,7 @@ const App = () => (
           <Route path="/dashboard/freelancer" element={<FreelancerDashboard />} />
           <Route path="/criar-projeto" element={<CreateProject />} />
           <Route path="/mensagens" element={<Messages />} />
+          <Route path="/completar-perfil" element={<CompleteProfile />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
