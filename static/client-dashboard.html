@@ -11,587 +11,464 @@
     <link rel="stylesheet" href="client-dashboard-styles.css" />
   </head>
   <body>
-    <!-- Header -->
-    <header class="header">
-      <div class="header-content">
-        <a href="index.html" class="logo-link">
-          <div class="logo">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2" />
-            </svg>
-          </div>
-          <span class="logo-text">TalentHub</span>
-        </a>
+    <div class="min-h-screen bg-gray-50">
+      <!-- Header -->
+      <header class="bg-white border-b">
+        <div class="container mx-auto px-6 py-4">
+          <div class="flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-2">
+              <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2" />
+                </svg>
+              </div>
+              <span class="text-xl font-bold text-gray-900">TalentHub</span>
+            </a>
 
-        <div class="header-actions">
-          <a href="messages.html" class="header-btn">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-              />
-            </svg>
-            Mensagens
-          </a>
-          <div class="avatar">
-            <span>CL</span>
+            <div class="flex items-center space-x-4">
+              <a href="messages.html" class="btn-ghost flex items-center">
+                <svg class="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                </svg>
+                Mensagens
+              </a>
+              <div class="avatar">
+                <img src="placeholder.svg" alt="Avatar" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+                <span class="avatar-fallback">CL</span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
 
-    <div class="dashboard-container">
-      <div class="dashboard-header">
-        <div class="title-section">
-          <h1>Dashboard do Cliente</h1>
-          <p>Gerencie seus projetos e contrate os melhores talentos</p>
-        </div>
-        <a href="create-project.html" class="create-project-btn">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <line x1="12" y1="5" x2="12" y2="19" />
-            <line x1="5" y1="12" x2="19" y2="12" />
-          </svg>
-          Novo Projeto
-        </a>
-      </div>
-
-      <!-- Stats Cards -->
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-icon blue">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
-              />
-              <polyline points="14,2 14,8 20,8" />
-              <line x1="16" y1="13" x2="8" y2="13" />
-              <line x1="16" y1="17" x2="8" y2="17" />
-              <polyline points="10,9 9,9 8,9" />
-            </svg>
-          </div>
-          <div class="stat-info">
-            <div class="stat-label">Projetos Ativos</div>
-            <div class="stat-value">3</div>
-          </div>
+      <div class="container mx-auto px-6 py-8">
+        <div class="mb-8">
+          <h1 class="text-3xl font-bold text-gray-900 mb-2">
+            Dashboard do Cliente
+          </h1>
+          <p class="text-gray-600">
+            Gerencie seus projetos e contrate os melhores talentos
+          </p>
         </div>
 
-        <div class="stat-card">
-          <div class="stat-icon green">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-              <circle cx="9" cy="7" r="4" />
-              <path d="m22 21-3-3" />
-              <path d="M15 8h4" />
-              <path d="M17 6v4" />
-            </svg>
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+          <div class="card">
+            <div class="p-6">
+              <div class="flex items-center">
+                <svg class="h-8 w-8 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <polyline points="14,2 14,8 20,8" />
+                  <line x1="16" y1="13" x2="8" y2="13" />
+                  <line x1="16" y1="17" x2="8" y2="17" />
+                  <polyline points="10,9 9,9 8,9" />
+                </svg>
+                <div class="ml-4">
+                  <p class="text-sm font-medium text-gray-600">
+                    Projetos Ativos
+                  </p>
+                  <p class="text-2xl font-bold text-gray-900">3</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="stat-info">
-            <div class="stat-label">Freelancers</div>
-            <div class="stat-value">8</div>
-          </div>
-        </div>
 
-        <div class="stat-card">
-          <div class="stat-icon yellow">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <line x1="12" y1="1" x2="12" y2="23" />
-              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-            </svg>
+          <div class="card">
+            <div class="p-6">
+              <div class="flex items-center">
+                <svg class="h-8 w-8 text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+                <div class="ml-4">
+                  <p class="text-sm font-medium text-gray-600">
+                    Freelancers
+                  </p>
+                  <p class="text-2xl font-bold text-gray-900">8</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="stat-info">
-            <div class="stat-label">Gasto Total</div>
-            <div class="stat-value">R$ 12.5k</div>
+
+          <div class="card">
+            <div class="p-6">
+              <div class="flex items-center">
+                <svg class="h-8 w-8 text-yellow-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="12" y1="1" x2="12" y2="23" />
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                </svg>
+                <div class="ml-4">
+                  <p class="text-sm font-medium text-gray-600">
+                    Gasto Total
+                  </p>
+                  <p class="text-2xl font-bold text-gray-900">R$ 12.5k</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="p-6">
+              <div class="flex items-center">
+                <svg class="h-8 w-8 text-purple-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
+                </svg>
+                <div class="ml-4">
+                  <p class="text-sm font-medium text-gray-600">
+                    Avaliação Média
+                  </p>
+                  <p class="text-2xl font-bold text-gray-900">4.8</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="stat-card">
-          <div class="stat-icon purple">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <polygon
-                points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
-              />
-            </svg>
-          </div>
-          <div class="stat-info">
-            <div class="stat-label">Avaliação Média</div>
-            <div class="stat-value">4.8</div>
-          </div>
-        </div>
-      </div>
+        <!-- Main Content -->
+        <div class="tabs-container space-y-6">
+          <div class="flex items-center justify-between mb-6">
+            <div class="tabs-list">
+              <button class="tab-trigger active" onclick="showTab('projetos')">Meus Projetos</button>
+              <button class="tab-trigger" onclick="showTab('freelancers')">Freelancers</button>
+              <button class="tab-trigger" onclick="showTab('propostas')">Propostas</button>
+              <button class="tab-trigger" onclick="showTab('configuracoes')">Configurações</button>
+            </div>
 
-      <!-- Tabs Container -->
-      <div class="tabs-container">
-        <div class="tabs-nav">
-          <button class="tab-btn active" onclick="showTab('projetos')">
-            Meus Projetos
-          </button>
-          <button class="tab-btn" onclick="showTab('freelancers')">
-            Freelancers
-          </button>
-          <button class="tab-btn" onclick="showTab('propostas')">
-            Propostas
-          </button>
-          <button class="tab-btn" onclick="showTab('configuracoes')">
-            Configurações
-          </button>
-        </div>
-
-        <!-- Projects Tab -->
-        <div id="projetos" class="tab-content active">
-          <!-- Filters -->
-          <div class="filters-section">
-            <div class="search-box">
-              <svg
-                class="search-icon"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <circle cx="11" cy="11" r="8" />
-                <path d="m21 21-4.35-4.35" />
+            <a href="create-project.html" class="btn-primary flex items-center">
+              <svg class="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
               </svg>
-              <input type="text" placeholder="Buscar projetos..." />
-            </div>
-            <select class="filter-select">
-              <option value="">Status</option>
-              <option value="ativo">Ativo</option>
-              <option value="em_andamento">Em andamento</option>
-              <option value="concluido">Concluído</option>
-            </select>
-            <button class="filter-btn">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <polygon points="22,3 2,3 10,12.46 10,19 14,21 14,12.46" />
-              </svg>
-              Filtros
-            </button>
+              Novo Projeto
+            </a>
           </div>
 
-          <!-- Projects List -->
-          <div class="projects-list">
-            <div class="project-card">
-              <div class="project-header">
-                <div class="project-info">
-                  <div class="project-title-row">
-                    <h3 class="project-title">Desenvolvimento de App Mobile</h3>
-                    <div class="project-badges">
-                      <span class="status-badge active">Ativo</span>
-                    </div>
-                  </div>
-                  <div class="project-meta">
-                    <span>Desenvolvimento</span>
-                    <span class="separator">•</span>
-                    <span>R$ 5.000 - R$ 8.000</span>
-                    <span class="separator">•</span>
-                    <span>30 dias</span>
-                  </div>
-                </div>
-                <button class="more-btn">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  >
-                    <circle cx="12" cy="12" r="1" />
-                    <circle cx="19" cy="12" r="1" />
-                    <circle cx="5" cy="12" r="1" />
-                  </svg>
-                </button>
+          <div id="projetos" class="tab-content active space-y-6">
+            <!-- Filters -->
+            <div class="flex flex-col sm:flex-row gap-4">
+              <div class="relative flex-1">
+                <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8" />
+                  <path d="M21 21l-4.35-4.35" />
+                </svg>
+                <input type="text" placeholder="Buscar projetos..." class="input pl-10" />
               </div>
-              <div class="project-content">
-                <p class="project-description">
-                  Preciso desenvolver um aplicativo mobile para iOS e Android...
-                </p>
-                <div class="project-footer">
-                  <div class="project-stats">
-                    <div class="stat-item">
-                      <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                      >
-                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                        <circle cx="9" cy="7" r="4" />
-                        <path d="m22 21-3-3" />
-                      </svg>
-                      <span>12 propostas</span>
-                    </div>
-                    <span class="published-time">2 dias atrás</span>
-                  </div>
-                  <div class="project-actions">
-                    <button class="btn-outline">
-                      <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                      >
-                        <path
-                          d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
-                        />
-                        <circle cx="12" cy="12" r="3" />
-                      </svg>
-                      Ver
-                    </button>
-                    <button class="btn-outline">
-                      <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                      >
-                        <path
-                          d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
-                        />
-                        <path
-                          d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
-                        />
-                      </svg>
-                      Editar
-                    </button>
-                  </div>
-                </div>
-              </div>
+              <select class="select w-48">
+                <option>Status</option>
+                <option value="todos">Todos</option>
+                <option value="ativo">Ativo</option>
+                <option value="em_andamento">Em andamento</option>
+                <option value="concluido">Concluído</option>
+              </select>
+              <button class="btn-outline flex items-center">
+                <svg class="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="22,3 2,3 10,12.46 10,19 14,21 14,12.46 22,3" />
+                </svg>
+                Filtros
+              </button>
             </div>
 
-            <div class="project-card">
-              <div class="project-header">
-                <div class="project-info">
-                  <div class="project-title-row">
-                    <h3 class="project-title">
-                      Design de Logo e Identidade Visual
-                    </h3>
-                    <div class="project-badges">
-                      <span class="status-badge progress">Em andamento</span>
-                    </div>
-                  </div>
-                  <div class="project-meta">
-                    <span>Design</span>
-                    <span class="separator">•</span>
-                    <span>R$ 800 - R$ 1.500</span>
-                    <span class="separator">•</span>
-                    <span>15 dias</span>
-                  </div>
-                </div>
-                <button class="more-btn">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  >
-                    <circle cx="12" cy="12" r="1" />
-                    <circle cx="19" cy="12" r="1" />
-                    <circle cx="5" cy="12" r="1" />
-                  </svg>
-                </button>
-              </div>
-              <div class="project-content">
-                <p class="project-description">
-                  Criação de identidade visual completa para empresa de
-                  tecnologia...
-                </p>
-                <div class="project-footer">
-                  <div class="project-stats">
-                    <div class="freelancer-info">
-                      <div class="freelancer-avatar">
-                        <span>AS</span>
+            <!-- Projects List -->
+            <div class="space-y-4">
+              <div class="card">
+                <div class="card-header">
+                  <div class="flex items-start justify-between">
+                    <div class="flex-1">
+                      <div class="flex items-center gap-3 mb-2">
+                        <h3 class="text-lg font-semibold">Desenvolvimento de App Mobile</h3>
+                        <span class="badge badge-default">Ativo</span>
                       </div>
-                      <span>Ana Silva</span>
+                      <div class="flex items-center gap-4 text-sm text-gray-600">
+                        <span>Desenvolvimento</span>
+                        <span>•</span>
+                        <span>R$ 5.000 - R$ 8.000</span>
+                        <span>•</span>
+                        <span>30 dias</span>
+                      </div>
                     </div>
-                    <div class="progress-info">
-                      <span>60% concluído</span>
-                    </div>
-                  </div>
-                  <div class="project-actions">
-                    <button class="btn-outline">
-                      <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                      >
-                        <path
-                          d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
-                        />
-                        <circle cx="12" cy="12" r="3" />
+                    <button class="btn-ghost">
+                      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="1" />
+                        <circle cx="19" cy="12" r="1" />
+                        <circle cx="5" cy="12" r="1" />
                       </svg>
-                      Ver
                     </button>
                   </div>
                 </div>
-              </div>
-            </div>
+                <div class="card-content">
+                  <div class="space-y-4">
+                    <p class="text-gray-600">Preciso desenvolver um aplicativo mobile para iOS e Android...</p>
 
-            <div class="project-card">
-              <div class="project-header">
-                <div class="project-info">
-                  <div class="project-title-row">
-                    <h3 class="project-title">Criação de Site WordPress</h3>
-                    <div class="project-badges">
-                      <span class="status-badge completed">Concluído</span>
+                    <div class="flex items-center justify-between">
+                      <div class="flex items-center gap-4">
+                        <div class="flex items-center text-sm text-gray-600">
+                          <svg class="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                          </svg>
+                          12 propostas
+                        </div>
+                      </div>
+
+                      <div class="flex items-center gap-2">
+                        <button class="btn-outline btn-sm flex items-center">
+                          <svg class="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                            <circle cx="12" cy="12" r="3" />
+                          </svg>
+                          Ver
+                        </button>
+                        <button class="btn-outline btn-sm flex items-center">
+                          <svg class="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                          </svg>
+                          Editar
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                  <div class="project-meta">
-                    <span>Desenvolvimento Web</span>
-                    <span class="separator">•</span>
-                    <span>R$ 2.500</span>
-                    <span class="separator">•</span>
-                    <span>20 dias</span>
                   </div>
                 </div>
-                <button class="more-btn">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  >
-                    <circle cx="12" cy="12" r="1" />
-                    <circle cx="19" cy="12" r="1" />
-                    <circle cx="5" cy="12" r="1" />
-                  </svg>
-                </button>
               </div>
-              <div class="project-content">
-                <p class="project-description">
-                  Site institucional responsivo com área administrativa...
-                </p>
-                <div class="project-footer">
-                  <div class="project-stats">
-                    <div class="freelancer-info">
-                      <div class="freelancer-avatar">
-                        <span>JS</span>
+
+              <div class="card">
+                <div class="card-header">
+                  <div class="flex items-start justify-between">
+                    <div class="flex-1">
+                      <div class="flex items-center gap-3 mb-2">
+                        <h3 class="text-lg font-semibold">Design de Logo e Identidade Visual</h3>
+                        <span class="badge badge-secondary">Em andamento</span>
                       </div>
-                      <span>João Santos</span>
+                      <div class="flex items-center gap-4 text-sm text-gray-600">
+                        <span>Design</span>
+                        <span>•</span>
+                        <span>R$ 800 - R$ 1.500</span>
+                        <span>•</span>
+                        <span>15 dias</span>
+                      </div>
                     </div>
-                    <div class="rating">
-                      <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                      >
-                        <polygon
-                          points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
-                        />
+                    <button class="btn-ghost">
+                      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="1" />
+                        <circle cx="19" cy="12" r="1" />
+                        <circle cx="5" cy="12" r="1" />
                       </svg>
-                      <span>5.0</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="card-content">
+                  <div class="space-y-4">
+                    <p class="text-gray-600">Criação de identidade visual completa para startup...</p>
+
+                    <div class="flex items-center justify-between">
+                      <div class="flex items-center gap-4">
+                        <div class="flex items-center text-sm text-gray-600">
+                          <div class="avatar w-6 h-6 mr-2">
+                            <span class="avatar-fallback text-xs">AS</span>
+                          </div>
+                          Ana Silva
+                        </div>
+                      </div>
+
+                      <div class="flex items-center gap-2">
+                        <button class="btn-outline btn-sm flex items-center">
+                          <svg class="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                            <circle cx="12" cy="12" r="3" />
+                          </svg>
+                          Ver
+                        </button>
+                      </div>
                     </div>
                   </div>
-                  <div class="project-actions">
-                    <button class="btn-outline">
-                      <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                      >
-                        <path
-                          d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
-                        />
-                        <circle cx="12" cy="12" r="3" />
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header">
+                  <div class="flex items-start justify-between">
+                    <div class="flex-1">
+                      <div class="flex items-center gap-3 mb-2">
+                        <h3 class="text-lg font-semibold">Criação de Site WordPress</h3>
+                        <span class="badge badge-outline">Concluído</span>
+                      </div>
+                      <div class="flex items-center gap-4 text-sm text-gray-600">
+                        <span>Desenvolvimento Web</span>
+                        <span>•</span>
+                        <span>R$ 2.500</span>
+                        <span>•</span>
+                        <span>20 dias</span>
+                      </div>
+                    </div>
+                    <button class="btn-ghost">
+                      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="1" />
+                        <circle cx="19" cy="12" r="1" />
+                        <circle cx="5" cy="12" r="1" />
                       </svg>
-                      Ver
                     </button>
+                  </div>
+                </div>
+                <div class="card-content">
+                  <div class="space-y-4">
+                    <p class="text-gray-600">Site institucional desenvolvido em WordPress...</p>
+
+                    <div class="flex items-center justify-between">
+                      <div class="flex items-center gap-4">
+                        <div class="flex items-center text-sm text-gray-600">
+                          <div class="avatar w-6 h-6 mr-2">
+                            <span class="avatar-fallback text-xs">JS</span>
+                          </div>
+                          João Santos
+                        </div>
+                        <div class="flex items-center text-sm text-gray-600">
+                          <svg class="w-4 h-4 mr-1 fill-yellow-400 text-yellow-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
+                          </svg>
+                          5.0
+                        </div>
+                      </div>
+
+                      <div class="flex items-center gap-2">
+                        <button class="btn-outline btn-sm flex items-center">
+                          <svg class="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                            <circle cx="12" cy="12" r="3" />
+                          </svg>
+                          Ver
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- Freelancers Tab -->
-        <div id="freelancers" class="tab-content">
-          <div class="freelancers-list">
-            <div class="freelancer-card">
-              <div class="freelancer-content">
-                <div class="freelancer-info">
-                  <div class="freelancer-avatar large">
-                    <span>AS</span>
-                  </div>
-                  <div class="freelancer-details">
-                    <h3>Ana Silva</h3>
-                    <p>UI/UX Designer</p>
-                    <div class="freelancer-meta">
-                      <div class="meta-item">
-                        <svg
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                        >
-                          <polygon
-                            points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
-                          />
+          <div id="freelancers" class="tab-content space-y-6">
+            <div class="grid gap-6">
+              <div class="card">
+                <div class="p-6">
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                      <div class="avatar-large">
+                        <img src="placeholder.svg" alt="Avatar" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+                        <span class="avatar-fallback">AS</span>
+                      </div>
+                      <div>
+                        <h3 class="text-lg font-semibold">Ana Silva</h3>
+                        <p class="text-gray-600">UI/UX Designer</p>
+                        <div class="flex items-center space-x-4 mt-2">
+                          <div class="flex items-center">
+                            <svg class="w-4 h-4 fill-yellow-400 text-yellow-400 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                              <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
+                            </svg>
+                            <span class="text-sm">4.9</span>
+                          </div>
+                          <span class="text-sm text-gray-600">156 projetos</span>
+                          <span class="text-sm text-gray-600">R$ 45/hora</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="flex items-center space-x-2">
+                      <span class="badge badge-default">Trabalhando</span>
+                      <button class="btn-outline btn-sm flex items-center">
+                        <svg class="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
                         </svg>
-                        <span>4.9</span>
-                      </div>
-                      <span>156 projetos</span>
-                      <span>R$ 45/hora</span>
+                        Mensagem
+                      </button>
                     </div>
                   </div>
                 </div>
-                <div class="freelancer-actions">
-                  <span class="status-badge progress">Trabalhando</span>
-                  <button class="btn-outline">
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                    >
-                      <path
-                        d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-                      />
-                    </svg>
-                    Mensagem
-                  </button>
-                </div>
               </div>
-            </div>
 
-            <div class="freelancer-card">
-              <div class="freelancer-content">
-                <div class="freelancer-info">
-                  <div class="freelancer-avatar large">
-                    <span>JS</span>
-                  </div>
-                  <div class="freelancer-details">
-                    <h3>João Santos</h3>
-                    <p>Desenvolvedor Full Stack</p>
-                    <div class="freelancer-meta">
-                      <div class="meta-item">
-                        <svg
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                        >
-                          <polygon
-                            points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
-                          />
+              <div class="card">
+                <div class="p-6">
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                      <div class="avatar-large">
+                        <img src="placeholder.svg" alt="Avatar" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+                        <span class="avatar-fallback">JS</span>
+                      </div>
+                      <div>
+                        <h3 class="text-lg font-semibold">João Santos</h3>
+                        <p class="text-gray-600">Desenvolvedor Full Stack</p>
+                        <div class="flex items-center space-x-4 mt-2">
+                          <div class="flex items-center">
+                            <svg class="w-4 h-4 fill-yellow-400 text-yellow-400 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                              <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
+                            </svg>
+                            <span class="text-sm">4.8</span>
+                          </div>
+                          <span class="text-sm text-gray-600">203 projetos</span>
+                          <span class="text-sm text-gray-600">R$ 65/hora</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="flex items-center space-x-2">
+                      <span class="badge badge-secondary">Disponível</span>
+                      <button class="btn-outline btn-sm flex items-center">
+                        <svg class="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
                         </svg>
-                        <span>4.8</span>
-                      </div>
-                      <span>203 projetos</span>
-                      <span>R$ 65/hora</span>
+                        Mensagem
+                      </button>
                     </div>
                   </div>
-                </div>
-                <div class="freelancer-actions">
-                  <span class="status-badge available">Disponível</span>
-                  <button class="btn-outline">
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                    >
-                      <path
-                        d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-                      />
-                    </svg>
-                    Mensagem
-                  </button>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- Proposals Tab -->
-        <div id="propostas" class="tab-content">
-          <div class="empty-state">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
-              />
-              <polyline points="14,2 14,8 20,8" />
-              <line x1="16" y1="13" x2="8" y2="13" />
-              <line x1="16" y1="17" x2="8" y2="17" />
-              <polyline points="10,9 9,9 8,9" />
-            </svg>
-            <h3>Nenhuma proposta nova</h3>
-            <p>Você não tem propostas pendentes no momento.</p>
-            <a href="create-project.html" class="btn-primary"
-              >Criar novo projeto</a
-            >
+          <div id="propostas" class="tab-content space-y-6">
+            <div class="card">
+              <div class="p-8 text-center">
+                <svg class="w-12 h-12 text-gray-400 mx-auto mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <polyline points="14,2 14,8 20,8" />
+                  <line x1="16" y1="13" x2="8" y2="13" />
+                  <line x1="16" y1="17" x2="8" y2="17" />
+                  <polyline points="10,9 9,9 8,9" />
+                </svg>
+                <h3 class="text-lg font-semibold mb-2">
+                  Nenhuma proposta nova
+                </h3>
+                <p class="text-gray-600 mb-4">
+                  Você não tem propostas pendentes no momento.
+                </p>
+                <button class="btn-primary">Criar novo projeto</button>
+              </div>
+            </div>
           </div>
-        </div>
 
-        <!-- Settings Tab -->
-        <div id="configuracoes" class="tab-content">
-          <div class="settings-form">
-            <h3>Configurações da Conta</h3>
-            <form class="form-grid">
-              <div class="form-group">
-                <label>Nome da empresa</label>
-                <input type="text" placeholder="Digite o nome da sua empresa" />
+          <div id="configuracoes" class="tab-content space-y-6">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="text-lg font-semibold">Configurações da Conta</h3>
               </div>
-              <div class="form-group">
-                <label>Email</label>
-                <input type="email" placeholder="seu@email.com" />
+              <div class="card-content space-y-6">
+                <div>
+                  <label class="text-sm font-medium">Nome da empresa</label>
+                  <input type="text" placeholder="Digite o nome da sua empresa" class="input mt-1" />
+                </div>
+                <div>
+                  <label class="text-sm font-medium">Email</label>
+                  <input type="email" placeholder="seu@email.com" class="input mt-1" />
+                </div>
+                <div>
+                  <label class="text-sm font-medium">Biografia</label>
+                  <textarea placeholder="Conte um pouco sobre sua empresa..." class="textarea mt-1" rows="4"></textarea>
+                </div>
+                <button class="btn-primary">Salvar alterações</button>
               </div>
-              <div class="form-group full-width">
-                <label>Biografia</label>
-                <textarea
-                  rows="4"
-                  placeholder="Conte um pouco sobre sua empresa..."
-                ></textarea>
-              </div>
-              <div class="form-actions full-width">
-                <button type="submit" class="btn-primary">
-                  Salvar alterações
-                </button>
-              </div>
-            </form>
+            </div>
           </div>
         </div>
       </div>
@@ -604,7 +481,7 @@
         tabs.forEach((tab) => tab.classList.remove("active"));
 
         // Remove active class from all buttons
-        const buttons = document.querySelectorAll(".tab-btn");
+        const buttons = document.querySelectorAll(".tab-trigger");
         buttons.forEach((btn) => btn.classList.remove("active"));
 
         // Show selected tab
