@@ -109,10 +109,12 @@ export default function FreelancerDashboard() {
             </Link>
             
             <div className="flex items-center space-x-4">
-              <Button variant="ghost" size="sm">
-                <MessageSquare className="w-4 h-4 mr-2" />
-                Mensagens
-              </Button>
+              <Link to="/mensagens">
+                <Button variant="ghost" size="sm">
+                  <MessageSquare className="w-4 h-4 mr-2" />
+                  Mensagens
+                </Button>
+              </Link>
               <Avatar>
                 <AvatarImage src="/placeholder.svg" />
                 <AvatarFallback>FR</AvatarFallback>
