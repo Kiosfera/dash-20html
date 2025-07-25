@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TalentHub - Detalhes do Projeto</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;909&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="project-detail-styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="nav-section">
+                <a href="freelancer-dashboard.html" class="back-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="19" y1="12" x2="5" y2="12"/>
+                        <polyline points="12,19 5,12 12,5"/>
+                    </svg>
+                    Voltar aos Projetos
+                </a>
+                <div class="separator"></div>
+                <a href="index.html" class="logo-link">
+                    <div class="logo">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                        </svg>
+                    </div>
+                    <span class="logo-text">TalentHub</span>
+                </a>
+            </div>
+            
+            <div class="header-actions">
+                <a href="messages.html" class="header-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    Mensagens
+                </a>
+                <div class="avatar">
+                    <span>FR</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="project-container">
+        <!-- Project Header -->
+        <div class="project-header">
+            <div class="project-info">
+                <div class="project-title-section">
+                    <h1>Sistema de Gestão - ERP</h1>
+                    <div class="project-badges">
+                        <span class="status-badge active">Em andamento</span>
+                        <span class="priority-badge high">Alta prioridade</span>
+                    </div>
+                </div>
+                <div class="client-info">
+                    <div class="client-avatar">
+                        <span>IX</span>
+                    </div>
+                    <div class="client-details">
+                        <h3>Indústria XYZ</h3>
+                        <div class="client-meta">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                            </svg>
+                            <span>4.8 (45 projetos)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="project-actions">
+                <button class="btn-outline">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                    </svg>
+                    Editar
+                </button>
+                <button class="btn-primary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    Conversar
+                </button>
+            </div>
+        </div>
+
+        <div class="project-layout">
+            <!-- Main Content -->
+            <div class="project-main">
+                <!-- Progress Overview -->
+                <div class="progress-card">
+                    <div class="progress-header">
+                        <h2>Progresso do Projeto</h2>
+                        <span class="progress-percentage">75%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 75%"></div>
+                    </div>
+                    <div class="progress-details">
+                        <div class="progress-item">
+                            <span class="progress-label">Iniciado em:</span>
+                            <span class="progress-value">15 de Janeiro, 2024</span>
+                        </div>
+                        <div class="progress-item">
+                            <span class="progress-label">Prazo:</span>
+                            <span class="progress-value">20 de Março, 2024 (5 dias restantes)</span>
+                        </div>
+                        <div class="progress-item">
+                            <span class="progress-label">Valor:</span>
+                            <span class="progress-value">R$ 8.500</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Description -->
+                <div class="section-card">
+                    <h2>Descrição do Projeto</h2>
+                    <p>
+                        Desenvolvimento de um sistema completo de gestão empresarial (ERP) para controle de estoque, 
+                        vendas, financeiro e recursos humanos. O sistema deve ser web-based, responsivo e integrado 
+                        com APIs de bancos e sistemas de pagamento.
+                    </p>
+                    <p>
+                        Principais funcionalidades incluem: dashboard executivo, controle de inventário, 
+                        gestão de clientes e fornecedores, módulo financeiro completo, relatórios avançados 
+                        e sistema de usuários com diferentes níveis de acesso.
+                    </p>
+                </div>
+
+                <!-- Technologies -->
+                <div class="section-card">
+                    <h2>Tecnologias Utilizadas</h2>
+                    <div class="tech-tags">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">TypeScript</span>
+                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">AWS</span>
+                    </div>
+                </div>
+
+                <!-- Milestones -->
+                <div class="section-card">
+                    <h2>Marcos do Projeto</h2>
+                    <div class="milestones-list">
+                        <div class="milestone completed">
+                            <div class="milestone-status">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 6L9 17l-5-5"/>
+                                </svg>
+                            </div>
+                            <div class="milestone-content">
+                                <h3>Análise e Planejamento</h3>
+                                <p>Levantamento de requisitos e definição da arquitetura</p>
+                                <span class="milestone-date">Concluído em 25/01/2024</span>
+                            </div>
+                        </div>
+                        
+                        <div class="milestone completed">
+                            <div class="milestone-status">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 6L9 17l-5-5"/>
+                                </svg>
+                            </div>
+                            <div class="milestone-content">
+                                <h3>Setup do Ambiente</h3>
+                                <p>Configuração do ambiente de desenvolvimento e produção</p>
+                                <span class="milestone-date">Concluído em 01/02/2024</span>
+                            </div>
+                        </div>
+                        
+                        <div class="milestone active">
+                            <div class="milestone-status">
+                                <div class="milestone-spinner"></div>
+                            </div>
+                            <div class="milestone-content">
+                                <h3>Desenvolvimento do Backend</h3>
+                                <p>APIs, banco de dados e lógica de negócio</p>
+                                <span class="milestone-date">Em andamento - 75% concluído</span>
+                            </div>
+                        </div>
+                        
+                        <div class="milestone pending">
+                            <div class="milestone-status">
+                                <div class="milestone-circle"></div>
+                            </div>
+                            <div class="milestone-content">
+                                <h3>Interface do Usuário</h3>
+                                <p>Desenvolvimento do frontend e UX</p>
+                                <span class="milestone-date">Início previsto para 01/03/2024</span>
+                            </div>
+                        </div>
+                        
+                        <div class="milestone pending">
+                            <div class="milestone-status">
+                                <div class="milestone-circle"></div>
+                            </div>
+                            <div class="milestone-content">
+                                <h3>Testes e Deploy</h3>
+                                <p>Testes finais e colocação em produção</p>
+                                <span class="milestone-date">Início previsto para 15/03/2024</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Files and Documents -->
+                <div class="section-card">
+                    <h2>Arquivos e Documentos</h2>
+                    <div class="files-list">
+                        <div class="file-item">
+                            <div class="file-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                    <polyline points="14,2 14,8 20,8"/>
+                                    <line x1="16" y1="13" x2="8" y2="13"/>
+                                    <line x1="16" y1="17" x2="8" y2="17"/>
+                                    <polyline points="10,9 9,9 8,9"/>
+                                </svg>
+                            </div>
+                            <div class="file-info">
+                                <h4>Especificação Técnica</h4>
+                                <p>especificacao-erp-v2.pdf • 2.3 MB</p>
+                            </div>
+                            <button class="file-action">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                    <polyline points="7,10 12,15 17,10"/>
+                                    <line x1="12" y1="15" x2="12" y2="3"/>
+                                </svg>
+                            </button>
+                        </div>
+                        
+                        <div class="file-item">
+                            <div class="file-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                    <circle cx="8.5" cy="8.5" r="1.5"/>
+                                    <polyline points="21,15 16,10 5,21"/>
+                                </svg>
+                            </div>
+                            <div class="file-info">
+                                <h4>Wireframes do Sistema</h4>
+                                <p>wireframes-erp.zip • 15.7 MB</p>
+                            </div>
+                            <button class="file-action">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                    <polyline points="7,10 12,15 17,10"/>
+                                    <line x1="12" y1="15" x2="12" y2="3"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="project-sidebar">
+                <!-- Quick Stats -->
+                <div class="sidebar-card">
+                    <h3>Estatísticas</h3>
+                    <div class="stats-list">
+                        <div class="stat-item">
+                            <span class="stat-label">Horas trabalhadas</span>
+                            <span class="stat-value">142h</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Valor por hora</span>
+                            <span class="stat-value">R$ 60/h</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Total faturado</span>
+                            <span class="stat-value">R$ 6.375</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Restante</span>
+                            <span class="stat-value">R$ 2.125</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="sidebar-card">
+                    <h3>Atividade Recente</h3>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-time">Hoje, 14:30</div>
+                            <div class="activity-content">
+                                <p>Implementada API de autenticação</p>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-time">Ontem, 16:45</div>
+                            <div class="activity-content">
+                                <p>Revisão do código com o cliente</p>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-time">02/03, 10:20</div>
+                            <div class="activity-content">
+                                <p>Deploy da versão beta</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="sidebar-card">
+                    <h3>Ações Rápidas</h3>
+                    <div class="quick-actions">
+                        <button class="action-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12,6 12,12 16,14"/>
+                            </svg>
+                            Registrar Tempo
+                        </button>
+                        <button class="action-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                <polyline points="7,10 12,15 17,10"/>
+                                <line x1="12" y1="15" x2="12" y2="3"/>
+                            </svg>
+                            Enviar Arquivo
+                        </button>
+                        <button class="action-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14,2 14,8 20,8"/>
+                                <line x1="16" y1="13" x2="8" y2="13"/>
+                                <line x1="16" y1="17" x2="8" y2="17"/>
+                                <polyline points="10,9 9,9 8,9"/>
+                            </svg>
+                            Gerar Relatório
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
