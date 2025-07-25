@@ -7,22 +7,28 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { 
-  Plus, 
-  Search, 
-  Filter, 
-  Star, 
-  Clock, 
-  DollarSign, 
-  Users, 
-  MessageSquare, 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Plus,
+  Search,
+  Filter,
+  Star,
+  Clock,
+  DollarSign,
+  Users,
+  MessageSquare,
   FileText,
   MoreHorizontal,
   Zap,
   Eye,
   Edit,
-  Trash2
+  Trash2,
 } from "lucide-react";
 
 export default function ClientDashboard() {
@@ -38,7 +44,8 @@ export default function ClientDashboard() {
       status: "ativo",
       prazo: "30 dias",
       publicado: "2 dias atrás",
-      descricao: "Preciso desenvolver um aplicativo mobile para iOS e Android..."
+      descricao:
+        "Preciso desenvolver um aplicativo mobile para iOS e Android...",
     },
     {
       id: 2,
@@ -49,7 +56,7 @@ export default function ClientDashboard() {
       status: "em_andamento",
       prazo: "15 dias",
       freelancer: "Ana Silva",
-      progresso: 60
+      progresso: 60,
     },
     {
       id: 3,
@@ -60,8 +67,8 @@ export default function ClientDashboard() {
       status: "concluido",
       prazo: "20 dias",
       freelancer: "João Santos",
-      avaliacao: 5
-    }
+      avaliacao: 5,
+    },
   ];
 
   const freelancersContratados = [
@@ -73,7 +80,7 @@ export default function ClientDashboard() {
       avaliacao: 4.9,
       projetos: 156,
       valor: "R$ 45/hora",
-      status: "trabalhando"
+      status: "trabalhando",
     },
     {
       id: 2,
@@ -83,8 +90,8 @@ export default function ClientDashboard() {
       avaliacao: 4.8,
       projetos: 203,
       valor: "R$ 65/hora",
-      status: "disponivel"
-    }
+      status: "disponivel",
+    },
   ];
 
   return (
@@ -99,7 +106,7 @@ export default function ClientDashboard() {
               </div>
               <span className="text-xl font-bold text-gray-900">TalentHub</span>
             </Link>
-            
+
             <div className="flex items-center space-x-4">
               <Link to="/mensagens">
                 <Button variant="ghost" size="sm">
@@ -118,8 +125,12 @@ export default function ClientDashboard() {
 
       <div className="container mx-auto px-6 py-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Dashboard do Cliente</h1>
-          <p className="text-gray-600">Gerencie seus projetos e contrate os melhores talentos</p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            Dashboard do Cliente
+          </h1>
+          <p className="text-gray-600">
+            Gerencie seus projetos e contrate os melhores talentos
+          </p>
         </div>
 
         {/* Stats Cards */}
@@ -129,43 +140,51 @@ export default function ClientDashboard() {
               <div className="flex items-center">
                 <FileText className="h-8 w-8 text-blue-600" />
                 <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Projetos Ativos</p>
+                  <p className="text-sm font-medium text-gray-600">
+                    Projetos Ativos
+                  </p>
                   <p className="text-2xl font-bold text-gray-900">3</p>
                 </div>
               </div>
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardContent className="p-6">
               <div className="flex items-center">
                 <Users className="h-8 w-8 text-green-600" />
                 <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Freelancers</p>
+                  <p className="text-sm font-medium text-gray-600">
+                    Freelancers
+                  </p>
                   <p className="text-2xl font-bold text-gray-900">8</p>
                 </div>
               </div>
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardContent className="p-6">
               <div className="flex items-center">
                 <DollarSign className="h-8 w-8 text-yellow-600" />
                 <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Gasto Total</p>
+                  <p className="text-sm font-medium text-gray-600">
+                    Gasto Total
+                  </p>
                   <p className="text-2xl font-bold text-gray-900">R$ 12.5k</p>
                 </div>
               </div>
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardContent className="p-6">
               <div className="flex items-center">
                 <Star className="h-8 w-8 text-purple-600" />
                 <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Avaliação Média</p>
+                  <p className="text-sm font-medium text-gray-600">
+                    Avaliação Média
+                  </p>
                   <p className="text-2xl font-bold text-gray-900">4.8</p>
                 </div>
               </div>
@@ -174,7 +193,11 @@ export default function ClientDashboard() {
         </div>
 
         {/* Main Content */}
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
+        <Tabs
+          value={activeTab}
+          onValueChange={setActiveTab}
+          className="space-y-6"
+        >
           <div className="flex items-center justify-between">
             <TabsList>
               <TabsTrigger value="projetos">Meus Projetos</TabsTrigger>
@@ -182,7 +205,7 @@ export default function ClientDashboard() {
               <TabsTrigger value="propostas">Propostas</TabsTrigger>
               <TabsTrigger value="configuracoes">Configurações</TabsTrigger>
             </TabsList>
-            
+
             <Link to="/criar-projeto">
               <Button>
                 <Plus className="w-4 h-4 mr-2" />
@@ -223,15 +246,23 @@ export default function ClientDashboard() {
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
                         <div className="flex items-center gap-3 mb-2">
-                          <CardTitle className="text-lg">{projeto.titulo}</CardTitle>
-                          <Badge variant={
-                            projeto.status === 'ativo' ? 'default' :
-                            projeto.status === 'em_andamento' ? 'secondary' :
-                            'outline'
-                          }>
-                            {projeto.status === 'ativo' ? 'Ativo' :
-                             projeto.status === 'em_andamento' ? 'Em andamento' :
-                             'Concluído'}
+                          <CardTitle className="text-lg">
+                            {projeto.titulo}
+                          </CardTitle>
+                          <Badge
+                            variant={
+                              projeto.status === "ativo"
+                                ? "default"
+                                : projeto.status === "em_andamento"
+                                  ? "secondary"
+                                  : "outline"
+                            }
+                          >
+                            {projeto.status === "ativo"
+                              ? "Ativo"
+                              : projeto.status === "em_andamento"
+                                ? "Em andamento"
+                                : "Concluído"}
                           </Badge>
                         </div>
                         <div className="flex items-center gap-4 text-sm text-gray-600">
@@ -250,25 +281,30 @@ export default function ClientDashboard() {
                   <CardContent>
                     <div className="space-y-4">
                       <p className="text-gray-600">{projeto.descricao}</p>
-                      
+
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-4">
-                          {projeto.status === 'ativo' && (
+                          {projeto.status === "ativo" && (
                             <div className="flex items-center text-sm text-gray-600">
                               <Users className="w-4 h-4 mr-1" />
                               {projeto.propostas} propostas
                             </div>
                           )}
-                          
+
                           {projeto.freelancer && (
                             <div className="flex items-center text-sm text-gray-600">
                               <Avatar className="w-6 h-6 mr-2">
-                                <AvatarFallback>{projeto.freelancer.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                                <AvatarFallback>
+                                  {projeto.freelancer
+                                    .split(" ")
+                                    .map((n) => n[0])
+                                    .join("")}
+                                </AvatarFallback>
                               </Avatar>
                               {projeto.freelancer}
                             </div>
                           )}
-                          
+
                           {projeto.avaliacao && (
                             <div className="flex items-center text-sm text-gray-600">
                               <Star className="w-4 h-4 mr-1 fill-yellow-400 text-yellow-400" />
@@ -276,13 +312,13 @@ export default function ClientDashboard() {
                             </div>
                           )}
                         </div>
-                        
+
                         <div className="flex items-center gap-2">
                           <Button variant="outline" size="sm">
                             <Eye className="w-4 h-4 mr-2" />
                             Ver
                           </Button>
-                          {projeto.status === 'ativo' && (
+                          {projeto.status === "ativo" && (
                             <Button variant="outline" size="sm">
                               <Edit className="w-4 h-4 mr-2" />
                               Editar
@@ -306,25 +342,48 @@ export default function ClientDashboard() {
                       <div className="flex items-center space-x-4">
                         <Avatar className="w-16 h-16">
                           <AvatarImage src={freelancer.avatar} />
-                          <AvatarFallback>{freelancer.nome.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                          <AvatarFallback>
+                            {freelancer.nome
+                              .split(" ")
+                              .map((n) => n[0])
+                              .join("")}
+                          </AvatarFallback>
                         </Avatar>
                         <div>
-                          <h3 className="text-lg font-semibold">{freelancer.nome}</h3>
-                          <p className="text-gray-600">{freelancer.especialidade}</p>
+                          <h3 className="text-lg font-semibold">
+                            {freelancer.nome}
+                          </h3>
+                          <p className="text-gray-600">
+                            {freelancer.especialidade}
+                          </p>
                           <div className="flex items-center space-x-4 mt-2">
                             <div className="flex items-center">
                               <Star className="w-4 h-4 fill-yellow-400 text-yellow-400 mr-1" />
-                              <span className="text-sm">{freelancer.avaliacao}</span>
+                              <span className="text-sm">
+                                {freelancer.avaliacao}
+                              </span>
                             </div>
-                            <span className="text-sm text-gray-600">{freelancer.projetos} projetos</span>
-                            <span className="text-sm text-gray-600">{freelancer.valor}</span>
+                            <span className="text-sm text-gray-600">
+                              {freelancer.projetos} projetos
+                            </span>
+                            <span className="text-sm text-gray-600">
+                              {freelancer.valor}
+                            </span>
                           </div>
                         </div>
                       </div>
-                      
+
                       <div className="flex items-center space-x-2">
-                        <Badge variant={freelancer.status === 'trabalhando' ? 'default' : 'secondary'}>
-                          {freelancer.status === 'trabalhando' ? 'Trabalhando' : 'Disponível'}
+                        <Badge
+                          variant={
+                            freelancer.status === "trabalhando"
+                              ? "default"
+                              : "secondary"
+                          }
+                        >
+                          {freelancer.status === "trabalhando"
+                            ? "Trabalhando"
+                            : "Disponível"}
                         </Badge>
                         <Button variant="outline" size="sm">
                           <MessageSquare className="w-4 h-4 mr-2" />
@@ -342,8 +401,12 @@ export default function ClientDashboard() {
             <Card>
               <CardContent className="p-8 text-center">
                 <FileText className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-lg font-semibold mb-2">Nenhuma proposta nova</h3>
-                <p className="text-gray-600 mb-4">Você não tem propostas pendentes no momento.</p>
+                <h3 className="text-lg font-semibold mb-2">
+                  Nenhuma proposta nova
+                </h3>
+                <p className="text-gray-600 mb-4">
+                  Você não tem propostas pendentes no momento.
+                </p>
                 <Button>Criar novo projeto</Button>
               </CardContent>
             </Card>
@@ -357,7 +420,10 @@ export default function ClientDashboard() {
               <CardContent className="space-y-6">
                 <div>
                   <label className="text-sm font-medium">Nome da empresa</label>
-                  <Input placeholder="Digite o nome da sua empresa" className="mt-1" />
+                  <Input
+                    placeholder="Digite o nome da sua empresa"
+                    className="mt-1"
+                  />
                 </div>
                 <div>
                   <label className="text-sm font-medium">Email</label>
@@ -365,7 +431,10 @@ export default function ClientDashboard() {
                 </div>
                 <div>
                   <label className="text-sm font-medium">Biografia</label>
-                  <Textarea placeholder="Conte um pouco sobre sua empresa..." className="mt-1" />
+                  <Textarea
+                    placeholder="Conte um pouco sobre sua empresa..."
+                    className="mt-1"
+                  />
                 </div>
                 <Button>Salvar alterações</Button>
               </CardContent>

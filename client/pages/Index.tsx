@@ -22,7 +22,7 @@ export default function Index() {
             Acesse sua área de trabalho personalizada
           </p>
         </div>
-        
+
         {/* Dashboard Selection */}
         <div className="grid md:grid-cols-2 gap-8">
           <Card className="p-8 hover:shadow-lg transition-all duration-300 cursor-pointer group">
@@ -31,11 +31,17 @@ export default function Index() {
                 <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/20 transition-colors">
                   <Search className="w-10 h-10 text-primary" />
                 </div>
-                <h3 className="text-2xl font-semibold mb-4">Dashboard do Cliente</h3>
+                <h3 className="text-2xl font-semibold mb-4">
+                  Dashboard do Cliente
+                </h3>
                 <p className="text-gray-600 mb-8 leading-relaxed">
-                  Gerencie seus projetos, contrate freelancers e acompanhe o progresso dos trabalhos.
+                  Gerencie seus projetos, contrate freelancers e acompanhe o
+                  progresso dos trabalhos.
                 </p>
-                <Button className="w-full group-hover:bg-primary group-hover:text-white" size="lg">
+                <Button
+                  className="w-full group-hover:bg-primary group-hover:text-white"
+                  size="lg"
+                >
                   Acessar como Cliente
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
@@ -49,11 +55,18 @@ export default function Index() {
                 <div className="w-20 h-20 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-accent/20 transition-colors">
                   <Users className="w-10 h-10 text-accent" />
                 </div>
-                <h3 className="text-2xl font-semibold mb-4">Dashboard do Freelancer</h3>
+                <h3 className="text-2xl font-semibold mb-4">
+                  Dashboard do Freelancer
+                </h3>
                 <p className="text-gray-600 mb-8 leading-relaxed">
-                  Encontre trabalhos, gerencie projetos e acompanhe seus ganhos e estatísticas.
+                  Encontre trabalhos, gerencie projetos e acompanhe seus ganhos
+                  e estatísticas.
                 </p>
-                <Button variant="outline" className="w-full group-hover:bg-accent group-hover:text-white group-hover:border-accent" size="lg">
+                <Button
+                  variant="outline"
+                  className="w-full group-hover:bg-accent group-hover:text-white group-hover:border-accent"
+                  size="lg"
+                >
                   Acessar como Freelancer
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>

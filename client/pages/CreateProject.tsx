@@ -4,13 +4,19 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
-import { 
+import {
   ArrowLeft,
   Zap,
   Upload,
@@ -21,7 +27,7 @@ import {
   Users,
   FileText,
   Globe,
-  MapPin
+  MapPin,
 } from "lucide-react";
 
 export default function CreateProject() {
@@ -37,7 +43,7 @@ export default function CreateProject() {
   };
 
   const removeSkill = (skillToRemove: string) => {
-    setSkills(skills.filter(skill => skill !== skillToRemove));
+    setSkills(skills.filter((skill) => skill !== skillToRemove));
   };
 
   return (
@@ -47,7 +53,10 @@ export default function CreateProject() {
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <Link to="/dashboard/cliente" className="flex items-center text-gray-600 hover:text-gray-900">
+              <Link
+                to="/dashboard/cliente"
+                className="flex items-center text-gray-600 hover:text-gray-900"
+              >
                 <ArrowLeft className="w-5 h-5 mr-2" />
                 Voltar ao Dashboard
               </Link>
@@ -56,10 +65,12 @@ export default function CreateProject() {
                 <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
                   <Zap className="w-5 h-5 text-white" />
                 </div>
-                <span className="text-xl font-bold text-gray-900">TalentHub</span>
+                <span className="text-xl font-bold text-gray-900">
+                  TalentHub
+                </span>
               </div>
             </div>
-            
+
             <div className="flex items-center space-x-4">
               <Avatar>
                 <AvatarImage src="/placeholder.svg" />
@@ -72,8 +83,12 @@ export default function CreateProject() {
 
       <div className="container mx-auto px-6 py-8 max-w-4xl">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Criar Novo Projeto</h1>
-          <p className="text-gray-600">Publique seu projeto e receba propostas de freelancers qualificados</p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            Criar Novo Projeto
+          </h1>
+          <p className="text-gray-600">
+            Publique seu projeto e receba propostas de freelancers qualificados
+          </p>
         </div>
 
         <form className="space-y-8">
@@ -87,8 +102,10 @@ export default function CreateProject() {
             </CardHeader>
             <CardContent className="space-y-6">
               <div>
-                <Label htmlFor="title" className="text-sm font-medium">Título do projeto *</Label>
-                <Input 
+                <Label htmlFor="title" className="text-sm font-medium">
+                  Título do projeto *
+                </Label>
+                <Input
                   id="title"
                   placeholder="Ex: Desenvolvimento de site institucional"
                   className="mt-1"
@@ -96,17 +113,27 @@ export default function CreateProject() {
               </div>
 
               <div>
-                <Label htmlFor="category" className="text-sm font-medium">Categoria *</Label>
+                <Label htmlFor="category" className="text-sm font-medium">
+                  Categoria *
+                </Label>
                 <Select>
                   <SelectTrigger className="mt-1">
                     <SelectValue placeholder="Selecione uma categoria" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="desenvolvimento-web">Desenvolvimento Web</SelectItem>
-                    <SelectItem value="desenvolvimento-mobile">Desenvolvimento Mobile</SelectItem>
-                    <SelectItem value="design-grafico">Design Gráfico</SelectItem>
+                    <SelectItem value="desenvolvimento-web">
+                      Desenvolvimento Web
+                    </SelectItem>
+                    <SelectItem value="desenvolvimento-mobile">
+                      Desenvolvimento Mobile
+                    </SelectItem>
+                    <SelectItem value="design-grafico">
+                      Design Gráfico
+                    </SelectItem>
                     <SelectItem value="ui-ux">UI/UX Design</SelectItem>
-                    <SelectItem value="marketing-digital">Marketing Digital</SelectItem>
+                    <SelectItem value="marketing-digital">
+                      Marketing Digital
+                    </SelectItem>
                     <SelectItem value="redacao">Redação e Conteúdo</SelectItem>
                     <SelectItem value="traducao">Tradução</SelectItem>
                     <SelectItem value="consultoria">Consultoria</SelectItem>
@@ -115,8 +142,10 @@ export default function CreateProject() {
               </div>
 
               <div>
-                <Label htmlFor="description" className="text-sm font-medium">Descrição detalhada *</Label>
-                <Textarea 
+                <Label htmlFor="description" className="text-sm font-medium">
+                  Descrição detalhada *
+                </Label>
+                <Textarea
                   id="description"
                   placeholder="Descreva seu projeto em detalhes. Inclua objetivos, funcionalidades esperadas, público-alvo e qualquer informação relevante..."
                   className="mt-1 min-h-[120px]"
@@ -124,14 +153,18 @@ export default function CreateProject() {
               </div>
 
               <div>
-                <Label className="text-sm font-medium">Habilidades necessárias</Label>
+                <Label className="text-sm font-medium">
+                  Habilidades necessárias
+                </Label>
                 <div className="mt-1 space-y-3">
                   <div className="flex gap-2">
-                    <Input 
+                    <Input
                       placeholder="Digite uma habilidade"
                       value={newSkill}
                       onChange={(e) => setNewSkill(e.target.value)}
-                      onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addSkill())}
+                      onKeyPress={(e) =>
+                        e.key === "Enter" && (e.preventDefault(), addSkill())
+                      }
                     />
                     <Button type="button" onClick={addSkill} variant="outline">
                       <Plus className="w-4 h-4" />
@@ -139,10 +172,14 @@ export default function CreateProject() {
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {skills.map((skill) => (
-                      <Badge key={skill} variant="secondary" className="flex items-center gap-1">
+                      <Badge
+                        key={skill}
+                        variant="secondary"
+                        className="flex items-center gap-1"
+                      >
                         {skill}
-                        <X 
-                          className="w-3 h-3 cursor-pointer hover:text-red-500" 
+                        <X
+                          className="w-3 h-3 cursor-pointer hover:text-red-500"
                           onClick={() => removeSkill(skill)}
                         />
                       </Badge>
@@ -163,8 +200,14 @@ export default function CreateProject() {
             </CardHeader>
             <CardContent className="space-y-6">
               <div>
-                <Label className="text-sm font-medium">Tipo de orçamento *</Label>
-                <RadioGroup value={budgetType} onValueChange={setBudgetType} className="mt-2">
+                <Label className="text-sm font-medium">
+                  Tipo de orçamento *
+                </Label>
+                <RadioGroup
+                  value={budgetType}
+                  onValueChange={setBudgetType}
+                  className="mt-2"
+                >
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="fixed" id="fixed" />
                     <Label htmlFor="fixed">Preço fixo</Label>
@@ -182,8 +225,10 @@ export default function CreateProject() {
 
               {budgetType === "fixed" && (
                 <div>
-                  <Label htmlFor="budget-fixed" className="text-sm font-medium">Valor do projeto (R$) *</Label>
-                  <Input 
+                  <Label htmlFor="budget-fixed" className="text-sm font-medium">
+                    Valor do projeto (R$) *
+                  </Label>
+                  <Input
                     id="budget-fixed"
                     type="number"
                     placeholder="5000"
@@ -194,8 +239,13 @@ export default function CreateProject() {
 
               {budgetType === "hourly" && (
                 <div>
-                  <Label htmlFor="budget-hourly" className="text-sm font-medium">Valor por hora (R$) *</Label>
-                  <Input 
+                  <Label
+                    htmlFor="budget-hourly"
+                    className="text-sm font-medium"
+                  >
+                    Valor por hora (R$) *
+                  </Label>
+                  <Input
                     id="budget-hourly"
                     type="number"
                     placeholder="50"
@@ -207,8 +257,10 @@ export default function CreateProject() {
               {budgetType === "range" && (
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="budget-min" className="text-sm font-medium">Valor mínimo (R$) *</Label>
-                    <Input 
+                    <Label htmlFor="budget-min" className="text-sm font-medium">
+                      Valor mínimo (R$) *
+                    </Label>
+                    <Input
                       id="budget-min"
                       type="number"
                       placeholder="3000"
@@ -216,8 +268,10 @@ export default function CreateProject() {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="budget-max" className="text-sm font-medium">Valor máximo (R$) *</Label>
-                    <Input 
+                    <Label htmlFor="budget-max" className="text-sm font-medium">
+                      Valor máximo (R$) *
+                    </Label>
+                    <Input
                       id="budget-max"
                       type="number"
                       placeholder="8000"
@@ -228,7 +282,9 @@ export default function CreateProject() {
               )}
 
               <div>
-                <Label htmlFor="deadline" className="text-sm font-medium">Prazo de entrega *</Label>
+                <Label htmlFor="deadline" className="text-sm font-medium">
+                  Prazo de entrega *
+                </Label>
                 <Select>
                   <SelectTrigger className="mt-1">
                     <SelectValue placeholder="Selecione o prazo" />
@@ -257,7 +313,9 @@ export default function CreateProject() {
             </CardHeader>
             <CardContent className="space-y-6">
               <div>
-                <Label htmlFor="location" className="text-sm font-medium">Localização preferencial</Label>
+                <Label htmlFor="location" className="text-sm font-medium">
+                  Localização preferencial
+                </Label>
                 <Select>
                   <SelectTrigger className="mt-1">
                     <SelectValue placeholder="Qualquer localização" />
@@ -267,14 +325,18 @@ export default function CreateProject() {
                     <SelectItem value="brasil">Brasil</SelectItem>
                     <SelectItem value="sao-paulo">São Paulo</SelectItem>
                     <SelectItem value="rio-janeiro">Rio de Janeiro</SelectItem>
-                    <SelectItem value="belo-horizonte">Belo Horizonte</SelectItem>
+                    <SelectItem value="belo-horizonte">
+                      Belo Horizonte
+                    </SelectItem>
                     <SelectItem value="remote">Apenas remoto</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
               <div>
-                <Label htmlFor="experience" className="text-sm font-medium">Nível de experiência</Label>
+                <Label htmlFor="experience" className="text-sm font-medium">
+                  Nível de experiência
+                </Label>
                 <Select>
                   <SelectTrigger className="mt-1">
                     <SelectValue placeholder="Qualquer nível" />
@@ -289,19 +351,27 @@ export default function CreateProject() {
               </div>
 
               <div className="space-y-3">
-                <Label className="text-sm font-medium">Requisitos adicionais</Label>
+                <Label className="text-sm font-medium">
+                  Requisitos adicionais
+                </Label>
                 <div className="space-y-2">
                   <div className="flex items-center space-x-2">
                     <Checkbox id="portfolio" />
-                    <Label htmlFor="portfolio" className="text-sm">Portfólio obrigatório</Label>
+                    <Label htmlFor="portfolio" className="text-sm">
+                      Portfólio obrigatório
+                    </Label>
                   </div>
                   <div className="flex items-center space-x-2">
                     <Checkbox id="verification" />
-                    <Label htmlFor="verification" className="text-sm">Freelancer verificado</Label>
+                    <Label htmlFor="verification" className="text-sm">
+                      Freelancer verificado
+                    </Label>
                   </div>
                   <div className="flex items-center space-x-2">
                     <Checkbox id="rating" />
-                    <Label htmlFor="rating" className="text-sm">Avaliação mínima 4.5</Label>
+                    <Label htmlFor="rating" className="text-sm">
+                      Avaliação mínima 4.5
+                    </Label>
                   </div>
                 </div>
               </div>
@@ -319,9 +389,12 @@ export default function CreateProject() {
             <CardContent>
               <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
                 <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-lg font-medium text-gray-900 mb-2">Adicione arquivos ao projeto</h3>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">
+                  Adicione arquivos ao projeto
+                </h3>
                 <p className="text-gray-600 mb-4">
-                  Faça upload de briefings, mockups, documentos ou qualquer arquivo relevante
+                  Faça upload de briefings, mockups, documentos ou qualquer
+                  arquivo relevante
                 </p>
                 <Button variant="outline" type="button">
                   Selecionar Arquivos
@@ -339,9 +412,7 @@ export default function CreateProject() {
               <Button variant="outline" type="button">
                 Salvar Rascunho
               </Button>
-              <Button type="submit">
-                Publicar Projeto
-              </Button>
+              <Button type="submit">Publicar Projeto</Button>
             </div>
           </div>
         </form>
