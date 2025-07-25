@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TalentHub - Detalhes da Proposta</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="proposal-detail-styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="nav-section">
+                <a href="freelancer-dashboard.html" class="back-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="19" y1="12" x2="5" y2="12"/>
+                        <polyline points="12,19 5,12 12,5"/>
+                    </svg>
+                    Voltar às Propostas
+                </a>
+                <div class="separator"></div>
+                <a href="index.html" class="logo-link">
+                    <div class="logo">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                        </svg>
+                    </div>
+                    <span class="logo-text">TalentHub</span>
+                </a>
+            </div>
+            
+            <div class="avatar">
+                <span>MS</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="proposal-container">
+        <!-- Proposal Header -->
+        <div class="proposal-header">
+            <div class="proposal-info">
+                <div class="proposal-title-section">
+                    <h1>Desenvolvimento de E-commerce</h1>
+                    <div class="proposal-badges">
+                        <span class="status-badge pending">Aguardando resposta</span>
+                        <span class="priority-badge">Proposta #PR-2024-003</span>
+                    </div>
+                </div>
+                <div class="client-info">
+                    <div class="client-avatar">
+                        <span>TS</span>
+                    </div>
+                    <div class="client-details">
+                        <h3>TechStore Ltda</h3>
+                        <div class="client-meta">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                            </svg>
+                            <span>4.7 (89 projetos)</span>
+                        </div>
+                        <div class="client-meta">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                            <span>São Paulo, SP</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="proposal-actions">
+                <button class="btn-outline">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                    </svg>
+                    Editar Proposta
+                </button>
+                <button class="btn-primary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    Conversar
+                </button>
+            </div>
+        </div>
+
+        <div class="proposal-layout">
+            <!-- Main Content -->
+            <div class="proposal-main">
+                <!-- Timeline -->
+                <div class="timeline-card">
+                    <h2>Linha do Tempo</h2>
+                    <div class="timeline-list">
+                        <div class="timeline-item active">
+                            <div class="timeline-status">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="22" y1="2" x2="11" y2="13"/>
+                                    <polygon points="22,2 15,22 11,13 2,9 22,2"/>
+                                </svg>
+                            </div>
+                            <div class="timeline-content">
+                                <h3>Proposta Enviada</h3>
+                                <p>Sua proposta foi enviada com sucesso para o cliente</p>
+                                <span class="timeline-date">Hoje, 14:32</span>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item pending">
+                            <div class="timeline-status">
+                                <div class="timeline-circle"></div>
+                            </div>
+                            <div class="timeline-content">
+                                <h3>Análise do Cliente</h3>
+                                <p>O cliente está analisando sua proposta</p>
+                                <span class="timeline-date">Aguardando...</span>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item pending">
+                            <div class="timeline-status">
+                                <div class="timeline-circle"></div>
+                            </div>
+                            <div class="timeline-content">
+                                <h3>Resposta do Cliente</h3>
+                                <p>O cliente responderá com feedback ou contratação</p>
+                                <span class="timeline-date">Previsto em 2-3 dias</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cover Letter -->
+                <div class="section-card">
+                    <h2>Carta de Apresentação</h2>
+                    <div class="letter-content">
+                        <p>Olá! Vi seu projeto de e-commerce e tenho experiência específica que pode agregar valor ao seu negócio.</p>
+                        
+                        <p><strong>Minha experiência relevante:</strong></p>
+                        <ul>
+                            <li>Desenvolvimento de 5+ lojas virtuais similares</li>
+                            <li>Expertise em React e Node.js (3+ anos)</li>
+                            <li>Integração com gateways de pagamento (Stripe, PagSeguro)</li>
+                            <li>Foco em performance e conversão</li>
+                        </ul>
+                        
+                        <p>Gostaria de discutir como posso ajudar a criar uma solução robusta e escalável para seu negócio. Tenho certeza que posso entregar um e-commerce que não só atenda suas expectativas, mas também proporcione uma excelente experiência para seus clientes.</p>
+                        
+                        <p>Estou disponível para esclarecer qualquer dúvida e ansioso para começar este projeto!</p>
+                        
+                        <p>Atenciosamente,<br>Maria Santos</p>
+                    </div>
+                </div>
+
+                <!-- Work Plan -->
+                <div class="section-card">
+                    <h2>Plano de Trabalho</h2>
+                    <div class="work-plan">
+                        <div class="plan-phase">
+                            <h3>Etapa 1 - Levantamento e Planejamento (Semana 1)</h3>
+                            <ul>
+                                <li>Reunião inicial para alinhamento de requisitos</li>
+                                <li>Análise detalhada das funcionalidades necessárias</li>
+                                <li>Criação de wireframes e arquitetura do sistema</li>
+                                <li>Definição da identidade visual e UX</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="plan-phase">
+                            <h3>Etapa 2 - Desenvolvimento do Frontend (Semana 2-3)</h3>
+                            <ul>
+                                <li>Setup do ambiente de desenvolvimento</li>
+                                <li>Implementação das páginas principais (home, catálogo, produto)</li>
+                                <li>Desenvolvimento do carrinho de compras</li>
+                                <li>Sistema de busca e filtros</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="plan-phase">
+                            <h3>Etapa 3 - Backend e Integração (Semana 4)</h3>
+                            <ul>
+                                <li>Desenvolvimento da API REST</li>
+                                <li>Configuração do banco de dados</li>
+                                <li>Integração com gateway de pagamento</li>
+                                <li>Sistema de gerenciamento de pedidos</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="plan-phase">
+                            <h3>Etapa 4 - Testes e Deploy (Semana 5)</h3>
+                            <ul>
+                                <li>Testes unitários e de integração</li>
+                                <li>Testes de performance e segurança</li>
+                                <li>Deploy em ambiente de produção</li>
+                                <li>Treinamento e documentação</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Examples -->
+                <div class="section-card">
+                    <h2>Exemplos do Portfólio</h2>
+                    <div class="portfolio-examples">
+                        <div class="portfolio-item">
+                            <div class="portfolio-image">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                                    <line x1="8" y1="21" x2="16" y2="21"/>
+                                    <line x1="12" y1="17" x2="12" y2="21"/>
+                                </svg>
+                            </div>
+                            <div class="portfolio-info">
+                                <h4>E-commerce de Roupas Femininas</h4>
+                                <p>Loja online com mais de 50k produtos, sistema de recomendações personalizado e integração com múltiplos gateways de pagamento.</p>
+                                <a href="#" class="portfolio-link">Ver projeto →</a>
+                            </div>
+                        </div>
+                        
+                        <div class="portfolio-item">
+                            <div class="portfolio-image">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                                    <line x1="8" y1="21" x2="16" y2="21"/>
+                                    <line x1="12" y1="17" x2="12" y2="21"/>
+                                </svg>
+                            </div>
+                            <div class="portfolio-info">
+                                <h4>Marketplace B2B</h4>
+                                <p>Plataforma para vendas corporativas com sistema de comissões, dashboard analítico e gestão de múltiplos fornecedores.</p>
+                                <a href="#" class="portfolio-link">Ver projeto →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Questions -->
+                <div class="section-card">
+                    <h2>Perguntas para o Cliente</h2>
+                    <div class="questions-list">
+                        <div class="question-item">
+                            <strong>1. Qual gateway de pagamento preferem utilizar?</strong>
+                            <p>Para garantir a melhor integração e menores taxas para seu negócio.</p>
+                        </div>
+                        <div class="question-item">
+                            <strong>2. Já possuem identidade visual definida?</strong>
+                            <p>Cores, fontes, logotipo - ou precisamos desenvolver do zero?</p>
+                        </div>
+                        <div class="question-item">
+                            <strong>3. Quantos produtos estimam cadastrar inicialmente?</strong>
+                            <p>Isso ajuda a dimensionar a estrutura do banco de dados.</p>
+                        </div>
+                        <div class="question-item">
+                            <strong>4. Necessitam de integração com sistemas existentes?</strong>
+                            <p>ERP, CRM ou outros sistemas que já utilizam na empresa.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="proposal-sidebar">
+                <!-- Proposal Summary -->
+                <div class="sidebar-card">
+                    <h3>Resumo da Proposta</h3>
+                    <div class="summary-grid">
+                        <div class="summary-item">
+                            <span class="summary-label">Valor</span>
+                            <span class="summary-value">R$ 3.500</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Prazo</span>
+                            <span class="summary-value">25 dias</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Enviada em</span>
+                            <span class="summary-value">Hoje, 14:32</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Status</span>
+                            <span class="summary-value pending">Pendente</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Details -->
+                <div class="sidebar-card">
+                    <h3>Detalhes do Projeto</h3>
+                    <div class="project-details">
+                        <div class="detail-item">
+                            <strong>Categoria:</strong>
+                            <span>Desenvolvimento Web</span>
+                        </div>
+                        <div class="detail-item">
+                            <strong>Orçamento do cliente:</strong>
+                            <span>R$ 3.000 - R$ 4.000</span>
+                        </div>
+                        <div class="detail-item">
+                            <strong>Propostas recebidas:</strong>
+                            <span>8 propostas</span>
+                        </div>
+                        <div class="detail-item">
+                            <strong>Localização:</strong>
+                            <span>São Paulo, SP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technologies -->
+                <div class="sidebar-card">
+                    <h3>Tecnologias Propostas</h3>
+                    <div class="tech-tags">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">Stripe</span>
+                        <span class="tech-tag">AWS</span>
+                        <span class="tech-tag">Docker</span>
+                    </div>
+                </div>
+
+                <!-- Competition -->
+                <div class="sidebar-card">
+                    <h3>Análise da Concorrência</h3>
+                    <div class="competition-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">8</div>
+                            <div class="stat-label">Outras propostas</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">R$ 3.200</div>
+                            <div class="stat-label">Preço médio</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">30</div>
+                            <div class="stat-label">Prazo médio (dias)</div>
+                        </div>
+                    </div>
+                    <div class="competitive-advantage">
+                        <h4>Seus diferenciais:</h4>
+                        <ul>
+                            <li>Preço competitivo</li>
+                            <li>Prazo mais rápido</li>
+                            <li>Alta avaliação (4.9★)</li>
+                            <li>Experiência específica</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
