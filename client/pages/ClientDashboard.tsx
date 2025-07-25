@@ -183,10 +183,12 @@ export default function ClientDashboard() {
               <TabsTrigger value="configuracoes">Configurações</TabsTrigger>
             </TabsList>
             
-            <Button>
-              <Plus className="w-4 h-4 mr-2" />
-              Novo Projeto
-            </Button>
+            <Link to="/criar-projeto">
+              <Button>
+                <Plus className="w-4 h-4 mr-2" />
+                Novo Projeto
+              </Button>
+            </Link>
           </div>
 
           <TabsContent value="projetos" className="space-y-6">
