@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TalentHub - Criar Novo Projeto</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="create-project-styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="nav-section">
+                <a href="client-dashboard.html" class="back-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="19" y1="12" x2="5" y2="12"/>
+                        <polyline points="12,19 5,12 12,5"/>
+                    </svg>
+                    Voltar ao Dashboard
+                </a>
+                <div class="separator"></div>
+                <a href="index.html" class="logo-link">
+                    <div class="logo">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                        </svg>
+                    </div>
+                    <span class="logo-text">TalentHub</span>
+                </a>
+            </div>
+            
+            <div class="avatar">
+                <span>CL</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="form-container">
+        <div class="form-header">
+            <h1>Criar Novo Projeto</h1>
+            <p>Publique seu projeto e receba propostas de freelancers qualificados</p>
+        </div>
+
+        <form class="project-form">
+            <!-- Basic Information -->
+            <div class="form-section">
+                <div class="section-header">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14,2 14,8 20,8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                        <polyline points="10,9 9,9 8,9"/>
+                    </svg>
+                    <h2>Informações do Projeto</h2>
+                </div>
+                <div class="section-content">
+                    <div class="form-group">
+                        <label>Título do projeto *</label>
+                        <input type="text" placeholder="Ex: Desenvolvimento de site institucional" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Categoria *</label>
+                        <select required>
+                            <option value="">Selecione uma categoria</option>
+                            <option value="desenvolvimento-web">Desenvolvimento Web</option>
+                            <option value="desenvolvimento-mobile">Desenvolvimento Mobile</option>
+                            <option value="design-grafico">Design Gráfico</option>
+                            <option value="ui-ux">UI/UX Design</option>
+                            <option value="marketing-digital">Marketing Digital</option>
+                            <option value="redacao">Redação e Conteúdo</option>
+                            <option value="traducao">Tradução</option>
+                            <option value="consultoria">Consultoria</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Descrição detalhada *</label>
+                        <textarea rows="6" placeholder="Descreva seu projeto em detalhes. Inclua objetivos, funcionalidades esperadas, público-alvo e qualquer informação relevante..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Habilidades necessárias</label>
+                        <div class="skills-input">
+                            <div class="input-row">
+                                <input type="text" id="skillInput" placeholder="Digite uma habilidade">
+                                <button type="button" onclick="addSkill()" class="add-btn">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <line x1="12" y1="5" x2="12" y2="19"/>
+                                        <line x1="5" y1="12" x2="19" y2="12"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="skills-tags" id="skillsContainer">
+                                <!-- Skills will be added here dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Budget and Timeline -->
+            <div class="form-section">
+                <div class="section-header">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="1" x2="12" y2="23"/>
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                    </svg>
+                    <h2>Orçamento e Prazo</h2>
+                </div>
+                <div class="section-content">
+                    <div class="form-group">
+                        <label>Tipo de orçamento *</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="budgetType" value="fixed" checked onchange="toggleBudgetFields()">
+                                <span class="radio-custom"></span>
+                                Preço fixo
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="budgetType" value="hourly" onchange="toggleBudgetFields()">
+                                <span class="radio-custom"></span>
+                                Por hora
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="budgetType" value="range" onchange="toggleBudgetFields()">
+                                <span class="radio-custom"></span>
+                                Faixa de preço
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="fixedBudget" class="budget-field">
+                        <div class="form-group">
+                            <label>Valor do projeto (R$) *</label>
+                            <input type="number" min="1" step="0.01" placeholder="5000">
+                        </div>
+                    </div>
+
+                    <div id="hourlyBudget" class="budget-field" style="display: none;">
+                        <div class="form-group">
+                            <label>Valor por hora (R$) *</label>
+                            <input type="number" min="1" step="0.01" placeholder="50">
+                        </div>
+                    </div>
+
+                    <div id="rangeBudget" class="budget-field" style="display: none;">
+                        <div class="budget-grid">
+                            <div class="form-group">
+                                <label>Valor mínimo (R$) *</label>
+                                <input type="number" min="1" step="0.01" placeholder="3000">
+                            </div>
+                            <div class="form-group">
+                                <label>Valor máximo (R$) *</label>
+                                <input type="number" min="1" step="0.01" placeholder="8000">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Prazo de entrega *</label>
+                        <select required>
+                            <option value="">Selecione o prazo</option>
+                            <option value="1-week">1 semana</option>
+                            <option value="2-weeks">2 semanas</option>
+                            <option value="1-month">1 mês</option>
+                            <option value="2-months">2 meses</option>
+                            <option value="3-months">3 meses</option>
+                            <option value="6-months">6 meses</option>
+                            <option value="custom">Personalizado</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Freelancer Preferences -->
+            <div class="form-section">
+                <div class="section-header">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="m22 21-3-3"/>
+                        <path d="M15 8h4"/>
+                        <path d="M17 6v4"/>
+                    </svg>
+                    <h2>Preferências do Freelancer</h2>
+                </div>
+                <div class="section-content">
+                    <div class="preferences-grid">
+                        <div class="form-group">
+                            <label>Localização preferencial</label>
+                            <select>
+                                <option value="">Qualquer localização</option>
+                                <option value="brasil">Brasil</option>
+                                <option value="sao-paulo">São Paulo</option>
+                                <option value="rio-janeiro">Rio de Janeiro</option>
+                                <option value="belo-horizonte">Belo Horizonte</option>
+                                <option value="remote">Apenas remoto</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Nível de experiência</label>
+                            <select>
+                                <option value="">Qualquer nível</option>
+                                <option value="junior">Júnior</option>
+                                <option value="pleno">Pleno</option>
+                                <option value="senior">Sênior</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Requisitos adicionais</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-option">
+                                <input type="checkbox">
+                                <span class="checkbox-custom"></span>
+                                Portfólio obrigatório
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox">
+                                <span class="checkbox-custom"></span>
+                                Freelancer verificado
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox">
+                                <span class="checkbox-custom"></span>
+                                Avaliação mínima 4.5
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- File Attachments -->
+            <div class="form-section">
+                <div class="section-header">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7,10 12,15 17,10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    <h2>Arquivos Anexos</h2>
+                </div>
+                <div class="section-content">
+                    <div class="upload-area">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="7,10 12,15 17,10"/>
+                            <line x1="12" y1="15" x2="12" y2="3"/>
+                        </svg>
+                        <h3>Adicione arquivos ao projeto</h3>
+                        <p>Faça upload de briefings, mockups, documentos ou qualquer arquivo relevante</p>
+                        <button type="button" class="upload-btn">Selecionar Arquivos</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="form-actions">
+                <a href="client-dashboard.html" class="btn-cancel">Cancelar</a>
+                <div class="action-buttons">
+                    <button type="button" class="btn-draft">Salvar Rascunho</button>
+                    <button type="submit" class="btn-publish">Publicar Projeto</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function addSkill() {
+            const input = document.getElementById('skillInput');
+            const skillsContainer = document.getElementById('skillsContainer');
+            const skillText = input.value.trim();
+            
+            if (skillText && !document.querySelector(`[data-skill="${skillText}"]`)) {
+                const skillTag = document.createElement('span');
+                skillTag.className = 'skill-tag';
+                skillTag.setAttribute('data-skill', skillText);
+                skillTag.innerHTML = `
+                    ${skillText}
+                    <button type="button" onclick="removeSkill(this)" class="remove-skill">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"/>
+                            <line x1="6" y1="6" x2="18" y2="18"/>
+                        </svg>
+                    </button>
+                `;
+                skillsContainer.appendChild(skillTag);
+                input.value = '';
+            }
+        }
+
+        function removeSkill(button) {
+            button.parentElement.remove();
+        }
+
+        function toggleBudgetFields() {
+            const budgetType = document.querySelector('input[name="budgetType"]:checked').value;
+            
+            // Hide all budget fields
+            document.getElementById('fixedBudget').style.display = 'none';
+            document.getElementById('hourlyBudget').style.display = 'none';
+            document.getElementById('rangeBudget').style.display = 'none';
+            
+            // Show selected budget field
+            if (budgetType === 'fixed') {
+                document.getElementById('fixedBudget').style.display = 'block';
+            } else if (budgetType === 'hourly') {
+                document.getElementById('hourlyBudget').style.display = 'block';
+            } else if (budgetType === 'range') {
+                document.getElementById('rangeBudget').style.display = 'block';
+            }
+        }
+
+        // Enter key functionality for skills input
+        document.getElementById('skillInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                addSkill();
+            }
+        });
+    </script>
+</body>
+</html>
