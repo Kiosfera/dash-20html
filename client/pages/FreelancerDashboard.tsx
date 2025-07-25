@@ -131,9 +131,11 @@ export default function FreelancerDashboard() {
               <h1 className="text-3xl font-bold text-gray-900 mb-2">Dashboard do Freelancer</h1>
               <p className="text-gray-600">Encontre projetos e gerencie seu trabalho</p>
             </div>
-            <Button className="bg-accent hover:bg-accent/90">
-              Completar Perfil
-            </Button>
+            <Link to="/completar-perfil">
+              <Button className="bg-accent hover:bg-accent/90">
+                Completar Perfil
+              </Button>
+            </Link>
           </div>
         </div>
 
