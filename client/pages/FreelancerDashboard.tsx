@@ -23,8 +23,6 @@ import {
 export default function FreelancerDashboard() {
   const [activeTab, setActiveTab] = useState("projetos");
 
-
-
   const meusProjetos = [
     {
       id: 1,
@@ -201,8 +199,6 @@ export default function FreelancerDashboard() {
             <TabsTrigger value="propostas">Minhas Propostas</TabsTrigger>
             <TabsTrigger value="perfil">Meu Perfil</TabsTrigger>
           </TabsList>
-
-
 
           <TabsContent value="projetos" className="space-y-6">
             <div className="space-y-4">
