@@ -34,12 +34,14 @@ static/
 ## 🎨 Páginas Implementadas
 
 ### 1. **Página Inicial** (`index.html`)
+
 - Seleção entre Dashboard do Cliente e Dashboard do Freelancer
 - Design com gradiente e cards interativos
 - Estatísticas da plataforma
 - Navegação responsiva
 
 ### 2. **Dashboard do Cliente** (`client-dashboard.html`)
+
 - ✅ Estatísticas: Projetos ativos, freelancers, gastos, avaliações
 - ✅ **Meus Projetos**: Gestão completa de projetos (Ativo, Em Andamento, Concluído)
 - ✅ **Freelancers**: Lista de freelancers contratados com status
@@ -49,6 +51,7 @@ static/
 - ✅ Link para criar novo projeto
 
 ### 3. **Dashboard do Freelancer** (`freelancer-dashboard.html`)
+
 - ✅ Perfil resumido com avaliações e projetos concluídos
 - ✅ Estatísticas: Receita mensal, projetos ativos, propostas, taxa de sucesso
 - ✅ **Meus Projetos**: Projetos em andamento com barra de progresso
@@ -58,6 +61,7 @@ static/
 - ❌ **Removido**: Aba "Buscar Trabalhos" (conforme solicitado)
 
 ### 4. **Criar Projeto** (`create-project.html`)
+
 - ✅ Formulário completo com validação
 - ✅ Informações básicas: título, categoria, descrição
 - ✅ Sistema de habilidades com tags dinâmicas
@@ -67,6 +71,7 @@ static/
 - ✅ Interface responsiva
 
 ### 5. **Enviar Proposta** (`send-proposal.html`)
+
 - ✅ **Página independente** (fora do menu do freelancer)
 - ✅ Layout em 2 colunas: sidebar com detalhes do projeto + formulário
 - ✅ Carta de apresentação personalizada
@@ -77,6 +82,7 @@ static/
 - ✅ Sistema de anexos
 
 ### 6. **Completar Perfil** (`complete-profile.html`)
+
 - ✅ Upload de foto de perfil
 - ✅ Informações pessoais e profissionais
 - ✅ Sistema de habilidades dinâmico
@@ -85,6 +91,7 @@ static/
 - ✅ Barra de progresso do perfil (65%)
 
 ### 7. **Sistema de Mensagens** (`messages.html`)
+
 - ✅ Interface de chat em tempo real
 - ✅ Lista de conversas com status online
 - ✅ Informações do freelancer/cliente
@@ -96,24 +103,29 @@ static/
 ## 🎯 Funcionalidades JavaScript
 
 ### Dashboard do Freelancer
+
 - Sistema de abas (Meus Projetos, Propostas, Perfil)
 - Remoção da aba "Buscar Trabalhos"
 
 ### Criação de Projeto
+
 - Toggle entre tipos de orçamento (fixo/hora/faixa)
 - Sistema de habilidades dinâmico
 - Validação de formulário
 
 ### Completar Perfil
+
 - Sistema de habilidades com adição/remoção
 - Upload simulado de foto
 - Contador de caracteres
 
 ### Envio de Proposta
+
 - Contador de caracteres na carta de apresentação
 - Formulário multi-seção
 
 ### Sistema de Mensagens
+
 - Seleção de conversas
 - Envio de mensagens em tempo real
 - Auto-resize do textarea
@@ -129,6 +141,7 @@ Todas as páginas são totalmente responsivas com breakpoints:
 - **Mobile Small**: < 480px (otimizações extras)
 
 ### Adaptações Mobile:
+
 - Navegação colapsada
 - Grids de 1 coluna
 - Cards empilhados
@@ -138,6 +151,7 @@ Todas as páginas são totalmente responsivas com breakpoints:
 ## 🎨 Design System
 
 ### Cores
+
 - **Primary**: `#2563eb` (Azul)
 - **Accent**: `#22c55e` (Verde)
 - **Background**: `#f9fafb` (Cinza claro)
@@ -145,11 +159,13 @@ Todas as páginas são totalmente responsivas com breakpoints:
 - **Text**: `#111827` (Cinza escuro)
 
 ### Tipografia
+
 - **Fonte**: Montserrat (Google Fonts)
 - **Pesos**: 100-900 disponíveis
 - **Hierarquia**: H1-H3, body, small
 
 ### Componentes
+
 - Cards com hover effects
 - Botões com estados (primary, outline, ghost)
 - Badges de status coloridos
@@ -161,6 +177,7 @@ Todas as páginas são totalmente responsivas com breakpoints:
 ## 🚀 Como Usar
 
 1. **Abrir a aplicação**:
+
    ```bash
    # Servir os arquivos localmente
    python -m http.server 8000
@@ -169,6 +186,7 @@ Todas as páginas são totalmente responsivas com breakpoints:
    ```
 
 2. **Navegar pela aplicação**:
+
    - Acesse `http://localhost:8000`
    - Escolha entre Cliente ou Freelancer
    - Explore todas as funcionalidades
