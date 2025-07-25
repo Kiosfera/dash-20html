@@ -1,358 +1,489 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TalentHub - Dashboard do Freelancer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="dashboard-styles.css">
-</head>
-<body>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="dashboard-styles.css" />
+  </head>
+  <body>
     <!-- Header -->
     <header class="header">
-        <div class="header-content">
-            <a href="index.html" class="logo-link">
-                <div class="logo">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
-                    </svg>
-                </div>
-                <span class="logo-text">TalentHub</span>
-            </a>
-            
-            <div class="header-actions">
-                <a href="messages.html" class="header-btn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                    </svg>
-                    Mensagens
-                </a>
-                <div class="avatar">
-                    <span>FR</span>
-                </div>
-            </div>
+      <div class="header-content">
+        <a href="index.html" class="logo-link">
+          <div class="logo">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2" />
+            </svg>
+          </div>
+          <span class="logo-text">TalentHub</span>
+        </a>
+
+        <div class="header-actions">
+          <a href="messages.html" class="header-btn">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+              />
+            </svg>
+            Mensagens
+          </a>
+          <div class="avatar">
+            <span>FR</span>
+          </div>
         </div>
+      </div>
     </header>
 
     <div class="dashboard-container">
-        <div class="dashboard-header">
-            <div class="title-section">
-                <h1>Dashboard do Freelancer</h1>
-                <p>Encontre projetos e gerencie seu trabalho</p>
+      <div class="dashboard-header">
+        <div class="title-section">
+          <h1>Dashboard do Freelancer</h1>
+          <p>Encontre projetos e gerencie seu trabalho</p>
+        </div>
+        <a href="complete-profile.html" class="complete-profile-btn">
+          Completar Perfil
+        </a>
+      </div>
+
+      <!-- Profile Summary -->
+      <div class="profile-card">
+        <div class="profile-content">
+          <div class="profile-avatar">
+            <span>MS</span>
+          </div>
+          <div class="profile-info">
+            <h2>Maria Santos</h2>
+            <p class="profile-role">
+              Desenvolvedora Full Stack | UI/UX Designer
+            </p>
+            <div class="profile-meta">
+              <div class="meta-item">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <polygon
+                    points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
+                  />
+                </svg>
+                <span>4.9 (127 avaliações)</span>
+              </div>
+              <div class="meta-item">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                  <line x1="8" y1="21" x2="16" y2="21" />
+                  <line x1="12" y1="17" x2="12" y2="21" />
+                </svg>
+                <span>89 projetos concluídos</span>
+              </div>
+              <div class="meta-item">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                <span>São Paulo, SP</span>
+              </div>
             </div>
-            <a href="complete-profile.html" class="complete-profile-btn">
-                Completar Perfil
-            </a>
+          </div>
+          <div class="profile-rate">
+            <div class="rate-amount">R$ 55/hora</div>
+            <div class="rate-label">Taxa padrão</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Cards -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon green">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polyline points="22,12 18,12 15,21 9,3 6,12 2,12" />
+            </svg>
+          </div>
+          <div class="stat-info">
+            <div class="stat-label">Receita Este Mês</div>
+            <div class="stat-value">R$ 4.2k</div>
+          </div>
         </div>
 
-        <!-- Profile Summary -->
-        <div class="profile-card">
-            <div class="profile-content">
-                <div class="profile-avatar">
-                    <span>MS</span>
-                </div>
-                <div class="profile-info">
-                    <h2>Maria Santos</h2>
-                    <p class="profile-role">Desenvolvedora Full Stack | UI/UX Designer</p>
-                    <div class="profile-meta">
-                        <div class="meta-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
-                            </svg>
-                            <span>4.9 (127 avaliações)</span>
-                        </div>
-                        <div class="meta-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-                                <line x1="8" y1="21" x2="16" y2="21"/>
-                                <line x1="12" y1="17" x2="12" y2="21"/>
-                            </svg>
-                            <span>89 projetos concluídos</span>
-                        </div>
-                        <div class="meta-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                <circle cx="12" cy="10" r="3"/>
-                            </svg>
-                            <span>São Paulo, SP</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="profile-rate">
-                    <div class="rate-amount">R$ 55/hora</div>
-                    <div class="rate-label">Taxa padrão</div>
-                </div>
-            </div>
+        <div class="stat-card">
+          <div class="stat-icon blue">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+              <line x1="8" y1="21" x2="16" y2="21" />
+              <line x1="12" y1="17" x2="12" y2="21" />
+            </svg>
+          </div>
+          <div class="stat-info">
+            <div class="stat-label">Projetos Ativos</div>
+            <div class="stat-value">2</div>
+          </div>
         </div>
 
-        <!-- Stats Cards -->
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-icon green">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
-                    </svg>
-                </div>
-                <div class="stat-info">
-                    <div class="stat-label">Receita Este Mês</div>
-                    <div class="stat-value">R$ 4.2k</div>
-                </div>
-            </div>
-            
-            <div class="stat-card">
-                <div class="stat-icon blue">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-                        <line x1="8" y1="21" x2="16" y2="21"/>
-                        <line x1="12" y1="17" x2="12" y2="21"/>
-                    </svg>
-                </div>
-                <div class="stat-info">
-                    <div class="stat-label">Projetos Ativos</div>
-                    <div class="stat-value">2</div>
-                </div>
-            </div>
-            
-            <div class="stat-card">
-                <div class="stat-icon purple">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="22" y1="2" x2="11" y2="13"/>
-                        <polygon points="22,2 15,22 11,13 2,9 22,2"/>
-                    </svg>
-                </div>
-                <div class="stat-info">
-                    <div class="stat-label">Propostas Enviadas</div>
-                    <div class="stat-value">12</div>
-                </div>
-            </div>
-            
-            <div class="stat-card">
-                <div class="stat-icon yellow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="8" r="7"/>
-                        <polyline points="8.21,13.89 7,23 12,20 17,23 15.79,13.88"/>
-                    </svg>
-                </div>
-                <div class="stat-info">
-                    <div class="stat-label">Taxa de Sucesso</div>
-                    <div class="stat-value">78%</div>
-                </div>
-            </div>
+        <div class="stat-card">
+          <div class="stat-icon purple">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="22" y1="2" x2="11" y2="13" />
+              <polygon points="22,2 15,22 11,13 2,9 22,2" />
+            </svg>
+          </div>
+          <div class="stat-info">
+            <div class="stat-label">Propostas Enviadas</div>
+            <div class="stat-value">12</div>
+          </div>
         </div>
 
-        <!-- Tabs Navigation -->
-        <div class="tabs-container">
-            <div class="tabs-nav">
-                <button class="tab-btn active" onclick="showTab('trabalhos')">Buscar Trabalhos</button>
-                <button class="tab-btn" onclick="showTab('projetos')">Meus Projetos</button>
-                <button class="tab-btn" onclick="showTab('propostas')">Minhas Propostas</button>
-                <button class="tab-btn" onclick="showTab('perfil')">Meu Perfil</button>
-            </div>
-
-            <!-- Filters -->
-            <div class="filters-section">
-                <div class="search-box">
-                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="8"/>
-                        <path d="m21 21-4.35-4.35"/>
-                    </svg>
-                    <input type="text" placeholder="Buscar trabalhos..." />
-                </div>
-                <select class="filter-select">
-                    <option value="">Categoria</option>
-                    <option value="desenvolvimento">Desenvolvimento</option>
-                    <option value="design">Design</option>
-                    <option value="marketing">Marketing</option>
-                </select>
-                <select class="filter-select">
-                    <option value="">Orçamento</option>
-                    <option value="baixo">Até R$ 1.000</option>
-                    <option value="medio">R$ 1.000 - R$ 5.000</option>
-                    <option value="alto">Acima R$ 5.000</option>
-                </select>
-                <button class="filter-btn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polygon points="22,3 2,3 10,12.46 10,19 14,21 14,12.46"/>
-                    </svg>
-                    Filtros
-                </button>
-            </div>
-
-            <!-- Jobs List -->
-            <div id="trabalhos" class="tab-content active">
-                <div class="jobs-list">
-                    <div class="job-card">
-                        <div class="job-header">
-                            <div class="job-info">
-                                <h3 class="job-title">Desenvolvimento de E-commerce</h3>
-                                <div class="job-meta">
-                                    <span class="job-client">TechStore Ltda</span>
-                                    <span class="separator">•</span>
-                                    <span>Desenvolvimento Web</span>
-                                    <span class="separator">•</span>
-                                    <span class="location">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                            <circle cx="12" cy="10" r="3"/>
-                                        </svg>
-                                        São Paulo, SP
-                                    </span>
-                                </div>
-                                <div class="job-badges">
-                                    <span class="budget-badge">R$ 3.500</span>
-                                    <span class="deadline">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <circle cx="12" cy="12" r="10"/>
-                                            <polyline points="12,6 12,12 16,14"/>
-                                        </svg>
-                                        25 dias
-                                    </span>
-                                    <span class="proposals">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-                                            <circle cx="9" cy="7" r="4"/>
-                                            <path d="m22 21-3-3"/>
-                                        </svg>
-                                        8 propostas
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="job-time">3 horas atrás</div>
-                        </div>
-                        <div class="job-content">
-                            <p class="job-description">
-                                Precisamos desenvolver uma loja virtual completa com integração de pagamentos...
-                            </p>
-                            <div class="skills-tags">
-                                <span class="skill-tag">React</span>
-                                <span class="skill-tag">Node.js</span>
-                                <span class="skill-tag">PostgreSQL</span>
-                                <span class="skill-tag">Stripe</span>
-                            </div>
-                            <div class="job-actions">
-                                <button class="btn-outline">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                                        <circle cx="12" cy="12" r="3"/>
-                                    </svg>
-                                    Ver detalhes
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="job-card">
-                        <div class="job-header">
-                            <div class="job-info">
-                                <h3 class="job-title">Design de App Mobile - Fintech</h3>
-                                <div class="job-meta">
-                                    <span class="job-client">StartupPay</span>
-                                    <span class="separator">•</span>
-                                    <span>UI/UX Design</span>
-                                    <span class="separator">•</span>
-                                    <span class="location">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                            <circle cx="12" cy="10" r="3"/>
-                                        </svg>
-                                        Rio de Janeiro, RJ
-                                    </span>
-                                </div>
-                                <div class="job-badges">
-                                    <span class="budget-badge">R$ 2.200</span>
-                                    <span class="deadline">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <circle cx="12" cy="12" r="10"/>
-                                            <polyline points="12,6 12,12 16,14"/>
-                                        </svg>
-                                        20 dias
-                                    </span>
-                                    <span class="proposals">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-                                            <circle cx="9" cy="7" r="4"/>
-                                            <path d="m22 21-3-3"/>
-                                        </svg>
-                                        15 propostas
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="job-time">1 dia atrás</div>
-                        </div>
-                        <div class="job-content">
-                            <p class="job-description">
-                                Buscamos um designer para criar interface de app de pagamentos...
-                            </p>
-                            <div class="skills-tags">
-                                <span class="skill-tag">Figma</span>
-                                <span class="skill-tag">UI Design</span>
-                                <span class="skill-tag">Mobile Design</span>
-                                <span class="skill-tag">Prototyping</span>
-                            </div>
-                            <div class="job-actions">
-                                <button class="btn-outline">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                                        <circle cx="12" cy="12" r="3"/>
-                                    </svg>
-                                    Ver detalhes
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Other Tabs (Hidden by default) -->
-            <div id="projetos" class="tab-content">
-                <div class="empty-state">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-                        <line x1="8" y1="21" x2="16" y2="21"/>
-                        <line x1="12" y1="17" x2="12" y2="21"/>
-                    </svg>
-                    <h3>Nenhum projeto ativo</h3>
-                    <p>Encontre trabalhos interessantes e comece a trabalhar.</p>
-                </div>
-            </div>
-
-            <div id="propostas" class="tab-content">
-                <div class="empty-state">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="22" y1="2" x2="11" y2="13"/>
-                        <polygon points="22,2 15,22 11,13 2,9 22,2"/>
-                    </svg>
-                    <h3>Nenhuma proposta enviada</h3>
-                    <p>Encontre trabalhos interessantes e envie suas propostas.</p>
-                </div>
-            </div>
-
-            <div id="perfil" class="tab-content">
-                <div class="profile-form">
-                    <h3>Informações do Perfil</h3>
-                    <p>Complete seu perfil para receber mais oportunidades.</p>
-                    <a href="complete-profile.html" class="btn-primary">Completar Perfil</a>
-                </div>
-            </div>
+        <div class="stat-card">
+          <div class="stat-icon yellow">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="12" cy="8" r="7" />
+              <polyline points="8.21,13.89 7,23 12,20 17,23 15.79,13.88" />
+            </svg>
+          </div>
+          <div class="stat-info">
+            <div class="stat-label">Taxa de Sucesso</div>
+            <div class="stat-value">78%</div>
+          </div>
         </div>
+      </div>
+
+      <!-- Tabs Navigation -->
+      <div class="tabs-container">
+        <div class="tabs-nav">
+          <button class="tab-btn active" onclick="showTab('trabalhos')">
+            Buscar Trabalhos
+          </button>
+          <button class="tab-btn" onclick="showTab('projetos')">
+            Meus Projetos
+          </button>
+          <button class="tab-btn" onclick="showTab('propostas')">
+            Minhas Propostas
+          </button>
+          <button class="tab-btn" onclick="showTab('perfil')">
+            Meu Perfil
+          </button>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters-section">
+          <div class="search-box">
+            <svg
+              class="search-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.35-4.35" />
+            </svg>
+            <input type="text" placeholder="Buscar trabalhos..." />
+          </div>
+          <select class="filter-select">
+            <option value="">Categoria</option>
+            <option value="desenvolvimento">Desenvolvimento</option>
+            <option value="design">Design</option>
+            <option value="marketing">Marketing</option>
+          </select>
+          <select class="filter-select">
+            <option value="">Orçamento</option>
+            <option value="baixo">Até R$ 1.000</option>
+            <option value="medio">R$ 1.000 - R$ 5.000</option>
+            <option value="alto">Acima R$ 5.000</option>
+          </select>
+          <button class="filter-btn">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polygon points="22,3 2,3 10,12.46 10,19 14,21 14,12.46" />
+            </svg>
+            Filtros
+          </button>
+        </div>
+
+        <!-- Jobs List -->
+        <div id="trabalhos" class="tab-content active">
+          <div class="jobs-list">
+            <div class="job-card">
+              <div class="job-header">
+                <div class="job-info">
+                  <h3 class="job-title">Desenvolvimento de E-commerce</h3>
+                  <div class="job-meta">
+                    <span class="job-client">TechStore Ltda</span>
+                    <span class="separator">•</span>
+                    <span>Desenvolvimento Web</span>
+                    <span class="separator">•</span>
+                    <span class="location">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <path
+                          d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+                        />
+                        <circle cx="12" cy="10" r="3" />
+                      </svg>
+                      São Paulo, SP
+                    </span>
+                  </div>
+                  <div class="job-badges">
+                    <span class="budget-badge">R$ 3.500</span>
+                    <span class="deadline">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <circle cx="12" cy="12" r="10" />
+                        <polyline points="12,6 12,12 16,14" />
+                      </svg>
+                      25 dias
+                    </span>
+                    <span class="proposals">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                        <circle cx="9" cy="7" r="4" />
+                        <path d="m22 21-3-3" />
+                      </svg>
+                      8 propostas
+                    </span>
+                  </div>
+                </div>
+                <div class="job-time">3 horas atrás</div>
+              </div>
+              <div class="job-content">
+                <p class="job-description">
+                  Precisamos desenvolver uma loja virtual completa com
+                  integração de pagamentos...
+                </p>
+                <div class="skills-tags">
+                  <span class="skill-tag">React</span>
+                  <span class="skill-tag">Node.js</span>
+                  <span class="skill-tag">PostgreSQL</span>
+                  <span class="skill-tag">Stripe</span>
+                </div>
+                <div class="job-actions">
+                  <button class="btn-outline">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                    Ver detalhes
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="job-card">
+              <div class="job-header">
+                <div class="job-info">
+                  <h3 class="job-title">Design de App Mobile - Fintech</h3>
+                  <div class="job-meta">
+                    <span class="job-client">StartupPay</span>
+                    <span class="separator">•</span>
+                    <span>UI/UX Design</span>
+                    <span class="separator">•</span>
+                    <span class="location">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <path
+                          d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+                        />
+                        <circle cx="12" cy="10" r="3" />
+                      </svg>
+                      Rio de Janeiro, RJ
+                    </span>
+                  </div>
+                  <div class="job-badges">
+                    <span class="budget-badge">R$ 2.200</span>
+                    <span class="deadline">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <circle cx="12" cy="12" r="10" />
+                        <polyline points="12,6 12,12 16,14" />
+                      </svg>
+                      20 dias
+                    </span>
+                    <span class="proposals">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                        <circle cx="9" cy="7" r="4" />
+                        <path d="m22 21-3-3" />
+                      </svg>
+                      15 propostas
+                    </span>
+                  </div>
+                </div>
+                <div class="job-time">1 dia atrás</div>
+              </div>
+              <div class="job-content">
+                <p class="job-description">
+                  Buscamos um designer para criar interface de app de
+                  pagamentos...
+                </p>
+                <div class="skills-tags">
+                  <span class="skill-tag">Figma</span>
+                  <span class="skill-tag">UI Design</span>
+                  <span class="skill-tag">Mobile Design</span>
+                  <span class="skill-tag">Prototyping</span>
+                </div>
+                <div class="job-actions">
+                  <button class="btn-outline">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                    Ver detalhes
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Other Tabs (Hidden by default) -->
+        <div id="projetos" class="tab-content">
+          <div class="empty-state">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+              <line x1="8" y1="21" x2="16" y2="21" />
+              <line x1="12" y1="17" x2="12" y2="21" />
+            </svg>
+            <h3>Nenhum projeto ativo</h3>
+            <p>Encontre trabalhos interessantes e comece a trabalhar.</p>
+          </div>
+        </div>
+
+        <div id="propostas" class="tab-content">
+          <div class="empty-state">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="22" y1="2" x2="11" y2="13" />
+              <polygon points="22,2 15,22 11,13 2,9 22,2" />
+            </svg>
+            <h3>Nenhuma proposta enviada</h3>
+            <p>Encontre trabalhos interessantes e envie suas propostas.</p>
+          </div>
+        </div>
+
+        <div id="perfil" class="tab-content">
+          <div class="profile-form">
+            <h3>Informações do Perfil</h3>
+            <p>Complete seu perfil para receber mais oportunidades.</p>
+            <a href="complete-profile.html" class="btn-primary"
+              >Completar Perfil</a
+            >
+          </div>
+        </div>
+      </div>
     </div>
 
     <script>
-        function showTab(tabName) {
-            // Hide all tabs
-            const tabs = document.querySelectorAll('.tab-content');
-            tabs.forEach(tab => tab.classList.remove('active'));
-            
-            // Remove active class from all buttons
-            const buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            
-            // Show selected tab
-            document.getElementById(tabName).classList.add('active');
-            
-            // Add active class to clicked button
-            event.target.classList.add('active');
-        }
+      function showTab(tabName) {
+        // Hide all tabs
+        const tabs = document.querySelectorAll(".tab-content");
+        tabs.forEach((tab) => tab.classList.remove("active"));
+
+        // Remove active class from all buttons
+        const buttons = document.querySelectorAll(".tab-btn");
+        buttons.forEach((btn) => btn.classList.remove("active"));
+
+        // Show selected tab
+        document.getElementById(tabName).classList.add("active");
+
+        // Add active class to clicked button
+        event.target.classList.add("active");
+      }
     </script>
-</body>
+  </body>
 </html>
