@@ -8,295 +8,289 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="dashboard-styles.css" />
+    <link rel="stylesheet" href="freelancer-dashboard-styles.css" />
   </head>
   <body>
-    <!-- Header -->
-    <header class="header">
-      <div class="header-content">
-        <a href="index.html" class="logo-link">
-          <div class="logo">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2" />
-            </svg>
-          </div>
-          <span class="logo-text">TalentHub</span>
-        </a>
-
-        <div class="header-actions">
-          <a href="messages.html" class="header-btn">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-              />
-            </svg>
-            Mensagens
-          </a>
-          <div class="avatar">
-            <span>FR</span>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <div class="dashboard-container">
-      <div class="dashboard-header">
-        <div class="title-section">
-          <h1>Dashboard do Freelancer</h1>
-          <p>Gerencie seus projetos e acompanhe seu desempenho</p>
-        </div>
-        <a href="complete-profile.html" class="complete-profile-btn">
-          Completar Perfil
-        </a>
-      </div>
-
-      <!-- Profile Summary -->
-      <div class="profile-card">
-        <div class="profile-content">
-          <div class="profile-avatar">
-            <span>MS</span>
-          </div>
-          <div class="profile-info">
-            <h2>Maria Santos</h2>
-            <p class="profile-role">
-              Desenvolvedora Full Stack | UI/UX Designer
-            </p>
-            <div class="profile-meta">
-              <div class="meta-item">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <polygon
-                    points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
-                  />
+    <div class="min-h-screen bg-gray-50">
+      <!-- Header -->
+      <header class="bg-white border-b">
+        <div class="container mx-auto px-6 py-4">
+          <div class="flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-2">
+              <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2" />
                 </svg>
-                <span>4.9 (127 avaliações)</span>
               </div>
-              <div class="meta-item">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
+              <span class="text-xl font-bold text-gray-900">TalentHub</span>
+            </a>
+
+            <div class="flex items-center space-x-4">
+              <a href="messages.html" class="btn-ghost flex items-center">
+                <svg class="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                </svg>
+                Mensagens
+              </a>
+              <div class="avatar">
+                <img src="placeholder.svg" alt="Avatar" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+                <span class="avatar-fallback">FR</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="container mx-auto px-6 py-8">
+        <div class="mb-8">
+          <div class="flex items-center justify-between">
+            <div>
+              <h1 class="text-3xl font-bold text-gray-900 mb-2">
+                Dashboard do Freelancer
+              </h1>
+              <p class="text-gray-600">
+                Gerencie seus projetos e acompanhe seu desempenho
+              </p>
+            </div>
+            <a href="complete-profile.html" class="btn-accent">
+              Completar Perfil
+            </a>
+          </div>
+        </div>
+
+        <!-- Profile Summary -->
+        <div class="card mb-8">
+          <div class="p-6">
+            <div class="flex items-center space-x-6">
+              <div class="avatar-large">
+                <img src="placeholder.svg" alt="Avatar" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+                <span class="avatar-fallback">FR</span>
+              </div>
+              <div class="flex-1">
+                <h2 class="text-xl font-semibold mb-1">Maria Santos</h2>
+                <p class="text-gray-600 mb-2">
+                  Desenvolvedora Full Stack | UI/UX Designer
+                </p>
+                <div class="flex items-center space-x-4 text-sm text-gray-600">
+                  <div class="flex items-center">
+                    <svg class="w-4 h-4 fill-yellow-400 text-yellow-400 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
+                    </svg>
+                    <span>4.9 (127 avaliações)</span>
+                  </div>
+                  <div class="flex items-center">
+                    <svg class="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                      <line x1="8" y1="21" x2="16" y2="21" />
+                      <line x1="12" y1="17" x2="12" y2="21" />
+                    </svg>
+                    <span>89 projetos concluídos</span>
+                  </div>
+                  <div class="flex items-center">
+                    <svg class="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>
+                    <span>São Paulo, SP</span>
+                  </div>
+                </div>
+              </div>
+              <div class="text-right">
+                <p class="text-2xl font-bold text-gray-900">R$ 55/hora</p>
+                <p class="text-sm text-gray-600">Taxa padrão</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+          <div class="card">
+            <div class="p-6">
+              <div class="flex items-center">
+                <svg class="h-8 w-8 text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="22,12 18,12 15,21 9,3 6,12 2,12" />
+                </svg>
+                <div class="ml-4">
+                  <p class="text-sm font-medium text-gray-600">
+                    Receita Este Mês
+                  </p>
+                  <p class="text-2xl font-bold text-gray-900">R$ 4.2k</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="p-6">
+              <div class="flex items-center">
+                <svg class="h-8 w-8 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
                   <line x1="8" y1="21" x2="16" y2="21" />
                   <line x1="12" y1="17" x2="12" y2="21" />
                 </svg>
-                <span>89 projetos concluídos</span>
+                <div class="ml-4">
+                  <p class="text-sm font-medium text-gray-600">
+                    Projetos Ativos
+                  </p>
+                  <p class="text-2xl font-bold text-gray-900">2</p>
+                </div>
               </div>
-              <div class="meta-item">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                  <circle cx="12" cy="10" r="3" />
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="p-6">
+              <div class="flex items-center">
+                <svg class="h-8 w-8 text-purple-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="22" y1="2" x2="11" y2="13" />
+                  <polygon points="22,2 15,22 11,13 2,9 22,2" />
                 </svg>
-                <span>São Paulo, SP</span>
-              </div>
-            </div>
-          </div>
-          <div class="profile-rate">
-            <div class="rate-amount">R$ 55/hora</div>
-            <div class="rate-label">Taxa padrão</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Stats Cards -->
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-icon green">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <polyline points="22,12 18,12 15,21 9,3 6,12 2,12" />
-            </svg>
-          </div>
-          <div class="stat-info">
-            <div class="stat-label">Receita Este Mês</div>
-            <div class="stat-value">R$ 4.2k</div>
-          </div>
-        </div>
-
-        <div class="stat-card">
-          <div class="stat-icon blue">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
-              <line x1="8" y1="21" x2="16" y2="21" />
-              <line x1="12" y1="17" x2="12" y2="21" />
-            </svg>
-          </div>
-          <div class="stat-info">
-            <div class="stat-label">Projetos Ativos</div>
-            <div class="stat-value">2</div>
-          </div>
-        </div>
-
-        <div class="stat-card">
-          <div class="stat-icon purple">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <line x1="22" y1="2" x2="11" y2="13" />
-              <polygon points="22,2 15,22 11,13 2,9 22,2" />
-            </svg>
-          </div>
-          <div class="stat-info">
-            <div class="stat-label">Propostas Enviadas</div>
-            <div class="stat-value">12</div>
-          </div>
-        </div>
-
-        <div class="stat-card">
-          <div class="stat-icon yellow">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <circle cx="12" cy="8" r="7" />
-              <polyline points="8.21,13.89 7,23 12,20 17,23 15.79,13.88" />
-            </svg>
-          </div>
-          <div class="stat-info">
-            <div class="stat-label">Taxa de Sucesso</div>
-            <div class="stat-value">78%</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tabs Container -->
-      <div class="tabs-container">
-        <div class="tabs-nav">
-          <button class="tab-btn active" onclick="showTab('projetos')">
-            Meus Projetos
-          </button>
-          <button class="tab-btn" onclick="showTab('propostas')">
-            Minhas Propostas
-          </button>
-          <button class="tab-btn" onclick="showTab('perfil')">
-            Meu Perfil
-          </button>
-        </div>
-
-        <!-- My Projects Tab -->
-        <div id="projetos" class="tab-content active">
-          <div class="projects-list">
-            <div class="project-card">
-              <div class="project-header">
-                <div class="project-info">
-                  <h3 class="project-title">Sistema de Gestão - ERP</h3>
-                  <p class="project-client">Indústria XYZ</p>
-                  <div class="project-badges">
-                    <span class="status-badge active">Em andamento</span>
-                    <span class="deadline">5 dias restantes</span>
-                  </div>
-                </div>
-                <div class="project-value">
-                  <div class="value-amount">R$ 8.500</div>
-                </div>
-              </div>
-              <div class="project-content">
-                <div class="progress-section">
-                  <div class="progress-info">
-                    <span>Progresso</span>
-                    <span>75%</span>
-                  </div>
-                  <div class="progress-bar">
-                    <div class="progress-fill" style="width: 75%"></div>
-                  </div>
+                <div class="ml-4">
+                  <p class="text-sm font-medium text-gray-600">
+                    Propostas Enviadas
+                  </p>
+                  <p class="text-2xl font-bold text-gray-900">12</p>
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="project-card">
-              <div class="project-header">
-                <div class="project-info">
-                  <h3 class="project-title">Landing Page - Advocacia</h3>
-                  <p class="project-client">Dr. Silva Advogados</p>
-                  <div class="project-badges">
-                    <span class="status-badge completed">Concluído</span>
-                    <span class="deadline">Concluído</span>
-                  </div>
-                </div>
-                <div class="project-value">
-                  <div class="value-amount">R$ 1.200</div>
-                  <div class="rating">
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                    >
-                      <polygon
-                        points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
-                      />
-                    </svg>
-                    <span>5.0</span>
-                  </div>
+          <div class="card">
+            <div class="p-6">
+              <div class="flex items-center">
+                <svg class="h-8 w-8 text-yellow-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="8" r="7" />
+                  <polyline points="8.21,13.89 7,23 12,20 17,23 15.79,13.88" />
+                </svg>
+                <div class="ml-4">
+                  <p class="text-sm font-medium text-gray-600">
+                    Taxa de Sucesso
+                  </p>
+                  <p class="text-2xl font-bold text-gray-900">78%</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- My Proposals Tab -->
-        <div id="propostas" class="tab-content">
-          <div class="empty-state">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <line x1="22" y1="2" x2="11" y2="13" />
-              <polygon points="22,2 15,22 11,13 2,9 22,2" />
-            </svg>
-            <h3>Nenhuma proposta enviada</h3>
-            <p>Você ainda não enviou propostas para projetos.</p>
-            <a href="send-proposal.html" class="btn-primary"
-              >Enviar Primeira Proposta</a
-            >
+        <!-- Main Content -->
+        <div class="tabs-container space-y-6">
+          <div class="tabs-list">
+            <button class="tab-trigger active" onclick="showTab('projetos')">Meus Projetos</button>
+            <button class="tab-trigger" onclick="showTab('propostas')">Minhas Propostas</button>
+            <button class="tab-trigger" onclick="showTab('perfil')">Meu Perfil</button>
           </div>
-        </div>
 
-        <!-- Profile Tab -->
-        <div id="perfil" class="tab-content">
-          <div class="profile-form">
-            <h3>Informações do Perfil</h3>
-            <p>Complete seu perfil para receber mais oportunidades.</p>
-            <a href="complete-profile.html" class="btn-primary"
-              >Completar Perfil</a
-            >
+          <div id="projetos" class="tab-content active space-y-6">
+            <div class="space-y-4">
+              <div class="card">
+                <div class="card-header">
+                  <div class="flex items-start justify-between">
+                    <div class="flex-1">
+                      <h3 class="text-lg font-semibold">Sistema de Gestão - ERP</h3>
+                      <p class="text-gray-600 mt-1">Indústria XYZ</p>
+                      <div class="flex items-center gap-4 mt-2">
+                        <span class="badge badge-default">Em andamento</span>
+                        <span class="text-sm text-gray-600">5 dias restantes</span>
+                      </div>
+                    </div>
+                    <div class="text-right">
+                      <p class="text-xl font-bold text-gray-900">R$ 8.500</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-content">
+                  <div class="space-y-2">
+                    <div class="flex items-center justify-between text-sm">
+                      <span>Progresso</span>
+                      <span>75%</span>
+                    </div>
+                    <div class="progress">
+                      <div class="progress-bar" style="width: 75%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header">
+                  <div class="flex items-start justify-between">
+                    <div class="flex-1">
+                      <h3 class="text-lg font-semibold">Landing Page - Advocacia</h3>
+                      <p class="text-gray-600 mt-1">Dr. Silva Advogados</p>
+                      <div class="flex items-center gap-4 mt-2">
+                        <span class="badge badge-outline">Concluído</span>
+                        <span class="text-sm text-gray-600">Concluído</span>
+                      </div>
+                    </div>
+                    <div class="text-right">
+                      <p class="text-xl font-bold text-gray-900">R$ 1.200</p>
+                      <div class="flex items-center mt-1">
+                        <svg class="w-4 h-4 fill-yellow-400 text-yellow-400 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
+                        </svg>
+                        <span class="text-sm">5.0</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="propostas" class="tab-content space-y-6">
+            <div class="card">
+              <div class="p-8 text-center">
+                <svg class="w-12 h-12 text-gray-400 mx-auto mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="22" y1="2" x2="11" y2="13" />
+                  <polygon points="22,2 15,22 11,13 2,9 22,2" />
+                </svg>
+                <h3 class="text-lg font-semibold mb-2">
+                  Nenhuma proposta enviada
+                </h3>
+                <p class="text-gray-600 mb-4">
+                  Você ainda não enviou propostas para projetos.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div id="perfil" class="tab-content space-y-6">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="text-lg font-semibold">Informações do Perfil</h3>
+              </div>
+              <div class="card-content space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label class="text-sm font-medium">Nome completo</label>
+                    <input type="text" placeholder="Seu nome completo" class="input mt-1" />
+                  </div>
+                  <div>
+                    <label class="text-sm font-medium">Título profissional</label>
+                    <input type="text" placeholder="Ex: Desenvolvedor Full Stack" class="input mt-1" />
+                  </div>
+                  <div>
+                    <label class="text-sm font-medium">Taxa por hora</label>
+                    <input type="text" placeholder="R$ 50" class="input mt-1" />
+                  </div>
+                  <div>
+                    <label class="text-sm font-medium">Localização</label>
+                    <input type="text" placeholder="Cidade, Estado" class="input mt-1" />
+                  </div>
+                </div>
+                <div>
+                  <label class="text-sm font-medium">Sobre você</label>
+                  <textarea placeholder="Conte sobre sua experiência e habilidades..." class="textarea mt-1" rows="4"></textarea>
+                </div>
+                <div>
+                  <label class="text-sm font-medium">Habilidades</label>
+                  <input type="text" placeholder="Ex: React, Node.js, Python, Design..." class="input mt-1" />
+                </div>
+                <button class="btn-primary">Salvar alterações</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -309,7 +303,7 @@
         tabs.forEach((tab) => tab.classList.remove("active"));
 
         // Remove active class from all buttons
-        const buttons = document.querySelectorAll(".tab-btn");
+        const buttons = document.querySelectorAll(".tab-trigger");
         buttons.forEach((btn) => btn.classList.remove("active"));
 
         // Show selected tab
