@@ -1,137 +1,174 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TalentHub - Enviar Proposta</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="proposal-styles.css">
-</head>
-<body>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="proposal-styles.css" />
+  </head>
+  <body>
     <!-- Header -->
     <header class="header">
-        <div class="header-content">
-            <div class="nav-section">
-                <a href="freelancer-dashboard.html" class="back-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="19" y1="12" x2="5" y2="12"/>
-                        <polyline points="12,19 5,12 12,5"/>
-                    </svg>
-                    Voltar ao Dashboard
-                </a>
-                <div class="separator"></div>
-                <a href="index.html" class="logo-link">
-                    <div class="logo">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
-                        </svg>
-                    </div>
-                    <span class="logo-text">TalentHub</span>
-                </a>
+      <div class="header-content">
+        <div class="nav-section">
+          <a href="freelancer-dashboard.html" class="back-link">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="19" y1="12" x2="5" y2="12" />
+              <polyline points="12,19 5,12 12,5" />
+            </svg>
+            Voltar ao Dashboard
+          </a>
+          <div class="separator"></div>
+          <a href="index.html" class="logo-link">
+            <div class="logo">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2" />
+              </svg>
             </div>
-            
-            <div class="avatar">
-                <span>MS</span>
-            </div>
+            <span class="logo-text">TalentHub</span>
+          </a>
         </div>
+
+        <div class="avatar">
+          <span>MS</span>
+        </div>
+      </div>
     </header>
 
     <div class="proposal-container">
-        <div class="proposal-layout">
-            <!-- Project Details Sidebar -->
-            <div class="project-sidebar">
-                <div class="project-card">
-                    <div class="project-header">
-                        <h2>Desenvolvimento de E-commerce</h2>
-                        <div class="client-info">
-                            <div class="client-avatar">
-                                <span>TC</span>
-                            </div>
-                            <div class="client-details">
-                                <h3>TechStore Ltda</h3>
-                                <div class="client-meta">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
-                                    </svg>
-                                    <span>4.7 (89 projetos)</span>
-                                </div>
-                                <div class="client-meta">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                        <circle cx="12" cy="10" r="3"/>
-                                    </svg>
-                                    <span>São Paulo, SP</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="project-details">
-                        <div class="detail-item">
-                            <strong>Orçamento:</strong>
-                            <span class="budget">R$ 3.500</span>
-                        </div>
-                        <div class="detail-item">
-                            <strong>Prazo:</strong>
-                            <span>25 dias</span>
-                        </div>
-                        <div class="detail-item">
-                            <strong>Categoria:</strong>
-                            <span>Desenvolvimento Web</span>
-                        </div>
-                        <div class="detail-item">
-                            <strong>Propostas:</strong>
-                            <span>8 recebidas</span>
-                        </div>
-                    </div>
-
-                    <div class="project-description">
-                        <h4>Descrição do Projeto</h4>
-                        <p>
-                            Precisamos desenvolver uma loja virtual completa com integração de pagamentos, 
-                            sistema de carrinho, área do cliente e painel administrativo. 
-                            O projeto deve ser responsivo e otimizado para SEO.
-                        </p>
-                    </div>
-
-                    <div class="project-skills">
-                        <h4>Habilidades Necessárias</h4>
-                        <div class="skills-list">
-                            <span class="skill-tag">React</span>
-                            <span class="skill-tag">Node.js</span>
-                            <span class="skill-tag">PostgreSQL</span>
-                            <span class="skill-tag">Stripe</span>
-                            <span class="skill-tag">SEO</span>
-                        </div>
-                    </div>
+      <div class="proposal-layout">
+        <!-- Project Details Sidebar -->
+        <div class="project-sidebar">
+          <div class="project-card">
+            <div class="project-header">
+              <h2>Desenvolvimento de E-commerce</h2>
+              <div class="client-info">
+                <div class="client-avatar">
+                  <span>TC</span>
                 </div>
+                <div class="client-details">
+                  <h3>TechStore Ltda</h3>
+                  <div class="client-meta">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <polygon
+                        points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
+                      />
+                    </svg>
+                    <span>4.7 (89 projetos)</span>
+                  </div>
+                  <div class="client-meta">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path
+                        d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+                      />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>
+                    <span>São Paulo, SP</span>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <!-- Proposal Form -->
-            <div class="proposal-main">
-                <div class="form-header">
-                    <h1>Enviar Proposta</h1>
-                    <p>Destaque-se dos outros freelancers com uma proposta personalizada</p>
-                </div>
+            <div class="project-details">
+              <div class="detail-item">
+                <strong>Orçamento:</strong>
+                <span class="budget">R$ 3.500</span>
+              </div>
+              <div class="detail-item">
+                <strong>Prazo:</strong>
+                <span>25 dias</span>
+              </div>
+              <div class="detail-item">
+                <strong>Categoria:</strong>
+                <span>Desenvolvimento Web</span>
+              </div>
+              <div class="detail-item">
+                <strong>Propostas:</strong>
+                <span>8 recebidas</span>
+              </div>
+            </div>
 
-                <form class="proposal-form">
-                    <!-- Cover Letter -->
-                    <div class="form-section">
-                        <div class="section-header">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                <polyline points="14,2 14,8 20,8"/>
-                                <line x1="16" y1="13" x2="8" y2="13"/>
-                                <line x1="16" y1="17" x2="8" y2="17"/>
-                                <polyline points="10,9 9,9 8,9"/>
-                            </svg>
-                            <h2>Carta de Apresentação</h2>
-                        </div>
-                        <div class="form-group">
-                            <label>Descreva sua proposta e experiência relevante *</label>
-                            <textarea 
-                                rows="8" 
-                                placeholder="Olá! Vi seu projeto de e-commerce e tenho experiência específica que pode agregar valor...
+            <div class="project-description">
+              <h4>Descrição do Projeto</h4>
+              <p>
+                Precisamos desenvolver uma loja virtual completa com integração
+                de pagamentos, sistema de carrinho, área do cliente e painel
+                administrativo. O projeto deve ser responsivo e otimizado para
+                SEO.
+              </p>
+            </div>
+
+            <div class="project-skills">
+              <h4>Habilidades Necessárias</h4>
+              <div class="skills-list">
+                <span class="skill-tag">React</span>
+                <span class="skill-tag">Node.js</span>
+                <span class="skill-tag">PostgreSQL</span>
+                <span class="skill-tag">Stripe</span>
+                <span class="skill-tag">SEO</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Proposal Form -->
+        <div class="proposal-main">
+          <div class="form-header">
+            <h1>Enviar Proposta</h1>
+            <p>
+              Destaque-se dos outros freelancers com uma proposta personalizada
+            </p>
+          </div>
+
+          <form class="proposal-form">
+            <!-- Cover Letter -->
+            <div class="form-section">
+              <div class="section-header">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                  />
+                  <polyline points="14,2 14,8 20,8" />
+                  <line x1="16" y1="13" x2="8" y2="13" />
+                  <line x1="16" y1="17" x2="8" y2="17" />
+                  <polyline points="10,9 9,9 8,9" />
+                </svg>
+                <h2>Carta de Apresentação</h2>
+              </div>
+              <div class="form-group">
+                <label>Descreva sua proposta e experiência relevante *</label>
+                <textarea
+                  rows="8"
+                  placeholder="Olá! Vi seu projeto de e-commerce e tenho experiência específica que pode agregar valor...
 
 • Desenvolvimento de 5+ lojas virtuais similares
 • Expertise em React e Node.js (3+ anos)
@@ -139,168 +176,218 @@
 • Foco em performance e conversão
 
 Gostaria de discutir como posso ajudar a criar uma solução robusta e escalável para seu negócio."
-                                required
-                            ></textarea>
-                            <div class="char-count">0 / 2000 caracteres</div>
-                        </div>
-                    </div>
+                  required
+                ></textarea>
+                <div class="char-count">0 / 2000 caracteres</div>
+              </div>
+            </div>
 
-                    <!-- Pricing -->
-                    <div class="form-section">
-                        <div class="section-header">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <line x1="12" y1="1" x2="12" y2="23"/>
-                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-                            </svg>
-                            <h2>Preço e Prazo</h2>
-                        </div>
-                        <div class="pricing-grid">
-                            <div class="form-group">
-                                <label>Valor da proposta (R$) *</label>
-                                <input type="number" min="1" step="0.01" placeholder="3500.00" required>
-                                <small>Sugestão: R$ 3.500 (orçamento do cliente)</small>
-                            </div>
-                            <div class="form-group">
-                                <label>Prazo de entrega *</label>
-                                <select required>
-                                    <option value="">Selecione o prazo</option>
-                                    <option value="15">15 dias</option>
-                                    <option value="20">20 dias</option>
-                                    <option value="25">25 dias (sugerido)</option>
-                                    <option value="30">30 dias</option>
-                                    <option value="45">45 dias</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+            <!-- Pricing -->
+            <div class="form-section">
+              <div class="section-header">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <line x1="12" y1="1" x2="12" y2="23" />
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                </svg>
+                <h2>Preço e Prazo</h2>
+              </div>
+              <div class="pricing-grid">
+                <div class="form-group">
+                  <label>Valor da proposta (R$) *</label>
+                  <input
+                    type="number"
+                    min="1"
+                    step="0.01"
+                    placeholder="3500.00"
+                    required
+                  />
+                  <small>Sugestão: R$ 3.500 (orçamento do cliente)</small>
+                </div>
+                <div class="form-group">
+                  <label>Prazo de entrega *</label>
+                  <select required>
+                    <option value="">Selecione o prazo</option>
+                    <option value="15">15 dias</option>
+                    <option value="20">20 dias</option>
+                    <option value="25">25 dias (sugerido)</option>
+                    <option value="30">30 dias</option>
+                    <option value="45">45 dias</option>
+                  </select>
+                </div>
+              </div>
+            </div>
 
-                    <!-- Project Plan -->
-                    <div class="form-section">
-                        <div class="section-header">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                                <line x1="16" y1="2" x2="16" y2="6"/>
-                                <line x1="8" y1="2" x2="8" y2="6"/>
-                                <line x1="3" y1="10" x2="21" y2="10"/>
-                            </svg>
-                            <h2>Plano de Trabalho</h2>
-                        </div>
-                        <div class="form-group">
-                            <label>Metodologia e etapas do projeto</label>
-                            <textarea 
-                                rows="6" 
-                                placeholder="Etapa 1 (Semana 1): Levantamento de requisitos e wireframes
+            <!-- Project Plan -->
+            <div class="form-section">
+              <div class="section-header">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+                <h2>Plano de Trabalho</h2>
+              </div>
+              <div class="form-group">
+                <label>Metodologia e etapas do projeto</label>
+                <textarea
+                  rows="6"
+                  placeholder="Etapa 1 (Semana 1): Levantamento de requisitos e wireframes
 Etapa 2 (Semana 2): Desenvolvimento do frontend (React)
 Etapa 3 (Semana 3): Desenvolvimento do backend e API
 Etapa 4 (Semana 4): Integração, testes e deploy
 
 Entregas parciais a cada etapa com demonstrações funcionais."
-                            ></textarea>
-                        </div>
-                    </div>
+                ></textarea>
+              </div>
+            </div>
 
-                    <!-- Portfolio Examples -->
-                    <div class="form-section">
-                        <div class="section-header">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                                <circle cx="8.5" cy="8.5" r="1.5"/>
-                                <polyline points="21,15 16,10 5,21"/>
-                            </svg>
-                            <h2>Exemplos do Portfólio</h2>
-                        </div>
-                        <div class="form-group">
-                            <label>Links de projetos similares</label>
-                            <input type="url" placeholder="https://exemplo-ecommerce1.com">
-                        </div>
-                        <div class="form-group">
-                            <input type="url" placeholder="https://exemplo-ecommerce2.com">
-                        </div>
-                        <div class="form-group">
-                            <label>Descrição dos exemplos</label>
-                            <textarea 
-                                rows="3" 
-                                placeholder="Exemplo 1: E-commerce de roupas com 50k+ produtos
+            <!-- Portfolio Examples -->
+            <div class="form-section">
+              <div class="section-header">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <polyline points="21,15 16,10 5,21" />
+                </svg>
+                <h2>Exemplos do Portfólio</h2>
+              </div>
+              <div class="form-group">
+                <label>Links de projetos similares</label>
+                <input
+                  type="url"
+                  placeholder="https://exemplo-ecommerce1.com"
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="url"
+                  placeholder="https://exemplo-ecommerce2.com"
+                />
+              </div>
+              <div class="form-group">
+                <label>Descrição dos exemplos</label>
+                <textarea
+                  rows="3"
+                  placeholder="Exemplo 1: E-commerce de roupas com 50k+ produtos
 Exemplo 2: Marketplace B2B com sistema de comissões"
-                            ></textarea>
-                        </div>
-                    </div>
+                ></textarea>
+              </div>
+            </div>
 
-                    <!-- Questions -->
-                    <div class="form-section">
-                        <div class="section-header">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"/>
-                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-                                <line x1="12" y1="17" x2="12.01" y2="17"/>
-                            </svg>
-                            <h2>Perguntas para o Cliente</h2>
-                        </div>
-                        <div class="form-group">
-                            <label>Questões importantes para o projeto</label>
-                            <textarea 
-                                rows="4" 
-                                placeholder="1. Qual gateway de pagamento preferem utilizar?
+            <!-- Questions -->
+            <div class="form-section">
+              <div class="section-header">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                  <line x1="12" y1="17" x2="12.01" y2="17" />
+                </svg>
+                <h2>Perguntas para o Cliente</h2>
+              </div>
+              <div class="form-group">
+                <label>Questões importantes para o projeto</label>
+                <textarea
+                  rows="4"
+                  placeholder="1. Qual gateway de pagamento preferem utilizar?
 2. Já possuem identidade visual definida?
 3. Quantos produtos estimam cadastrar inicialmente?
 4. Necessitam de integração com sistemas existentes?"
-                            ></textarea>
-                        </div>
-                    </div>
-
-                    <!-- Attachments -->
-                    <div class="form-section">
-                        <div class="section-header">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
-                            </svg>
-                            <h2>Anexos</h2>
-                        </div>
-                        <div class="upload-area">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                                <polyline points="7,10 12,15 17,10"/>
-                                <line x1="12" y1="15" x2="12" y2="3"/>
-                            </svg>
-                            <h3>Adicione arquivos complementares</h3>
-                            <p>Portfolio, certificados ou documentos relevantes (máx. 10MB)</p>
-                            <button type="button" class="upload-btn">Selecionar Arquivos</button>
-                        </div>
-                    </div>
-
-                    <!-- Form Actions -->
-                    <div class="form-actions">
-                        <a href="freelancer-dashboard.html" class="btn-cancel">Cancelar</a>
-                        <div class="action-buttons">
-                            <button type="button" class="btn-draft">Salvar Rascunho</button>
-                            <button type="submit" class="btn-send">Enviar Proposta</button>
-                        </div>
-                    </div>
-                </form>
+                ></textarea>
+              </div>
             </div>
+
+            <!-- Attachments -->
+            <div class="form-section">
+              <div class="section-header">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"
+                  />
+                </svg>
+                <h2>Anexos</h2>
+              </div>
+              <div class="upload-area">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="7,10 12,15 17,10" />
+                  <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+                <h3>Adicione arquivos complementares</h3>
+                <p>
+                  Portfolio, certificados ou documentos relevantes (máx. 10MB)
+                </p>
+                <button type="button" class="upload-btn">
+                  Selecionar Arquivos
+                </button>
+              </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="form-actions">
+              <a href="freelancer-dashboard.html" class="btn-cancel"
+                >Cancelar</a
+              >
+              <div class="action-buttons">
+                <button type="button" class="btn-draft">Salvar Rascunho</button>
+                <button type="submit" class="btn-send">Enviar Proposta</button>
+              </div>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
 
     <script>
-        // Character counter for textarea
-        document.addEventListener('DOMContentLoaded', function() {
-            const textarea = document.querySelector('textarea[rows="8"]');
-            const charCount = document.querySelector('.char-count');
-            
-            if (textarea && charCount) {
-                textarea.addEventListener('input', function() {
-                    const current = this.value.length;
-                    const max = 2000;
-                    charCount.textContent = `${current} / ${max} caracteres`;
-                    
-                    if (current > max) {
-                        charCount.style.color = '#ef4444';
-                    } else {
-                        charCount.style.color = '#6b7280';
-                    }
-                });
+      // Character counter for textarea
+      document.addEventListener("DOMContentLoaded", function () {
+        const textarea = document.querySelector('textarea[rows="8"]');
+        const charCount = document.querySelector(".char-count");
+
+        if (textarea && charCount) {
+          textarea.addEventListener("input", function () {
+            const current = this.value.length;
+            const max = 2000;
+            charCount.textContent = `${current} / ${max} caracteres`;
+
+            if (current > max) {
+              charCount.style.color = "#ef4444";
+            } else {
+              charCount.style.color = "#6b7280";
             }
-        });
+          });
+        }
+      });
     </script>
-</body>
+  </body>
 </html>
