@@ -27,7 +27,12 @@ body {
 }
 
 .bg-gradient-to-br {
-  background: linear-gradient(to bottom right, var(--blue-50), white, var(--green-50));
+  background: linear-gradient(
+    to bottom right,
+    var(--blue-50),
+    white,
+    var(--green-50)
+  );
 }
 
 .from-blue-50 {
@@ -267,12 +272,16 @@ body {
 .card {
   background-color: white;
   border-radius: 0.5rem;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 1px 3px 0 rgba(0, 0, 0, 0.1),
+    0 1px 2px 0 rgba(0, 0, 0, 0.06);
   transition: all 0.3s ease;
 }
 
 .card:hover {
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 .card-link {
@@ -314,7 +323,9 @@ body {
 }
 
 .transition-colors {
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 .transition-all {
@@ -373,72 +384,72 @@ body {
     padding-left: 1rem;
     padding-right: 1rem;
   }
-  
+
   .py-16 {
     padding-top: 2rem;
     padding-bottom: 2rem;
   }
-  
+
   .text-4xl {
     font-size: 2rem;
   }
-  
+
   .text-3xl {
     font-size: 1.5rem;
   }
-  
+
   .text-xl {
     font-size: 1.125rem;
   }
-  
+
   .mb-12 {
     margin-bottom: 2rem;
   }
-  
+
   .mb-8 {
     margin-bottom: 1.5rem;
   }
-  
+
   .mt-16 {
     margin-top: 2rem;
   }
-  
+
   .gap-8 {
     gap: 1.5rem;
   }
-  
+
   .p-8 {
     padding: 1.5rem;
   }
-  
+
   .w-20 {
     width: 4rem;
   }
-  
+
   .h-20 {
     height: 4rem;
   }
-  
+
   .w-10 {
     width: 2rem;
   }
-  
+
   .h-10 {
     height: 2rem;
   }
-  
+
   .w-12 {
     width: 2.5rem;
   }
-  
+
   .h-12 {
     height: 2.5rem;
   }
-  
+
   .w-7 {
     width: 1.5rem;
   }
-  
+
   .h-7 {
     height: 1.5rem;
   }
@@ -449,11 +460,11 @@ body {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
-  
+
   .text-2xl {
     font-size: 1.25rem;
   }
-  
+
   .space-x-3 > * + * {
     margin-left: 0.5rem;
   }
