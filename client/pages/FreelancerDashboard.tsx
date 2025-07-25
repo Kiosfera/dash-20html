@@ -7,80 +7,23 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Progress } from "@/components/ui/progress";
 import {
-  Search,
-  Filter,
   Star,
-  Clock,
-  DollarSign,
-  Users,
   MessageSquare,
   FileText,
   TrendingUp,
-  Eye,
   Send,
   Zap,
   MapPin,
-  Calendar,
   Award,
   Briefcase,
 } from "lucide-react";
 
 export default function FreelancerDashboard() {
-  const [activeTab, setActiveTab] = useState("trabalhos");
+  const [activeTab, setActiveTab] = useState("projetos");
 
-  const trabalhos = [
-    {
-      id: 1,
-      titulo: "Desenvolvimento de E-commerce",
-      cliente: "TechStore Ltda",
-      categoria: "Desenvolvimento Web",
-      orcamento: "R$ 3.500",
-      prazo: "25 dias",
-      publicado: "3 horas atrás",
-      propostas: 8,
-      localizacao: "São Paulo, SP",
-      descricao:
-        "Precisamos desenvolver uma loja virtual completa com integração de pagamentos...",
-      skills: ["React", "Node.js", "PostgreSQL", "Stripe"],
-    },
-    {
-      id: 2,
-      titulo: "Design de App Mobile - Fintech",
-      cliente: "StartupPay",
-      categoria: "UI/UX Design",
-      orcamento: "R$ 2.200",
-      prazo: "20 dias",
-      publicado: "1 dia atrás",
-      propostas: 15,
-      localizacao: "Rio de Janeiro, RJ",
-      descricao:
-        "Buscamos um designer para criar interface de app de pagamentos...",
-      skills: ["Figma", "UI Design", "Mobile Design", "Prototyping"],
-    },
-    {
-      id: 3,
-      titulo: "Campanha de Marketing Digital",
-      cliente: "Empresa ABC",
-      categoria: "Marketing",
-      orcamento: "R$ 1.800",
-      prazo: "15 dias",
-      publicado: "2 dias atrás",
-      propostas: 22,
-      localizacao: "Belo Horizonte, MG",
-      descricao:
-        "Criação de estratégia e execução de campanha para redes sociais...",
-      skills: ["Facebook Ads", "Google Ads", "Social Media", "Analytics"],
-    },
-  ];
+
 
   const meusProjetos = [
     {
@@ -141,7 +84,7 @@ export default function FreelancerDashboard() {
                 Dashboard do Freelancer
               </h1>
               <p className="text-gray-600">
-                Encontre projetos e gerencie seu trabalho
+                Gerencie seus projetos e acompanhe seu desempenho
               </p>
             </div>
             <Link to="/completar-perfil">
@@ -254,128 +197,12 @@ export default function FreelancerDashboard() {
           className="space-y-6"
         >
           <TabsList>
-            <TabsTrigger value="trabalhos">Buscar Trabalhos</TabsTrigger>
             <TabsTrigger value="projetos">Meus Projetos</TabsTrigger>
             <TabsTrigger value="propostas">Minhas Propostas</TabsTrigger>
             <TabsTrigger value="perfil">Meu Perfil</TabsTrigger>
           </TabsList>
 
-          <TabsContent value="trabalhos" className="space-y-6">
-            {/* Filters */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-                <Input placeholder="Buscar trabalhos..." className="pl-10" />
-              </div>
-              <Select>
-                <SelectTrigger className="w-48">
-                  <SelectValue placeholder="Categoria" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="todos">Todas</SelectItem>
-                  <SelectItem value="desenvolvimento">
-                    Desenvolvimento
-                  </SelectItem>
-                  <SelectItem value="design">Design</SelectItem>
-                  <SelectItem value="marketing">Marketing</SelectItem>
-                </SelectContent>
-              </Select>
-              <Select>
-                <SelectTrigger className="w-48">
-                  <SelectValue placeholder="Orçamento" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="todos">Todos</SelectItem>
-                  <SelectItem value="baixo">Até R$ 1.000</SelectItem>
-                  <SelectItem value="medio">R$ 1.000 - R$ 5.000</SelectItem>
-                  <SelectItem value="alto">Acima R$ 5.000</SelectItem>
-                </SelectContent>
-              </Select>
-              <Button variant="outline">
-                <Filter className="w-4 h-4 mr-2" />
-                Filtros
-              </Button>
-            </div>
 
-            {/* Jobs List */}
-            <div className="space-y-6">
-              {trabalhos.map((trabalho) => (
-                <Card
-                  key={trabalho.id}
-                  className="hover:shadow-lg transition-shadow"
-                >
-                  <CardHeader>
-                    <div className="flex items-start justify-between">
-                      <div className="flex-1">
-                        <CardTitle className="text-lg mb-2">
-                          {trabalho.titulo}
-                        </CardTitle>
-                        <div className="flex items-center gap-4 text-sm text-gray-600 mb-3">
-                          <span className="font-medium">
-                            {trabalho.cliente}
-                          </span>
-                          <span>•</span>
-                          <span>{trabalho.categoria}</span>
-                          <span>•</span>
-                          <div className="flex items-center">
-                            <MapPin className="w-3 h-3 mr-1" />
-                            {trabalho.localizacao}
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-4 text-sm">
-                          <Badge
-                            variant="secondary"
-                            className="text-green-700 bg-green-100"
-                          >
-                            {trabalho.orcamento}
-                          </Badge>
-                          <div className="flex items-center text-gray-600">
-                            <Clock className="w-4 h-4 mr-1" />
-                            {trabalho.prazo}
-                          </div>
-                          <div className="flex items-center text-gray-600">
-                            <Users className="w-4 h-4 mr-1" />
-                            {trabalho.propostas} propostas
-                          </div>
-                        </div>
-                      </div>
-                      <div className="text-right">
-                        <p className="text-xs text-gray-500">
-                          {trabalho.publicado}
-                        </p>
-                      </div>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
-                      <p className="text-gray-600 line-clamp-2">
-                        {trabalho.descricao}
-                      </p>
-
-                      <div className="flex flex-wrap gap-2">
-                        {trabalho.skills.map((skill) => (
-                          <Badge
-                            key={skill}
-                            variant="outline"
-                            className="text-xs"
-                          >
-                            {skill}
-                          </Badge>
-                        ))}
-                      </div>
-
-                      <div className="flex items-center justify-between pt-4">
-                        <Button variant="outline" size="sm">
-                          <Eye className="w-4 h-4 mr-2" />
-                          Ver detalhes
-                        </Button>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </TabsContent>
 
           <TabsContent value="projetos" className="space-y-6">
             <div className="space-y-4">
@@ -447,9 +274,8 @@ export default function FreelancerDashboard() {
                   Nenhuma proposta enviada
                 </h3>
                 <p className="text-gray-600 mb-4">
-                  Encontre trabalhos interessantes e envie suas propostas.
+                  Você ainda não enviou propostas para projetos.
                 </p>
-                <Button>Buscar trabalhos</Button>
               </CardContent>
             </Card>
           </TabsContent>
