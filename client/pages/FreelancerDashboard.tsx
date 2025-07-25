@@ -322,10 +322,6 @@ export default function FreelancerDashboard() {
                           <Eye className="w-4 h-4 mr-2" />
                           Ver detalhes
                         </Button>
-                        <Button size="sm">
-                          <Send className="w-4 h-4 mr-2" />
-                          Enviar proposta
-                        </Button>
                       </div>
                     </div>
                   </CardContent>
