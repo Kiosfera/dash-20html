@@ -1,313 +1,417 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TalentHub - Completar Perfil</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="profile-styles.css">
-</head>
-<body>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="profile-styles.css" />
+  </head>
+  <body>
     <!-- Header -->
     <header class="header">
-        <div class="header-content">
-            <div class="nav-section">
-                <a href="freelancer-dashboard.html" class="back-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="19" y1="12" x2="5" y2="12"/>
-                        <polyline points="12,19 5,12 12,5"/>
-                    </svg>
-                    Voltar ao Dashboard
-                </a>
-                <div class="separator"></div>
-                <a href="index.html" class="logo-link">
-                    <div class="logo">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
-                        </svg>
-                    </div>
-                    <span class="logo-text">TalentHub</span>
-                </a>
+      <div class="header-content">
+        <div class="nav-section">
+          <a href="freelancer-dashboard.html" class="back-link">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="19" y1="12" x2="5" y2="12" />
+              <polyline points="12,19 5,12 12,5" />
+            </svg>
+            Voltar ao Dashboard
+          </a>
+          <div class="separator"></div>
+          <a href="index.html" class="logo-link">
+            <div class="logo">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2" />
+              </svg>
             </div>
-            
-            <div class="avatar">
-                <span>FR</span>
-            </div>
+            <span class="logo-text">TalentHub</span>
+          </a>
         </div>
+
+        <div class="avatar">
+          <span>FR</span>
+        </div>
+      </div>
     </header>
 
     <div class="form-container">
-        <div class="form-header">
-            <h1>Completar Perfil</h1>
-            <p>Complete seu perfil para aparecer melhor nas buscas e receber mais propostas</p>
-            
-            <!-- Progress Bar -->
-            <div class="progress-card">
-                <div class="progress-info">
-                    <span>Progresso do perfil</span>
-                    <span class="progress-percentage">65%</span>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 65%"></div>
-                </div>
-                <p class="progress-hint">Complete mais campos para melhorar sua visibilidade</p>
+      <div class="form-header">
+        <h1>Completar Perfil</h1>
+        <p>
+          Complete seu perfil para aparecer melhor nas buscas e receber mais
+          propostas
+        </p>
+
+        <!-- Progress Bar -->
+        <div class="progress-card">
+          <div class="progress-info">
+            <span>Progresso do perfil</span>
+            <span class="progress-percentage">65%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 65%"></div>
+          </div>
+          <p class="progress-hint">
+            Complete mais campos para melhorar sua visibilidade
+          </p>
+        </div>
+      </div>
+
+      <form class="profile-form">
+        <!-- Informações Pessoais -->
+        <div class="form-section">
+          <div class="section-header">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+            <h2>Informações Pessoais</h2>
+          </div>
+          <div class="section-content">
+            <div class="photo-upload">
+              <div class="current-photo">
+                <span>MS</span>
+                <button type="button" class="photo-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"
+                    />
+                    <circle cx="12" cy="13" r="4" />
+                  </svg>
+                </button>
+              </div>
+              <div class="photo-info">
+                <h3>Foto do perfil</h3>
+                <p>
+                  Uma foto profissional aumenta suas chances de ser contratado
+                </p>
+                <button type="button" class="upload-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="7,10 12,15 17,10" />
+                    <line x1="12" y1="15" x2="12" y2="3" />
+                  </svg>
+                  Fazer upload
+                </button>
+              </div>
             </div>
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Nome completo *</label>
+                <input type="text" value="Maria Santos" required />
+              </div>
+              <div class="form-group">
+                <label>Email *</label>
+                <input type="email" value="maria@email.com" disabled />
+              </div>
+              <div class="form-group">
+                <label>Telefone</label>
+                <input type="tel" placeholder="(11) 99999-9999" />
+              </div>
+              <div class="form-group">
+                <label>Data de nascimento</label>
+                <input type="date" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Localização *</label>
+              <div class="location-grid">
+                <select required>
+                  <option value="">Estado</option>
+                  <option value="sp">São Paulo</option>
+                  <option value="rj">Rio de Janeiro</option>
+                  <option value="mg">Minas Gerais</option>
+                  <option value="pr">Paraná</option>
+                </select>
+                <input type="text" placeholder="Cidade" value="São Paulo" />
+              </div>
+            </div>
+          </div>
         </div>
 
-        <form class="profile-form">
-            <!-- Informações Pessoais -->
-            <div class="form-section">
-                <div class="section-header">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                        <circle cx="12" cy="7" r="4"/>
+        <!-- Informações Profissionais -->
+        <div class="form-section">
+          <div class="section-header">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+              <line x1="8" y1="21" x2="16" y2="21" />
+              <line x1="12" y1="17" x2="12" y2="21" />
+            </svg>
+            <h2>Informações Profissionais</h2>
+          </div>
+          <div class="section-content">
+            <div class="form-group">
+              <label>Título profissional *</label>
+              <input
+                type="text"
+                value="Desenvolvedora Full Stack | UI/UX Designer"
+                placeholder="Ex: Desenvolvedor Front-end Sênior"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label>Categoria principal *</label>
+              <select required>
+                <option value="">Selecione sua área principal</option>
+                <option value="desenvolvimento-web">Desenvolvimento Web</option>
+                <option value="desenvolvimento-mobile">
+                  Desenvolvimento Mobile
+                </option>
+                <option value="ui-ux">UI/UX Design</option>
+                <option value="design-grafico">Design Gráfico</option>
+                <option value="marketing-digital">Marketing Digital</option>
+                <option value="redacao">Redação e Conteúdo</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Sobre você *</label>
+              <textarea
+                rows="5"
+                placeholder="Conte sobre sua experiência, especialidades e o que te motiva..."
+                required
+              >
+Sou uma desenvolvedora full stack apaixonada por criar soluções inovadoras. Tenho 5 anos de experiência trabalhando com React, Node.js e design de interfaces. Especializada em aplicações web modernas e experiência do usuário.</textarea
+              >
+            </div>
+
+            <div class="form-group">
+              <label>Habilidades *</label>
+              <div class="skills-input">
+                <div class="input-row">
+                  <input
+                    type="text"
+                    id="skillInput"
+                    placeholder="Digite uma habilidade"
+                  />
+                  <button type="button" onclick="addSkill()" class="add-btn">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <line x1="12" y1="5" x2="12" y2="19" />
+                      <line x1="5" y1="12" x2="19" y2="12" />
                     </svg>
-                    <h2>Informações Pessoais</h2>
+                  </button>
                 </div>
-                <div class="section-content">
-                    <div class="photo-upload">
-                        <div class="current-photo">
-                            <span>MS</span>
-                            <button type="button" class="photo-btn">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
-                                    <circle cx="12" cy="13" r="4"/>
-                                </svg>
-                            </button>
-                        </div>
-                        <div class="photo-info">
-                            <h3>Foto do perfil</h3>
-                            <p>Uma foto profissional aumenta suas chances de ser contratado</p>
-                            <button type="button" class="upload-btn">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                                    <polyline points="7,10 12,15 17,10"/>
-                                    <line x1="12" y1="15" x2="12" y2="3"/>
-                                </svg>
-                                Fazer upload
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label>Nome completo *</label>
-                            <input type="text" value="Maria Santos" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Email *</label>
-                            <input type="email" value="maria@email.com" disabled>
-                        </div>
-                        <div class="form-group">
-                            <label>Telefone</label>
-                            <input type="tel" placeholder="(11) 99999-9999">
-                        </div>
-                        <div class="form-group">
-                            <label>Data de nascimento</label>
-                            <input type="date">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Localização *</label>
-                        <div class="location-grid">
-                            <select required>
-                                <option value="">Estado</option>
-                                <option value="sp">São Paulo</option>
-                                <option value="rj">Rio de Janeiro</option>
-                                <option value="mg">Minas Gerais</option>
-                                <option value="pr">Paraná</option>
-                            </select>
-                            <input type="text" placeholder="Cidade" value="São Paulo">
-                        </div>
-                    </div>
+                <div class="skills-tags" id="skillsContainer">
+                  <span class="skill-tag">
+                    React
+                    <button
+                      type="button"
+                      onclick="removeSkill(this)"
+                      class="remove-skill"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                      </svg>
+                    </button>
+                  </span>
+                  <span class="skill-tag">
+                    Node.js
+                    <button
+                      type="button"
+                      onclick="removeSkill(this)"
+                      class="remove-skill"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                      </svg>
+                    </button>
+                  </span>
                 </div>
+              </div>
             </div>
 
-            <!-- Informações Profissionais -->
-            <div class="form-section">
-                <div class="section-header">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-                        <line x1="8" y1="21" x2="16" y2="21"/>
-                        <line x1="12" y1="17" x2="12" y2="21"/>
-                    </svg>
-                    <h2>Informações Profissionais</h2>
-                </div>
-                <div class="section-content">
-                    <div class="form-group">
-                        <label>Título profissional *</label>
-                        <input type="text" value="Desenvolvedora Full Stack | UI/UX Designer" placeholder="Ex: Desenvolvedor Front-end Sênior" required>
-                    </div>
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Nível de experiência *</label>
+                <select required>
+                  <option value="">Selecione seu nível</option>
+                  <option value="junior">Júnior (0-2 anos)</option>
+                  <option value="pleno">Pleno (2-5 anos)</option>
+                  <option value="senior">Sênior (5+ anos)</option>
+                  <option value="especialista">Especialista (10+ anos)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Disponibilidade</label>
+                <select>
+                  <option value="">Selecione sua disponibilidade</option>
+                  <option value="tempo-integral">Tempo integral</option>
+                  <option value="meio-periodo">Meio período</option>
+                  <option value="projetos">Apenas projetos</option>
+                  <option value="consultoria">Consultoria</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
 
-                    <div class="form-group">
-                        <label>Categoria principal *</label>
-                        <select required>
-                            <option value="">Selecione sua área principal</option>
-                            <option value="desenvolvimento-web">Desenvolvimento Web</option>
-                            <option value="desenvolvimento-mobile">Desenvolvimento Mobile</option>
-                            <option value="ui-ux">UI/UX Design</option>
-                            <option value="design-grafico">Design Gráfico</option>
-                            <option value="marketing-digital">Marketing Digital</option>
-                            <option value="redacao">Redação e Conteúdo</option>
-                        </select>
-                    </div>
+        <!-- Preços e Faturamento -->
+        <div class="form-section">
+          <div class="section-header">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="12" y1="1" x2="12" y2="23" />
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+            </svg>
+            <h2>Preços e Faturamento</h2>
+          </div>
+          <div class="section-content">
+            <div class="pricing-grid">
+              <div class="form-group">
+                <label>Taxa por hora (R$) *</label>
+                <input type="number" value="55" placeholder="50" required />
+              </div>
+              <div class="form-group">
+                <label>Valor mínimo projeto (R$)</label>
+                <input type="number" placeholder="1000" />
+              </div>
+              <div class="form-group">
+                <label>Moeda</label>
+                <select>
+                  <option value="brl">Real (BRL)</option>
+                  <option value="usd">Dólar (USD)</option>
+                  <option value="eur">Euro (EUR)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
 
-                    <div class="form-group">
-                        <label>Sobre você *</label>
-                        <textarea rows="5" placeholder="Conte sobre sua experiência, especialidades e o que te motiva..." required>Sou uma desenvolvedora full stack apaixonada por criar soluções inovadoras. Tenho 5 anos de experiência trabalhando com React, Node.js e design de interfaces. Especializada em aplicações web modernas e experiência do usuário.</textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Habilidades *</label>
-                        <div class="skills-input">
-                            <div class="input-row">
-                                <input type="text" id="skillInput" placeholder="Digite uma habilidade">
-                                <button type="button" onclick="addSkill()" class="add-btn">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <line x1="12" y1="5" x2="12" y2="19"/>
-                                        <line x1="5" y1="12" x2="19" y2="12"/>
-                                    </svg>
-                                </button>
-                            </div>
-                            <div class="skills-tags" id="skillsContainer">
-                                <span class="skill-tag">
-                                    React
-                                    <button type="button" onclick="removeSkill(this)" class="remove-skill">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <line x1="18" y1="6" x2="6" y2="18"/>
-                                            <line x1="6" y1="6" x2="18" y2="18"/>
-                                        </svg>
-                                    </button>
-                                </span>
-                                <span class="skill-tag">
-                                    Node.js
-                                    <button type="button" onclick="removeSkill(this)" class="remove-skill">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <line x1="18" y1="6" x2="6" y2="18"/>
-                                            <line x1="6" y1="6" x2="18" y2="18"/>
-                                        </svg>
-                                    </button>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label>Nível de experiência *</label>
-                            <select required>
-                                <option value="">Selecione seu nível</option>
-                                <option value="junior">Júnior (0-2 anos)</option>
-                                <option value="pleno">Pleno (2-5 anos)</option>
-                                <option value="senior">Sênior (5+ anos)</option>
-                                <option value="especialista">Especialista (10+ anos)</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Disponibilidade</label>
-                            <select>
-                                <option value="">Selecione sua disponibilidade</option>
-                                <option value="tempo-integral">Tempo integral</option>
-                                <option value="meio-periodo">Meio período</option>
-                                <option value="projetos">Apenas projetos</option>
-                                <option value="consultoria">Consultoria</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
+        <!-- Portfólio e Experiência -->
+        <div class="form-section">
+          <div class="section-header">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="12" cy="8" r="7" />
+              <polyline points="8.21,13.89 7,23 12,20 17,23 15.79,13.88" />
+            </svg>
+            <h2>Portfólio e Experiência</h2>
+          </div>
+          <div class="section-content">
+            <div class="form-group">
+              <label>Link do portfólio</label>
+              <input type="url" placeholder="https://meuportfolio.com" />
             </div>
 
-            <!-- Preços e Faturamento -->
-            <div class="form-section">
-                <div class="section-header">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="12" y1="1" x2="12" y2="23"/>
-                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-                    </svg>
-                    <h2>Preços e Faturamento</h2>
-                </div>
-                <div class="section-content">
-                    <div class="pricing-grid">
-                        <div class="form-group">
-                            <label>Taxa por hora (R$) *</label>
-                            <input type="number" value="55" placeholder="50" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Valor mínimo projeto (R$)</label>
-                            <input type="number" placeholder="1000">
-                        </div>
-                        <div class="form-group">
-                            <label>Moeda</label>
-                            <select>
-                                <option value="brl">Real (BRL)</option>
-                                <option value="usd">Dólar (USD)</option>
-                                <option value="eur">Euro (EUR)</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
+            <div class="form-group">
+              <label>LinkedIn</label>
+              <input
+                type="url"
+                placeholder="https://linkedin.com/in/seuperfil"
+              />
             </div>
 
-            <!-- Portfólio e Experiência -->
-            <div class="form-section">
-                <div class="section-header">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="8" r="7"/>
-                        <polyline points="8.21,13.89 7,23 12,20 17,23 15.79,13.88"/>
-                    </svg>
-                    <h2>Portfólio e Experiência</h2>
-                </div>
-                <div class="section-content">
-                    <div class="form-group">
-                        <label>Link do portfólio</label>
-                        <input type="url" placeholder="https://meuportfolio.com">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>LinkedIn</label>
-                        <input type="url" placeholder="https://linkedin.com/in/seuperfil">
-                    </div>
-
-                    <div class="form-group">
-                        <label>GitHub</label>
-                        <input type="url" placeholder="https://github.com/seuusuario">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Formação acadêmica</label>
-                        <textarea rows="3" placeholder="Ex: Bacharelado em Ciência da Computação - USP (2018-2022)"></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Certificações</label>
-                        <textarea rows="3" placeholder="Ex: AWS Certified Developer, Google Analytics, etc."></textarea>
-                    </div>
-                </div>
+            <div class="form-group">
+              <label>GitHub</label>
+              <input type="url" placeholder="https://github.com/seuusuario" />
             </div>
 
-            <!-- Form Actions -->
-            <div class="form-actions">
-                <a href="freelancer-dashboard.html" class="btn-cancel">Cancelar</a>
-                <div class="action-buttons">
-                    <button type="button" class="btn-draft">Salvar Rascunho</button>
-                    <button type="submit" class="btn-save">Salvar Perfil</button>
-                </div>
+            <div class="form-group">
+              <label>Formação acadêmica</label>
+              <textarea
+                rows="3"
+                placeholder="Ex: Bacharelado em Ciência da Computação - USP (2018-2022)"
+              ></textarea>
             </div>
-        </form>
+
+            <div class="form-group">
+              <label>Certificações</label>
+              <textarea
+                rows="3"
+                placeholder="Ex: AWS Certified Developer, Google Analytics, etc."
+              ></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form Actions -->
+        <div class="form-actions">
+          <a href="freelancer-dashboard.html" class="btn-cancel">Cancelar</a>
+          <div class="action-buttons">
+            <button type="button" class="btn-draft">Salvar Rascunho</button>
+            <button type="submit" class="btn-save">Salvar Perfil</button>
+          </div>
+        </div>
+      </form>
     </div>
 
     <script>
-        function addSkill() {
-            const input = document.getElementById('skillInput');
-            const skillsContainer = document.getElementById('skillsContainer');
-            const skillText = input.value.trim();
-            
-            if (skillText && !document.querySelector(`[data-skill="${skillText}"]`)) {
-                const skillTag = document.createElement('span');
-                skillTag.className = 'skill-tag';
-                skillTag.setAttribute('data-skill', skillText);
-                skillTag.innerHTML = `
+      function addSkill() {
+        const input = document.getElementById("skillInput");
+        const skillsContainer = document.getElementById("skillsContainer");
+        const skillText = input.value.trim();
+
+        if (
+          skillText &&
+          !document.querySelector(`[data-skill="${skillText}"]`)
+        ) {
+          const skillTag = document.createElement("span");
+          skillTag.className = "skill-tag";
+          skillTag.setAttribute("data-skill", skillText);
+          skillTag.innerHTML = `
                     ${skillText}
                     <button type="button" onclick="removeSkill(this)" class="remove-skill">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -316,22 +420,24 @@
                         </svg>
                     </button>
                 `;
-                skillsContainer.appendChild(skillTag);
-                input.value = '';
-            }
+          skillsContainer.appendChild(skillTag);
+          input.value = "";
         }
+      }
 
-        function removeSkill(button) {
-            button.parentElement.remove();
-        }
+      function removeSkill(button) {
+        button.parentElement.remove();
+      }
 
-        // Enter key functionality for skills input
-        document.getElementById('skillInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                addSkill();
-            }
+      // Enter key functionality for skills input
+      document
+        .getElementById("skillInput")
+        .addEventListener("keypress", function (e) {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            addSkill();
+          }
         });
     </script>
-</body>
+  </body>
 </html>
