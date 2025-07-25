@@ -11,6 +11,7 @@ import ClientDashboard from "./pages/ClientDashboard";
 import FreelancerDashboard from "./pages/FreelancerDashboard";
 import CreateProject from "./pages/CreateProject";
 import Messages from "./pages/Messages";
+import CompleteProfile from "./pages/CompleteProfile";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
