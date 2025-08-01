@@ -1,19 +1,25 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { 
-  CheckCircle, 
-  Package, 
-  Truck, 
-  MapPin, 
+import {
+  CheckCircle,
+  Package,
+  Truck,
+  MapPin,
   Calendar,
   Download,
   Mail,
   Phone,
   Home,
-  Star
+  Star,
 } from "lucide-react";
 
 export default function PedidoConfirmado() {
@@ -21,11 +27,13 @@ export default function PedidoConfirmado() {
 
   const orderData = {
     orderNumber: "HF-" + Math.random().toString(36).substr(2, 9).toUpperCase(),
-    date: new Date().toLocaleDateString('pt-BR'),
-    estimatedDelivery: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toLocaleDateString('pt-BR'),
+    date: new Date().toLocaleDateString("pt-BR"),
+    estimatedDelivery: new Date(
+      Date.now() + 7 * 24 * 60 * 60 * 1000,
+    ).toLocaleDateString("pt-BR"),
     total: 284.91,
     paymentMethod: "PIX",
-    status: "Confirmado"
+    status: "Confirmado",
   };
 
   return (
@@ -36,7 +44,9 @@ export default function PedidoConfirmado() {
           <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
             <CheckCircle className="w-12 h-12 text-green-600" />
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Pedido Confirmado!</h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            Pedido Confirmado!
+          </h1>
           <p className="text-gray-600">
             Obrigado pela sua compra. Seu pedido foi processado com sucesso.
           </p>
@@ -75,9 +85,9 @@ export default function PedidoConfirmado() {
                     <p className="font-semibold">{orderData.paymentMethod}</p>
                   </div>
                 </div>
-                
+
                 <Separator />
-                
+
                 <div className="flex justify-between items-center">
                   <span className="text-lg font-semibold">Total Pago</span>
                   <span className="text-2xl font-bold text-green-600">
@@ -106,22 +116,26 @@ export default function PedidoConfirmado() {
                     </div>
                     <div className="flex-1">
                       <p className="font-medium">Pedido Confirmado</p>
-                      <p className="text-sm text-gray-600">Pagamento aprovado e pedido processado</p>
+                      <p className="text-sm text-gray-600">
+                        Pagamento aprovado e pedido processado
+                      </p>
                       <p className="text-xs text-gray-500">{orderData.date}</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center gap-4">
                     <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
                       <Package className="w-5 h-5 text-blue-600" />
                     </div>
                     <div className="flex-1">
                       <p className="font-medium">Preparando para Envio</p>
-                      <p className="text-sm text-gray-600">Seu pedido está sendo preparado</p>
+                      <p className="text-sm text-gray-600">
+                        Seu pedido está sendo preparado
+                      </p>
                       <p className="text-xs text-gray-500">Em andamento</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center gap-4">
                     <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
                       <Truck className="w-5 h-5 text-gray-400" />
@@ -131,14 +145,16 @@ export default function PedidoConfirmado() {
                       <p className="text-sm text-gray-400">Aguardando envio</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center gap-4">
                     <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
                       <MapPin className="w-5 h-5 text-gray-400" />
                     </div>
                     <div className="flex-1">
                       <p className="font-medium text-gray-400">Entregue</p>
-                      <p className="text-sm text-gray-400">Previsão: {orderData.estimatedDelivery}</p>
+                      <p className="text-sm text-gray-400">
+                        Previsão: {orderData.estimatedDelivery}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -197,11 +213,12 @@ export default function PedidoConfirmado() {
                   <div>
                     <p className="font-medium">Acompanhe seu pedido</p>
                     <p className="text-sm text-gray-600">
-                      Você receberá atualizações por email sobre o status da entrega
+                      Você receberá atualizações por email sobre o status da
+                      entrega
                     </p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start gap-3">
                   <Mail className="w-5 h-5 text-green-600 mt-0.5" />
                   <div>
@@ -211,7 +228,7 @@ export default function PedidoConfirmado() {
                     </p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start gap-3">
                   <Phone className="w-5 h-5 text-orange-600 mt-0.5" />
                   <div>
@@ -231,20 +248,29 @@ export default function PedidoConfirmado() {
               </CardHeader>
               <CardContent className="space-y-3">
                 <p className="text-sm text-gray-600">
-                  Tem alguma dúvida sobre seu pedido? Nossa equipe está pronta para ajudar!
+                  Tem alguma dúvida sobre seu pedido? Nossa equipe está pronta
+                  para ajudar!
                 </p>
-                
+
                 <div className="space-y-2">
-                  <Button variant="outline" size="sm" className="w-full justify-start">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="w-full justify-start"
+                  >
                     <Phone className="w-4 h-4 mr-2" />
                     (11) 1234-5678
                   </Button>
-                  <Button variant="outline" size="sm" className="w-full justify-start">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="w-full justify-start"
+                  >
                     <Mail className="w-4 h-4 mr-2" />
                     suporte@homeflip.com.br
                   </Button>
                 </div>
-                
+
                 <p className="text-xs text-gray-500">
                   Atendimento: Segunda a Sexta, 8h às 18h
                 </p>
@@ -254,12 +280,16 @@ export default function PedidoConfirmado() {
             {/* Navigation */}
             <Card>
               <CardContent className="pt-6 space-y-3">
-                <Button onClick={() => navigate('/')} variant="outline" className="w-full">
+                <Button
+                  onClick={() => navigate("/")}
+                  variant="outline"
+                  className="w-full"
+                >
                   <Home className="w-4 h-4 mr-2" />
                   Voltar ao Início
                 </Button>
-                
-                <Button onClick={() => navigate('/pedidos')} className="w-full">
+
+                <Button onClick={() => navigate("/pedidos")} className="w-full">
                   <Package className="w-4 h-4 mr-2" />
                   Meus Pedidos
                 </Button>
@@ -271,7 +301,9 @@ export default function PedidoConfirmado() {
               <CardContent className="pt-6">
                 <div className="text-center">
                   <Star className="w-8 h-8 text-yellow-500 mx-auto mb-2" />
-                  <h3 className="font-semibold text-gray-900 mb-2">Gostou da compra?</h3>
+                  <h3 className="font-semibold text-gray-900 mb-2">
+                    Gostou da compra?
+                  </h3>
                   <p className="text-sm text-gray-600 mb-4">
                     Sua opinião é muito importante para nós!
                   </p>

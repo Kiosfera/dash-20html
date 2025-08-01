@@ -12,11 +12,11 @@ import {
   DropdownMenuSubTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Badge } from "@/components/ui/badge";
-import { 
-  ChevronDown, 
-  CreditCard, 
-  Smartphone, 
-  FileText, 
+import {
+  ChevronDown,
+  CreditCard,
+  Smartphone,
+  FileText,
   Gift,
   Percent,
   Clock,
@@ -24,7 +24,7 @@ import {
   Settings,
   HelpCircle,
   Phone,
-  Mail
+  Mail,
 } from "lucide-react";
 
 interface PaymentOption {
@@ -42,7 +42,10 @@ interface CheckoutDropdownMenuProps {
   selectedPayment?: string;
 }
 
-export function CheckoutDropdownMenu({ onPaymentSelect, selectedPayment }: CheckoutDropdownMenuProps) {
+export function CheckoutDropdownMenu({
+  onPaymentSelect,
+  selectedPayment,
+}: CheckoutDropdownMenuProps) {
   const paymentMethods: PaymentOption[] = [
     {
       id: "pix",
@@ -51,7 +54,7 @@ export function CheckoutDropdownMenu({ onPaymentSelect, selectedPayment }: Check
       icon: Smartphone,
       badge: "Instantâneo",
       discount: "5% OFF",
-      isRecommended: true
+      isRecommended: true,
     },
     {
       id: "credit-card",
@@ -59,7 +62,7 @@ export function CheckoutDropdownMenu({ onPaymentSelect, selectedPayment }: Check
       description: "Visa, Mastercard, Elo",
       icon: CreditCard,
       badge: "12x sem juros",
-      discount: "Sem juros"
+      discount: "Sem juros",
     },
     {
       id: "boleto",
@@ -67,8 +70,8 @@ export function CheckoutDropdownMenu({ onPaymentSelect, selectedPayment }: Check
       description: "3 dias úteis",
       icon: FileText,
       badge: "3 dias",
-      discount: "2% OFF"
-    }
+      discount: "2% OFF",
+    },
   ];
 
   const promotions = [
@@ -76,17 +79,19 @@ export function CheckoutDropdownMenu({ onPaymentSelect, selectedPayment }: Check
       id: "first-purchase",
       name: "Primeira Compra",
       description: "10% de desconto extra",
-      icon: Gift
+      icon: Gift,
     },
     {
       id: "newsletter",
       name: "Newsletter",
       description: "5% para assinantes",
-      icon: Mail
-    }
+      icon: Mail,
+    },
   ];
 
-  const selectedMethod = paymentMethods.find(method => method.id === selectedPayment);
+  const selectedMethod = paymentMethods.find(
+    (method) => method.id === selectedPayment,
+  );
 
   return (
     <DropdownMenu>
@@ -98,7 +103,9 @@ export function CheckoutDropdownMenu({ onPaymentSelect, selectedPayment }: Check
                 <selectedMethod.icon className="w-4 h-4" />
                 <span>{selectedMethod.name}</span>
                 {selectedMethod.isRecommended && (
-                  <Badge variant="secondary" className="text-xs">Recomendado</Badge>
+                  <Badge variant="secondary" className="text-xs">
+                    Recomendado
+                  </Badge>
                 )}
               </>
             ) : (
@@ -117,7 +124,7 @@ export function CheckoutDropdownMenu({ onPaymentSelect, selectedPayment }: Check
           Métodos de Pagamento
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        
+
         {paymentMethods.map((method) => {
           const Icon = method.icon;
           return (
@@ -127,23 +134,31 @@ export function CheckoutDropdownMenu({ onPaymentSelect, selectedPayment }: Check
               className="flex items-center justify-between p-3 cursor-pointer"
             >
               <div className="flex items-center gap-3">
-                <div className={`p-2 rounded-full ${
-                  method.isRecommended ? 'bg-green-100' : 'bg-gray-100'
-                }`}>
-                  <Icon className={`w-4 h-4 ${
-                    method.isRecommended ? 'text-green-600' : 'text-gray-600'
-                  }`} />
+                <div
+                  className={`p-2 rounded-full ${
+                    method.isRecommended ? "bg-green-100" : "bg-gray-100"
+                  }`}
+                >
+                  <Icon
+                    className={`w-4 h-4 ${
+                      method.isRecommended ? "text-green-600" : "text-gray-600"
+                    }`}
+                  />
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
                     <span className="font-medium">{method.name}</span>
                     {method.isRecommended && (
-                      <Badge variant="secondary" className="text-xs">Recomendado</Badge>
+                      <Badge variant="secondary" className="text-xs">
+                        Recomendado
+                      </Badge>
                     )}
                   </div>
                   <p className="text-xs text-gray-600">{method.description}</p>
                   {method.discount && (
-                    <p className="text-xs text-green-600 font-medium">{method.discount}</p>
+                    <p className="text-xs text-green-600 font-medium">
+                      {method.discount}
+                    </p>
                   )}
                 </div>
               </div>
@@ -166,7 +181,10 @@ export function CheckoutDropdownMenu({ onPaymentSelect, selectedPayment }: Check
             {promotions.map((promo) => {
               const Icon = promo.icon;
               return (
-                <DropdownMenuItem key={promo.id} className="flex items-center gap-3 p-3">
+                <DropdownMenuItem
+                  key={promo.id}
+                  className="flex items-center gap-3 p-3"
+                >
                   <div className="p-2 rounded-full bg-orange-100">
                     <Icon className="w-4 h-4 text-orange-600" />
                   </div>
@@ -258,7 +276,10 @@ interface InstallmentDropdownProps {
   selectedInstallment?: number;
 }
 
-export function InstallmentDropdown({ onInstallmentSelect, selectedInstallment }: InstallmentDropdownProps) {
+export function InstallmentDropdown({
+  onInstallmentSelect,
+  selectedInstallment,
+}: InstallmentDropdownProps) {
   const installmentOptions = [
     { value: 1, label: "1x de R$ 284,91 à vista" },
     { value: 2, label: "2x de R$ 142,46 sem juros" },
@@ -271,10 +292,12 @@ export function InstallmentDropdown({ onInstallmentSelect, selectedInstallment }
     { value: 9, label: "9x de R$ 31,66 sem juros" },
     { value: 10, label: "10x de R$ 28,49 sem juros" },
     { value: 11, label: "11x de R$ 25,90 sem juros" },
-    { value: 12, label: "12x de R$ 23,74 sem juros" }
+    { value: 12, label: "12x de R$ 23,74 sem juros" },
   ];
 
-  const selectedOption = installmentOptions.find(option => option.value === selectedInstallment);
+  const selectedOption = installmentOptions.find(
+    (option) => option.value === selectedInstallment,
+  );
 
   return (
     <DropdownMenu>
@@ -292,7 +315,7 @@ export function InstallmentDropdown({ onInstallmentSelect, selectedInstallment }
           Opções de Parcelamento
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        
+
         {installmentOptions.map((option) => (
           <DropdownMenuItem
             key={option.value}
@@ -301,16 +324,20 @@ export function InstallmentDropdown({ onInstallmentSelect, selectedInstallment }
           >
             <span className="font-medium">{option.label}</span>
             {option.value === 1 && (
-              <Badge variant="secondary" className="text-xs">À vista</Badge>
+              <Badge variant="secondary" className="text-xs">
+                À vista
+              </Badge>
             )}
             {option.value <= 6 && option.value > 1 && (
-              <Badge variant="outline" className="text-xs">Popular</Badge>
+              <Badge variant="outline" className="text-xs">
+                Popular
+              </Badge>
             )}
           </DropdownMenuItem>
         ))}
 
         <DropdownMenuSeparator />
-        
+
         <div className="p-3 text-xs text-gray-600">
           <p>• Todas as parcelas são sem juros</p>
           <p>• Aprovação sujeita à análise do cartão</p>
@@ -327,7 +354,10 @@ interface BankDropdownProps {
   selectedBank?: string;
 }
 
-export function BankDropdown({ onBankSelect, selectedBank }: BankDropdownProps) {
+export function BankDropdown({
+  onBankSelect,
+  selectedBank,
+}: BankDropdownProps) {
   const banks = [
     { code: "001", name: "Banco do Brasil", shortName: "BB" },
     { code: "104", name: "Caixa Econômica Federal", shortName: "CEF" },
@@ -338,10 +368,10 @@ export function BankDropdown({ onBankSelect, selectedBank }: BankDropdownProps) 
     { code: "422", name: "Banco Safra", shortName: "Safra" },
     { code: "070", name: "BRB", shortName: "BRB" },
     { code: "756", name: "Banco Cooperativo do Brasil", shortName: "Bancoob" },
-    { code: "748", name: "Banco Cooperativo Sicredi", shortName: "Sicredi" }
+    { code: "748", name: "Banco Cooperativo Sicredi", shortName: "Sicredi" },
   ];
 
-  const selectedBankData = banks.find(bank => bank.code === selectedBank);
+  const selectedBankData = banks.find((bank) => bank.code === selectedBank);
 
   return (
     <DropdownMenu>
@@ -356,7 +386,7 @@ export function BankDropdown({ onBankSelect, selectedBank }: BankDropdownProps) 
       <DropdownMenuContent className="w-64">
         <DropdownMenuLabel>Bancos Disponíveis</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        
+
         {banks.map((bank) => (
           <DropdownMenuItem
             key={bank.code}
@@ -364,12 +394,14 @@ export function BankDropdown({ onBankSelect, selectedBank }: BankDropdownProps) 
             className="flex items-center justify-between p-3 cursor-pointer"
           >
             <span className="font-medium">{bank.name}</span>
-            <Badge variant="outline" className="text-xs">{bank.shortName}</Badge>
+            <Badge variant="outline" className="text-xs">
+              {bank.shortName}
+            </Badge>
           </DropdownMenuItem>
         ))}
 
         <DropdownMenuSeparator />
-        
+
         <div className="p-3 text-xs text-gray-600">
           <p>Todos os bancos aceitam PIX e boleto bancário</p>
         </div>

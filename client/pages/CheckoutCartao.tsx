@@ -4,21 +4,33 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
-import { 
-  ArrowLeft, 
-  CreditCard, 
-  Shield, 
+import {
+  ArrowLeft,
+  CreditCard,
+  Shield,
   Lock,
   AlertCircle,
-  CheckCircle
+  CheckCircle,
 } from "lucide-react";
 
 const cardSchema = z.object({
@@ -28,7 +40,7 @@ const cardSchema = z.object({
   expiryYear: z.string().min(1, "Ano é obrigatório"),
   cvv: z.string().min(3, "CVV deve ter 3 ou 4 dígitos"),
   installments: z.string().min(1, "Selecione o número de parcelas"),
-  saveCard: z.boolean().optional()
+  saveCard: z.boolean().optional(),
 });
 
 type CardFormData = z.infer<typeof cardSchema>;
@@ -43,15 +55,15 @@ export default function CheckoutCartao() {
     handleSubmit,
     watch,
     setValue,
-    formState: { errors }
+    formState: { errors },
   } = useForm<CardFormData>({
-    resolver: zodResolver(cardSchema)
+    resolver: zodResolver(cardSchema),
   });
 
   const orderSummary = {
-    subtotal: 299.90,
+    subtotal: 299.9,
     discount: 14.99,
-    total: 284.91
+    total: 284.91,
   };
 
   const installmentOptions = [
@@ -66,43 +78,43 @@ export default function CheckoutCartao() {
     { value: "9", label: "9x de R$ 31,66 sem juros" },
     { value: "10", label: "10x de R$ 28,49 sem juros" },
     { value: "11", label: "11x de R$ 25,90 sem juros" },
-    { value: "12", label: "12x de R$ 23,74 sem juros" }
+    { value: "12", label: "12x de R$ 23,74 sem juros" },
   ];
 
   const detectCardType = (number: string) => {
-    const cleaned = number.replace(/\D/g, '');
-    
-    if (cleaned.startsWith('4')) return 'visa';
-    if (cleaned.startsWith('5') || cleaned.startsWith('2')) return 'mastercard';
-    if (cleaned.startsWith('3')) return 'amex';
-    if (cleaned.startsWith('6')) return 'elo';
-    
-    return '';
+    const cleaned = number.replace(/\D/g, "");
+
+    if (cleaned.startsWith("4")) return "visa";
+    if (cleaned.startsWith("5") || cleaned.startsWith("2")) return "mastercard";
+    if (cleaned.startsWith("3")) return "amex";
+    if (cleaned.startsWith("6")) return "elo";
+
+    return "";
   };
 
   const formatCardNumber = (value: string) => {
-    const cleaned = value.replace(/\D/g, '');
+    const cleaned = value.replace(/\D/g, "");
     const chunks = cleaned.match(/.{1,4}/g) || [];
-    return chunks.join(' ').substr(0, 19);
+    return chunks.join(" ").substr(0, 19);
   };
 
   const handleCardNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const formatted = formatCardNumber(e.target.value);
-    setValue('cardNumber', formatted);
+    setValue("cardNumber", formatted);
     setCardType(detectCardType(formatted));
   };
 
   const onSubmit = async (data: CardFormData) => {
     setIsProcessing(true);
-    
+
     // Simular processamento do pagamento
     try {
-      await new Promise(resolve => setTimeout(resolve, 3000));
-      
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+
       // Simular sucesso em 80% dos casos
       if (Math.random() > 0.2) {
         toast.success("Pagamento aprovado!");
-        navigate('/pedido-confirmado');
+        navigate("/pedido-confirmado");
       } else {
         toast.error("Pagamento negado. Verifique os dados do cartão.");
       }
@@ -115,13 +127,13 @@ export default function CheckoutCartao() {
 
   const getCardIcon = () => {
     switch (cardType) {
-      case 'visa':
+      case "visa":
         return <div className="text-blue-600 font-bold text-xs">VISA</div>;
-      case 'mastercard':
+      case "mastercard":
         return <div className="text-red-600 font-bold text-xs">MASTER</div>;
-      case 'amex':
+      case "amex":
         return <div className="text-blue-600 font-bold text-xs">AMEX</div>;
-      case 'elo':
+      case "elo":
         return <div className="text-yellow-600 font-bold text-xs">ELO</div>;
       default:
         return <CreditCard className="w-4 h-4 text-gray-400" />;
@@ -135,14 +147,18 @@ export default function CheckoutCartao() {
         <div className="mb-8">
           <Button
             variant="ghost"
-            onClick={() => navigate('/checkout')}
+            onClick={() => navigate("/checkout")}
             className="mb-4"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Voltar
           </Button>
-          <h1 className="text-3xl font-bold text-gray-900">Pagamento com Cartão</h1>
-          <p className="text-gray-600 mt-2">Preencha os dados do seu cartão de crédito</p>
+          <h1 className="text-3xl font-bold text-gray-900">
+            Pagamento com Cartão
+          </h1>
+          <p className="text-gray-600 mt-2">
+            Preencha os dados do seu cartão de crédito
+          </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -167,7 +183,7 @@ export default function CheckoutCartao() {
                       <Input
                         id="cardNumber"
                         placeholder="0000 0000 0000 0000"
-                        {...register('cardNumber')}
+                        {...register("cardNumber")}
                         onChange={handleCardNumberChange}
                         maxLength={19}
                         className="pr-12"
@@ -177,7 +193,9 @@ export default function CheckoutCartao() {
                       </div>
                     </div>
                     {errors.cardNumber && (
-                      <p className="text-sm text-red-600 mt-1">{errors.cardNumber.message}</p>
+                      <p className="text-sm text-red-600 mt-1">
+                        {errors.cardNumber.message}
+                      </p>
                     )}
                   </div>
 
@@ -187,11 +205,13 @@ export default function CheckoutCartao() {
                     <Input
                       id="cardName"
                       placeholder="Nome como está no cartão"
-                      {...register('cardName')}
+                      {...register("cardName")}
                       className="uppercase"
                     />
                     {errors.cardName && (
-                      <p className="text-sm text-red-600 mt-1">{errors.cardName.message}</p>
+                      <p className="text-sm text-red-600 mt-1">
+                        {errors.cardName.message}
+                      </p>
                     )}
                   </div>
 
@@ -199,52 +219,70 @@ export default function CheckoutCartao() {
                   <div className="grid grid-cols-3 gap-4">
                     <div>
                       <Label htmlFor="expiryMonth">Mês</Label>
-                      <Select onValueChange={(value) => setValue('expiryMonth', value)}>
+                      <Select
+                        onValueChange={(value) =>
+                          setValue("expiryMonth", value)
+                        }
+                      >
                         <SelectTrigger>
                           <SelectValue placeholder="Mês" />
                         </SelectTrigger>
                         <SelectContent>
                           {Array.from({ length: 12 }, (_, i) => (
-                            <SelectItem key={i + 1} value={(i + 1).toString().padStart(2, '0')}>
-                              {(i + 1).toString().padStart(2, '0')}
+                            <SelectItem
+                              key={i + 1}
+                              value={(i + 1).toString().padStart(2, "0")}
+                            >
+                              {(i + 1).toString().padStart(2, "0")}
                             </SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
                       {errors.expiryMonth && (
-                        <p className="text-sm text-red-600 mt-1">{errors.expiryMonth.message}</p>
+                        <p className="text-sm text-red-600 mt-1">
+                          {errors.expiryMonth.message}
+                        </p>
                       )}
                     </div>
-                    
+
                     <div>
                       <Label htmlFor="expiryYear">Ano</Label>
-                      <Select onValueChange={(value) => setValue('expiryYear', value)}>
+                      <Select
+                        onValueChange={(value) => setValue("expiryYear", value)}
+                      >
                         <SelectTrigger>
                           <SelectValue placeholder="Ano" />
                         </SelectTrigger>
                         <SelectContent>
                           {Array.from({ length: 10 }, (_, i) => (
-                            <SelectItem key={i} value={(new Date().getFullYear() + i).toString()}>
+                            <SelectItem
+                              key={i}
+                              value={(new Date().getFullYear() + i).toString()}
+                            >
                               {new Date().getFullYear() + i}
                             </SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
                       {errors.expiryYear && (
-                        <p className="text-sm text-red-600 mt-1">{errors.expiryYear.message}</p>
+                        <p className="text-sm text-red-600 mt-1">
+                          {errors.expiryYear.message}
+                        </p>
                       )}
                     </div>
-                    
+
                     <div>
                       <Label htmlFor="cvv">CVV</Label>
                       <Input
                         id="cvv"
                         placeholder="123"
-                        {...register('cvv')}
+                        {...register("cvv")}
                         maxLength={4}
                       />
                       {errors.cvv && (
-                        <p className="text-sm text-red-600 mt-1">{errors.cvv.message}</p>
+                        <p className="text-sm text-red-600 mt-1">
+                          {errors.cvv.message}
+                        </p>
                       )}
                     </div>
                   </div>
@@ -252,7 +290,9 @@ export default function CheckoutCartao() {
                   {/* Installments */}
                   <div>
                     <Label htmlFor="installments">Parcelamento</Label>
-                    <Select onValueChange={(value) => setValue('installments', value)}>
+                    <Select
+                      onValueChange={(value) => setValue("installments", value)}
+                    >
                       <SelectTrigger>
                         <SelectValue placeholder="Selecione o parcelamento" />
                       </SelectTrigger>
@@ -265,15 +305,19 @@ export default function CheckoutCartao() {
                       </SelectContent>
                     </Select>
                     {errors.installments && (
-                      <p className="text-sm text-red-600 mt-1">{errors.installments.message}</p>
+                      <p className="text-sm text-red-600 mt-1">
+                        {errors.installments.message}
+                      </p>
                     )}
                   </div>
 
                   {/* Save Card */}
                   <div className="flex items-center space-x-2">
-                    <Checkbox 
-                      id="saveCard" 
-                      onCheckedChange={(checked) => setValue('saveCard', checked as boolean)}
+                    <Checkbox
+                      id="saveCard"
+                      onCheckedChange={(checked) =>
+                        setValue("saveCard", checked as boolean)
+                      }
                     />
                     <Label htmlFor="saveCard" className="text-sm">
                       Salvar cartão para futuras compras
@@ -285,17 +329,19 @@ export default function CheckoutCartao() {
                     <div className="flex items-start gap-3">
                       <Shield className="w-5 h-5 text-blue-600 mt-0.5" />
                       <div>
-                        <h4 className="font-medium text-blue-900">Compra Segura</h4>
+                        <h4 className="font-medium text-blue-900">
+                          Compra Segura
+                        </h4>
                         <p className="text-sm text-blue-700">
-                          Seus dados são protegidos com criptografia SSL de 256 bits. 
-                          Não armazenamos informações do seu cartão.
+                          Seus dados são protegidos com criptografia SSL de 256
+                          bits. Não armazenamos informações do seu cartão.
                         </p>
                       </div>
                     </div>
                   </div>
 
-                  <Button 
-                    type="submit" 
+                  <Button
+                    type="submit"
                     disabled={isProcessing}
                     className="w-full"
                     size="lg"
@@ -338,9 +384,9 @@ export default function CheckoutCartao() {
                     <span className="text-green-600">GRÁTIS</span>
                   </div>
                 </div>
-                
+
                 <Separator />
-                
+
                 <div className="flex justify-between font-semibold text-lg">
                   <span>Total</span>
                   <span>R$ {orderSummary.total.toFixed(2)}</span>

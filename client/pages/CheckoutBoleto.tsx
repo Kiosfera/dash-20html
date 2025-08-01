@@ -4,28 +4,34 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
-import { 
-  ArrowLeft, 
-  FileText, 
-  Download, 
+import {
+  ArrowLeft,
+  FileText,
+  Download,
   Copy,
   Calendar,
   AlertTriangle,
   CheckCircle,
   Printer,
-  Mail
+  Mail,
 } from "lucide-react";
 
 const boletoSchema = z.object({
   cpf: z.string().min(11, "CPF deve ter 11 dígitos"),
   email: z.string().email("Email inv��lido"),
-  sendEmail: z.boolean().optional()
+  sendEmail: z.boolean().optional(),
 });
 
 type BoletoFormData = z.infer<typeof boletoSchema>;
@@ -39,44 +45,44 @@ export default function CheckoutBoleto() {
     register,
     handleSubmit,
     setValue,
-    formState: { errors }
+    formState: { errors },
   } = useForm<BoletoFormData>({
-    resolver: zodResolver(boletoSchema)
+    resolver: zodResolver(boletoSchema),
   });
 
   const orderSummary = {
-    subtotal: 299.90,
+    subtotal: 299.9,
     discount: 14.99,
-    boletoDiscount: 5.70, // 2% adicional para boleto
-    total: 279.21
+    boletoDiscount: 5.7, // 2% adicional para boleto
+    total: 279.21,
   };
 
   const boletoData = {
     number: "34191.09008 64000.000003 30000.009007 8 99770000027921",
     dueDate: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000), // 3 dias úteis
-    value: orderSummary.total
+    value: orderSummary.total,
   };
 
   const formatCPF = (value: string) => {
-    const cleaned = value.replace(/\D/g, '');
-    return cleaned.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+    const cleaned = value.replace(/\D/g, "");
+    return cleaned.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
   };
 
   const handleCPFChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const formatted = formatCPF(e.target.value);
-    setValue('cpf', formatted);
+    setValue("cpf", formatted);
   };
 
   const onSubmit = async (data: BoletoFormData) => {
     setIsGenerating(true);
-    
+
     try {
       // Simular geração do boleto
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
       setBoletoGenerated(true);
       toast.success("Boleto gerado com sucesso!");
-      
+
       if (data.sendEmail) {
         toast.success("Boleto enviado para seu email!");
       }
@@ -110,14 +116,16 @@ export default function CheckoutBoleto() {
           <div className="mb-8">
             <Button
               variant="ghost"
-              onClick={() => navigate('/checkout')}
+              onClick={() => navigate("/checkout")}
               className="mb-4"
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
               Voltar
             </Button>
             <h1 className="text-3xl font-bold text-gray-900">Boleto Gerado</h1>
-            <p className="text-gray-600 mt-2">Seu boleto foi gerado com sucesso</p>
+            <p className="text-gray-600 mt-2">
+              Seu boleto foi gerado com sucesso
+            </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -129,9 +137,12 @@ export default function CheckoutBoleto() {
                   <div className="flex items-center gap-3">
                     <CheckCircle className="w-6 h-6 text-green-600" />
                     <div>
-                      <h3 className="font-semibold text-green-900">Boleto gerado com sucesso!</h3>
+                      <h3 className="font-semibold text-green-900">
+                        Boleto gerado com sucesso!
+                      </h3>
                       <p className="text-sm text-green-700">
-                        Você pode imprimir, baixar ou pagar online em qualquer banco
+                        Você pode imprimir, baixar ou pagar online em qualquer
+                        banco
                       </p>
                     </div>
                   </div>
@@ -144,10 +155,13 @@ export default function CheckoutBoleto() {
                   <div className="flex items-center gap-3">
                     <AlertTriangle className="w-6 h-6 text-orange-600" />
                     <div>
-                      <h3 className="font-semibold text-orange-900">Atenção ao Vencimento</h3>
+                      <h3 className="font-semibold text-orange-900">
+                        Atenção ao Vencimento
+                      </h3>
                       <p className="text-sm text-orange-700">
-                        Vencimento: {boletoData.dueDate.toLocaleDateString('pt-BR')} - 
-                        Pague até esta data para garantir o processamento
+                        Vencimento:{" "}
+                        {boletoData.dueDate.toLocaleDateString("pt-BR")} - Pague
+                        até esta data para garantir o processamento
                       </p>
                     </div>
                   </div>
@@ -171,9 +185,9 @@ export default function CheckoutBoleto() {
                       {boletoData.number}
                     </code>
                   </div>
-                  <Button 
+                  <Button
                     onClick={copyBoletoNumber}
-                    variant="outline" 
+                    variant="outline"
                     className="mt-4 w-full"
                   >
                     <Copy className="w-4 h-4 mr-2" />
@@ -192,11 +206,19 @@ export default function CheckoutBoleto() {
                 </CardHeader>
                 <CardContent>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <Button onClick={downloadBoleto} variant="outline" className="w-full">
+                    <Button
+                      onClick={downloadBoleto}
+                      variant="outline"
+                      className="w-full"
+                    >
                       <Download className="w-4 h-4 mr-2" />
                       Baixar PDF
                     </Button>
-                    <Button onClick={printBoleto} variant="outline" className="w-full">
+                    <Button
+                      onClick={printBoleto}
+                      variant="outline"
+                      className="w-full"
+                    >
                       <Printer className="w-4 h-4 mr-2" />
                       Imprimir
                     </Button>
@@ -222,7 +244,8 @@ export default function CheckoutBoleto() {
                       <div>
                         <p className="font-medium">Internet Banking</p>
                         <p className="text-sm text-gray-600">
-                          Acesse sua conta bancária online e digite o código de barras na opção "Pagar Boleto"
+                          Acesse sua conta bancária online e digite o código de
+                          barras na opção "Pagar Boleto"
                         </p>
                       </div>
                     </div>
@@ -233,7 +256,8 @@ export default function CheckoutBoleto() {
                       <div>
                         <p className="font-medium">App do Banco</p>
                         <p className="text-sm text-gray-600">
-                          Escaneie o código de barras usando a câmera do app do seu banco
+                          Escaneie o código de barras usando a câmera do app do
+                          seu banco
                         </p>
                       </div>
                     </div>
@@ -244,7 +268,8 @@ export default function CheckoutBoleto() {
                       <div>
                         <p className="font-medium">Agência Bancária</p>
                         <p className="text-sm text-gray-600">
-                          Leve o boleto impresso em qualquer agência bancária ou lotérica
+                          Leve o boleto impresso em qualquer agência bancária ou
+                          lotérica
                         </p>
                       </div>
                     </div>
@@ -289,9 +314,9 @@ export default function CheckoutBoleto() {
                       <span className="text-green-600">GRÁTIS</span>
                     </div>
                   </div>
-                  
+
                   <Separator />
-                  
+
                   <div className="flex justify-between font-semibold text-lg">
                     <span>Total</span>
                     <span>R$ {orderSummary.total.toFixed(2)}</span>
@@ -304,7 +329,8 @@ export default function CheckoutBoleto() {
                     </div>
                     <div className="mt-2 space-y-1">
                       <p className="text-sm text-blue-600">
-                        Vencimento: {boletoData.dueDate.toLocaleDateString('pt-BR')}
+                        Vencimento:{" "}
+                        {boletoData.dueDate.toLocaleDateString("pt-BR")}
                       </p>
                       <p className="text-sm text-blue-600">
                         Valor: R$ {boletoData.value.toFixed(2)}
@@ -315,10 +341,13 @@ export default function CheckoutBoleto() {
                   <div className="bg-orange-50 p-4 rounded-lg">
                     <div className="flex items-center gap-2">
                       <Calendar className="w-4 h-4 text-orange-600" />
-                      <span className="font-medium text-orange-700">Prazo de Pagamento</span>
+                      <span className="font-medium text-orange-700">
+                        Prazo de Pagamento
+                      </span>
                     </div>
                     <p className="text-sm text-orange-600 mt-1">
-                      Pague até o vencimento para garantir o processamento do pedido
+                      Pague até o vencimento para garantir o processamento do
+                      pedido
                     </p>
                   </div>
                 </CardContent>
@@ -337,14 +366,18 @@ export default function CheckoutBoleto() {
         <div className="mb-8">
           <Button
             variant="ghost"
-            onClick={() => navigate('/checkout')}
+            onClick={() => navigate("/checkout")}
             className="mb-4"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Voltar
           </Button>
-          <h1 className="text-3xl font-bold text-gray-900">Pagamento via Boleto</h1>
-          <p className="text-gray-600 mt-2">Preencha seus dados para gerar o boleto</p>
+          <h1 className="text-3xl font-bold text-gray-900">
+            Pagamento via Boleto
+          </h1>
+          <p className="text-gray-600 mt-2">
+            Preencha seus dados para gerar o boleto
+          </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -368,12 +401,14 @@ export default function CheckoutBoleto() {
                     <Input
                       id="cpf"
                       placeholder="000.000.000-00"
-                      {...register('cpf')}
+                      {...register("cpf")}
                       onChange={handleCPFChange}
                       maxLength={14}
                     />
                     {errors.cpf && (
-                      <p className="text-sm text-red-600 mt-1">{errors.cpf.message}</p>
+                      <p className="text-sm text-red-600 mt-1">
+                        {errors.cpf.message}
+                      </p>
                     )}
                   </div>
 
@@ -384,10 +419,12 @@ export default function CheckoutBoleto() {
                       id="email"
                       type="email"
                       placeholder="seu@email.com"
-                      {...register('email')}
+                      {...register("email")}
                     />
                     {errors.email && (
-                      <p className="text-sm text-red-600 mt-1">{errors.email.message}</p>
+                      <p className="text-sm text-red-600 mt-1">
+                        {errors.email.message}
+                      </p>
                     )}
                     <p className="text-sm text-gray-600 mt-1">
                       O boleto será enviado para este email
@@ -399,19 +436,27 @@ export default function CheckoutBoleto() {
                     <div className="flex items-start gap-3">
                       <FileText className="w-5 h-5 text-blue-600 mt-0.5" />
                       <div>
-                        <h4 className="font-medium text-blue-900">Sobre o Boleto Bancário</h4>
+                        <h4 className="font-medium text-blue-900">
+                          Sobre o Boleto Bancário
+                        </h4>
                         <ul className="text-sm text-blue-700 mt-2 space-y-1">
                           <li>• Vencimento em 3 dias úteis</li>
-                          <li>• Pode ser pago em qualquer banco, lotérica ou app bancário</li>
-                          <li>• Após o pagamento, a confirmação pode levar até 3 dias úteis</li>
+                          <li>
+                            • Pode ser pago em qualquer banco, lotérica ou app
+                            bancário
+                          </li>
+                          <li>
+                            • Após o pagamento, a confirmação pode levar até 3
+                            dias úteis
+                          </li>
                           <li>• Desconto de 2% no valor total</li>
                         </ul>
                       </div>
                     </div>
                   </div>
 
-                  <Button 
-                    type="submit" 
+                  <Button
+                    type="submit"
                     disabled={isGenerating}
                     className="w-full"
                     size="lg"
@@ -458,9 +503,9 @@ export default function CheckoutBoleto() {
                     <span className="text-green-600">GRÁTIS</span>
                   </div>
                 </div>
-                
+
                 <Separator />
-                
+
                 <div className="flex justify-between font-semibold text-lg">
                   <span>Total</span>
                   <span>R$ {orderSummary.total.toFixed(2)}</span>

@@ -1,34 +1,44 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Progress } from "@/components/ui/progress";
 import { toast } from "sonner";
-import { 
-  ArrowLeft, 
-  Copy, 
-  QrCode, 
-  Clock, 
-  CheckCircle, 
+import {
+  ArrowLeft,
+  Copy,
+  QrCode,
+  Clock,
+  CheckCircle,
   Smartphone,
   Shield,
-  RefreshCw
+  RefreshCw,
 } from "lucide-react";
 
 export default function CheckoutPix() {
   const navigate = useNavigate();
   const [timeRemaining, setTimeRemaining] = useState(600); // 10 minutes
-  const [pixCode] = useState("00020126580014br.gov.bcb.pix013628767ba0-7e42-4e77-9e52-88fe6b5c3c345204000053039865802BR5925HOMEFLIP BRASIL LTDA6009SAO PAULO61088001000062070503***6304");
+  const [pixCode] = useState(
+    "00020126580014br.gov.bcb.pix013628767ba0-7e42-4e77-9e52-88fe6b5c3c345204000053039865802BR5925HOMEFLIP BRASIL LTDA6009SAO PAULO61088001000062070503***6304",
+  );
   const [qrCodeGenerated, setQrCodeGenerated] = useState(false);
-  const [paymentStatus, setPaymentStatus] = useState<'pending' | 'processing' | 'completed'>('pending');
+  const [paymentStatus, setPaymentStatus] = useState<
+    "pending" | "processing" | "completed"
+  >("pending");
 
   const orderSummary = {
-    subtotal: 299.90,
+    subtotal: 299.9,
     discount: 14.99,
     pixDiscount: 14.24, // 5% adicional para PIX
-    total: 270.67
+    total: 270.67,
   };
 
   useEffect(() => {
@@ -57,7 +67,7 @@ export default function CheckoutPix() {
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
-    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
   };
 
   const copyPixCode = () => {
@@ -66,17 +76,19 @@ export default function CheckoutPix() {
   };
 
   const checkPayment = () => {
-    setPaymentStatus('processing');
+    setPaymentStatus("processing");
     // Simular verificação de pagamento
     setTimeout(() => {
       // Simular pagamento encontrado em 30% dos casos
       if (Math.random() > 0.7) {
-        setPaymentStatus('completed');
+        setPaymentStatus("completed");
         toast.success("Pagamento confirmado!");
-        setTimeout(() => navigate('/pedido-confirmado'), 2000);
+        setTimeout(() => navigate("/pedido-confirmado"), 2000);
       } else {
-        setPaymentStatus('pending');
-        toast.info("Pagamento ainda não encontrado. Tente novamente em alguns instantes.");
+        setPaymentStatus("pending");
+        toast.info(
+          "Pagamento ainda não encontrado. Tente novamente em alguns instantes.",
+        );
       }
     }, 3000);
   };
@@ -88,11 +100,14 @@ export default function CheckoutPix() {
           <Card className="text-center">
             <CardContent className="pt-16 pb-16">
               <Clock className="w-16 h-16 text-red-500 mx-auto mb-4" />
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">Tempo Expirado</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                Tempo Expirado
+              </h2>
               <p className="text-gray-600 mb-6">
-                O tempo para pagamento via PIX expirou. Inicie um novo processo de pagamento.
+                O tempo para pagamento via PIX expirou. Inicie um novo processo
+                de pagamento.
               </p>
-              <Button onClick={() => navigate('/checkout')} size="lg">
+              <Button onClick={() => navigate("/checkout")} size="lg">
                 Voltar ao Checkout
               </Button>
             </CardContent>
@@ -109,14 +124,18 @@ export default function CheckoutPix() {
         <div className="mb-8">
           <Button
             variant="ghost"
-            onClick={() => navigate('/checkout')}
+            onClick={() => navigate("/checkout")}
             className="mb-4"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Voltar
           </Button>
-          <h1 className="text-3xl font-bold text-gray-900">Pagamento via PIX</h1>
-          <p className="text-gray-600 mt-2">Escaneie o QR Code ou copie o código PIX</p>
+          <h1 className="text-3xl font-bold text-gray-900">
+            Pagamento via PIX
+          </h1>
+          <p className="text-gray-600 mt-2">
+            Escaneie o QR Code ou copie o código PIX
+          </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -130,7 +149,10 @@ export default function CheckoutPix() {
                     <Clock className="w-4 h-4 mr-1" />
                     Tempo restante: {formatTime(timeRemaining)}
                   </Badge>
-                  <Progress value={((600 - timeRemaining) / 600) * 100} className="h-2" />
+                  <Progress
+                    value={((600 - timeRemaining) / 600) * 100}
+                    className="h-2"
+                  />
                 </div>
               </CardContent>
             </Card>
@@ -181,9 +203,9 @@ export default function CheckoutPix() {
                     {pixCode}
                   </code>
                 </div>
-                <Button 
+                <Button
                   onClick={copyPixCode}
-                  variant="outline" 
+                  variant="outline"
                   className="mt-4 w-full"
                 >
                   <Copy className="w-4 h-4 mr-2" />
@@ -205,7 +227,9 @@ export default function CheckoutPix() {
                     </div>
                     <div>
                       <p className="font-medium">Abra o app do seu banco</p>
-                      <p className="text-sm text-gray-600">Acesse a área PIX do seu aplicativo bancário</p>
+                      <p className="text-sm text-gray-600">
+                        Acesse a área PIX do seu aplicativo bancário
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
@@ -213,8 +237,12 @@ export default function CheckoutPix() {
                       2
                     </div>
                     <div>
-                      <p className="font-medium">Escaneie o QR Code ou cole o código</p>
-                      <p className="text-sm text-gray-600">Use a opção "Pagar com QR Code" ou "PIX Copia e Cola"</p>
+                      <p className="font-medium">
+                        Escaneie o QR Code ou cole o código
+                      </p>
+                      <p className="text-sm text-gray-600">
+                        Use a opção "Pagar com QR Code" ou "PIX Copia e Cola"
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
@@ -223,7 +251,9 @@ export default function CheckoutPix() {
                     </div>
                     <div>
                       <p className="font-medium">Confirme o pagamento</p>
-                      <p className="text-sm text-gray-600">Verifique os dados e confirme a transação</p>
+                      <p className="text-sm text-gray-600">
+                        Verifique os dados e confirme a transação
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -234,18 +264,18 @@ export default function CheckoutPix() {
             <Card>
               <CardContent className="pt-6">
                 <div className="text-center">
-                  <Button 
+                  <Button
                     onClick={checkPayment}
-                    disabled={paymentStatus === 'processing'}
+                    disabled={paymentStatus === "processing"}
                     size="lg"
                     className="w-full"
                   >
-                    {paymentStatus === 'processing' ? (
+                    {paymentStatus === "processing" ? (
                       <>
                         <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
                         Verificando Pagamento...
                       </>
-                    ) : paymentStatus === 'completed' ? (
+                    ) : paymentStatus === "completed" ? (
                       <>
                         <CheckCircle className="w-4 h-4 mr-2" />
                         Pagamento Confirmado!
@@ -290,9 +320,9 @@ export default function CheckoutPix() {
                     <span className="text-green-600">GRÁTIS</span>
                   </div>
                 </div>
-                
+
                 <Separator />
-                
+
                 <div className="flex justify-between font-semibold text-lg">
                   <span>Total</span>
                   <span>R$ {orderSummary.total.toFixed(2)}</span>
