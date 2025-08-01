@@ -1,0 +1,737 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Configurações - TalentHub</title>
+    <link rel="stylesheet" href="checkout-base.css" />
+    <style>
+      .settings-container {
+        display: grid;
+        grid-template-columns: 250px 1fr;
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      .settings-sidebar {
+        background: white;
+        border-radius: var(--radius-lg);
+        padding: 1.5rem;
+        height: fit-content;
+        border: 1px solid var(--border);
+      }
+
+      .settings-nav {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .settings-nav li {
+        margin-bottom: 0.5rem;
+      }
+
+      .settings-nav-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem 1rem;
+        border-radius: var(--radius);
+        text-decoration: none;
+        color: var(--muted-foreground);
+        transition: all 0.2s;
+        cursor: pointer;
+      }
+
+      .settings-nav-item:hover {
+        background: var(--muted);
+        color: var(--foreground);
+      }
+
+      .settings-nav-item.active {
+        background: var(--primary);
+        color: white;
+      }
+
+      .settings-nav-item svg {
+        width: 1rem;
+        height: 1rem;
+      }
+
+      .settings-content {
+        background: white;
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border);
+        overflow: hidden;
+      }
+
+      .settings-header {
+        padding: 2rem;
+        border-bottom: 1px solid var(--border);
+        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      }
+
+      .settings-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .settings-title svg {
+        width: 1.5rem;
+        height: 1.5rem;
+        color: var(--primary);
+      }
+
+      .settings-description {
+        color: var(--muted-foreground);
+      }
+
+      .settings-section {
+        padding: 2rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .settings-section:last-child {
+        border-bottom: none;
+      }
+
+      .section-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: var(--foreground);
+      }
+
+      .section-description {
+        color: var(--muted-foreground);
+        font-size: 0.875rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group label {
+        display: block;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        color: var(--foreground);
+      }
+
+      .toggle-switch {
+        position: relative;
+        display: inline-block;
+        width: 3rem;
+        height: 1.5rem;
+      }
+
+      .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .toggle-slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: 0.4s;
+        border-radius: 1.5rem;
+      }
+
+      .toggle-slider:before {
+        position: absolute;
+        content: "";
+        height: 1rem;
+        width: 1rem;
+        left: 0.25rem;
+        bottom: 0.25rem;
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+      }
+
+      input:checked + .toggle-slider {
+        background-color: var(--primary);
+      }
+
+      input:checked + .toggle-slider:before {
+        transform: translateX(1.5rem);
+      }
+
+      .toggle-option {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        background: var(--muted);
+        border-radius: var(--radius);
+        margin-bottom: 0.75rem;
+      }
+
+      .toggle-info {
+        flex: 1;
+      }
+
+      .toggle-title {
+        font-weight: 500;
+        margin-bottom: 0.25rem;
+      }
+
+      .toggle-description {
+        font-size: 0.875rem;
+        color: var(--muted-foreground);
+      }
+
+      .danger-zone {
+        background: #fef2f2;
+        border: 1px solid #fecaca;
+        border-radius: var(--radius-lg);
+        padding: 1.5rem;
+        margin-top: 2rem;
+      }
+
+      .danger-title {
+        color: #dc2626;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .danger-description {
+        color: #7f1d1d;
+        font-size: 0.875rem;
+        margin-bottom: 1rem;
+      }
+
+      .btn-danger {
+        background: #dc2626;
+        color: white;
+        border: 1px solid #dc2626;
+      }
+
+      .btn-danger:hover {
+        background: #b91c1c;
+        border-color: #b91c1c;
+      }
+
+      .save-bar {
+        position: sticky;
+        bottom: 0;
+        background: white;
+        border-top: 1px solid var(--border);
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .changes-indicator {
+        color: var(--muted-foreground);
+        font-size: 0.875rem;
+      }
+
+      .save-actions {
+        display: flex;
+        gap: 0.75rem;
+      }
+
+      @media (max-width: 768px) {
+        .settings-container {
+          grid-template-columns: 1fr;
+          padding: 1rem;
+        }
+
+        .settings-sidebar {
+          order: 1;
+        }
+
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="bg-white border-b">
+      <div class="container mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+          <a href="index-homeflip.html" class="flex items-center space-x-2">
+            <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+              <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2" />
+              </svg>
+            </div>
+            <span class="text-xl font-bold text-gray-900">TalentHub</span>
+          </a>
+
+          <div class="flex items-center space-x-4">
+            <a href="messages.html" class="btn-ghost flex items-center">
+              <svg class="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+              </svg>
+              Mensagens
+            </a>
+            <div class="avatar">
+              <span class="avatar-fallback">CL</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="settings-container">
+      <!-- Sidebar -->
+      <div class="settings-sidebar">
+        <ul class="settings-nav">
+          <li>
+            <div class="settings-nav-item active" onclick="showSection('profile')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+              Perfil
+            </div>
+          </li>
+          <li>
+            <div class="settings-nav-item" onclick="showSection('account')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+              Conta
+            </div>
+          </li>
+          <li>
+            <div class="settings-nav-item" onclick="showSection('notifications')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+              </svg>
+              Notificações
+            </div>
+          </li>
+          <li>
+            <div class="settings-nav-item" onclick="showSection('privacy')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <circle cx="12" cy="16" r="1"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+              Privacidade
+            </div>
+          </li>
+          <li>
+            <div class="settings-nav-item" onclick="showSection('billing')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+                <line x1="1" y1="10" x2="23" y2="10"/>
+              </svg>
+              Pagamentos
+            </div>
+          </li>
+          <li>
+            <div class="settings-nav-item" onclick="showSection('preferences')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+              </svg>
+              Preferências
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Content -->
+      <div class="settings-content">
+        <!-- Profile Section -->
+        <div id="profile-section" class="settings-page active">
+          <div class="settings-header">
+            <h1 class="settings-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+              Perfil
+            </h1>
+            <p class="settings-description">Gerencie suas informações pessoais e profissionais</p>
+          </div>
+
+          <div class="settings-section">
+            <h2 class="section-title">Informações Básicas</h2>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Nome</label>
+                <input type="text" class="input" value="João Silva" />
+              </div>
+              <div class="form-group">
+                <label>Sobrenome</label>
+                <input type="text" class="input" value="Santos" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>E-mail</label>
+              <input type="email" class="input" value="joao@email.com" />
+            </div>
+            <div class="form-group">
+              <label>Telefone</label>
+              <input type="tel" class="input" value="+55 11 99999-9999" />
+            </div>
+            <div class="form-group">
+              <label>Localização</label>
+              <select class="select">
+                <option>São Paulo, SP</option>
+                <option>Rio de Janeiro, RJ</option>
+                <option>Belo Horizonte, MG</option>
+                <option>Brasília, DF</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <h2 class="section-title">Informações Profissionais</h2>
+            <div class="form-group">
+              <label>Título Profissional</label>
+              <input type="text" class="input" value="Desenvolvedor Full Stack" />
+            </div>
+            <div class="form-group">
+              <label>Biografia</label>
+              <textarea class="textarea" rows="4" placeholder="Conte um pouco sobre você...">Desenvolvedor Full Stack com 5 anos de experiência em React, Node.js e Python...</textarea>
+            </div>
+            <div class="form-group">
+              <label>Taxa por hora</label>
+              <input type="number" class="input" value="65" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Account Section -->
+        <div id="account-section" class="settings-page" style="display: none;">
+          <div class="settings-header">
+            <h1 class="settings-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+              Conta
+            </h1>
+            <p class="settings-description">Configurações de segurança e acesso</p>
+          </div>
+
+          <div class="settings-section">
+            <h2 class="section-title">Senha</h2>
+            <p class="section-description">Mantenha sua conta segura com uma senha forte</p>
+            <div class="form-group">
+              <label>Senha atual</label>
+              <input type="password" class="input" />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Nova senha</label>
+                <input type="password" class="input" />
+              </div>
+              <div class="form-group">
+                <label>Confirmar nova senha</label>
+                <input type="password" class="input" />
+              </div>
+            </div>
+            <button class="btn btn-primary">Alterar senha</button>
+          </div>
+
+          <div class="settings-section">
+            <h2 class="section-title">Autenticação de dois fatores</h2>
+            <p class="section-description">Adicione uma camada extra de segurança à sua conta</p>
+            <div class="toggle-option">
+              <div class="toggle-info">
+                <div class="toggle-title">Autenticação por SMS</div>
+                <div class="toggle-description">Receba códigos por SMS para verificar seu login</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="toggle-option">
+              <div class="toggle-info">
+                <div class="toggle-title">App Autenticador</div>
+                <div class="toggle-description">Use um app como Google Authenticator</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="danger-zone">
+            <h3 class="danger-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="15" y1="9" x2="9" y2="15"/>
+                <line x1="9" y1="9" x2="15" y2="15"/>
+              </svg>
+              Zona de Perigo
+            </h3>
+            <p class="danger-description">
+              Essas ações são irreversíveis. Por favor, tenha certeza antes de prosseguir.
+            </p>
+            <button class="btn btn-danger" onclick="confirmDeleteAccount()">
+              Excluir conta
+            </button>
+          </div>
+        </div>
+
+        <!-- Notifications Section -->
+        <div id="notifications-section" class="settings-page" style="display: none;">
+          <div class="settings-header">
+            <h1 class="settings-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+              </svg>
+              Notificações
+            </h1>
+            <p class="settings-description">Controle como e quando você recebe notificações</p>
+          </div>
+
+          <div class="settings-section">
+            <h2 class="section-title">E-mail</h2>
+            <div class="toggle-option">
+              <div class="toggle-info">
+                <div class="toggle-title">Novas mensagens</div>
+                <div class="toggle-description">Receba notificação quando alguém enviar uma mensagem</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="toggle-option">
+              <div class="toggle-info">
+                <div class="toggle-title">Novos projetos</div>
+                <div class="toggle-description">Notificações sobre projetos relevantes ao seu perfil</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="toggle-option">
+              <div class="toggle-info">
+                <div class="toggle-title">Atualizações de propostas</div>
+                <div class="toggle-description">Quando uma proposta for aceita ou rejeitada</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="toggle-option">
+              <div class="toggle-info">
+                <div class="toggle-title">Newsletter</div>
+                <div class="toggle-description">Dicas e novidades da plataforma</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <h2 class="section-title">Push (Navegador)</h2>
+            <div class="toggle-option">
+              <div class="toggle-info">
+                <div class="toggle-title">Notificações push</div>
+                <div class="toggle-description">Receba notificações mesmo quando não estiver no site</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Privacy Section -->
+        <div id="privacy-section" class="settings-page" style="display: none;">
+          <div class="settings-header">
+            <h1 class="settings-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <circle cx="12" cy="16" r="1"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+              Privacidade
+            </h1>
+            <p class="settings-description">Controle quem pode ver suas informações</p>
+          </div>
+
+          <div class="settings-section">
+            <h2 class="section-title">Visibilidade do Perfil</h2>
+            <div class="toggle-option">
+              <div class="toggle-info">
+                <div class="toggle-title">Perfil público</div>
+                <div class="toggle-description">Seu perfil aparece nos resultados de busca</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="toggle-option">
+              <div class="toggle-info">
+                <div class="toggle-title">Mostrar última atividade</div>
+                <div class="toggle-description">Outros usuários podem ver quando você esteve online</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="toggle-option">
+              <div class="toggle-info">
+                <div class="toggle-title">Mostrar projetos concluídos</div>
+                <div class="toggle-description">Exibir histórico de projetos no seu perfil</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <h2 class="section-title">Dados e Analytics</h2>
+            <div class="toggle-option">
+              <div class="toggle-info">
+                <div class="toggle-title">Compartilhar dados de uso</div>
+                <div class="toggle-description">Ajude-nos a melhorar a plataforma compartilhando dados anônimos</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Save Bar -->
+        <div class="save-bar">
+          <div class="changes-indicator">
+            <span id="changesStatus">Sem alterações</span>
+          </div>
+          <div class="save-actions">
+            <button class="btn btn-outline" onclick="discardChanges()">Descartar</button>
+            <button class="btn btn-primary" onclick="saveChanges()">Salvar alterações</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let hasChanges = false;
+
+      function showSection(sectionName) {
+        // Hide all sections
+        document.querySelectorAll('.settings-page').forEach(page => {
+          page.style.display = 'none';
+        });
+
+        // Remove active class from all nav items
+        document.querySelectorAll('.settings-nav-item').forEach(item => {
+          item.classList.remove('active');
+        });
+
+        // Show selected section
+        document.getElementById(sectionName + '-section').style.display = 'block';
+        
+        // Add active class to clicked nav item
+        event.target.classList.add('active');
+      }
+
+      function saveChanges() {
+        const saveBtn = event.target;
+        const originalText = saveBtn.textContent;
+        
+        saveBtn.textContent = 'Salvando...';
+        saveBtn.disabled = true;
+
+        setTimeout(() => {
+          saveBtn.textContent = 'Salvo!';
+          hasChanges = false;
+          updateChangesStatus();
+          
+          setTimeout(() => {
+            saveBtn.textContent = originalText;
+            saveBtn.disabled = false;
+          }, 1000);
+        }, 1000);
+      }
+
+      function discardChanges() {
+        if (confirm('Tem certeza que deseja descartar todas as alterações?')) {
+          location.reload();
+        }
+      }
+
+      function confirmDeleteAccount() {
+        if (confirm('Tem certeza que deseja excluir sua conta? Esta ação não pode ser desfeita.')) {
+          if (confirm('Digite "CONFIRMAR" para confirmar a exclusão da conta:')) {
+            console.log('Account deletion confirmed');
+            // Here would be the actual deletion logic
+          }
+        }
+      }
+
+      function updateChangesStatus() {
+        const statusElement = document.getElementById('changesStatus');
+        if (hasChanges) {
+          statusElement.textContent = 'Você tem alterações não salvas';
+          statusElement.style.color = '#f59e0b';
+        } else {
+          statusElement.textContent = 'Sem alterações';
+          statusElement.style.color = 'var(--muted-foreground)';
+        }
+      }
+
+      // Track changes
+      document.addEventListener('input', function() {
+        hasChanges = true;
+        updateChangesStatus();
+      });
+
+      document.addEventListener('change', function() {
+        hasChanges = true;
+        updateChangesStatus();
+      });
+
+      // Warn before leaving if there are unsaved changes
+      window.addEventListener('beforeunload', function(e) {
+        if (hasChanges) {
+          e.preventDefault();
+          e.returnValue = '';
+        }
+      });
+    </script>
+  </body>
+</html>
