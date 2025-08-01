@@ -16,6 +16,7 @@ import Checkout from "./pages/Checkout";
 import CheckoutPix from "./pages/CheckoutPix";
 import CheckoutCartao from "./pages/CheckoutCartao";
 import CheckoutBoleto from "./pages/CheckoutBoleto";
+import PedidoConfirmado from "./pages/PedidoConfirmado";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
