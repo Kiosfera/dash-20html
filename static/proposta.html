@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enviar Proposta - Homeflip</title>
+    <link rel="stylesheet" href="checkout-base.css">
+    <style>
+        .proposal-container {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+        }
+        
+        .proposal-header {
+            background: white;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .project-preview {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border: 1px solid #bfdbfe;
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .proposal-form {
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            padding: 2rem;
+        }
+        
+        .section-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .budget-input {
+            position: relative;
+        }
+        
+        .budget-input::before {
+            content: 'R$';
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6b7280;
+            font-weight: 500;
+        }
+        
+        .budget-input input {
+            padding-left: 2rem;
+        }
+        
+        .milestone-item {
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            margin-bottom: 1rem;
+            background: #f9fafb;
+        }
+        
+        .milestone-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+        
+        .milestone-number {
+            background: var(--primary);
+            color: white;
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+        
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .skill-tag {
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .attachment-area {
+            border: 2px dashed var(--border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            text-align: center;
+            background: #f9fafb;
+            transition: all 0.2s ease-in-out;
+        }
+        
+        .attachment-area:hover {
+            border-color: var(--primary);
+            background: #f0f9ff;
+        }
+        
+        .portfolio-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .portfolio-item {
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: white;
+        }
+        
+        .portfolio-image {
+            width: 100%;
+            height: 120px;
+            background: linear-gradient(45deg, #f3f4f6 25%, #e5e7eb 25%, #e5e7eb 50%, #f3f4f6 50%, #f3f4f6 75%, #e5e7eb 75%);
+            background-size: 8px 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .portfolio-info {
+            padding: 0.75rem;
+        }
+        
+        .timeline-item {
+            display: flex;
+            align-items: start;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        
+        .timeline-date {
+            background: var(--secondary);
+            padding: 0.25rem 0.5rem;
+            border-radius: var(--radius);
+            font-size: 0.75rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        
+        .quote-section {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 1px solid #bbf7d0;
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .warning-box {
+            background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
+            border: 1px solid #fed7aa;
+            border-radius: var(--radius);
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .summary-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            position: sticky;
+            top: 2rem;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .summary-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .success-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        
+        .success-content {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            max-width: 400px;
+            margin: 1rem;
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body class="proposal-container">
+    <!-- Header -->
+    <header class="proposal-header">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <a href="freelancer-dashboard.html" class="flex items-center text-gray-600 hover:text-gray-900 transition-colors">
+                        <svg class="icon icon-sm mr-2" viewBox="0 0 24 24">
+                            <path d="m12 19-7-7 7-7"/>
+                            <path d="M19 12H5"/>
+                        </svg>
+                        Voltar ao Dashboard
+                    </a>
+                    <div class="w-px h-6 bg-gray-300"></div>
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-white" viewBox="0 0 24 24">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                            </svg>
+                        </div>
+                        <span class="text-xl font-bold text-gray-900">Homeflip</span>
+                    </div>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
+                        <span class="text-sm font-bold text-gray-600">MS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-6 py-8">
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">Enviar Proposta</h1>
+            <p class="text-gray-600">Crie uma proposta detalhada para conquistar este projeto</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Main Content -->
+            <div class="lg:col-span-2">
+                <!-- Project Preview -->
+                <div class="project-preview">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h2 class="text-xl font-bold text-blue-900 mb-2">Desenvolvimento de App Mobile</h2>
+                            <div class="flex items-center gap-3 text-sm text-blue-700">
+                                <span>Desenvolvimento Mobile</span>
+                                <span>•</span>
+                                <span>R$ 5.000 - R$ 8.000</span>
+                                <span>•</span>
+                                <span>30 dias</span>
+                            </div>
+                        </div>
+                        <span class="badge badge-secondary">Ativo</span>
+                    </div>
+                    <p class="text-blue-800 text-sm leading-relaxed">
+                        Preciso desenvolver um aplicativo mobile para iOS e Android que permita aos usuários gerenciar suas finanças pessoais. O app deve ter funcionalidades de cadastro de receitas/despesas, categorização, relatórios e gráficos...
+                    </p>
+                    <div class="skills-container mt-4">
+                        <span class="skill-tag">React Native</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">UI/UX</span>
+                    </div>
+                </div>
+
+                <!-- Proposal Form -->
+                <div class="proposal-form">
+                    <form id="proposalForm">
+                        <!-- Introduction -->
+                        <div class="mb-8">
+                            <h2 class="section-title">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                                </svg>
+                                Carta de Apresentação
+                            </h2>
+                            <div class="form-group">
+                                <label class="label">Apresente-se ao cliente *</label>
+                                <textarea 
+                                    class="input" 
+                                    rows="6" 
+                                    placeholder="Olá! Meu nome é... tenho experiência em... e acredito que posso ajudá-lo com seu projeto porque..."
+                                    required
+                                ></textarea>
+                                <p class="text-xs text-gray-500 mt-1">Seja específico sobre sua experiência relevante e como você abordará este projeto.</p>
+                            </div>
+                        </div>
+
+                        <!-- Budget and Timeline -->
+                        <div class="mb-8">
+                            <h2 class="section-title">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <line x1="12" x2="12" y1="1" y2="23"/>
+                                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                                </svg>
+                                Orçamento e Prazo
+                            </h2>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="label">Valor da proposta (R$) *</label>
+                                    <div class="budget-input">
+                                        <input 
+                                            type="number" 
+                                            class="input" 
+                                            placeholder="6500" 
+                                            min="0" 
+                                            step="0.01"
+                                            required
+                                        />
+                                    </div>
+                                    <p class="text-xs text-gray-500 mt-1">Faixa do projeto: R$ 5.000 - R$ 8.000</p>
+                                </div>
+                                <div class="form-group">
+                                    <label class="label">Prazo de entrega *</label>
+                                    <select class="input" required>
+                                        <option value="">Selecione o prazo</option>
+                                        <option value="15">15 dias</option>
+                                        <option value="20">20 dias</option>
+                                        <option value="25">25 dias</option>
+                                        <option value="30">30 dias</option>
+                                        <option value="45">45 dias</option>
+                                        <option value="custom">Personalizado</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Milestones -->
+                        <div class="mb-8">
+                            <h2 class="section-title">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <path d="M9 12l2 2 4-4"/>
+                                    <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3"/>
+                                    <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3"/>
+                                    <path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/>
+                                </svg>
+                                Marcos do Projeto
+                            </h2>
+                            <p class="text-sm text-gray-600 mb-4">Divida o projeto em etapas para facilitar o acompanhamento</p>
+                            
+                            <div id="milestonesContainer">
+                                <div class="milestone-item">
+                                    <div class="milestone-header">
+                                        <div class="flex items-center gap-3">
+                                            <div class="milestone-number">1</div>
+                                            <input type="text" class="input flex-1" placeholder="Nome do marco (ex: Planejamento e Wireframes)" required>
+                                        </div>
+                                        <button type="button" class="btn btn-ghost btn-sm text-red-600" onclick="removeMilestone(this)">
+                                            <svg class="icon icon-sm" viewBox="0 0 24 24">
+                                                <line x1="18" x2="6" y1="6" y2="18"/>
+                                                <line x1="6" x2="18" y1="6" y2="18"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <div class="form-row">
+                                        <div>
+                                            <label class="label text-sm">Descrição</label>
+                                            <textarea class="input" rows="2" placeholder="Descreva o que será entregue nesta etapa..."></textarea>
+                                        </div>
+                                        <div>
+                                            <label class="label text-sm">Valor (R$)</label>
+                                            <input type="number" class="input" placeholder="1500" min="0" step="0.01">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="milestone-item">
+                                    <div class="milestone-header">
+                                        <div class="flex items-center gap-3">
+                                            <div class="milestone-number">2</div>
+                                            <input type="text" class="input flex-1" placeholder="Nome do marco" required>
+                                        </div>
+                                        <button type="button" class="btn btn-ghost btn-sm text-red-600" onclick="removeMilestone(this)">
+                                            <svg class="icon icon-sm" viewBox="0 0 24 24">
+                                                <line x1="18" x2="6" y1="6" y2="18"/>
+                                                <line x1="6" x2="18" y1="6" y2="18"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <div class="form-row">
+                                        <div>
+                                            <label class="label text-sm">Descrição</label>
+                                            <textarea class="input" rows="2" placeholder="Descreva o que será entregue nesta etapa..."></textarea>
+                                        </div>
+                                        <div>
+                                            <label class="label text-sm">Valor (R$)</label>
+                                            <input type="number" class="input" placeholder="3000" min="0" step="0.01">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button type="button" class="btn btn-outline mt-4" onclick="addMilestone()">
+                                <svg class="icon icon-sm mr-2" viewBox="0 0 24 24">
+                                    <line x1="12" x2="12" y1="5" y2="19"/>
+                                    <line x1="5" x2="19" y1="12" y2="12"/>
+                                </svg>
+                                Adicionar Marco
+                            </button>
+                        </div>
+
+                        <!-- Portfolio -->
+                        <div class="mb-8">
+                            <h2 class="section-title">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
+                                    <circle cx="9" cy="9" r="2"/>
+                                    <path d="M21 15l-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+                                </svg>
+                                Trabalhos Relevantes
+                            </h2>
+                            <p class="text-sm text-gray-600 mb-4">Mostre trabalhos similares que você já realizou</p>
+                            
+                            <div class="portfolio-preview">
+                                <div class="portfolio-item">
+                                    <div class="portfolio-image">
+                                        <svg class="icon w-8 h-8 text-gray-400" viewBox="0 0 24 24">
+                                            <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
+                                            <circle cx="9" cy="9" r="2"/>
+                                            <path d="M21 15l-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+                                        </svg>
+                                    </div>
+                                    <div class="portfolio-info">
+                                        <h4 class="font-medium text-sm">App Financeiro iOS</h4>
+                                        <p class="text-xs text-gray-600">React Native • 2023</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="portfolio-item">
+                                    <div class="portfolio-image">
+                                        <svg class="icon w-8 h-8 text-gray-400" viewBox="0 0 24 24">
+                                            <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
+                                            <circle cx="9" cy="9" r="2"/>
+                                            <path d="M21 15l-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+                                        </svg>
+                                    </div>
+                                    <div class="portfolio-info">
+                                        <h4 class="font-medium text-sm">Dashboard Analytics</h4>
+                                        <p class="text-xs text-gray-600">React • Node.js • 2023</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Additional Information -->
+                        <div class="mb-8">
+                            <h2 class="section-title">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+                                    <polyline points="14,2 14,8 20,8"/>
+                                </svg>
+                                Informações Adicionais
+                            </h2>
+                            
+                            <div class="form-group">
+                                <label class="label">Metodologia de trabalho</label>
+                                <textarea 
+                                    class="input" 
+                                    rows="4" 
+                                    placeholder="Descreva como você planeja abordar este projeto, metodologias que utilizará, ferramentas, processo de revisão..."
+                                ></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="label">Perguntas para o cliente</label>
+                                <textarea 
+                                    class="input" 
+                                    rows="3" 
+                                    placeholder="Alguma dúvida sobre o projeto que gostaria de esclarecer antes de começar?"
+                                ></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Attachments -->
+                        <div class="mb-8">
+                            <h2 class="section-title">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66L9.64 16.2a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
+                                </svg>
+                                Anexos (Opcional)
+                            </h2>
+                            <div class="attachment-area">
+                                <svg class="icon w-12 h-12 text-gray-400 mx-auto mb-4" viewBox="0 0 24 24">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                    <polyline points="17,8 12,3 7,8"/>
+                                    <line x1="12" x2="12" y1="3" y2="15"/>
+                                </svg>
+                                <h3 class="font-medium text-gray-900 mb-2">Adicione arquivos de apoio</h3>
+                                <p class="text-sm text-gray-600 mb-4">
+                                    Portfólio adicional, propostas técnicas, wireframes, etc.
+                                </p>
+                                <button type="button" class="btn btn-outline">
+                                    Selecionar Arquivos
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Warning -->
+                        <div class="warning-box">
+                            <div class="flex items-start gap-3">
+                                <svg class="icon text-orange-600 mt-0.5" viewBox="0 0 24 24">
+                                    <path d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"/>
+                                </svg>
+                                <div>
+                                    <h4 class="font-medium text-orange-800">Importante</h4>
+                                    <p class="text-sm text-orange-700 mt-1">
+                                        Certifique-se de ler toda a descrição do projeto antes de enviar sua proposta. 
+                                        Propostas genéricas têm menor chance de serem aceitas.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Actions -->
+                        <div class="flex items-center justify-between pt-6 border-t">
+                            <button type="button" class="btn btn-outline" onclick="history.back()">
+                                Cancelar
+                            </button>
+                            <div class="flex gap-3">
+                                <button type="button" class="btn btn-outline">
+                                    Salvar Rascunho
+                                </button>
+                                <button type="submit" class="btn btn-primary">
+                                    Enviar Proposta
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div>
+                <!-- Summary Card -->
+                <div class="summary-card">
+                    <h3 class="font-semibold text-gray-900 mb-4">Resumo da Proposta</h3>
+                    
+                    <div class="summary-item">
+                        <span class="text-sm text-gray-600">Valor:</span>
+                        <span class="font-semibold" id="summaryValue">R$ 6.500</span>
+                    </div>
+                    
+                    <div class="summary-item">
+                        <span class="text-sm text-gray-600">Prazo:</span>
+                        <span class="font-semibold" id="summaryDeadline">25 dias</span>
+                    </div>
+                    
+                    <div class="summary-item">
+                        <span class="text-sm text-gray-600">Taxa da plataforma (10%):</span>
+                        <span class="font-semibold text-red-600" id="platformFee">R$ 650</span>
+                    </div>
+                    
+                    <div class="summary-item">
+                        <span class="text-sm text-gray-600">Você receberá:</span>
+                        <span class="font-semibold text-green-600" id="finalAmount">R$ 5.850</span>
+                    </div>
+                </div>
+
+                <!-- Tips -->
+                <div class="section-card mt-6">
+                    <h3 class="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                        <svg class="icon icon-sm text-blue-600" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                            <path d="M12 17h.01"/>
+                        </svg>
+                        Dicas para uma boa proposta
+                    </h3>
+                    
+                    <ul class="space-y-3 text-sm text-gray-600">
+                        <li class="flex items-start gap-2">
+                            <svg class="icon icon-sm text-green-600 mt-0.5" viewBox="0 0 24 24">
+                                <path d="M9 12l2 2 4-4"/>
+                                <circle cx="12" cy="12" r="10"/>
+                            </svg>
+                            Personalize sua proposta para o projeto específico
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <svg class="icon icon-sm text-green-600 mt-0.5" viewBox="0 0 24 24">
+                                <path d="M9 12l2 2 4-4"/>
+                                <circle cx="12" cy="12" r="10"/>
+                            </svg>
+                            Destaque experiências similares
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <svg class="icon icon-sm text-green-600 mt-0.5" viewBox="0 0 24 24">
+                                <path d="M9 12l2 2 4-4"/>
+                                <circle cx="12" cy="12" r="10"/>
+                            </svg>
+                            Seja específico sobre sua abordagem
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <svg class="icon icon-sm text-green-600 mt-0.5" viewBox="0 0 24 24">
+                                <path d="M9 12l2 2 4-4"/>
+                                <circle cx="12" cy="12" r="10"/>
+                            </svg>
+                            Defina marcos claros do projeto
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="success-modal hidden">
+        <div class="success-content">
+            <svg class="icon w-16 h-16 text-green-600 mx-auto mb-4" viewBox="0 0 24 24">
+                <path d="M9 12l2 2 4-4"/>
+                <circle cx="12" cy="12" r="10"/>
+            </svg>
+            <h2 class="text-xl font-bold text-gray-900 mb-2">Proposta Enviada!</h2>
+            <p class="text-gray-600 mb-6">
+                Sua proposta foi enviada com sucesso. O cliente será notificado e você receberá uma resposta em breve.
+            </p>
+            <button onclick="window.location.href='freelancer-dashboard.html'" class="btn btn-primary w-full">
+                Voltar ao Dashboard
+            </button>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast hidden">
+        <div class="flex items-center gap-3">
+            <svg id="toastIcon" class="icon" viewBox="0 0 24 24"></svg>
+            <span id="toastMessage"></span>
+        </div>
+    </div>
+
+    <script>
+        let milestoneCount = 2;
+        
+        // Add milestone
+        function addMilestone() {
+            milestoneCount++;
+            const container = document.getElementById('milestonesContainer');
+            const milestoneHtml = `
+                <div class="milestone-item">
+                    <div class="milestone-header">
+                        <div class="flex items-center gap-3">
+                            <div class="milestone-number">${milestoneCount}</div>
+                            <input type="text" class="input flex-1" placeholder="Nome do marco" required>
+                        </div>
+                        <button type="button" class="btn btn-ghost btn-sm text-red-600" onclick="removeMilestone(this)">
+                            <svg class="icon icon-sm" viewBox="0 0 24 24">
+                                <line x1="18" x2="6" y1="6" y2="18"/>
+                                <line x1="6" x2="18" y1="6" y2="18"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="form-row">
+                        <div>
+                            <label class="label text-sm">Descrição</label>
+                            <textarea class="input" rows="2" placeholder="Descreva o que será entregue nesta etapa..."></textarea>
+                        </div>
+                        <div>
+                            <label class="label text-sm">Valor (R$)</label>
+                            <input type="number" class="input" placeholder="0" min="0" step="0.01">
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', milestoneHtml);
+            updateMilestoneNumbers();
+        }
+        
+        // Remove milestone
+        function removeMilestone(button) {
+            if (document.querySelectorAll('.milestone-item').length > 1) {
+                button.closest('.milestone-item').remove();
+                milestoneCount--;
+                updateMilestoneNumbers();
+            } else {
+                showToast('Você deve ter pelo menos um marco no projeto', 'error');
+            }
+        }
+        
+        // Update milestone numbers
+        function updateMilestoneNumbers() {
+            const milestones = document.querySelectorAll('.milestone-item');
+            milestones.forEach((milestone, index) => {
+                const numberElement = milestone.querySelector('.milestone-number');
+                numberElement.textContent = index + 1;
+            });
+        }
+        
+        // Handle form submission
+        function setupForm() {
+            const form = document.getElementById('proposalForm');
+            
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                // Validate form
+                const requiredFields = form.querySelectorAll('[required]');
+                let isValid = true;
+                
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        isValid = false;
+                        field.classList.add('border-red-500');
+                    } else {
+                        field.classList.remove('border-red-500');
+                    }
+                });
+                
+                if (!isValid) {
+                    showToast('Por favor, preencha todos os campos obrigatórios', 'error');
+                    return;
+                }
+                
+                // Simulate sending proposal
+                showToast('Enviando proposta...', 'info');
+                
+                setTimeout(() => {
+                    document.getElementById('successModal').classList.remove('hidden');
+                }, 2000);
+            });
+        }
+        
+        // Update summary values
+        function updateSummary() {
+            const valueInput = document.querySelector('input[type="number"]');
+            const deadlineSelect = document.querySelector('select');
+            
+            if (valueInput) {
+                valueInput.addEventListener('input', (e) => {
+                    const value = parseFloat(e.target.value) || 0;
+                    const fee = value * 0.1;
+                    const final = value - fee;
+                    
+                    document.getElementById('summaryValue').textContent = `R$ ${value.toLocaleString('pt-BR')}`;
+                    document.getElementById('platformFee').textContent = `R$ ${fee.toLocaleString('pt-BR')}`;
+                    document.getElementById('finalAmount').textContent = `R$ ${final.toLocaleString('pt-BR')}`;
+                });
+            }
+            
+            if (deadlineSelect) {
+                deadlineSelect.addEventListener('change', (e) => {
+                    const value = e.target.value;
+                    const text = e.target.options[e.target.selectedIndex].text;
+                    document.getElementById('summaryDeadline').textContent = text;
+                });
+            }
+        }
+        
+        // Toast function
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            const toastIcon = document.getElementById('toastIcon');
+            
+            toastMessage.textContent = message;
+            
+            if (type === 'success') {
+                toastIcon.innerHTML = '<path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/>';
+                toastIcon.className = 'icon text-green-600';
+            } else if (type === 'error') {
+                toastIcon.innerHTML = '<circle cx="12" cy="12" r="10"/><line x1="15" x2="9" y1="9" y2="15"/><line x1="9" x2="15" y1="9" y2="15"/>';
+                toastIcon.className = 'icon text-red-600';
+            } else if (type === 'info') {
+                toastIcon.innerHTML = '<circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>';
+                toastIcon.className = 'icon text-blue-600';
+            }
+            
+            toast.className = `toast toast-${type}`;
+            toast.classList.remove('hidden');
+            
+            setTimeout(() => {
+                toast.classList.add('show');
+            }, 100);
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => {
+                    toast.classList.add('hidden');
+                }, 300);
+            }, 3000);
+        }
+        
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            setupForm();
+            updateSummary();
+        });
+    </script>
+</body>
+</html>
