@@ -17,7 +17,7 @@
       }
 
       .gradient-bg::before {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
         left: 0;
@@ -245,31 +245,51 @@
     <div class="gradient-bg">
       <div class="auth-card">
         <a href="login.html" class="back-button">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M19 12H5"/>
-            <path d="M12 19l-7-7 7-7"/>
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M19 12H5" />
+            <path d="M12 19l-7-7 7-7" />
           </svg>
           Voltar ao login
         </a>
 
         <div class="logo-section">
           <div class="logo">
-            <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg
+              class="w-6 h-6 text-white"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
               <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2" />
             </svg>
           </div>
           <h1 class="auth-title">Recuperar senha</h1>
-          <p class="auth-subtitle">Não se preocupe! Enviaremos instruções para redefinir sua senha.</p>
+          <p class="auth-subtitle">
+            Não se preocupe! Enviaremos instruções para redefinir sua senha.
+          </p>
         </div>
 
         <!-- Form State -->
         <div id="formState">
           <div class="recovery-steps">
             <h3>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M12 16v-4"/>
-                <path d="M12 8h.01"/>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 16v-4" />
+                <path d="M12 8h.01" />
               </svg>
               Como funciona:
             </h3>
@@ -284,9 +304,17 @@
           <form id="recoveryForm" novalidate>
             <div class="form-group">
               <div class="input-with-icon">
-                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                  <polyline points="22,6 12,13 2,6"/>
+                <svg
+                  class="input-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  />
+                  <polyline points="22,6 12,13 2,6" />
                 </svg>
                 <input
                   type="email"
@@ -308,23 +336,39 @@
         <!-- Success State -->
         <div id="successState" class="email-sent-state">
           <div class="icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-              <polyline points="22,6 12,13 2,6"/>
+            <svg
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+              />
+              <polyline points="22,6 12,13 2,6" />
             </svg>
           </div>
-          
+
           <h2 class="auth-title">E-mail enviado!</h2>
           <p class="auth-subtitle">
-            Enviamos as instruções para recuperação de senha para:<br>
+            Enviamos as instruções para recuperação de senha para:<br />
             <strong id="sentEmail"></strong>
           </p>
 
           <div class="recovery-steps">
             <h3>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M9 12l2 2 4-4"/>
-                <circle cx="12" cy="12" r="10"/>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M9 12l2 2 4-4" />
+                <circle cx="12" cy="12" r="10" />
               </svg>
               Próximos passos:
             </h3>
@@ -337,10 +381,16 @@
           </div>
 
           <div class="resend-timer" id="resendTimer">
-            Não recebeu o e-mail? Você pode solicitar um novo em <span id="countdown">60</span> segundos.
+            Não recebeu o e-mail? Você pode solicitar um novo em
+            <span id="countdown">60</span> segundos.
           </div>
 
-          <button id="resendButton" class="resend-button" disabled onclick="resendEmail()">
+          <button
+            id="resendButton"
+            class="resend-button"
+            disabled
+            onclick="resendEmail()"
+          >
             Reenviar e-mail
           </button>
         </div>
@@ -355,77 +405,86 @@
       let resendCountdown = 60;
       let countdownInterval;
 
-      document.getElementById('recoveryForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const email = document.getElementById('email');
-        let hasErrors = false;
+      document
+        .getElementById("recoveryForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
 
-        // Reset errors
-        document.querySelectorAll('.form-error').forEach(error => error.style.display = 'none');
-        document.querySelectorAll('.input').forEach(input => input.classList.remove('error'));
+          const email = document.getElementById("email");
+          let hasErrors = false;
 
-        // Validate email
-        if (!email.value.trim()) {
-          document.getElementById('emailError').style.display = 'block';
-          email.classList.add('error');
-          hasErrors = true;
-        } else if (!isValidEmail(email.value)) {
-          document.getElementById('emailError').textContent = 'E-mail inválido';
-          document.getElementById('emailError').style.display = 'block';
-          email.classList.add('error');
-          hasErrors = true;
-        }
+          // Reset errors
+          document
+            .querySelectorAll(".form-error")
+            .forEach((error) => (error.style.display = "none"));
+          document
+            .querySelectorAll(".input")
+            .forEach((input) => input.classList.remove("error"));
 
-        if (!hasErrors) {
-          // Simulate sending email
-          const submitBtn = document.querySelector('button[type="submit"]');
-          const originalText = submitBtn.textContent;
-          submitBtn.textContent = 'Enviando...';
-          submitBtn.disabled = true;
+          // Validate email
+          if (!email.value.trim()) {
+            document.getElementById("emailError").style.display = "block";
+            email.classList.add("error");
+            hasErrors = true;
+          } else if (!isValidEmail(email.value)) {
+            document.getElementById("emailError").textContent =
+              "E-mail inválido";
+            document.getElementById("emailError").style.display = "block";
+            email.classList.add("error");
+            hasErrors = true;
+          }
 
-          setTimeout(() => {
-            showSuccessState(email.value);
-          }, 1000);
-        }
-      });
+          if (!hasErrors) {
+            // Simulate sending email
+            const submitBtn = document.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = "Enviando...";
+            submitBtn.disabled = true;
+
+            setTimeout(() => {
+              showSuccessState(email.value);
+            }, 1000);
+          }
+        });
 
       function showSuccessState(email) {
-        document.getElementById('formState').style.display = 'none';
-        document.getElementById('successState').style.display = 'block';
-        document.getElementById('sentEmail').textContent = email;
-        
+        document.getElementById("formState").style.display = "none";
+        document.getElementById("successState").style.display = "block";
+        document.getElementById("sentEmail").textContent = email;
+
         startResendCountdown();
       }
 
       function startResendCountdown() {
         resendCountdown = 60;
-        document.getElementById('resendButton').disabled = true;
-        
+        document.getElementById("resendButton").disabled = true;
+
         countdownInterval = setInterval(() => {
           resendCountdown--;
-          document.getElementById('countdown').textContent = resendCountdown;
-          
+          document.getElementById("countdown").textContent = resendCountdown;
+
           if (resendCountdown <= 0) {
             clearInterval(countdownInterval);
-            document.getElementById('resendTimer').textContent = 'Não recebeu o e-mail?';
-            document.getElementById('resendButton').disabled = false;
-            document.getElementById('resendButton').textContent = 'Reenviar e-mail';
+            document.getElementById("resendTimer").textContent =
+              "Não recebeu o e-mail?";
+            document.getElementById("resendButton").disabled = false;
+            document.getElementById("resendButton").textContent =
+              "Reenviar e-mail";
           }
         }, 1000);
       }
 
       function resendEmail() {
-        const resendButton = document.getElementById('resendButton');
+        const resendButton = document.getElementById("resendButton");
         const originalText = resendButton.textContent;
-        
-        resendButton.textContent = 'Reenviando...';
+
+        resendButton.textContent = "Reenviando...";
         resendButton.disabled = true;
-        
+
         // Simulate resending
         setTimeout(() => {
-          resendButton.textContent = 'E-mail reenviado!';
-          
+          resendButton.textContent = "E-mail reenviado!";
+
           setTimeout(() => {
             startResendCountdown();
           }, 2000);
@@ -438,8 +497,8 @@
       }
 
       // Auto-focus email input
-      document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('email').focus();
+      document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("email").focus();
       });
     </script>
   </body>
