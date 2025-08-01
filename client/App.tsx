@@ -12,6 +12,10 @@ import FreelancerDashboard from "./pages/FreelancerDashboard";
 import CreateProject from "./pages/CreateProject";
 import Messages from "./pages/Messages";
 import CompleteProfile from "./pages/CompleteProfile";
+import Checkout from "./pages/Checkout";
+import CheckoutPix from "./pages/CheckoutPix";
+import CheckoutCartao from "./pages/CheckoutCartao";
+import CheckoutBoleto from "./pages/CheckoutBoleto";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
