@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido Confirmado - Homeflip</title>
+    <link rel="stylesheet" href="checkout-base.css">
+    <style>
+        .success-icon {
+            width: 5rem;
+            height: 5rem;
+            background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+        
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .timeline-icon {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .timeline-icon.completed {
+            background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+        }
+        
+        .timeline-icon.current {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+        }
+        
+        .timeline-icon.pending {
+            background-color: #f3f4f6;
+        }
+        
+        .next-step-item {
+            display: flex;
+            align-items: start;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        
+        .step-icon {
+            width: 1.25rem;
+            height: 1.25rem;
+            margin-top: 0.125rem;
+            flex-shrink: 0;
+        }
+        
+        .action-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+        }
+        
+        .action-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background-color: white;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            text-decoration: none;
+            color: var(--foreground);
+            text-align: center;
+        }
+        
+        .action-button:hover {
+            background-color: var(--secondary);
+            border-color: var(--primary);
+        }
+        
+        .contact-button {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background-color: white;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            text-decoration: none;
+            color: var(--foreground);
+            width: 100%;
+            font-size: 0.875rem;
+        }
+        
+        .contact-button:hover {
+            background-color: var(--secondary);
+        }
+        
+        .gradient-card {
+            background: linear-gradient(135deg, #fefce8 0%, #fed7aa 100%);
+            border: 1px solid #fef3c7;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        .order-number {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen bg-gray-50 py-8 fade-in">
+        <div class="container">
+            <!-- Success Header -->
+            <div class="text-center mb-8">
+                <div class="success-icon">
+                    <svg class="icon w-12 h-12 text-green-600" viewBox="0 0 24 24">
+                        <path d="M9 12l2 2 4-4" />
+                        <circle cx="12" cy="12" r="10" />
+                    </svg>
+                </div>
+                <h1 class="text-3xl font-bold text-gray-900 mb-2">Pedido Confirmado!</h1>
+                <p class="text-gray-600">
+                    Obrigado pela sua compra. Seu pedido foi processado com sucesso.
+                </p>
+                <div class="mt-4">
+                    <span class="badge badge-secondary">
+                        Pedido #<span id="orderNumber" class="order-number"></span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Order Details -->
+                <div class="lg:col-span-2 space-y-6">
+                    <!-- Order Summary -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title flex items-center gap-2">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                                    <circle cx="8.5" cy="7" r="4" />
+                                    <line x1="20" x2="20" y1="8" y2="14" />
+                                    <line x1="23" x2="17" y1="11" y2="11" />
+                                </svg>
+                                Detalhes do Pedido
+                            </h2>
+                        </div>
+                        <div class="card-content space-y-4">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <p class="text-sm text-gray-600">Número do Pedido</p>
+                                    <p class="font-semibold order-number" id="orderNumberDetail"></p>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-600">Data do Pedido</p>
+                                    <p class="font-semibold" id="orderDate"></p>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-600">Status</p>
+                                    <span class="badge badge-secondary">Confirmado</span>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-600">Forma de Pagamento</p>
+                                    <p class="font-semibold" id="paymentMethod">PIX</p>
+                                </div>
+                            </div>
+                            
+                            <div class="separator"></div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="text-lg font-semibold">Total Pago</span>
+                                <span class="text-2xl font-bold text-green-600">
+                                    R$ 284,91
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Delivery Timeline -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title flex items-center gap-2">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" />
+                                    <path d="M15 18H9" />
+                                    <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14" />
+                                    <circle cx="17" cy="18" r="2" />
+                                    <circle cx="7" cy="18" r="2" />
+                                </svg>
+                                Acompanhamento do Pedido
+                            </h2>
+                            <p class="card-description">
+                                Previsão de entrega: <span id="estimatedDelivery"></span>
+                            </p>
+                        </div>
+                        <div class="card-content">
+                            <div class="space-y-4">
+                                <div class="timeline-item">
+                                    <div class="timeline-icon completed">
+                                        <svg class="icon icon-sm text-green-600" viewBox="0 0 24 24">
+                                            <path d="M9 12l2 2 4-4" />
+                                            <circle cx="12" cy="12" r="10" />
+                                        </svg>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="font-medium">Pedido Confirmado</p>
+                                        <p class="text-sm text-gray-600">Pagamento aprovado e pedido processado</p>
+                                        <p class="text-xs text-gray-500" id="confirmedDate"></p>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item">
+                                    <div class="timeline-icon current">
+                                        <svg class="icon icon-sm text-blue-600" viewBox="0 0 24 24">
+                                            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                                            <circle cx="8.5" cy="7" r="4" />
+                                            <line x1="20" x2="20" y1="8" y2="14" />
+                                            <line x1="23" x2="17" y1="11" y2="11" />
+                                        </svg>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="font-medium">Preparando para Envio</p>
+                                        <p class="text-sm text-gray-600">Seu pedido está sendo preparado</p>
+                                        <p class="text-xs text-gray-500">Em andamento</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item">
+                                    <div class="timeline-icon pending">
+                                        <svg class="icon icon-sm text-gray-400" viewBox="0 0 24 24">
+                                            <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" />
+                                            <path d="M15 18H9" />
+                                            <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14" />
+                                            <circle cx="17" cy="18" r="2" />
+                                            <circle cx="7" cy="18" r="2" />
+                                        </svg>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="font-medium text-gray-400">Enviado</p>
+                                        <p class="text-sm text-gray-400">Aguardando envio</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item">
+                                    <div class="timeline-icon pending">
+                                        <svg class="icon icon-sm text-gray-400" viewBox="0 0 24 24">
+                                            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                                            <circle cx="12" cy="10" r="3" />
+                                        </svg>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="font-medium text-gray-400">Entregue</p>
+                                        <p class="text-sm text-gray-400">Previsão: <span id="deliveryDate"></span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Delivery Address -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title flex items-center gap-2">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                                    <circle cx="12" cy="10" r="3" />
+                                </svg>
+                                Endereço de Entrega
+                            </h2>
+                        </div>
+                        <div class="card-content">
+                            <div class="space-y-2">
+                                <p class="font-semibold">João Silva</p>
+                                <p class="text-gray-600">Rua das Flores, 123</p>
+                                <p class="text-gray-600">Apto 45 - Centro</p>
+                                <p class="text-gray-600">São Paulo - SP</p>
+                                <p class="text-gray-600">01234-567</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Ações Disponíveis</h2>
+                        </div>
+                        <div class="card-content">
+                            <div class="action-grid">
+                                <button onclick="downloadReceipt()" class="action-button">
+                                    <svg class="icon" viewBox="0 0 24 24">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                        <polyline points="7,10 12,15 17,10" />
+                                        <line x1="12" x2="12" y1="15" y2="3" />
+                                    </svg>
+                                    <span class="text-sm">Baixar Comprovante</span>
+                                </button>
+                                <button onclick="sendByEmail()" class="action-button">
+                                    <svg class="icon" viewBox="0 0 24 24">
+                                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                        <polyline points="22,6 12,13 2,6" />
+                                    </svg>
+                                    <span class="text-sm">Enviar por Email</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="space-y-6">
+                    <!-- Next Steps -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Próximos Passos</h2>
+                        </div>
+                        <div class="card-content space-y-4">
+                            <div class="next-step-item">
+                                <svg class="step-icon text-blue-600" viewBox="0 0 24 24">
+                                    <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
+                                    <line x1="16" x2="16" y1="2" y2="6" />
+                                    <line x1="8" x2="8" y1="2" y2="6" />
+                                    <line x1="3" x2="21" y1="10" y2="10" />
+                                </svg>
+                                <div>
+                                    <p class="font-medium">Acompanhe seu pedido</p>
+                                    <p class="text-sm text-gray-600">
+                                        Você receberá atualizações por email sobre o status da entrega
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="next-step-item">
+                                <svg class="step-icon text-green-600" viewBox="0 0 24 24">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                    <polyline points="22,6 12,13 2,6" />
+                                </svg>
+                                <div>
+                                    <p class="font-medium">Confirmação enviada</p>
+                                    <p class="text-sm text-gray-600">
+                                        Verifique sua caixa de entrada para mais detalhes
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="next-step-item">
+                                <svg class="step-icon text-orange-600" viewBox="0 0 24 24">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                                </svg>
+                                <div>
+                                    <p class="font-medium">Precisa de ajuda?</p>
+                                    <p class="text-sm text-gray-600">
+                                        Entre em contato: (11) 1234-5678
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Support -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Suporte ao Cliente</h2>
+                        </div>
+                        <div class="card-content space-y-3">
+                            <p class="text-sm text-gray-600">
+                                Tem alguma dúvida sobre seu pedido? Nossa equipe está pronta para ajudar!
+                            </p>
+                            
+                            <div class="space-y-2">
+                                <a href="tel:+5511123456789" class="contact-button">
+                                    <svg class="icon icon-sm" viewBox="0 0 24 24">
+                                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                                    </svg>
+                                    (11) 1234-5678
+                                </a>
+                                <a href="mailto:suporte@homeflip.com.br" class="contact-button">
+                                    <svg class="icon icon-sm" viewBox="0 0 24 24">
+                                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                        <polyline points="22,6 12,13 2,6" />
+                                    </svg>
+                                    suporte@homeflip.com.br
+                                </a>
+                            </div>
+                            
+                            <p class="text-xs text-gray-500">
+                                Atendimento: Segunda a Sexta, 8h às 18h
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Navigation -->
+                    <div class="card">
+                        <div class="card-content pt-6 space-y-3">
+                            <button onclick="window.location.href='../'" class="btn btn-outline w-full flex items-center justify-center gap-2">
+                                <svg class="icon icon-sm" viewBox="0 0 24 24">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                                    <polyline points="9,22 9,12 15,12 15,22" />
+                                </svg>
+                                Voltar ao Início
+                            </button>
+                            
+                            <button onclick="viewOrders()" class="btn btn-primary w-full flex items-center justify-center gap-2">
+                                <svg class="icon icon-sm" viewBox="0 0 24 24">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                                    <circle cx="8.5" cy="7" r="4" />
+                                    <line x1="20" x2="20" y1="8" y2="14" />
+                                    <line x1="23" x2="17" y1="11" y2="11" />
+                                </svg>
+                                Meus Pedidos
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Review Reminder -->
+                    <div class="card gradient-card">
+                        <div class="card-content pt-6">
+                            <div class="text-center">
+                                <svg class="icon w-8 h-8 text-yellow-500 mx-auto mb-2" viewBox="0 0 24 24">
+                                    <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
+                                </svg>
+                                <h3 class="font-semibold text-gray-900 mb-2">Gostou da compra?</h3>
+                                <p class="text-sm text-gray-600 mb-4">
+                                    Sua opinião é muito importante para nós!
+                                </p>
+                                <button onclick="rateProduct()" class="btn btn-primary btn-sm w-full">
+                                    Avaliar Produto
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast hidden">
+        <div class="flex items-center gap-3">
+            <svg id="toastIcon" class="icon text-green-600" viewBox="0 0 24 24">
+                <path d="M9 12l2 2 4-4" />
+                <circle cx="12" cy="12" r="10" />
+            </svg>
+            <span id="toastMessage"></span>
+        </div>
+    </div>
+
+    <script>
+        // Generate random order number
+        function generateOrderNumber() {
+            const prefix = 'HF-';
+            const randomPart = Math.random().toString(36).substr(2, 9).toUpperCase();
+            return prefix + randomPart;
+        }
+        
+        // Format date
+        function formatDate(date) {
+            return date.toLocaleDateString('pt-BR');
+        }
+        
+        // Initialize page data
+        function initializePageData() {
+            const orderNumber = generateOrderNumber();
+            const orderDate = new Date();
+            const deliveryDate = new Date();
+            deliveryDate.setDate(deliveryDate.getDate() + 7);
+            
+            // Set order number
+            document.getElementById('orderNumber').textContent = orderNumber;
+            document.getElementById('orderNumberDetail').textContent = orderNumber;
+            
+            // Set dates
+            document.getElementById('orderDate').textContent = formatDate(orderDate);
+            document.getElementById('confirmedDate').textContent = formatDate(orderDate);
+            document.getElementById('estimatedDelivery').textContent = formatDate(deliveryDate);
+            document.getElementById('deliveryDate').textContent = formatDate(deliveryDate);
+        }
+        
+        // Action functions
+        function downloadReceipt() {
+            showToast('Download do comprovante iniciado!', 'success');
+            // Here you would trigger the actual download
+        }
+        
+        function sendByEmail() {
+            showToast('Comprovante enviado por email!', 'success');
+            // Here you would trigger the email sending
+        }
+        
+        function viewOrders() {
+            showToast('Redirecionando para Meus Pedidos...', 'info');
+            // Here you would redirect to orders page
+            setTimeout(() => {
+                // window.location.href = '/pedidos';
+            }, 1500);
+        }
+        
+        function rateProduct() {
+            showToast('Obrigado! Redirecionando para avaliação...', 'success');
+            // Here you would redirect to rating page
+            setTimeout(() => {
+                // window.location.href = '/avaliar-produto';
+            }, 1500);
+        }
+        
+        // Toast function
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            const toastIcon = document.getElementById('toastIcon');
+            
+            toastMessage.textContent = message;
+            
+            // Update icon based on type
+            if (type === 'success') {
+                toastIcon.innerHTML = '<path d="M9 12l2 2 4-4" /><circle cx="12" cy="12" r="10" />';
+                toastIcon.className = 'icon text-green-600';
+            } else if (type === 'info') {
+                toastIcon.innerHTML = '<circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" />';
+                toastIcon.className = 'icon text-blue-600';
+            }
+            
+            toast.className = `toast toast-${type}`;
+            toast.classList.remove('hidden');
+            
+            setTimeout(() => {
+                toast.classList.add('show');
+            }, 100);
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => {
+                    toast.classList.add('hidden');
+                }, 300);
+            }, 3000);
+        }
+        
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            initializePageData();
+        });
+    </script>
+</body>
+</html>
