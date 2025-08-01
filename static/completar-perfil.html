@@ -1,679 +1,743 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Completar Perfil - Homeflip</title>
-    <link rel="stylesheet" href="checkout-base.css">
+    <link rel="stylesheet" href="checkout-base.css" />
     <style>
-        .profile-header {
-            background: white;
-            border-bottom: 1px solid var(--border);
+      .profile-header {
+        background: white;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .progress-container {
+        position: relative;
+        width: 100%;
+        height: 0.5rem;
+        background-color: #e5e7eb;
+        border-radius: 9999px;
+        overflow: hidden;
+      }
+
+      .progress-bar {
+        height: 100%;
+        background: linear-gradient(90deg, var(--primary) 0%, #3b82f6 100%);
+        border-radius: 9999px;
+        transition: width 0.8s ease-in-out;
+      }
+
+      .section-card {
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-sm);
+        margin-bottom: 2rem;
+      }
+
+      .section-header {
+        padding: 1.5rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .section-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--foreground);
+      }
+
+      .section-content {
+        padding: 1.5rem;
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      @media (min-width: 768px) {
+        .form-grid-2 {
+          grid-template-columns: 1fr 1fr;
         }
-        
-        .progress-container {
-            position: relative;
-            width: 100%;
-            height: 0.5rem;
-            background-color: #e5e7eb;
-            border-radius: 9999px;
-            overflow: hidden;
+
+        .form-grid-3 {
+          grid-template-columns: 1fr 1fr 1fr;
         }
-        
-        .progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary) 0%, #3b82f6 100%);
-            border-radius: 9999px;
-            transition: width 0.8s ease-in-out;
-        }
-        
-        .section-card {
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-sm);
-            margin-bottom: 2rem;
-        }
-        
-        .section-header {
-            padding: 1.5rem;
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .section-title {
-            font-size: 1.125rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--foreground);
-        }
-        
-        .section-content {
-            padding: 1.5rem;
-        }
-        
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-        
-        @media (min-width: 768px) {
-            .form-grid-2 {
-                grid-template-columns: 1fr 1fr;
-            }
-            
-            .form-grid-3 {
-                grid-template-columns: 1fr 1fr 1fr;
-            }
-        }
-        
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-        }
-        
-        .avatar-container {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .avatar-wrapper {
-            position: relative;
-        }
-        
-        .avatar {
-            width: 6rem;
-            height: 6rem;
-            border-radius: 50%;
-            background: #f3f4f6;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.125rem;
-            font-weight: bold;
-            color: #6b7280;
-            border: 2px solid var(--border);
-        }
-        
-        .avatar-button {
-            position: absolute;
-            bottom: -0.5rem;
-            right: -0.5rem;
-            width: 2rem;
-            height: 2rem;
-            border-radius: 50%;
-            background: var(--primary);
-            color: white;
-            border: 2px solid white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s ease-in-out;
-        }
-        
-        .avatar-button:hover {
-            background: var(--primary-hover);
-        }
-        
-        .skill-input-container {
-            display: flex;
-            gap: 0.5rem;
-        }
-        
-        .skills-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 0.75rem;
-        }
-        
-        .skill-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.25rem;
-            background: var(--secondary);
-            color: var(--foreground);
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 500;
-        }
-        
-        .skill-remove {
-            width: 0.75rem;
-            height: 0.75rem;
-            cursor: pointer;
-            color: #6b7280;
-            transition: color 0.2s ease-in-out;
-        }
-        
-        .skill-remove:hover {
-            color: #ef4444;
-        }
-        
-        .progress-info {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 1.5rem;
-            margin-top: 1.5rem;
-        }
-        
-        .breadcrumb {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-        
-        .breadcrumb-separator {
-            width: 1px;
-            height: 1.5rem;
-            background: #d1d5db;
-        }
-        
-        .back-link {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #6b7280;
-            text-decoration: none;
-            transition: color 0.2s ease-in-out;
-        }
-        
-        .back-link:hover {
-            color: #111827;
-        }
-        
-        .actions-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 1.5rem;
-            border-top: 1px solid var(--border);
-        }
-        
-        .actions-right {
-            display: flex;
-            gap: 0.75rem;
-        }
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+
+      .avatar-container {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .avatar-wrapper {
+        position: relative;
+      }
+
+      .avatar {
+        width: 6rem;
+        height: 6rem;
+        border-radius: 50%;
+        background: #f3f4f6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.125rem;
+        font-weight: bold;
+        color: #6b7280;
+        border: 2px solid var(--border);
+      }
+
+      .avatar-button {
+        position: absolute;
+        bottom: -0.5rem;
+        right: -0.5rem;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        background: var(--primary);
+        color: white;
+        border: 2px solid white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+      }
+
+      .avatar-button:hover {
+        background: var(--primary-hover);
+      }
+
+      .skill-input-container {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .skills-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 0.75rem;
+      }
+
+      .skill-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        background: var(--secondary);
+        color: var(--foreground);
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-weight: 500;
+      }
+
+      .skill-remove {
+        width: 0.75rem;
+        height: 0.75rem;
+        cursor: pointer;
+        color: #6b7280;
+        transition: color 0.2s ease-in-out;
+      }
+
+      .skill-remove:hover {
+        color: #ef4444;
+      }
+
+      .progress-info {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 1.5rem;
+        margin-top: 1.5rem;
+      }
+
+      .breadcrumb {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .breadcrumb-separator {
+        width: 1px;
+        height: 1.5rem;
+        background: #d1d5db;
+      }
+
+      .back-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #6b7280;
+        text-decoration: none;
+        transition: color 0.2s ease-in-out;
+      }
+
+      .back-link:hover {
+        color: #111827;
+      }
+
+      .actions-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+      }
+
+      .actions-right {
+        display: flex;
+        gap: 0.75rem;
+      }
     </style>
-</head>
-<body class="bg-gray-50 min-h-screen">
+  </head>
+  <body class="bg-gray-50 min-h-screen">
     <!-- Header -->
     <header class="profile-header">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <div class="breadcrumb">
-                    <a href="freelancer-dashboard.html" class="back-link">
-                        <svg class="icon icon-sm" viewBox="0 0 24 24">
-                            <path d="m12 19-7-7 7-7"/>
-                            <path d="M19 12H5"/>
-                        </svg>
-                        Voltar ao Dashboard
-                    </a>
-                    <div class="breadcrumb-separator"></div>
-                    <div class="flex items-center space-x-2">
-                        <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                            <svg class="w-5 h-5 text-white" viewBox="0 0 24 24">
-                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
-                            </svg>
-                        </div>
-                        <span class="text-xl font-bold text-gray-900">Homeflip</span>
-                    </div>
-                </div>
-                
-                <div class="flex items-center space-x-4">
-                    <div class="avatar">
-                        FR
-                    </div>
-                </div>
+      <div class="container mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+          <div class="breadcrumb">
+            <a href="freelancer-dashboard.html" class="back-link">
+              <svg class="icon icon-sm" viewBox="0 0 24 24">
+                <path d="m12 19-7-7 7-7" />
+                <path d="M19 12H5" />
+              </svg>
+              Voltar ao Dashboard
+            </a>
+            <div class="breadcrumb-separator"></div>
+            <div class="flex items-center space-x-2">
+              <div
+                class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center"
+              >
+                <svg class="w-5 h-5 text-white" viewBox="0 0 24 24">
+                  <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2" />
+                </svg>
+              </div>
+              <span class="text-xl font-bold text-gray-900">Homeflip</span>
             </div>
+          </div>
+
+          <div class="flex items-center space-x-4">
+            <div class="avatar">FR</div>
+          </div>
         </div>
+      </div>
     </header>
 
     <div class="container mx-auto px-6 py-8 max-w-4xl">
-        <div class="mb-8">
-            <h1 class="text-3xl font-bold text-gray-900 mb-2">
-                Completar Perfil
-            </h1>
-            <p class="text-gray-600">
-                Complete seu perfil para aparecer melhor nas buscas e receber mais propostas
-            </p>
+      <div class="mb-8">
+        <h1 class="text-3xl font-bold text-gray-900 mb-2">Completar Perfil</h1>
+        <p class="text-gray-600">
+          Complete seu perfil para aparecer melhor nas buscas e receber mais
+          propostas
+        </p>
 
-            <!-- Progress Bar -->
-            <div class="progress-info">
-                <div class="flex items-center justify-between mb-3">
-                    <span class="text-sm font-medium text-gray-700">
-                        Progresso do perfil
-                    </span>
-                    <span class="text-sm font-medium text-primary" id="progressPercent">
-                        65%
-                    </span>
-                </div>
-                <div class="progress-container">
-                    <div class="progress-bar" id="progressBar" style="width: 65%;"></div>
-                </div>
-                <p class="text-xs text-gray-500 mt-2">
-                    Complete mais campos para melhorar sua visibilidade
+        <!-- Progress Bar -->
+        <div class="progress-info">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-sm font-medium text-gray-700">
+              Progresso do perfil
+            </span>
+            <span class="text-sm font-medium text-primary" id="progressPercent">
+              65%
+            </span>
+          </div>
+          <div class="progress-container">
+            <div class="progress-bar" id="progressBar" style="width: 65%"></div>
+          </div>
+          <p class="text-xs text-gray-500 mt-2">
+            Complete mais campos para melhorar sua visibilidade
+          </p>
+        </div>
+      </div>
+
+      <form id="profileForm" class="space-y-8">
+        <!-- Foto e Informações Básicas -->
+        <div class="section-card">
+          <div class="section-header">
+            <h2 class="section-title">
+              <svg class="icon" viewBox="0 0 24 24">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+              Informações Pessoais
+            </h2>
+          </div>
+          <div class="section-content">
+            <div class="avatar-container">
+              <div class="avatar-wrapper">
+                <div class="avatar">MS</div>
+                <button type="button" class="avatar-button">
+                  <svg class="w-4 h-4" viewBox="0 0 24 24">
+                    <path
+                      d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"
+                    />
+                    <circle cx="12" cy="13" r="3" />
+                  </svg>
+                </button>
+              </div>
+              <div class="flex-1">
+                <h3 class="text-lg font-medium mb-2">Foto do perfil</h3>
+                <p class="text-sm text-gray-600 mb-3">
+                  Uma foto profissional aumenta suas chances de ser contratado
                 </p>
+                <button type="button" class="btn btn-outline btn-sm">
+                  <svg class="icon icon-sm mr-2" viewBox="0 0 24 24">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="17,8 12,3 7,8" />
+                    <line x1="12" x2="12" y1="3" y2="15" />
+                  </svg>
+                  Fazer upload
+                </button>
+              </div>
             </div>
+
+            <div class="form-grid form-grid-2">
+              <div class="form-group">
+                <label class="label">Nome completo *</label>
+                <input
+                  type="text"
+                  class="input"
+                  value="Maria Santos"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label class="label">Email *</label>
+                <input
+                  type="email"
+                  class="input"
+                  value="maria@email.com"
+                  disabled
+                />
+              </div>
+              <div class="form-group">
+                <label class="label">Telefone</label>
+                <input type="tel" class="input" placeholder="(11) 99999-9999" />
+              </div>
+              <div class="form-group">
+                <label class="label">Data de nascimento</label>
+                <input type="date" class="input" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="label">Localização *</label>
+              <div class="form-grid form-grid-2">
+                <select class="input" required>
+                  <option value="">Estado</option>
+                  <option value="sp">São Paulo</option>
+                  <option value="rj">Rio de Janeiro</option>
+                  <option value="mg">Minas Gerais</option>
+                  <option value="pr">Paraná</option>
+                </select>
+                <input
+                  type="text"
+                  class="input"
+                  placeholder="Cidade"
+                  value="São Paulo"
+                />
+              </div>
+            </div>
+          </div>
         </div>
 
-        <form id="profileForm" class="space-y-8">
-            <!-- Foto e Informações Básicas -->
-            <div class="section-card">
-                <div class="section-header">
-                    <h2 class="section-title">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                            <circle cx="12" cy="7" r="4"/>
-                        </svg>
-                        Informações Pessoais
-                    </h2>
-                </div>
-                <div class="section-content">
-                    <div class="avatar-container">
-                        <div class="avatar-wrapper">
-                            <div class="avatar">
-                                MS
-                            </div>
-                            <button type="button" class="avatar-button">
-                                <svg class="w-4 h-4" viewBox="0 0 24 24">
-                                    <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
-                                    <circle cx="12" cy="13" r="3"/>
-                                </svg>
-                            </button>
-                        </div>
-                        <div class="flex-1">
-                            <h3 class="text-lg font-medium mb-2">Foto do perfil</h3>
-                            <p class="text-sm text-gray-600 mb-3">
-                                Uma foto profissional aumenta suas chances de ser contratado
-                            </p>
-                            <button type="button" class="btn btn-outline btn-sm">
-                                <svg class="icon icon-sm mr-2" viewBox="0 0 24 24">
-                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                                    <polyline points="17,8 12,3 7,8"/>
-                                    <line x1="12" x2="12" y1="3" y2="15"/>
-                                </svg>
-                                Fazer upload
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="form-grid form-grid-2">
-                        <div class="form-group">
-                            <label class="label">Nome completo *</label>
-                            <input type="text" class="input" value="Maria Santos" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="label">Email *</label>
-                            <input type="email" class="input" value="maria@email.com" disabled>
-                        </div>
-                        <div class="form-group">
-                            <label class="label">Telefone</label>
-                            <input type="tel" class="input" placeholder="(11) 99999-9999">
-                        </div>
-                        <div class="form-group">
-                            <label class="label">Data de nascimento</label>
-                            <input type="date" class="input">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="label">Localização *</label>
-                        <div class="form-grid form-grid-2">
-                            <select class="input" required>
-                                <option value="">Estado</option>
-                                <option value="sp">São Paulo</option>
-                                <option value="rj">Rio de Janeiro</option>
-                                <option value="mg">Minas Gerais</option>
-                                <option value="pr">Paraná</option>
-                            </select>
-                            <input type="text" class="input" placeholder="Cidade" value="São Paulo">
-                        </div>
-                    </div>
-                </div>
+        <!-- Informações Profissionais -->
+        <div class="section-card">
+          <div class="section-header">
+            <h2 class="section-title">
+              <svg class="icon" viewBox="0 0 24 24">
+                <rect width="20" height="14" x="2" y="3" rx="2" ry="2" />
+                <line x1="8" x2="16" y1="21" y2="21" />
+                <line x1="12" x2="12" y1="17" y2="21" />
+              </svg>
+              Informações Profissionais
+            </h2>
+          </div>
+          <div class="section-content">
+            <div class="form-group">
+              <label class="label">Título profissional *</label>
+              <input
+                type="text"
+                class="input"
+                value="Desenvolvedora Full Stack | UI/UX Designer"
+                placeholder="Ex: Desenvolvedor Front-end Sênior"
+                required
+              />
             </div>
 
-            <!-- Informações Profissionais -->
-            <div class="section-card">
-                <div class="section-header">
-                    <h2 class="section-title">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <rect width="20" height="14" x="2" y="3" rx="2" ry="2"/>
-                            <line x1="8" x2="16" y1="21" y2="21"/>
-                            <line x1="12" x2="12" y1="17" y2="21"/>
-                        </svg>
-                        Informações Profissionais
-                    </h2>
-                </div>
-                <div class="section-content">
-                    <div class="form-group">
-                        <label class="label">Título profissional *</label>
-                        <input 
-                            type="text" 
-                            class="input" 
-                            value="Desenvolvedora Full Stack | UI/UX Designer"
-                            placeholder="Ex: Desenvolvedor Front-end Sênior"
-                            required
-                        >
-                    </div>
-
-                    <div class="form-group">
-                        <label class="label">Categoria principal *</label>
-                        <select class="input" required>
-                            <option value="">Selecione sua área principal</option>
-                            <option value="desenvolvimento-web">Desenvolvimento Web</option>
-                            <option value="desenvolvimento-mobile">Desenvolvimento Mobile</option>
-                            <option value="ui-ux">UI/UX Design</option>
-                            <option value="design-grafico">Design Gráfico</option>
-                            <option value="marketing-digital">Marketing Digital</option>
-                            <option value="redacao">Redação e Conteúdo</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="label">Sobre você *</label>
-                        <textarea 
-                            class="input" 
-                            rows="5" 
-                            placeholder="Conte sobre sua experiência, especialidades e o que te motiva..."
-                            required
-                        >Sou uma desenvolvedora full stack apaixonada por criar soluções inovadoras. Tenho 5 anos de experiência trabalhando com React, Node.js e design de interfaces. Especializada em aplicações web modernas e experiência do usuário.</textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="label">Habilidades *</label>
-                        <div class="skill-input-container">
-                            <input 
-                                type="text" 
-                                class="input flex-1" 
-                                placeholder="Digite uma habilidade"
-                                id="skillInput"
-                            >
-                            <button type="button" class="btn btn-outline" onclick="addSkill()">
-                                <svg class="icon icon-sm" viewBox="0 0 24 24">
-                                    <line x1="12" x2="12" y1="5" y2="19"/>
-                                    <line x1="5" x2="19" y1="12" y2="12"/>
-                                </svg>
-                            </button>
-                        </div>
-                        <div class="skills-list" id="skillsList">
-                            <div class="skill-tag">
-                                React
-                                <svg class="skill-remove" viewBox="0 0 24 24" onclick="removeSkill(this)">
-                                    <line x1="18" x2="6" y1="6" y2="18"/>
-                                    <line x1="6" x2="18" y1="6" y2="18"/>
-                                </svg>
-                            </div>
-                            <div class="skill-tag">
-                                Node.js
-                                <svg class="skill-remove" viewBox="0 0 24 24" onclick="removeSkill(this)">
-                                    <line x1="18" x2="6" y1="6" y2="18"/>
-                                    <line x1="6" x2="18" y1="6" y2="18"/>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-grid form-grid-2">
-                        <div class="form-group">
-                            <label class="label">Nível de experiência *</label>
-                            <select class="input" required>
-                                <option value="">Selecione seu nível</option>
-                                <option value="junior">Júnior (0-2 anos)</option>
-                                <option value="pleno">Pleno (2-5 anos)</option>
-                                <option value="senior">Sênior (5+ anos)</option>
-                                <option value="especialista">Especialista (10+ anos)</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="label">Disponibilidade</label>
-                            <select class="input">
-                                <option value="">Selecione sua disponibilidade</option>
-                                <option value="tempo-integral">Tempo integral</option>
-                                <option value="meio-periodo">Meio período</option>
-                                <option value="projetos">Apenas projetos</option>
-                                <option value="consultoria">Consultoria</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
+            <div class="form-group">
+              <label class="label">Categoria principal *</label>
+              <select class="input" required>
+                <option value="">Selecione sua área principal</option>
+                <option value="desenvolvimento-web">Desenvolvimento Web</option>
+                <option value="desenvolvimento-mobile">
+                  Desenvolvimento Mobile
+                </option>
+                <option value="ui-ux">UI/UX Design</option>
+                <option value="design-grafico">Design Gráfico</option>
+                <option value="marketing-digital">Marketing Digital</option>
+                <option value="redacao">Redação e Conteúdo</option>
+              </select>
             </div>
 
-            <!-- Preços e Pagamento -->
-            <div class="section-card">
-                <div class="section-header">
-                    <h2 class="section-title">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <line x1="12" x2="12" y1="1" y2="23"/>
-                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-                        </svg>
-                        Preços e Faturamento
-                    </h2>
-                </div>
-                <div class="section-content">
-                    <div class="form-grid form-grid-3">
-                        <div class="form-group">
-                            <label class="label">Taxa por hora (R$) *</label>
-                            <input type="number" class="input" value="55" placeholder="50" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="label">Valor mínimo projeto (R$)</label>
-                            <input type="number" class="input" placeholder="1000">
-                        </div>
-                        <div class="form-group">
-                            <label class="label">Moeda</label>
-                            <select class="input">
-                                <option value="brl">Real (BRL)</option>
-                                <option value="usd">Dólar (USD)</option>
-                                <option value="eur">Euro (EUR)</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
+            <div class="form-group">
+              <label class="label">Sobre você *</label>
+              <textarea
+                class="input"
+                rows="5"
+                placeholder="Conte sobre sua experiência, especialidades e o que te motiva..."
+                required
+              >
+Sou uma desenvolvedora full stack apaixonada por criar soluções inovadoras. Tenho 5 anos de experiência trabalhando com React, Node.js e design de interfaces. Especializada em aplicações web modernas e experiência do usuário.</textarea
+              >
             </div>
 
-            <!-- Portfólio -->
-            <div class="section-card">
-                <div class="section-header">
-                    <h2 class="section-title">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
-                        </svg>
-                        Portfólio e Experiência
-                    </h2>
+            <div class="form-group">
+              <label class="label">Habilidades *</label>
+              <div class="skill-input-container">
+                <input
+                  type="text"
+                  class="input flex-1"
+                  placeholder="Digite uma habilidade"
+                  id="skillInput"
+                />
+                <button
+                  type="button"
+                  class="btn btn-outline"
+                  onclick="addSkill()"
+                >
+                  <svg class="icon icon-sm" viewBox="0 0 24 24">
+                    <line x1="12" x2="12" y1="5" y2="19" />
+                    <line x1="5" x2="19" y1="12" y2="12" />
+                  </svg>
+                </button>
+              </div>
+              <div class="skills-list" id="skillsList">
+                <div class="skill-tag">
+                  React
+                  <svg
+                    class="skill-remove"
+                    viewBox="0 0 24 24"
+                    onclick="removeSkill(this)"
+                  >
+                    <line x1="18" x2="6" y1="6" y2="18" />
+                    <line x1="6" x2="18" y1="6" y2="18" />
+                  </svg>
                 </div>
-                <div class="section-content">
-                    <div class="form-group">
-                        <label class="label">Link do portfólio</label>
-                        <input type="url" class="input" placeholder="https://meuportfolio.com">
-                    </div>
-
-                    <div class="form-group">
-                        <label class="label">LinkedIn</label>
-                        <input type="url" class="input" placeholder="https://linkedin.com/in/seuperfil">
-                    </div>
-
-                    <div class="form-group">
-                        <label class="label">GitHub</label>
-                        <input type="url" class="input" placeholder="https://github.com/seuusuario">
-                    </div>
-
-                    <div class="form-group">
-                        <label class="label">Formação acadêmica</label>
-                        <textarea 
-                            class="input" 
-                            rows="3" 
-                            placeholder="Ex: Bacharelado em Ciência da Computação - USP (2018-2022)"
-                        ></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="label">Certificações</label>
-                        <textarea 
-                            class="input" 
-                            rows="3" 
-                            placeholder="Ex: AWS Certified Developer, Google Analytics, etc."
-                        ></textarea>
-                    </div>
+                <div class="skill-tag">
+                  Node.js
+                  <svg
+                    class="skill-remove"
+                    viewBox="0 0 24 24"
+                    onclick="removeSkill(this)"
+                  >
+                    <line x1="18" x2="6" y1="6" y2="18" />
+                    <line x1="6" x2="18" y1="6" y2="18" />
+                  </svg>
                 </div>
+              </div>
             </div>
 
-            <!-- Actions -->
-            <div class="actions-bar">
-                <a href="freelancer-dashboard.html" class="btn btn-outline">
-                    Cancelar
-                </a>
-                <div class="actions-right">
-                    <button type="button" class="btn btn-outline">
-                        Salvar Rascunho
-                    </button>
-                    <button type="submit" class="btn btn-primary">
-                        Salvar Perfil
-                    </button>
-                </div>
+            <div class="form-grid form-grid-2">
+              <div class="form-group">
+                <label class="label">Nível de experiência *</label>
+                <select class="input" required>
+                  <option value="">Selecione seu nível</option>
+                  <option value="junior">Júnior (0-2 anos)</option>
+                  <option value="pleno">Pleno (2-5 anos)</option>
+                  <option value="senior">Sênior (5+ anos)</option>
+                  <option value="especialista">Especialista (10+ anos)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="label">Disponibilidade</label>
+                <select class="input">
+                  <option value="">Selecione sua disponibilidade</option>
+                  <option value="tempo-integral">Tempo integral</option>
+                  <option value="meio-periodo">Meio período</option>
+                  <option value="projetos">Apenas projetos</option>
+                  <option value="consultoria">Consultoria</option>
+                </select>
+              </div>
             </div>
-        </form>
+          </div>
+        </div>
+
+        <!-- Preços e Pagamento -->
+        <div class="section-card">
+          <div class="section-header">
+            <h2 class="section-title">
+              <svg class="icon" viewBox="0 0 24 24">
+                <line x1="12" x2="12" y1="1" y2="23" />
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+              </svg>
+              Preços e Faturamento
+            </h2>
+          </div>
+          <div class="section-content">
+            <div class="form-grid form-grid-3">
+              <div class="form-group">
+                <label class="label">Taxa por hora (R$) *</label>
+                <input
+                  type="number"
+                  class="input"
+                  value="55"
+                  placeholder="50"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label class="label">Valor mínimo projeto (R$)</label>
+                <input type="number" class="input" placeholder="1000" />
+              </div>
+              <div class="form-group">
+                <label class="label">Moeda</label>
+                <select class="input">
+                  <option value="brl">Real (BRL)</option>
+                  <option value="usd">Dólar (USD)</option>
+                  <option value="eur">Euro (EUR)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Portfólio -->
+        <div class="section-card">
+          <div class="section-header">
+            <h2 class="section-title">
+              <svg class="icon" viewBox="0 0 24 24">
+                <polygon
+                  points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
+                />
+              </svg>
+              Portfólio e Experiência
+            </h2>
+          </div>
+          <div class="section-content">
+            <div class="form-group">
+              <label class="label">Link do portfólio</label>
+              <input
+                type="url"
+                class="input"
+                placeholder="https://meuportfolio.com"
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="label">LinkedIn</label>
+              <input
+                type="url"
+                class="input"
+                placeholder="https://linkedin.com/in/seuperfil"
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="label">GitHub</label>
+              <input
+                type="url"
+                class="input"
+                placeholder="https://github.com/seuusuario"
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="label">Formação acadêmica</label>
+              <textarea
+                class="input"
+                rows="3"
+                placeholder="Ex: Bacharelado em Ciência da Computação - USP (2018-2022)"
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label class="label">Certificações</label>
+              <textarea
+                class="input"
+                rows="3"
+                placeholder="Ex: AWS Certified Developer, Google Analytics, etc."
+              ></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="actions-bar">
+          <a href="freelancer-dashboard.html" class="btn btn-outline">
+            Cancelar
+          </a>
+          <div class="actions-right">
+            <button type="button" class="btn btn-outline">
+              Salvar Rascunho
+            </button>
+            <button type="submit" class="btn btn-primary">Salvar Perfil</button>
+          </div>
+        </div>
+      </form>
     </div>
 
     <!-- Toast -->
     <div id="toast" class="toast hidden">
-        <div class="flex items-center gap-3">
-            <svg id="toastIcon" class="icon" viewBox="0 0 24 24"></svg>
-            <span id="toastMessage"></span>
-        </div>
+      <div class="flex items-center gap-3">
+        <svg id="toastIcon" class="icon" viewBox="0 0 24 24"></svg>
+        <span id="toastMessage"></span>
+      </div>
     </div>
 
     <script>
-        let skills = ['React', 'Node.js'];
-        
-        // Add skill
-        function addSkill() {
-            const input = document.getElementById('skillInput');
-            const skill = input.value.trim();
-            
-            if (skill && !skills.includes(skill)) {
-                skills.push(skill);
-                updateSkillsList();
-                input.value = '';
-                updateProgress();
-            }
+      let skills = ["React", "Node.js"];
+
+      // Add skill
+      function addSkill() {
+        const input = document.getElementById("skillInput");
+        const skill = input.value.trim();
+
+        if (skill && !skills.includes(skill)) {
+          skills.push(skill);
+          updateSkillsList();
+          input.value = "";
+          updateProgress();
         }
-        
-        // Remove skill
-        function removeSkill(element) {
-            const skillTag = element.closest('.skill-tag');
-            const skillText = skillTag.textContent.trim();
-            
-            skills = skills.filter(s => s !== skillText);
-            updateSkillsList();
-            updateProgress();
-        }
-        
-        // Update skills list display
-        function updateSkillsList() {
-            const container = document.getElementById('skillsList');
-            container.innerHTML = '';
-            
-            skills.forEach(skill => {
-                const skillElement = document.createElement('div');
-                skillElement.className = 'skill-tag';
-                skillElement.innerHTML = `
+      }
+
+      // Remove skill
+      function removeSkill(element) {
+        const skillTag = element.closest(".skill-tag");
+        const skillText = skillTag.textContent.trim();
+
+        skills = skills.filter((s) => s !== skillText);
+        updateSkillsList();
+        updateProgress();
+      }
+
+      // Update skills list display
+      function updateSkillsList() {
+        const container = document.getElementById("skillsList");
+        container.innerHTML = "";
+
+        skills.forEach((skill) => {
+          const skillElement = document.createElement("div");
+          skillElement.className = "skill-tag";
+          skillElement.innerHTML = `
                     ${skill}
                     <svg class="skill-remove" viewBox="0 0 24 24" onclick="removeSkill(this)">
                         <line x1="18" x2="6" y1="6" y2="18"/>
                         <line x1="6" x2="18" y1="6" y2="18"/>
                     </svg>
                 `;
-                container.appendChild(skillElement);
-            });
-        }
-        
-        // Update progress based on form completion
-        function updateProgress() {
-            const form = document.getElementById('profileForm');
-            const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
-            let completed = 0;
-            
-            inputs.forEach(input => {
-                if (input.value.trim() !== '') {
-                    completed++;
-                }
-            });
-            
-            // Add points for skills and optional fields
-            if (skills.length > 0) completed += 2;
-            
-            const percentage = Math.min(Math.round((completed / (inputs.length + 2)) * 100), 100);
-            
-            document.getElementById('progressPercent').textContent = `${percentage}%`;
-            document.getElementById('progressBar').style.width = `${percentage}%`;
-        }
-        
-        // Handle skill input enter key
-        document.getElementById('skillInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                addSkill();
-            }
+          container.appendChild(skillElement);
         });
-        
-        // Handle form submission
-        document.getElementById('profileForm').addEventListener('submit', function(e) {
+      }
+
+      // Update progress based on form completion
+      function updateProgress() {
+        const form = document.getElementById("profileForm");
+        const inputs = form.querySelectorAll(
+          "input[required], select[required], textarea[required]",
+        );
+        let completed = 0;
+
+        inputs.forEach((input) => {
+          if (input.value.trim() !== "") {
+            completed++;
+          }
+        });
+
+        // Add points for skills and optional fields
+        if (skills.length > 0) completed += 2;
+
+        const percentage = Math.min(
+          Math.round((completed / (inputs.length + 2)) * 100),
+          100,
+        );
+
+        document.getElementById("progressPercent").textContent =
+          `${percentage}%`;
+        document.getElementById("progressBar").style.width = `${percentage}%`;
+      }
+
+      // Handle skill input enter key
+      document
+        .getElementById("skillInput")
+        .addEventListener("keypress", function (e) {
+          if (e.key === "Enter") {
             e.preventDefault();
-            
-            showToast('Perfil salvo com sucesso!', 'success');
-            
-            setTimeout(() => {
-                window.location.href = 'freelancer-dashboard.html';
-            }, 1500);
+            addSkill();
+          }
         });
-        
-        // Monitor form changes for progress update
-        document.getElementById('profileForm').addEventListener('input', updateProgress);
-        document.getElementById('profileForm').addEventListener('change', updateProgress);
-        
-        // Toast function
-        function showToast(message, type = 'success') {
-            const toast = document.getElementById('toast');
-            const toastMessage = document.getElementById('toastMessage');
-            const toastIcon = document.getElementById('toastIcon');
-            
-            toastMessage.textContent = message;
-            
-            if (type === 'success') {
-                toastIcon.innerHTML = '<path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/>';
-                toastIcon.className = 'icon text-green-600';
-            } else if (type === 'error') {
-                toastIcon.innerHTML = '<circle cx="12" cy="12" r="10"/><line x1="15" x2="9" y1="9" y2="15"/><line x1="9" x2="15" y1="9" y2="15"/>';
-                toastIcon.className = 'icon text-red-600';
-            }
-            
-            toast.className = `toast toast-${type}`;
-            toast.classList.remove('hidden');
-            
-            setTimeout(() => {
-                toast.classList.add('show');
-            }, 100);
-            
-            setTimeout(() => {
-                toast.classList.remove('show');
-                setTimeout(() => {
-                    toast.classList.add('hidden');
-                }, 300);
-            }, 3000);
+
+      // Handle form submission
+      document
+        .getElementById("profileForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          showToast("Perfil salvo com sucesso!", "success");
+
+          setTimeout(() => {
+            window.location.href = "freelancer-dashboard.html";
+          }, 1500);
+        });
+
+      // Monitor form changes for progress update
+      document
+        .getElementById("profileForm")
+        .addEventListener("input", updateProgress);
+      document
+        .getElementById("profileForm")
+        .addEventListener("change", updateProgress);
+
+      // Toast function
+      function showToast(message, type = "success") {
+        const toast = document.getElementById("toast");
+        const toastMessage = document.getElementById("toastMessage");
+        const toastIcon = document.getElementById("toastIcon");
+
+        toastMessage.textContent = message;
+
+        if (type === "success") {
+          toastIcon.innerHTML =
+            '<path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/>';
+          toastIcon.className = "icon text-green-600";
+        } else if (type === "error") {
+          toastIcon.innerHTML =
+            '<circle cx="12" cy="12" r="10"/><line x1="15" x2="9" y1="9" y2="15"/><line x1="9" x2="15" y1="9" y2="15"/>';
+          toastIcon.className = "icon text-red-600";
         }
-        
-        // Initialize progress on page load
-        document.addEventListener('DOMContentLoaded', updateProgress);
+
+        toast.className = `toast toast-${type}`;
+        toast.classList.remove("hidden");
+
+        setTimeout(() => {
+          toast.classList.add("show");
+        }, 100);
+
+        setTimeout(() => {
+          toast.classList.remove("show");
+          setTimeout(() => {
+            toast.classList.add("hidden");
+          }, 300);
+        }, 3000);
+      }
+
+      // Initialize progress on page load
+      document.addEventListener("DOMContentLoaded", updateProgress);
     </script>
-</body>
+  </body>
 </html>
