@@ -17,7 +17,7 @@
       }
 
       .gradient-bg::before {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
         left: 0;
@@ -156,9 +156,15 @@
         font-size: 0.75rem;
       }
 
-      .strength-weak { color: #dc2626; }
-      .strength-medium { color: #f59e0b; }
-      .strength-strong { color: #10b981; }
+      .strength-weak {
+        color: #dc2626;
+      }
+      .strength-medium {
+        color: #f59e0b;
+      }
+      .strength-strong {
+        color: #10b981;
+      }
 
       .success-message {
         background: #dcfce7;
@@ -214,7 +220,13 @@
       <div class="auth-card">
         <div class="logo-section">
           <div class="logo">
-            <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg
+              class="w-6 h-6 text-white"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
               <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2" />
             </svg>
           </div>
@@ -223,9 +235,14 @@
         </div>
 
         <div class="success-message" id="successMessage">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M9 12l2 2 4-4"/>
-            <circle cx="12" cy="12" r="10"/>
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M9 12l2 2 4-4" />
+            <circle cx="12" cy="12" r="10" />
           </svg>
           Senha redefinida com sucesso! Redirecionando para o login...
         </div>
@@ -233,10 +250,16 @@
         <form id="resetForm" novalidate>
           <div class="form-group">
             <div class="input-with-icon">
-              <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                <circle cx="12" cy="16" r="1"/>
-                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              <svg
+                class="input-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                <circle cx="12" cy="16" r="1" />
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
               </svg>
               <input
                 type="password"
@@ -246,49 +269,86 @@
                 required
                 oninput="validatePassword()"
               />
-              <button type="button" class="password-toggle" onclick="togglePassword('password', 'eyeIcon1')">
-                <svg id="eyeIcon1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                  <circle cx="12" cy="12" r="3"/>
+              <button
+                type="button"
+                class="password-toggle"
+                onclick="togglePassword('password', 'eyeIcon1')"
+              >
+                <svg
+                  id="eyeIcon1"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                  <circle cx="12" cy="12" r="3" />
                 </svg>
               </button>
             </div>
-            <div class="form-error" id="passwordError">Nova senha é obrigatória</div>
-            
+            <div class="form-error" id="passwordError">
+              Nova senha é obrigatória
+            </div>
+
             <div class="password-requirements">
               <h4>Requisitos da senha:</h4>
               <div class="requirement" id="req-length">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10"/>
-                  <path d="M8 12l2 2 4-4"/>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M8 12l2 2 4-4" />
                 </svg>
                 Pelo menos 8 caracteres
               </div>
               <div class="requirement" id="req-lowercase">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10"/>
-                  <path d="M8 12l2 2 4-4"/>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M8 12l2 2 4-4" />
                 </svg>
                 Uma letra minúscula
               </div>
               <div class="requirement" id="req-uppercase">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10"/>
-                  <path d="M8 12l2 2 4-4"/>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M8 12l2 2 4-4" />
                 </svg>
                 Uma letra maiúscula
               </div>
               <div class="requirement" id="req-number">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10"/>
-                  <path d="M8 12l2 2 4-4"/>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M8 12l2 2 4-4" />
                 </svg>
                 Um número
               </div>
               <div class="requirement" id="req-special">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10"/>
-                  <path d="M8 12l2 2 4-4"/>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M8 12l2 2 4-4" />
                 </svg>
                 Um caractere especial
               </div>
@@ -297,10 +357,16 @@
 
           <div class="form-group">
             <div class="input-with-icon">
-              <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                <circle cx="12" cy="16" r="1"/>
-                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              <svg
+                class="input-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                <circle cx="12" cy="16" r="1" />
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
               </svg>
               <input
                 type="password"
@@ -310,17 +376,33 @@
                 required
                 oninput="validateConfirmPassword()"
               />
-              <button type="button" class="password-toggle" onclick="togglePassword('confirmPassword', 'eyeIcon2')">
-                <svg id="eyeIcon2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                  <circle cx="12" cy="12" r="3"/>
+              <button
+                type="button"
+                class="password-toggle"
+                onclick="togglePassword('confirmPassword', 'eyeIcon2')"
+              >
+                <svg
+                  id="eyeIcon2"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                  <circle cx="12" cy="12" r="3" />
                 </svg>
               </button>
             </div>
-            <div class="form-error" id="confirmPasswordError">Confirmação de senha é obrigatória</div>
+            <div class="form-error" id="confirmPasswordError">
+              Confirmação de senha é obrigatória
+            </div>
           </div>
 
-          <button type="submit" class="btn btn-primary w-full" id="submitButton">
+          <button
+            type="submit"
+            class="btn btn-primary w-full"
+            id="submitButton"
+          >
             Redefinir senha
           </button>
         </form>
@@ -335,123 +417,136 @@
       function togglePassword(inputId, iconId) {
         const input = document.getElementById(inputId);
         const eyeIcon = document.getElementById(iconId);
-        
-        if (input.type === 'password') {
-          input.type = 'text';
-          eyeIcon.innerHTML = '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>';
+
+        if (input.type === "password") {
+          input.type = "text";
+          eyeIcon.innerHTML =
+            '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>';
         } else {
-          input.type = 'password';
-          eyeIcon.innerHTML = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>';
+          input.type = "password";
+          eyeIcon.innerHTML =
+            '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>';
         }
       }
 
       function validatePassword() {
-        const password = document.getElementById('password').value;
-        
+        const password = document.getElementById("password").value;
+
         // Check requirements
         const requirements = {
-          'req-length': password.length >= 8,
-          'req-lowercase': /[a-z]/.test(password),
-          'req-uppercase': /[A-Z]/.test(password),
-          'req-number': /[0-9]/.test(password),
-          'req-special': /[^A-Za-z0-9]/.test(password)
+          "req-length": password.length >= 8,
+          "req-lowercase": /[a-z]/.test(password),
+          "req-uppercase": /[A-Z]/.test(password),
+          "req-number": /[0-9]/.test(password),
+          "req-special": /[^A-Za-z0-9]/.test(password),
         };
 
         // Update requirement checkmarks
-        Object.keys(requirements).forEach(reqId => {
+        Object.keys(requirements).forEach((reqId) => {
           const element = document.getElementById(reqId);
           if (requirements[reqId]) {
-            element.classList.add('valid');
+            element.classList.add("valid");
           } else {
-            element.classList.remove('valid');
+            element.classList.remove("valid");
           }
         });
 
         // Update submit button state
-        const allValid = Object.values(requirements).every(valid => valid);
-        const submitButton = document.getElementById('submitButton');
+        const allValid = Object.values(requirements).every((valid) => valid);
+        const submitButton = document.getElementById("submitButton");
         submitButton.disabled = !allValid;
 
         return allValid;
       }
 
       function validateConfirmPassword() {
-        const password = document.getElementById('password').value;
-        const confirmPassword = document.getElementById('confirmPassword').value;
-        const confirmError = document.getElementById('confirmPasswordError');
-        const confirmInput = document.getElementById('confirmPassword');
+        const password = document.getElementById("password").value;
+        const confirmPassword =
+          document.getElementById("confirmPassword").value;
+        const confirmError = document.getElementById("confirmPasswordError");
+        const confirmInput = document.getElementById("confirmPassword");
 
         if (confirmPassword && password !== confirmPassword) {
-          confirmError.textContent = 'Senhas não coincidem';
-          confirmError.style.display = 'block';
-          confirmInput.classList.add('error');
+          confirmError.textContent = "Senhas não coincidem";
+          confirmError.style.display = "block";
+          confirmInput.classList.add("error");
           return false;
         } else {
-          confirmError.style.display = 'none';
-          confirmInput.classList.remove('error');
+          confirmError.style.display = "none";
+          confirmInput.classList.remove("error");
           return true;
         }
       }
 
-      document.getElementById('resetForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const password = document.getElementById('password');
-        const confirmPassword = document.getElementById('confirmPassword');
-        let hasErrors = false;
+      document
+        .getElementById("resetForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
 
-        // Reset errors
-        document.querySelectorAll('.form-error').forEach(error => error.style.display = 'none');
-        document.querySelectorAll('.input').forEach(input => input.classList.remove('error'));
+          const password = document.getElementById("password");
+          const confirmPassword = document.getElementById("confirmPassword");
+          let hasErrors = false;
 
-        // Validate password
-        if (!validatePassword()) {
-          document.getElementById('passwordError').textContent = 'Senha deve atender todos os requisitos';
-          document.getElementById('passwordError').style.display = 'block';
-          password.classList.add('error');
-          hasErrors = true;
-        }
+          // Reset errors
+          document
+            .querySelectorAll(".form-error")
+            .forEach((error) => (error.style.display = "none"));
+          document
+            .querySelectorAll(".input")
+            .forEach((input) => input.classList.remove("error"));
 
-        // Validate password confirmation
-        if (!confirmPassword.value.trim()) {
-          document.getElementById('confirmPasswordError').style.display = 'block';
-          confirmPassword.classList.add('error');
-          hasErrors = true;
-        } else if (!validateConfirmPassword()) {
-          hasErrors = true;
-        }
+          // Validate password
+          if (!validatePassword()) {
+            document.getElementById("passwordError").textContent =
+              "Senha deve atender todos os requisitos";
+            document.getElementById("passwordError").style.display = "block";
+            password.classList.add("error");
+            hasErrors = true;
+          }
 
-        if (!hasErrors) {
-          // Simulate password reset
-          const submitBtn = document.querySelector('button[type="submit"]');
-          const originalText = submitBtn.textContent;
-          submitBtn.textContent = 'Redefinindo...';
-          submitBtn.disabled = true;
+          // Validate password confirmation
+          if (!confirmPassword.value.trim()) {
+            document.getElementById("confirmPasswordError").style.display =
+              "block";
+            confirmPassword.classList.add("error");
+            hasErrors = true;
+          } else if (!validateConfirmPassword()) {
+            hasErrors = true;
+          }
 
-          setTimeout(() => {
-            // Show success message
-            document.getElementById('successMessage').style.display = 'block';
-            document.getElementById('resetForm').style.display = 'none';
-            
-            // Redirect to login after 3 seconds
+          if (!hasErrors) {
+            // Simulate password reset
+            const submitBtn = document.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = "Redefinindo...";
+            submitBtn.disabled = true;
+
             setTimeout(() => {
-              window.location.href = 'login.html';
-            }, 3000);
-          }, 1000);
-        }
-      });
+              // Show success message
+              document.getElementById("successMessage").style.display = "block";
+              document.getElementById("resetForm").style.display = "none";
+
+              // Redirect to login after 3 seconds
+              setTimeout(() => {
+                window.location.href = "login.html";
+              }, 3000);
+            }, 1000);
+          }
+        });
 
       // Auto-focus password input
-      document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('password').focus();
-        
+      document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("password").focus();
+
         // Check if token is valid (simulate)
         const urlParams = new URLSearchParams(window.location.search);
-        const token = urlParams.get('token');
-        
+        const token = urlParams.get("token");
+
         if (!token) {
-          alert('Link inválido ou expirado. Redirecionando para recuperação de senha...');
-          window.location.href = 'recuperar-senha.html';
+          alert(
+            "Link inválido ou expirado. Redirecionando para recuperação de senha...",
+          );
+          window.location.href = "recuperar-senha.html";
         }
       });
     </script>
