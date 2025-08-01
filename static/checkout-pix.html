@@ -1,485 +1,563 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pagamento via PIX - Homeflip</title>
-    <link rel="stylesheet" href="checkout-base.css">
+    <link rel="stylesheet" href="checkout-base.css" />
     <style>
-        .qr-code-placeholder {
-            background: linear-gradient(45deg, #f3f4f6 25%, #e5e7eb 25%, #e5e7eb 50%, #f3f4f6 50%, #f3f4f6 75%, #e5e7eb 75%);
-            background-size: 8px 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid #d1d5db;
-            position: relative;
+      .qr-code-placeholder {
+        background: linear-gradient(
+          45deg,
+          #f3f4f6 25%,
+          #e5e7eb 25%,
+          #e5e7eb 50%,
+          #f3f4f6 50%,
+          #f3f4f6 75%,
+          #e5e7eb 75%
+        );
+        background-size: 8px 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid #d1d5db;
+        position: relative;
+      }
+
+      .qr-loading {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 16rem;
+      }
+
+      .timer-progress {
+        position: relative;
+        background-color: var(--secondary);
+        height: 0.5rem;
+        border-radius: 9999px;
+        overflow: hidden;
+      }
+
+      .timer-bar {
+        height: 100%;
+        background-color: var(--primary);
+        transition: width 1s linear;
+      }
+
+      .countdown {
+        font-family: "Courier New", monospace;
+        font-weight: bold;
+        color: var(--primary);
+      }
+
+      .pix-code {
+        background-color: #f9fafb;
+        border: 1px solid #e5e7eb;
+        border-radius: var(--radius);
+        padding: var(--spacing-4);
+        font-family: "Courier New", monospace;
+        font-size: 0.875rem;
+        word-break: break-all;
+        user-select: all;
+        cursor: text;
+      }
+
+      .step-number {
+        background-color: var(--primary);
+        color: white;
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        font-weight: bold;
+        flex-shrink: 0;
+      }
+
+      .loading-spinner {
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
         }
-        
-        .qr-loading {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 16rem;
+        to {
+          opacity: 1;
+          transform: translateY(0);
         }
-        
-        .timer-progress {
-            position: relative;
-            background-color: var(--secondary);
-            height: 0.5rem;
-            border-radius: 9999px;
-            overflow: hidden;
-        }
-        
-        .timer-bar {
-            height: 100%;
-            background-color: var(--primary);
-            transition: width 1s linear;
-        }
-        
-        .countdown {
-            font-family: 'Courier New', monospace;
-            font-weight: bold;
-            color: var(--primary);
-        }
-        
-        .pix-code {
-            background-color: #f9fafb;
-            border: 1px solid #e5e7eb;
-            border-radius: var(--radius);
-            padding: var(--spacing-4);
-            font-family: 'Courier New', monospace;
-            font-size: 0.875rem;
-            word-break: break-all;
-            user-select: all;
-            cursor: text;
-        }
-        
-        .step-number {
-            background-color: var(--primary);
-            color: white;
-            width: 1.5rem;
-            height: 1.5rem;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
-            font-weight: bold;
-            flex-shrink: 0;
-        }
-        
-        .loading-spinner {
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .fade-in {
-            animation: fadeIn 0.5s ease-out;
-        }
-        
-        .expired-state {
-            text-align: center;
-            padding: 4rem 2rem;
-        }
-        
-        .success-state {
-            text-align: center;
-            padding: 2rem;
-            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
-            border: 1px solid #bbf7d0;
-            border-radius: var(--radius-lg);
-        }
+      }
+
+      .fade-in {
+        animation: fadeIn 0.5s ease-out;
+      }
+
+      .expired-state {
+        text-align: center;
+        padding: 4rem 2rem;
+      }
+
+      .success-state {
+        text-align: center;
+        padding: 2rem;
+        background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+        border: 1px solid #bbf7d0;
+        border-radius: var(--radius-lg);
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="min-h-screen bg-gray-50 py-8">
-        <div class="container">
-            <!-- Header -->
-            <div class="mb-8">
-                <button onclick="window.location.href='checkout.html'" class="btn btn-ghost mb-4 flex items-center gap-2">
-                    <svg class="icon icon-sm" viewBox="0 0 24 24">
-                        <path d="m12 19-7-7 7-7" />
-                        <path d="M19 12H5" />
-                    </svg>
-                    Voltar
-                </button>
-                <h1 class="text-3xl font-bold text-gray-900">Pagamento via PIX</h1>
-                <p class="text-gray-600 mt-2">Escaneie o QR Code ou copie o código PIX</p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- PIX Payment -->
-                <div class="lg:col-span-2 space-y-6">
-                    <!-- Timer -->
-                    <div class="card">
-                        <div class="card-content pt-6">
-                            <div class="text-center">
-                                <div class="badge badge-outline mb-4 flex items-center gap-2 justify-center">
-                                    <svg class="icon icon-sm" viewBox="0 0 24 24">
-                                        <circle cx="12" cy="12" r="10" />
-                                        <polyline points="12,6 12,12 16,14" />
-                                    </svg>
-                                    Tempo restante: <span id="countdown" class="countdown">10:00</span>
-                                </div>
-                                <div class="timer-progress">
-                                    <div id="timerBar" class="timer-bar" style="width: 100%;"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- QR Code -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h2 class="card-title flex items-center gap-2">
-                                <svg class="icon" viewBox="0 0 24 24">
-                                    <rect width="5" height="5" x="3" y="3" rx="1" />
-                                    <rect width="5" height="5" x="16" y="3" rx="1" />
-                                    <rect width="5" height="5" x="3" y="16" rx="1" />
-                                    <path d="M21 16h-3a2 2 0 0 0-2 2v3" />
-                                    <path d="M21 21v.01" />
-                                    <path d="M12 7v3a2 2 0 0 1-2 2H7" />
-                                    <path d="M3 12h.01" />
-                                    <path d="M12 3h.01" />
-                                    <path d="M12 16v.01" />
-                                    <path d="M16 12h1" />
-                                    <path d="M21 12v.01" />
-                                    <path d="M12 21v-1" />
-                                </svg>
-                                QR Code PIX
-                            </h2>
-                            <p class="card-description">
-                                Abra o app do seu banco e escaneie o QR Code abaixo
-                            </p>
-                        </div>
-                        <div class="card-content">
-                            <div id="qrContainer" class="text-center">
-                                <div id="qrLoading" class="qr-loading">
-                                    <svg class="icon loading-spinner text-gray-400 w-8 h-8 mb-4" viewBox="0 0 24 24">
-                                        <path d="M21 12a9 9 0 11-6.219-8.56" />
-                                    </svg>
-                                    <p class="text-gray-600">Gerando QR Code...</p>
-                                </div>
-                                <div id="qrReady" class="hidden fade-in">
-                                    <div class="bg-white p-4 rounded-lg border inline-block">
-                                        <div class="qr-code-placeholder w-64 h-64">
-                                            <svg class="icon w-32 h-32 text-gray-400" viewBox="0 0 24 24">
-                                                <rect width="5" height="5" x="3" y="3" rx="1" />
-                                                <rect width="5" height="5" x="16" y="3" rx="1" />
-                                                <rect width="5" height="5" x="3" y="16" rx="1" />
-                                                <path d="M21 16h-3a2 2 0 0 0-2 2v3" />
-                                                <path d="M21 21v.01" />
-                                                <path d="M12 7v3a2 2 0 0 1-2 2H7" />
-                                                <path d="M3 12h.01" />
-                                                <path d="M12 3h.01" />
-                                                <path d="M12 16v.01" />
-                                                <path d="M16 12h1" />
-                                                <path d="M21 12v.01" />
-                                                <path d="M12 21v-1" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <p class="text-sm text-gray-600 mt-4">
-                                        Use a câmera do seu celular ou app do banco para escanear
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- PIX Code -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h2 class="card-title">Código PIX Copia e Cola</h2>
-                            <p class="card-description">
-                                Ou copie o código abaixo e cole no seu app bancário
-                            </p>
-                        </div>
-                        <div class="card-content">
-                            <div class="pix-code" id="pixCode">
-                                00020126580014br.gov.bcb.pix013628767ba0-7e42-4e77-9e52-88fe6b5c3c345204000053039865802BR5925HOMEFLIP BRASIL LTDA6009SAO PAULO61088001000062070503***6304
-                            </div>
-                            <button onclick="copyPixCode()" class="btn btn-outline w-full mt-4 flex items-center justify-center gap-2">
-                                <svg class="icon icon-sm" viewBox="0 0 24 24">
-                                    <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
-                                    <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
-                                </svg>
-                                Copiar Código PIX
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Instructions -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h2 class="card-title">Como pagar com PIX</h2>
-                        </div>
-                        <div class="card-content">
-                            <div class="space-y-3">
-                                <div class="flex items-start gap-3">
-                                    <div class="step-number">1</div>
-                                    <div>
-                                        <p class="font-medium">Abra o app do seu banco</p>
-                                        <p class="text-sm text-gray-600">Acesse a área PIX do seu aplicativo bancário</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-start gap-3">
-                                    <div class="step-number">2</div>
-                                    <div>
-                                        <p class="font-medium">Escaneie o QR Code ou cole o código</p>
-                                        <p class="text-sm text-gray-600">Use a opção "Pagar com QR Code" ou "PIX Copia e Cola"</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-start gap-3">
-                                    <div class="step-number">3</div>
-                                    <div>
-                                        <p class="font-medium">Confirme o pagamento</p>
-                                        <p class="text-sm text-gray-600">Verifique os dados e confirme a transação</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Check Payment -->
-                    <div class="card">
-                        <div class="card-content pt-6">
-                            <div class="text-center">
-                                <button id="checkPaymentBtn" onclick="checkPayment()" class="btn btn-primary w-full btn-lg flex items-center justify-center gap-2">
-                                    <svg id="checkIcon" class="icon icon-sm" viewBox="0 0 24 24">
-                                        <path d="M21 12a9 9 0 11-6.219-8.56" />
-                                    </svg>
-                                    <span id="checkText">Já Paguei</span>
-                                </button>
-                                <p class="text-sm text-gray-600 mt-2">
-                                    Clique aqui após realizar o pagamento para verificar
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Order Summary -->
-                <div>
-                    <div class="card sticky top-8">
-                        <div class="card-header">
-                            <h2 class="card-title">Resumo do Pedido</h2>
-                        </div>
-                        <div class="card-content space-y-4">
-                            <div class="space-y-2">
-                                <div class="flex justify-between">
-                                    <span>Subtotal</span>
-                                    <span>R$ 299,90</span>
-                                </div>
-                                <div class="flex justify-between text-green-600">
-                                    <span>Desconto</span>
-                                    <span>-R$ 14,99</span>
-                                </div>
-                                <div class="flex justify-between text-green-600">
-                                    <span>Desconto PIX (5%)</span>
-                                    <span>-R$ 14,24</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span>Frete</span>
-                                    <span class="text-green-600">GRÁTIS</span>
-                                </div>
-                            </div>
-                            
-                            <div class="separator"></div>
-                            
-                            <div class="flex justify-between font-semibold text-lg">
-                                <span>Total</span>
-                                <span>R$ 270,67</span>
-                            </div>
-
-                            <div class="bg-green-50 p-4 rounded-lg">
-                                <div class="flex items-center gap-2 text-green-700">
-                                    <svg class="icon icon-sm" viewBox="0 0 24 24">
-                                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                                    </svg>
-                                    <span class="font-medium">Pagamento via PIX</span>
-                                </div>
-                                <p class="text-sm text-green-600 mt-1">
-                                    Aprovação instantânea • 5% de desconto
-                                </p>
-                            </div>
-
-                            <div class="text-center">
-                                <div class="flex items-center justify-center gap-1 text-sm text-gray-600">
-                                    <svg class="icon icon-sm text-green-600" viewBox="0 0 24 24">
-                                        <path d="M9 12l2 2 4-4" />
-                                        <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3" />
-                                        <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3" />
-                                        <path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2" />
-                                    </svg>
-                                    <span>Transação segura e criptografada</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="container">
+        <!-- Header -->
+        <div class="mb-8">
+          <button
+            onclick="window.location.href='checkout.html'"
+            class="btn btn-ghost mb-4 flex items-center gap-2"
+          >
+            <svg class="icon icon-sm" viewBox="0 0 24 24">
+              <path d="m12 19-7-7 7-7" />
+              <path d="M19 12H5" />
+            </svg>
+            Voltar
+          </button>
+          <h1 class="text-3xl font-bold text-gray-900">Pagamento via PIX</h1>
+          <p class="text-gray-600 mt-2">
+            Escaneie o QR Code ou copie o código PIX
+          </p>
         </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <!-- PIX Payment -->
+          <div class="lg:col-span-2 space-y-6">
+            <!-- Timer -->
+            <div class="card">
+              <div class="card-content pt-6">
+                <div class="text-center">
+                  <div
+                    class="badge badge-outline mb-4 flex items-center gap-2 justify-center"
+                  >
+                    <svg class="icon icon-sm" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="10" />
+                      <polyline points="12,6 12,12 16,14" />
+                    </svg>
+                    Tempo restante:
+                    <span id="countdown" class="countdown">10:00</span>
+                  </div>
+                  <div class="timer-progress">
+                    <div
+                      id="timerBar"
+                      class="timer-bar"
+                      style="width: 100%"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- QR Code -->
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title flex items-center gap-2">
+                  <svg class="icon" viewBox="0 0 24 24">
+                    <rect width="5" height="5" x="3" y="3" rx="1" />
+                    <rect width="5" height="5" x="16" y="3" rx="1" />
+                    <rect width="5" height="5" x="3" y="16" rx="1" />
+                    <path d="M21 16h-3a2 2 0 0 0-2 2v3" />
+                    <path d="M21 21v.01" />
+                    <path d="M12 7v3a2 2 0 0 1-2 2H7" />
+                    <path d="M3 12h.01" />
+                    <path d="M12 3h.01" />
+                    <path d="M12 16v.01" />
+                    <path d="M16 12h1" />
+                    <path d="M21 12v.01" />
+                    <path d="M12 21v-1" />
+                  </svg>
+                  QR Code PIX
+                </h2>
+                <p class="card-description">
+                  Abra o app do seu banco e escaneie o QR Code abaixo
+                </p>
+              </div>
+              <div class="card-content">
+                <div id="qrContainer" class="text-center">
+                  <div id="qrLoading" class="qr-loading">
+                    <svg
+                      class="icon loading-spinner text-gray-400 w-8 h-8 mb-4"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M21 12a9 9 0 11-6.219-8.56" />
+                    </svg>
+                    <p class="text-gray-600">Gerando QR Code...</p>
+                  </div>
+                  <div id="qrReady" class="hidden fade-in">
+                    <div class="bg-white p-4 rounded-lg border inline-block">
+                      <div class="qr-code-placeholder w-64 h-64">
+                        <svg
+                          class="icon w-32 h-32 text-gray-400"
+                          viewBox="0 0 24 24"
+                        >
+                          <rect width="5" height="5" x="3" y="3" rx="1" />
+                          <rect width="5" height="5" x="16" y="3" rx="1" />
+                          <rect width="5" height="5" x="3" y="16" rx="1" />
+                          <path d="M21 16h-3a2 2 0 0 0-2 2v3" />
+                          <path d="M21 21v.01" />
+                          <path d="M12 7v3a2 2 0 0 1-2 2H7" />
+                          <path d="M3 12h.01" />
+                          <path d="M12 3h.01" />
+                          <path d="M12 16v.01" />
+                          <path d="M16 12h1" />
+                          <path d="M21 12v.01" />
+                          <path d="M12 21v-1" />
+                        </svg>
+                      </div>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-4">
+                      Use a câmera do seu celular ou app do banco para escanear
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PIX Code -->
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Código PIX Copia e Cola</h2>
+                <p class="card-description">
+                  Ou copie o código abaixo e cole no seu app bancário
+                </p>
+              </div>
+              <div class="card-content">
+                <div class="pix-code" id="pixCode">
+                  00020126580014br.gov.bcb.pix013628767ba0-7e42-4e77-9e52-88fe6b5c3c345204000053039865802BR5925HOMEFLIP
+                  BRASIL LTDA6009SAO PAULO61088001000062070503***6304
+                </div>
+                <button
+                  onclick="copyPixCode()"
+                  class="btn btn-outline w-full mt-4 flex items-center justify-center gap-2"
+                >
+                  <svg class="icon icon-sm" viewBox="0 0 24 24">
+                    <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                    <path
+                      d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"
+                    />
+                  </svg>
+                  Copiar Código PIX
+                </button>
+              </div>
+            </div>
+
+            <!-- Instructions -->
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Como pagar com PIX</h2>
+              </div>
+              <div class="card-content">
+                <div class="space-y-3">
+                  <div class="flex items-start gap-3">
+                    <div class="step-number">1</div>
+                    <div>
+                      <p class="font-medium">Abra o app do seu banco</p>
+                      <p class="text-sm text-gray-600">
+                        Acesse a área PIX do seu aplicativo bancário
+                      </p>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-3">
+                    <div class="step-number">2</div>
+                    <div>
+                      <p class="font-medium">
+                        Escaneie o QR Code ou cole o código
+                      </p>
+                      <p class="text-sm text-gray-600">
+                        Use a opção "Pagar com QR Code" ou "PIX Copia e Cola"
+                      </p>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-3">
+                    <div class="step-number">3</div>
+                    <div>
+                      <p class="font-medium">Confirme o pagamento</p>
+                      <p class="text-sm text-gray-600">
+                        Verifique os dados e confirme a transação
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Check Payment -->
+            <div class="card">
+              <div class="card-content pt-6">
+                <div class="text-center">
+                  <button
+                    id="checkPaymentBtn"
+                    onclick="checkPayment()"
+                    class="btn btn-primary w-full btn-lg flex items-center justify-center gap-2"
+                  >
+                    <svg
+                      id="checkIcon"
+                      class="icon icon-sm"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M21 12a9 9 0 11-6.219-8.56" />
+                    </svg>
+                    <span id="checkText">Já Paguei</span>
+                  </button>
+                  <p class="text-sm text-gray-600 mt-2">
+                    Clique aqui após realizar o pagamento para verificar
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Order Summary -->
+          <div>
+            <div class="card sticky top-8">
+              <div class="card-header">
+                <h2 class="card-title">Resumo do Pedido</h2>
+              </div>
+              <div class="card-content space-y-4">
+                <div class="space-y-2">
+                  <div class="flex justify-between">
+                    <span>Subtotal</span>
+                    <span>R$ 299,90</span>
+                  </div>
+                  <div class="flex justify-between text-green-600">
+                    <span>Desconto</span>
+                    <span>-R$ 14,99</span>
+                  </div>
+                  <div class="flex justify-between text-green-600">
+                    <span>Desconto PIX (5%)</span>
+                    <span>-R$ 14,24</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Frete</span>
+                    <span class="text-green-600">GRÁTIS</span>
+                  </div>
+                </div>
+
+                <div class="separator"></div>
+
+                <div class="flex justify-between font-semibold text-lg">
+                  <span>Total</span>
+                  <span>R$ 270,67</span>
+                </div>
+
+                <div class="bg-green-50 p-4 rounded-lg">
+                  <div class="flex items-center gap-2 text-green-700">
+                    <svg class="icon icon-sm" viewBox="0 0 24 24">
+                      <path
+                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                      />
+                    </svg>
+                    <span class="font-medium">Pagamento via PIX</span>
+                  </div>
+                  <p class="text-sm text-green-600 mt-1">
+                    Aprovação instantânea • 5% de desconto
+                  </p>
+                </div>
+
+                <div class="text-center">
+                  <div
+                    class="flex items-center justify-center gap-1 text-sm text-gray-600"
+                  >
+                    <svg
+                      class="icon icon-sm text-green-600"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M9 12l2 2 4-4" />
+                      <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3" />
+                      <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3" />
+                      <path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2" />
+                    </svg>
+                    <span>Transação segura e criptografada</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Toast -->
     <div id="toast" class="toast hidden">
-        <div class="flex items-center gap-3">
-            <svg id="toastIcon" class="icon" viewBox="0 0 24 24">
-                <path d="M9 12l2 2 4-4" />
-                <circle cx="12" cy="12" r="10" />
-            </svg>
-            <span id="toastMessage"></span>
-        </div>
+      <div class="flex items-center gap-3">
+        <svg id="toastIcon" class="icon" viewBox="0 0 24 24">
+          <path d="M9 12l2 2 4-4" />
+          <circle cx="12" cy="12" r="10" />
+        </svg>
+        <span id="toastMessage"></span>
+      </div>
     </div>
 
     <!-- Expired State Modal -->
-    <div id="expiredModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4" style="z-index: 1000;">
-        <div class="card max-w-md w-full">
-            <div class="card-content text-center py-16">
-                <svg class="icon w-16 h-16 text-red-500 mx-auto mb-4" viewBox="0 0 24 24">
-                    <circle cx="12" cy="12" r="10" />
-                    <polyline points="12,6 12,12 16,14" />
-                </svg>
-                <h2 class="text-2xl font-bold text-gray-900 mb-2">Tempo Expirado</h2>
-                <p class="text-gray-600 mb-6">
-                    O tempo para pagamento via PIX expirou. Inicie um novo processo de pagamento.
-                </p>
-                <button onclick="window.location.href='checkout.html'" class="btn btn-primary btn-lg">
-                    Voltar ao Checkout
-                </button>
-            </div>
+    <div
+      id="expiredModal"
+      class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4"
+      style="z-index: 1000"
+    >
+      <div class="card max-w-md w-full">
+        <div class="card-content text-center py-16">
+          <svg
+            class="icon w-16 h-16 text-red-500 mx-auto mb-4"
+            viewBox="0 0 24 24"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <polyline points="12,6 12,12 16,14" />
+          </svg>
+          <h2 class="text-2xl font-bold text-gray-900 mb-2">Tempo Expirado</h2>
+          <p class="text-gray-600 mb-6">
+            O tempo para pagamento via PIX expirou. Inicie um novo processo de
+            pagamento.
+          </p>
+          <button
+            onclick="window.location.href='checkout.html'"
+            class="btn btn-primary btn-lg"
+          >
+            Voltar ao Checkout
+          </button>
         </div>
+      </div>
     </div>
 
     <script>
-        // Timer functionality
-        let timeRemaining = 600; // 10 minutes in seconds
-        let timerInterval;
-        
-        function updateTimer() {
-            const minutes = Math.floor(timeRemaining / 60);
-            const seconds = timeRemaining % 60;
-            const formatted = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-            
-            document.getElementById('countdown').textContent = formatted;
-            
-            // Update progress bar
-            const progress = ((600 - timeRemaining) / 600) * 100;
-            document.getElementById('timerBar').style.width = `${progress}%`;
-            
-            if (timeRemaining <= 0) {
-                clearInterval(timerInterval);
-                showExpired();
-                return;
-            }
-            
-            timeRemaining--;
+      // Timer functionality
+      let timeRemaining = 600; // 10 minutes in seconds
+      let timerInterval;
+
+      function updateTimer() {
+        const minutes = Math.floor(timeRemaining / 60);
+        const seconds = timeRemaining % 60;
+        const formatted = `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+
+        document.getElementById("countdown").textContent = formatted;
+
+        // Update progress bar
+        const progress = ((600 - timeRemaining) / 600) * 100;
+        document.getElementById("timerBar").style.width = `${progress}%`;
+
+        if (timeRemaining <= 0) {
+          clearInterval(timerInterval);
+          showExpired();
+          return;
         }
-        
-        function startTimer() {
-            updateTimer();
-            timerInterval = setInterval(updateTimer, 1000);
-        }
-        
-        function showExpired() {
-            document.getElementById('expiredModal').classList.remove('hidden');
-        }
-        
-        // QR Code generation simulation
-        function generateQRCode() {
-            setTimeout(() => {
-                document.getElementById('qrLoading').classList.add('hidden');
-                document.getElementById('qrReady').classList.remove('hidden');
-            }, 2000);
-        }
-        
-        // Copy PIX code
-        function copyPixCode() {
-            const pixCode = document.getElementById('pixCode').textContent;
-            navigator.clipboard.writeText(pixCode).then(() => {
-                showToast('Código PIX copiado!', 'success');
-            });
-        }
-        
-        // Check payment
-        function checkPayment() {
-            const btn = document.getElementById('checkPaymentBtn');
-            const icon = document.getElementById('checkIcon');
-            const text = document.getElementById('checkText');
-            
-            // Show processing state
-            btn.disabled = true;
-            icon.classList.add('animate-spin');
-            text.textContent = 'Verificando Pagamento...';
-            
-            // Simulate payment check
-            setTimeout(() => {
-                // 30% chance of payment found
-                if (Math.random() > 0.7) {
-                    // Payment found
-                    icon.classList.remove('animate-spin');
-                    icon.innerHTML = '<path d="M9 12l2 2 4-4" /><circle cx="12" cy="12" r="10" />';
-                    text.textContent = 'Pagamento Confirmado!';
-                    showToast('Pagamento confirmado!', 'success');
-                    
-                    setTimeout(() => {
-                        window.location.href = 'pedido-confirmado.html';
-                    }, 2000);
-                } else {
-                    // Payment not found
-                    btn.disabled = false;
-                    icon.classList.remove('animate-spin');
-                    icon.innerHTML = '<path d="M21 12a9 9 0 11-6.219-8.56" />';
-                    text.textContent = 'Já Paguei';
-                    showToast('Pagamento ainda não encontrado. Tente novamente em alguns instantes.', 'info');
-                }
-            }, 3000);
-        }
-        
-        // Toast function
-        function showToast(message, type = 'success') {
-            const toast = document.getElementById('toast');
-            const toastMessage = document.getElementById('toastMessage');
-            const toastIcon = document.getElementById('toastIcon');
-            
-            toastMessage.textContent = message;
-            
-            // Update icon based on type
-            if (type === 'success') {
-                toastIcon.innerHTML = '<path d="M9 12l2 2 4-4" /><circle cx="12" cy="12" r="10" />';
-                toastIcon.className = 'icon text-green-600';
-            } else if (type === 'info') {
-                toastIcon.innerHTML = '<circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" />';
-                toastIcon.className = 'icon text-blue-600';
-            }
-            
-            toast.className = `toast toast-${type}`;
-            toast.classList.remove('hidden');
-            
-            setTimeout(() => {
-                toast.classList.add('show');
-            }, 100);
-            
-            setTimeout(() => {
-                toast.classList.remove('show');
-                setTimeout(() => {
-                    toast.classList.add('hidden');
-                }, 300);
-            }, 3000);
-        }
-        
-        // Initialize page
-        document.addEventListener('DOMContentLoaded', () => {
-            startTimer();
-            generateQRCode();
+
+        timeRemaining--;
+      }
+
+      function startTimer() {
+        updateTimer();
+        timerInterval = setInterval(updateTimer, 1000);
+      }
+
+      function showExpired() {
+        document.getElementById("expiredModal").classList.remove("hidden");
+      }
+
+      // QR Code generation simulation
+      function generateQRCode() {
+        setTimeout(() => {
+          document.getElementById("qrLoading").classList.add("hidden");
+          document.getElementById("qrReady").classList.remove("hidden");
+        }, 2000);
+      }
+
+      // Copy PIX code
+      function copyPixCode() {
+        const pixCode = document.getElementById("pixCode").textContent;
+        navigator.clipboard.writeText(pixCode).then(() => {
+          showToast("Código PIX copiado!", "success");
         });
+      }
+
+      // Check payment
+      function checkPayment() {
+        const btn = document.getElementById("checkPaymentBtn");
+        const icon = document.getElementById("checkIcon");
+        const text = document.getElementById("checkText");
+
+        // Show processing state
+        btn.disabled = true;
+        icon.classList.add("animate-spin");
+        text.textContent = "Verificando Pagamento...";
+
+        // Simulate payment check
+        setTimeout(() => {
+          // 30% chance of payment found
+          if (Math.random() > 0.7) {
+            // Payment found
+            icon.classList.remove("animate-spin");
+            icon.innerHTML =
+              '<path d="M9 12l2 2 4-4" /><circle cx="12" cy="12" r="10" />';
+            text.textContent = "Pagamento Confirmado!";
+            showToast("Pagamento confirmado!", "success");
+
+            setTimeout(() => {
+              window.location.href = "pedido-confirmado.html";
+            }, 2000);
+          } else {
+            // Payment not found
+            btn.disabled = false;
+            icon.classList.remove("animate-spin");
+            icon.innerHTML = '<path d="M21 12a9 9 0 11-6.219-8.56" />';
+            text.textContent = "Já Paguei";
+            showToast(
+              "Pagamento ainda não encontrado. Tente novamente em alguns instantes.",
+              "info",
+            );
+          }
+        }, 3000);
+      }
+
+      // Toast function
+      function showToast(message, type = "success") {
+        const toast = document.getElementById("toast");
+        const toastMessage = document.getElementById("toastMessage");
+        const toastIcon = document.getElementById("toastIcon");
+
+        toastMessage.textContent = message;
+
+        // Update icon based on type
+        if (type === "success") {
+          toastIcon.innerHTML =
+            '<path d="M9 12l2 2 4-4" /><circle cx="12" cy="12" r="10" />';
+          toastIcon.className = "icon text-green-600";
+        } else if (type === "info") {
+          toastIcon.innerHTML =
+            '<circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" />';
+          toastIcon.className = "icon text-blue-600";
+        }
+
+        toast.className = `toast toast-${type}`;
+        toast.classList.remove("hidden");
+
+        setTimeout(() => {
+          toast.classList.add("show");
+        }, 100);
+
+        setTimeout(() => {
+          toast.classList.remove("show");
+          setTimeout(() => {
+            toast.classList.add("hidden");
+          }, 300);
+        }, 3000);
+      }
+
+      // Initialize page
+      document.addEventListener("DOMContentLoaded", () => {
+        startTimer();
+        generateQRCode();
+      });
     </script>
-</body>
+  </body>
 </html>

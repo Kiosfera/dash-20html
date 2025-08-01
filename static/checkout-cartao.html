@@ -1,674 +1,742 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pagamento com Cartão - Homeflip</title>
-    <link rel="stylesheet" href="checkout-base.css">
+    <link rel="stylesheet" href="checkout-base.css" />
     <style>
-        .card-input-container {
-            position: relative;
-        }
-        
-        .card-icon {
-            position: absolute;
-            right: 0.75rem;
-            top: 50%;
-            transform: translateY(-50%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 2rem;
-            height: 1.5rem;
-            font-size: 0.75rem;
-            font-weight: bold;
-            border-radius: 0.25rem;
-        }
-        
-        .card-visa {
-            background-color: #1a1f71;
-            color: white;
-        }
-        
-        .card-mastercard {
-            background-color: #eb001b;
-            color: white;
-        }
-        
-        .card-amex {
-            background-color: #006fcf;
-            color: white;
-        }
-        
-        .card-elo {
-            background-color: #ffcc00;
-            color: black;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-row {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-        }
-        
-        .error-message {
-            color: var(--destructive);
-            font-size: 0.875rem;
-            margin-top: 0.25rem;
-        }
-        
-        .security-badge {
-            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-            border: 1px solid #bfdbfe;
-            border-radius: var(--radius-lg);
-            padding: 1rem;
-        }
-        
-        .installment-option {
-            padding: 0.75rem;
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            cursor: pointer;
-            transition: all 0.2s ease-in-out;
-            margin-bottom: 0.5rem;
-        }
-        
-        .installment-option:hover {
-            background-color: var(--secondary);
-        }
-        
-        .installment-option.selected {
-            border-color: var(--primary);
-            background-color: rgba(37, 99, 235, 0.05);
-        }
-        
-        .processing-overlay {
-            position: fixed;
-            inset: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-        }
-        
-        .processing-card {
-            background-color: white;
-            border-radius: var(--radius-lg);
-            padding: 2rem;
-            text-align: center;
-            box-shadow: var(--shadow-lg);
-            max-width: 400px;
-            margin: 1rem;
-        }
-        
-        .checkbox-container {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .custom-checkbox {
-            width: 1rem;
-            height: 1rem;
-            border: 2px solid var(--border);
-            border-radius: 0.25rem;
-            cursor: pointer;
-            position: relative;
-            transition: all 0.2s ease-in-out;
-        }
-        
-        .custom-checkbox.checked {
-            background-color: var(--primary);
-            border-color: var(--primary);
-        }
-        
-        .custom-checkbox.checked::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 0.375rem;
-            height: 0.625rem;
-            border: 2px solid white;
-            border-top: 0;
-            border-left: 0;
-            transform: translate(-50%, -60%) rotate(45deg);
-        }
+      .card-input-container {
+        position: relative;
+      }
+
+      .card-icon {
+        position: absolute;
+        right: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2rem;
+        height: 1.5rem;
+        font-size: 0.75rem;
+        font-weight: bold;
+        border-radius: 0.25rem;
+      }
+
+      .card-visa {
+        background-color: #1a1f71;
+        color: white;
+      }
+
+      .card-mastercard {
+        background-color: #eb001b;
+        color: white;
+      }
+
+      .card-amex {
+        background-color: #006fcf;
+        color: white;
+      }
+
+      .card-elo {
+        background-color: #ffcc00;
+        color: black;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+      }
+
+      .error-message {
+        color: var(--destructive);
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+      }
+
+      .security-badge {
+        background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+        border: 1px solid #bfdbfe;
+        border-radius: var(--radius-lg);
+        padding: 1rem;
+      }
+
+      .installment-option {
+        padding: 0.75rem;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        margin-bottom: 0.5rem;
+      }
+
+      .installment-option:hover {
+        background-color: var(--secondary);
+      }
+
+      .installment-option.selected {
+        border-color: var(--primary);
+        background-color: rgba(37, 99, 235, 0.05);
+      }
+
+      .processing-overlay {
+        position: fixed;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+      }
+
+      .processing-card {
+        background-color: white;
+        border-radius: var(--radius-lg);
+        padding: 2rem;
+        text-align: center;
+        box-shadow: var(--shadow-lg);
+        max-width: 400px;
+        margin: 1rem;
+      }
+
+      .checkbox-container {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .custom-checkbox {
+        width: 1rem;
+        height: 1rem;
+        border: 2px solid var(--border);
+        border-radius: 0.25rem;
+        cursor: pointer;
+        position: relative;
+        transition: all 0.2s ease-in-out;
+      }
+
+      .custom-checkbox.checked {
+        background-color: var(--primary);
+        border-color: var(--primary);
+      }
+
+      .custom-checkbox.checked::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 0.375rem;
+        height: 0.625rem;
+        border: 2px solid white;
+        border-top: 0;
+        border-left: 0;
+        transform: translate(-50%, -60%) rotate(45deg);
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="min-h-screen bg-gray-50 py-8">
-        <div class="container">
-            <!-- Header -->
-            <div class="mb-8">
-                <button onclick="window.location.href='checkout.html'" class="btn btn-ghost mb-4 flex items-center gap-2">
-                    <svg class="icon icon-sm" viewBox="0 0 24 24">
-                        <path d="m12 19-7-7 7-7" />
-                        <path d="M19 12H5" />
-                    </svg>
-                    Voltar
-                </button>
-                <h1 class="text-3xl font-bold text-gray-900">Pagamento com Cartão</h1>
-                <p class="text-gray-600 mt-2">Preencha os dados do seu cartão de crédito</p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Card Form -->
-                <div class="lg:col-span-2">
-                    <div class="card">
-                        <div class="card-header">
-                            <h2 class="card-title flex items-center gap-2">
-                                <svg class="icon" viewBox="0 0 24 24">
-                                    <rect width="20" height="14" x="2" y="5" rx="2" />
-                                    <line x1="2" x2="22" y1="10" y2="10" />
-                                </svg>
-                                Dados do Cartão
-                            </h2>
-                            <p class="card-description">
-                                Insira as informações do seu cartão de crédito
-                            </p>
-                        </div>
-                        <div class="card-content">
-                            <form id="cardForm" class="space-y-6">
-                                <!-- Card Number -->
-                                <div class="form-group">
-                                    <label for="cardNumber" class="label">Número do Cartão</label>
-                                    <div class="card-input-container">
-                                        <input
-                                            type="text"
-                                            id="cardNumber"
-                                            class="input"
-                                            placeholder="0000 0000 0000 0000"
-                                            maxlength="19"
-                                            required
-                                        />
-                                        <div id="cardIcon" class="card-icon hidden">
-                                            <svg class="icon icon-sm text-gray-400" viewBox="0 0 24 24">
-                                                <rect width="20" height="14" x="2" y="5" rx="2" />
-                                                <line x1="2" x2="22" y1="10" y2="10" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div id="cardNumberError" class="error-message hidden"></div>
-                                </div>
-
-                                <!-- Card Name -->
-                                <div class="form-group">
-                                    <label for="cardName" class="label">Nome no Cartão</label>
-                                    <input
-                                        type="text"
-                                        id="cardName"
-                                        class="input uppercase"
-                                        placeholder="Nome como está no cartão"
-                                        required
-                                    />
-                                    <div id="cardNameError" class="error-message hidden"></div>
-                                </div>
-
-                                <!-- Expiry and CVV -->
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="expiryMonth" class="label">Mês</label>
-                                        <select id="expiryMonth" class="input" required>
-                                            <option value="">Mês</option>
-                                            <option value="01">01</option>
-                                            <option value="02">02</option>
-                                            <option value="03">03</option>
-                                            <option value="04">04</option>
-                                            <option value="05">05</option>
-                                            <option value="06">06</option>
-                                            <option value="07">07</option>
-                                            <option value="08">08</option>
-                                            <option value="09">09</option>
-                                            <option value="10">10</option>
-                                            <option value="11">11</option>
-                                            <option value="12">12</option>
-                                        </select>
-                                        <div id="expiryMonthError" class="error-message hidden"></div>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="expiryYear" class="label">Ano</label>
-                                        <select id="expiryYear" class="input" required>
-                                            <option value="">Ano</option>
-                                        </select>
-                                        <div id="expiryYearError" class="error-message hidden"></div>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="cvv" class="label">CVV</label>
-                                        <input
-                                            type="text"
-                                            id="cvv"
-                                            class="input"
-                                            placeholder="123"
-                                            maxlength="4"
-                                            required
-                                        />
-                                        <div id="cvvError" class="error-message hidden"></div>
-                                    </div>
-                                </div>
-
-                                <!-- Installments -->
-                                <div class="form-group">
-                                    <label class="label">Parcelamento</label>
-                                    <div id="installmentContainer">
-                                        <div class="installment-option selected" data-installments="1">
-                                            <div class="flex justify-between items-center">
-                                                <span class="font-medium">1x de R$ 284,91 à vista</span>
-                                                <span class="badge badge-secondary text-xs">À vista</span>
-                                            </div>
-                                        </div>
-                                        <div class="installment-option" data-installments="2">
-                                            <span class="font-medium">2x de R$ 142,46 sem juros</span>
-                                        </div>
-                                        <div class="installment-option" data-installments="3">
-                                            <span class="font-medium">3x de R$ 94,97 sem juros</span>
-                                        </div>
-                                        <div class="installment-option" data-installments="6">
-                                            <div class="flex justify-between items-center">
-                                                <span class="font-medium">6x de R$ 47,49 sem juros</span>
-                                                <span class="badge badge-outline text-xs">Popular</span>
-                                            </div>
-                                        </div>
-                                        <div class="installment-option" data-installments="12">
-                                            <span class="font-medium">12x de R$ 23,74 sem juros</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Save Card -->
-                                <div class="checkbox-container">
-                                    <div id="saveCard" class="custom-checkbox"></div>
-                                    <label for="saveCard" class="label text-sm cursor-pointer">
-                                        Salvar cartão para futuras compras
-                                    </label>
-                                </div>
-
-                                <!-- Security Info -->
-                                <div class="security-badge">
-                                    <div class="flex items-start gap-3">
-                                        <svg class="icon text-blue-600 mt-0.5" viewBox="0 0 24 24">
-                                            <path d="M9 12l2 2 4-4" />
-                                            <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3" />
-                                            <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3" />
-                                            <path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2" />
-                                        </svg>
-                                        <div>
-                                            <h4 class="font-medium text-blue-900">Compra Segura</h4>
-                                            <p class="text-sm text-blue-700">
-                                                Seus dados são protegidos com criptografia SSL de 256 bits. 
-                                                Não armazenamos informações do seu cartão.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <button type="submit" class="btn btn-primary w-full btn-lg flex items-center justify-center gap-2">
-                                    <svg class="icon icon-sm" viewBox="0 0 24 24">
-                                        <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
-                                        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-                                    </svg>
-                                    Finalizar Pagamento
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Order Summary -->
-                <div>
-                    <div class="card sticky top-8">
-                        <div class="card-header">
-                            <h2 class="card-title">Resumo do Pedido</h2>
-                        </div>
-                        <div class="card-content space-y-4">
-                            <div class="space-y-2">
-                                <div class="flex justify-between">
-                                    <span>Subtotal</span>
-                                    <span>R$ 299,90</span>
-                                </div>
-                                <div class="flex justify-between text-green-600">
-                                    <span>Desconto</span>
-                                    <span>-R$ 14,99</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span>Frete</span>
-                                    <span class="text-green-600">GRÁTIS</span>
-                                </div>
-                            </div>
-                            
-                            <div class="separator"></div>
-                            
-                            <div class="flex justify-between font-semibold text-lg">
-                                <span>Total</span>
-                                <span>R$ 284,91</span>
-                            </div>
-
-                            <div class="bg-blue-50 p-4 rounded-lg">
-                                <div class="flex items-center gap-2 text-blue-700">
-                                    <svg class="icon icon-sm" viewBox="0 0 24 24">
-                                        <rect width="20" height="14" x="2" y="5" rx="2" />
-                                        <line x1="2" x2="22" y1="10" y2="10" />
-                                    </svg>
-                                    <span class="font-medium">Cartão de Crédito</span>
-                                </div>
-                                <p class="text-sm text-blue-600 mt-1">
-                                    Parcelamento em até 12x sem juros
-                                </p>
-                            </div>
-
-                            <!-- Security Badges -->
-                            <div class="space-y-3">
-                                <div class="flex items-center gap-2 text-sm text-gray-600">
-                                    <svg class="icon icon-sm text-green-600" viewBox="0 0 24 24">
-                                        <path d="M9 12l2 2 4-4" />
-                                        <circle cx="12" cy="12" r="10" />
-                                    </svg>
-                                    <span>SSL Certificado</span>
-                                </div>
-                                <div class="flex items-center gap-2 text-sm text-gray-600">
-                                    <svg class="icon icon-sm text-green-600" viewBox="0 0 24 24">
-                                        <path d="M9 12l2 2 4-4" />
-                                        <circle cx="12" cy="12" r="10" />
-                                    </svg>
-                                    <span>PCI Compliance</span>
-                                </div>
-                                <div class="flex items-center gap-2 text-sm text-gray-600">
-                                    <svg class="icon icon-sm text-green-600" viewBox="0 0 24 24">
-                                        <path d="M9 12l2 2 4-4" />
-                                        <circle cx="12" cy="12" r="10" />
-                                    </svg>
-                                    <span>Aprovação Instantânea</span>
-                                </div>
-                            </div>
-
-                            <!-- Accepted Cards -->
-                            <div>
-                                <p class="text-sm text-gray-600 mb-2">Cartões aceitos:</p>
-                                <div class="flex gap-2">
-                                    <span class="badge badge-outline">VISA</span>
-                                    <span class="badge badge-outline">MASTER</span>
-                                    <span class="badge badge-outline">ELO</span>
-                                    <span class="badge badge-outline">AMEX</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="container">
+        <!-- Header -->
+        <div class="mb-8">
+          <button
+            onclick="window.location.href='checkout.html'"
+            class="btn btn-ghost mb-4 flex items-center gap-2"
+          >
+            <svg class="icon icon-sm" viewBox="0 0 24 24">
+              <path d="m12 19-7-7 7-7" />
+              <path d="M19 12H5" />
+            </svg>
+            Voltar
+          </button>
+          <h1 class="text-3xl font-bold text-gray-900">Pagamento com Cartão</h1>
+          <p class="text-gray-600 mt-2">
+            Preencha os dados do seu cartão de crédito
+          </p>
         </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <!-- Card Form -->
+          <div class="lg:col-span-2">
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title flex items-center gap-2">
+                  <svg class="icon" viewBox="0 0 24 24">
+                    <rect width="20" height="14" x="2" y="5" rx="2" />
+                    <line x1="2" x2="22" y1="10" y2="10" />
+                  </svg>
+                  Dados do Cartão
+                </h2>
+                <p class="card-description">
+                  Insira as informações do seu cartão de crédito
+                </p>
+              </div>
+              <div class="card-content">
+                <form id="cardForm" class="space-y-6">
+                  <!-- Card Number -->
+                  <div class="form-group">
+                    <label for="cardNumber" class="label"
+                      >Número do Cartão</label
+                    >
+                    <div class="card-input-container">
+                      <input
+                        type="text"
+                        id="cardNumber"
+                        class="input"
+                        placeholder="0000 0000 0000 0000"
+                        maxlength="19"
+                        required
+                      />
+                      <div id="cardIcon" class="card-icon hidden">
+                        <svg
+                          class="icon icon-sm text-gray-400"
+                          viewBox="0 0 24 24"
+                        >
+                          <rect width="20" height="14" x="2" y="5" rx="2" />
+                          <line x1="2" x2="22" y1="10" y2="10" />
+                        </svg>
+                      </div>
+                    </div>
+                    <div
+                      id="cardNumberError"
+                      class="error-message hidden"
+                    ></div>
+                  </div>
+
+                  <!-- Card Name -->
+                  <div class="form-group">
+                    <label for="cardName" class="label">Nome no Cartão</label>
+                    <input
+                      type="text"
+                      id="cardName"
+                      class="input uppercase"
+                      placeholder="Nome como está no cartão"
+                      required
+                    />
+                    <div id="cardNameError" class="error-message hidden"></div>
+                  </div>
+
+                  <!-- Expiry and CVV -->
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="expiryMonth" class="label">Mês</label>
+                      <select id="expiryMonth" class="input" required>
+                        <option value="">Mês</option>
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                        <option value="05">05</option>
+                        <option value="06">06</option>
+                        <option value="07">07</option>
+                        <option value="08">08</option>
+                        <option value="09">09</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                      </select>
+                      <div
+                        id="expiryMonthError"
+                        class="error-message hidden"
+                      ></div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="expiryYear" class="label">Ano</label>
+                      <select id="expiryYear" class="input" required>
+                        <option value="">Ano</option>
+                      </select>
+                      <div
+                        id="expiryYearError"
+                        class="error-message hidden"
+                      ></div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="cvv" class="label">CVV</label>
+                      <input
+                        type="text"
+                        id="cvv"
+                        class="input"
+                        placeholder="123"
+                        maxlength="4"
+                        required
+                      />
+                      <div id="cvvError" class="error-message hidden"></div>
+                    </div>
+                  </div>
+
+                  <!-- Installments -->
+                  <div class="form-group">
+                    <label class="label">Parcelamento</label>
+                    <div id="installmentContainer">
+                      <div
+                        class="installment-option selected"
+                        data-installments="1"
+                      >
+                        <div class="flex justify-between items-center">
+                          <span class="font-medium"
+                            >1x de R$ 284,91 à vista</span
+                          >
+                          <span class="badge badge-secondary text-xs"
+                            >À vista</span
+                          >
+                        </div>
+                      </div>
+                      <div class="installment-option" data-installments="2">
+                        <span class="font-medium"
+                          >2x de R$ 142,46 sem juros</span
+                        >
+                      </div>
+                      <div class="installment-option" data-installments="3">
+                        <span class="font-medium"
+                          >3x de R$ 94,97 sem juros</span
+                        >
+                      </div>
+                      <div class="installment-option" data-installments="6">
+                        <div class="flex justify-between items-center">
+                          <span class="font-medium"
+                            >6x de R$ 47,49 sem juros</span
+                          >
+                          <span class="badge badge-outline text-xs"
+                            >Popular</span
+                          >
+                        </div>
+                      </div>
+                      <div class="installment-option" data-installments="12">
+                        <span class="font-medium"
+                          >12x de R$ 23,74 sem juros</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Save Card -->
+                  <div class="checkbox-container">
+                    <div id="saveCard" class="custom-checkbox"></div>
+                    <label for="saveCard" class="label text-sm cursor-pointer">
+                      Salvar cartão para futuras compras
+                    </label>
+                  </div>
+
+                  <!-- Security Info -->
+                  <div class="security-badge">
+                    <div class="flex items-start gap-3">
+                      <svg
+                        class="icon text-blue-600 mt-0.5"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M9 12l2 2 4-4" />
+                        <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3" />
+                        <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3" />
+                        <path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2" />
+                      </svg>
+                      <div>
+                        <h4 class="font-medium text-blue-900">Compra Segura</h4>
+                        <p class="text-sm text-blue-700">
+                          Seus dados são protegidos com criptografia SSL de 256
+                          bits. Não armazenamos informações do seu cartão.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    class="btn btn-primary w-full btn-lg flex items-center justify-center gap-2"
+                  >
+                    <svg class="icon icon-sm" viewBox="0 0 24 24">
+                      <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                    </svg>
+                    Finalizar Pagamento
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- Order Summary -->
+          <div>
+            <div class="card sticky top-8">
+              <div class="card-header">
+                <h2 class="card-title">Resumo do Pedido</h2>
+              </div>
+              <div class="card-content space-y-4">
+                <div class="space-y-2">
+                  <div class="flex justify-between">
+                    <span>Subtotal</span>
+                    <span>R$ 299,90</span>
+                  </div>
+                  <div class="flex justify-between text-green-600">
+                    <span>Desconto</span>
+                    <span>-R$ 14,99</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Frete</span>
+                    <span class="text-green-600">GRÁTIS</span>
+                  </div>
+                </div>
+
+                <div class="separator"></div>
+
+                <div class="flex justify-between font-semibold text-lg">
+                  <span>Total</span>
+                  <span>R$ 284,91</span>
+                </div>
+
+                <div class="bg-blue-50 p-4 rounded-lg">
+                  <div class="flex items-center gap-2 text-blue-700">
+                    <svg class="icon icon-sm" viewBox="0 0 24 24">
+                      <rect width="20" height="14" x="2" y="5" rx="2" />
+                      <line x1="2" x2="22" y1="10" y2="10" />
+                    </svg>
+                    <span class="font-medium">Cartão de Crédito</span>
+                  </div>
+                  <p class="text-sm text-blue-600 mt-1">
+                    Parcelamento em até 12x sem juros
+                  </p>
+                </div>
+
+                <!-- Security Badges -->
+                <div class="space-y-3">
+                  <div class="flex items-center gap-2 text-sm text-gray-600">
+                    <svg
+                      class="icon icon-sm text-green-600"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M9 12l2 2 4-4" />
+                      <circle cx="12" cy="12" r="10" />
+                    </svg>
+                    <span>SSL Certificado</span>
+                  </div>
+                  <div class="flex items-center gap-2 text-sm text-gray-600">
+                    <svg
+                      class="icon icon-sm text-green-600"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M9 12l2 2 4-4" />
+                      <circle cx="12" cy="12" r="10" />
+                    </svg>
+                    <span>PCI Compliance</span>
+                  </div>
+                  <div class="flex items-center gap-2 text-sm text-gray-600">
+                    <svg
+                      class="icon icon-sm text-green-600"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M9 12l2 2 4-4" />
+                      <circle cx="12" cy="12" r="10" />
+                    </svg>
+                    <span>Aprovação Instantânea</span>
+                  </div>
+                </div>
+
+                <!-- Accepted Cards -->
+                <div>
+                  <p class="text-sm text-gray-600 mb-2">Cartões aceitos:</p>
+                  <div class="flex gap-2">
+                    <span class="badge badge-outline">VISA</span>
+                    <span class="badge badge-outline">MASTER</span>
+                    <span class="badge badge-outline">ELO</span>
+                    <span class="badge badge-outline">AMEX</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Processing Overlay -->
     <div id="processingOverlay" class="processing-overlay hidden">
-        <div class="processing-card">
-            <svg class="icon w-12 h-12 animate-pulse text-primary mx-auto mb-4" viewBox="0 0 24 24">
-                <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
-                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-            </svg>
-            <h3 class="text-lg font-semibold mb-2">Processando Pagamento</h3>
-            <p class="text-gray-600 text-sm">
-                Por favor, aguarde enquanto processamos seu pagamento...
-            </p>
-        </div>
+      <div class="processing-card">
+        <svg
+          class="icon w-12 h-12 animate-pulse text-primary mx-auto mb-4"
+          viewBox="0 0 24 24"
+        >
+          <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+          <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+        </svg>
+        <h3 class="text-lg font-semibold mb-2">Processando Pagamento</h3>
+        <p class="text-gray-600 text-sm">
+          Por favor, aguarde enquanto processamos seu pagamento...
+        </p>
+      </div>
     </div>
 
     <!-- Toast -->
     <div id="toast" class="toast hidden">
-        <div class="flex items-center gap-3">
-            <svg id="toastIcon" class="icon" viewBox="0 0 24 24"></svg>
-            <span id="toastMessage"></span>
-        </div>
+      <div class="flex items-center gap-3">
+        <svg id="toastIcon" class="icon" viewBox="0 0 24 24"></svg>
+        <span id="toastMessage"></span>
+      </div>
     </div>
 
     <script>
-        let selectedInstallments = 1;
-        let saveCardChecked = false;
-        
-        // Populate year options
-        function populateYears() {
-            const yearSelect = document.getElementById('expiryYear');
-            const currentYear = new Date().getFullYear();
-            
-            for (let i = 0; i < 10; i++) {
-                const year = currentYear + i;
-                const option = document.createElement('option');
-                option.value = year;
-                option.textContent = year;
-                yearSelect.appendChild(option);
-            }
+      let selectedInstallments = 1;
+      let saveCardChecked = false;
+
+      // Populate year options
+      function populateYears() {
+        const yearSelect = document.getElementById("expiryYear");
+        const currentYear = new Date().getFullYear();
+
+        for (let i = 0; i < 10; i++) {
+          const year = currentYear + i;
+          const option = document.createElement("option");
+          option.value = year;
+          option.textContent = year;
+          yearSelect.appendChild(option);
         }
-        
-        // Format card number
-        function formatCardNumber(value) {
-            const cleaned = value.replace(/\D/g, '');
-            const chunks = cleaned.match(/.{1,4}/g) || [];
-            return chunks.join(' ').substr(0, 19);
+      }
+
+      // Format card number
+      function formatCardNumber(value) {
+        const cleaned = value.replace(/\D/g, "");
+        const chunks = cleaned.match(/.{1,4}/g) || [];
+        return chunks.join(" ").substr(0, 19);
+      }
+
+      // Detect card type
+      function detectCardType(number) {
+        const cleaned = number.replace(/\D/g, "");
+
+        if (cleaned.startsWith("4")) return "visa";
+        if (cleaned.startsWith("5") || cleaned.startsWith("2"))
+          return "mastercard";
+        if (cleaned.startsWith("3")) return "amex";
+        if (cleaned.startsWith("6")) return "elo";
+
+        return "";
+      }
+
+      // Update card icon
+      function updateCardIcon(type) {
+        const cardIcon = document.getElementById("cardIcon");
+
+        if (!type) {
+          cardIcon.classList.add("hidden");
+          return;
         }
-        
-        // Detect card type
-        function detectCardType(number) {
-            const cleaned = number.replace(/\D/g, '');
-            
-            if (cleaned.startsWith('4')) return 'visa';
-            if (cleaned.startsWith('5') || cleaned.startsWith('2')) return 'mastercard';
-            if (cleaned.startsWith('3')) return 'amex';
-            if (cleaned.startsWith('6')) return 'elo';
-            
-            return '';
+
+        cardIcon.classList.remove("hidden");
+        cardIcon.className = `card-icon card-${type}`;
+
+        const icons = {
+          visa: "VISA",
+          mastercard: "MASTER",
+          amex: "AMEX",
+          elo: "ELO",
+        };
+
+        cardIcon.textContent = icons[type] || "";
+      }
+
+      // Validate form
+      function validateForm() {
+        let isValid = true;
+
+        // Card number validation
+        const cardNumber = document
+          .getElementById("cardNumber")
+          .value.replace(/\D/g, "");
+        if (cardNumber.length < 16) {
+          showError("cardNumberError", "Número do cartão deve ter 16 dígitos");
+          isValid = false;
+        } else {
+          hideError("cardNumberError");
         }
-        
-        // Update card icon
-        function updateCardIcon(type) {
-            const cardIcon = document.getElementById('cardIcon');
-            
-            if (!type) {
-                cardIcon.classList.add('hidden');
-                return;
-            }
-            
-            cardIcon.classList.remove('hidden');
-            cardIcon.className = `card-icon card-${type}`;
-            
-            const icons = {
-                visa: 'VISA',
-                mastercard: 'MASTER',
-                amex: 'AMEX',
-                elo: 'ELO'
-            };
-            
-            cardIcon.textContent = icons[type] || '';
+
+        // Card name validation
+        const cardName = document.getElementById("cardName").value.trim();
+        if (cardName.length < 2) {
+          showError("cardNameError", "Nome é obrigatório");
+          isValid = false;
+        } else {
+          hideError("cardNameError");
         }
-        
-        // Validate form
-        function validateForm() {
-            let isValid = true;
-            
-            // Card number validation
-            const cardNumber = document.getElementById('cardNumber').value.replace(/\D/g, '');
-            if (cardNumber.length < 16) {
-                showError('cardNumberError', 'Número do cartão deve ter 16 dígitos');
-                isValid = false;
-            } else {
-                hideError('cardNumberError');
-            }
-            
-            // Card name validation
-            const cardName = document.getElementById('cardName').value.trim();
-            if (cardName.length < 2) {
-                showError('cardNameError', 'Nome é obrigatório');
-                isValid = false;
-            } else {
-                hideError('cardNameError');
-            }
-            
-            // Expiry validation
-            const expiryMonth = document.getElementById('expiryMonth').value;
-            const expiryYear = document.getElementById('expiryYear').value;
-            
-            if (!expiryMonth) {
-                showError('expiryMonthError', 'Mês é obrigatório');
-                isValid = false;
-            } else {
-                hideError('expiryMonthError');
-            }
-            
-            if (!expiryYear) {
-                showError('expiryYearError', 'Ano é obrigatório');
-                isValid = false;
-            } else {
-                hideError('expiryYearError');
-            }
-            
-            // CVV validation
-            const cvv = document.getElementById('cvv').value;
-            if (cvv.length < 3) {
-                showError('cvvError', 'CVV deve ter 3 ou 4 dígitos');
-                isValid = false;
-            } else {
-                hideError('cvvError');
-            }
-            
-            return isValid;
+
+        // Expiry validation
+        const expiryMonth = document.getElementById("expiryMonth").value;
+        const expiryYear = document.getElementById("expiryYear").value;
+
+        if (!expiryMonth) {
+          showError("expiryMonthError", "Mês é obrigatório");
+          isValid = false;
+        } else {
+          hideError("expiryMonthError");
         }
-        
-        function showError(elementId, message) {
-            const errorElement = document.getElementById(elementId);
-            errorElement.textContent = message;
-            errorElement.classList.remove('hidden');
+
+        if (!expiryYear) {
+          showError("expiryYearError", "Ano é obrigatório");
+          isValid = false;
+        } else {
+          hideError("expiryYearError");
         }
-        
-        function hideError(elementId) {
-            const errorElement = document.getElementById(elementId);
-            errorElement.classList.add('hidden');
+
+        // CVV validation
+        const cvv = document.getElementById("cvv").value;
+        if (cvv.length < 3) {
+          showError("cvvError", "CVV deve ter 3 ou 4 dígitos");
+          isValid = false;
+        } else {
+          hideError("cvvError");
         }
-        
-        // Handle installment selection
-        function setupInstallments() {
-            const options = document.querySelectorAll('.installment-option');
-            
-            options.forEach(option => {
-                option.addEventListener('click', () => {
-                    options.forEach(o => o.classList.remove('selected'));
-                    option.classList.add('selected');
-                    selectedInstallments = parseInt(option.dataset.installments);
-                });
-            });
-        }
-        
-        // Handle save card checkbox
-        function setupSaveCard() {
-            const checkbox = document.getElementById('saveCard');
-            
-            checkbox.addEventListener('click', () => {
-                saveCardChecked = !saveCardChecked;
-                
-                if (saveCardChecked) {
-                    checkbox.classList.add('checked');
-                } else {
-                    checkbox.classList.remove('checked');
-                }
-            });
-        }
-        
-        // Handle form submission
-        function setupForm() {
-            const form = document.getElementById('cardForm');
-            const cardNumberInput = document.getElementById('cardNumber');
-            const cvvInput = document.getElementById('cvv');
-            
-            // Card number formatting and validation
-            cardNumberInput.addEventListener('input', (e) => {
-                const formatted = formatCardNumber(e.target.value);
-                e.target.value = formatted;
-                
-                const cardType = detectCardType(formatted);
-                updateCardIcon(cardType);
-            });
-            
-            // CVV numeric only
-            cvvInput.addEventListener('input', (e) => {
-                e.target.value = e.target.value.replace(/\D/g, '');
-            });
-            
-            // Form submission
-            form.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                
-                if (!validateForm()) {
-                    return;
-                }
-                
-                // Show processing overlay
-                document.getElementById('processingOverlay').classList.remove('hidden');
-                
-                // Simulate payment processing
-                try {
-                    await new Promise(resolve => setTimeout(resolve, 3000));
-                    
-                    // 80% success rate
-                    if (Math.random() > 0.2) {
-                        showToast('Pagamento aprovado!', 'success');
-                        setTimeout(() => {
-                            window.location.href = 'pedido-confirmado.html';
-                        }, 1500);
-                    } else {
-                        document.getElementById('processingOverlay').classList.add('hidden');
-                        showToast('Pagamento negado. Verifique os dados do cartão.', 'error');
-                    }
-                } catch (error) {
-                    document.getElementById('processingOverlay').classList.add('hidden');
-                    showToast('Erro ao processar pagamento. Tente novamente.', 'error');
-                }
-            });
-        }
-        
-        // Toast function
-        function showToast(message, type = 'success') {
-            const toast = document.getElementById('toast');
-            const toastMessage = document.getElementById('toastMessage');
-            const toastIcon = document.getElementById('toastIcon');
-            
-            toastMessage.textContent = message;
-            
-            // Update icon based on type
-            if (type === 'success') {
-                toastIcon.innerHTML = '<path d="M9 12l2 2 4-4" /><circle cx="12" cy="12" r="10" />';
-                toastIcon.className = 'icon text-green-600';
-            } else if (type === 'error') {
-                toastIcon.innerHTML = '<circle cx="12" cy="12" r="10" /><line x1="15" x2="9" y1="9" y2="15" /><line x1="9" x2="15" y1="9" y2="15" />';
-                toastIcon.className = 'icon text-red-600';
-            }
-            
-            toast.className = `toast toast-${type}`;
-            toast.classList.remove('hidden');
-            
-            setTimeout(() => {
-                toast.classList.add('show');
-            }, 100);
-            
-            setTimeout(() => {
-                toast.classList.remove('show');
-                setTimeout(() => {
-                    toast.classList.add('hidden');
-                }, 300);
-            }, 3000);
-        }
-        
-        // Initialize page
-        document.addEventListener('DOMContentLoaded', () => {
-            populateYears();
-            setupInstallments();
-            setupSaveCard();
-            setupForm();
+
+        return isValid;
+      }
+
+      function showError(elementId, message) {
+        const errorElement = document.getElementById(elementId);
+        errorElement.textContent = message;
+        errorElement.classList.remove("hidden");
+      }
+
+      function hideError(elementId) {
+        const errorElement = document.getElementById(elementId);
+        errorElement.classList.add("hidden");
+      }
+
+      // Handle installment selection
+      function setupInstallments() {
+        const options = document.querySelectorAll(".installment-option");
+
+        options.forEach((option) => {
+          option.addEventListener("click", () => {
+            options.forEach((o) => o.classList.remove("selected"));
+            option.classList.add("selected");
+            selectedInstallments = parseInt(option.dataset.installments);
+          });
         });
+      }
+
+      // Handle save card checkbox
+      function setupSaveCard() {
+        const checkbox = document.getElementById("saveCard");
+
+        checkbox.addEventListener("click", () => {
+          saveCardChecked = !saveCardChecked;
+
+          if (saveCardChecked) {
+            checkbox.classList.add("checked");
+          } else {
+            checkbox.classList.remove("checked");
+          }
+        });
+      }
+
+      // Handle form submission
+      function setupForm() {
+        const form = document.getElementById("cardForm");
+        const cardNumberInput = document.getElementById("cardNumber");
+        const cvvInput = document.getElementById("cvv");
+
+        // Card number formatting and validation
+        cardNumberInput.addEventListener("input", (e) => {
+          const formatted = formatCardNumber(e.target.value);
+          e.target.value = formatted;
+
+          const cardType = detectCardType(formatted);
+          updateCardIcon(cardType);
+        });
+
+        // CVV numeric only
+        cvvInput.addEventListener("input", (e) => {
+          e.target.value = e.target.value.replace(/\D/g, "");
+        });
+
+        // Form submission
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          if (!validateForm()) {
+            return;
+          }
+
+          // Show processing overlay
+          document
+            .getElementById("processingOverlay")
+            .classList.remove("hidden");
+
+          // Simulate payment processing
+          try {
+            await new Promise((resolve) => setTimeout(resolve, 3000));
+
+            // 80% success rate
+            if (Math.random() > 0.2) {
+              showToast("Pagamento aprovado!", "success");
+              setTimeout(() => {
+                window.location.href = "pedido-confirmado.html";
+              }, 1500);
+            } else {
+              document
+                .getElementById("processingOverlay")
+                .classList.add("hidden");
+              showToast(
+                "Pagamento negado. Verifique os dados do cartão.",
+                "error",
+              );
+            }
+          } catch (error) {
+            document
+              .getElementById("processingOverlay")
+              .classList.add("hidden");
+            showToast("Erro ao processar pagamento. Tente novamente.", "error");
+          }
+        });
+      }
+
+      // Toast function
+      function showToast(message, type = "success") {
+        const toast = document.getElementById("toast");
+        const toastMessage = document.getElementById("toastMessage");
+        const toastIcon = document.getElementById("toastIcon");
+
+        toastMessage.textContent = message;
+
+        // Update icon based on type
+        if (type === "success") {
+          toastIcon.innerHTML =
+            '<path d="M9 12l2 2 4-4" /><circle cx="12" cy="12" r="10" />';
+          toastIcon.className = "icon text-green-600";
+        } else if (type === "error") {
+          toastIcon.innerHTML =
+            '<circle cx="12" cy="12" r="10" /><line x1="15" x2="9" y1="9" y2="15" /><line x1="9" x2="15" y1="9" y2="15" />';
+          toastIcon.className = "icon text-red-600";
+        }
+
+        toast.className = `toast toast-${type}`;
+        toast.classList.remove("hidden");
+
+        setTimeout(() => {
+          toast.classList.add("show");
+        }, 100);
+
+        setTimeout(() => {
+          toast.classList.remove("show");
+          setTimeout(() => {
+            toast.classList.add("hidden");
+          }, 300);
+        }, 3000);
+      }
+
+      // Initialize page
+      document.addEventListener("DOMContentLoaded", () => {
+        populateYears();
+        setupInstallments();
+        setupSaveCard();
+        setupForm();
+      });
     </script>
-</body>
+  </body>
 </html>
