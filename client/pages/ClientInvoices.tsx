@@ -65,105 +65,135 @@ export default function ClientInvoices() {
       numero: "FAT-2024-001",
       projeto: "Desenvolvimento de App Mobile",
       freelancer: "Ana Silva",
-      valor: 2500.00,
+      valor: 2500.0,
       status: "pendente",
       dataVencimento: "2024-01-15",
       dataEmissao: "2024-01-01",
       descricao: "Primeira etapa do desenvolvimento - UI/UX Design",
       servicos: [
-        { descricao: "Design de interfaces", quantidade: 1, valorUnitario: 1500.00 },
-        { descricao: "Prototipagem", quantidade: 1, valorUnitario: 1000.00 }
-      ]
+        {
+          descricao: "Design de interfaces",
+          quantidade: 1,
+          valorUnitario: 1500.0,
+        },
+        { descricao: "Prototipagem", quantidade: 1, valorUnitario: 1000.0 },
+      ],
     },
     {
       id: 2,
       numero: "FAT-2024-002",
       projeto: "Design de Logo e Identidade Visual",
       freelancer: "Carlos Oliveira",
-      valor: 800.00,
+      valor: 800.0,
       status: "pago",
       dataVencimento: "2024-01-10",
       dataEmissao: "2023-12-26",
       dataPagamento: "2024-01-08",
       descricao: "Desenvolvimento completo da identidade visual",
       servicos: [
-        { descricao: "Criação de logo", quantidade: 1, valorUnitario: 500.00 },
-        { descricao: "Manual de marca", quantidade: 1, valorUnitario: 300.00 }
-      ]
+        { descricao: "Criação de logo", quantidade: 1, valorUnitario: 500.0 },
+        { descricao: "Manual de marca", quantidade: 1, valorUnitario: 300.0 },
+      ],
     },
     {
       id: 3,
       numero: "FAT-2024-003",
       projeto: "Criação de Site WordPress",
       freelancer: "João Santos",
-      valor: 1500.00,
+      valor: 1500.0,
       status: "vencido",
       dataVencimento: "2023-12-20",
       dataEmissao: "2023-12-05",
       descricao: "Desenvolvimento e configuração do site",
       servicos: [
-        { descricao: "Desenvolvimento WordPress", quantidade: 1, valorUnitario: 1200.00 },
-        { descricao: "Configuração de hospedagem", quantidade: 1, valorUnitario: 300.00 }
-      ]
+        {
+          descricao: "Desenvolvimento WordPress",
+          quantidade: 1,
+          valorUnitario: 1200.0,
+        },
+        {
+          descricao: "Configuração de hospedagem",
+          quantidade: 1,
+          valorUnitario: 300.0,
+        },
+      ],
     },
     {
       id: 4,
       numero: "FAT-2024-004",
       projeto: "Consultoria em Marketing Digital",
       freelancer: "Maria Costa",
-      valor: 600.00,
+      valor: 600.0,
       status: "pendente",
       dataVencimento: "2024-01-25",
       dataEmissao: "2024-01-10",
       descricao: "Consultoria estratégica em marketing digital",
       servicos: [
-        { descricao: "Análise de mercado", quantidade: 8, valorUnitario: 75.00 }
-      ]
-    }
+        { descricao: "Análise de mercado", quantidade: 8, valorUnitario: 75.0 },
+      ],
+    },
   ];
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "pago": return "bg-green-100 text-green-800";
-      case "pendente": return "bg-yellow-100 text-yellow-800";
-      case "vencido": return "bg-red-100 text-red-800";
-      case "cancelado": return "bg-gray-100 text-gray-800";
-      default: return "bg-gray-100 text-gray-800";
+      case "pago":
+        return "bg-green-100 text-green-800";
+      case "pendente":
+        return "bg-yellow-100 text-yellow-800";
+      case "vencido":
+        return "bg-red-100 text-red-800";
+      case "cancelado":
+        return "bg-gray-100 text-gray-800";
+      default:
+        return "bg-gray-100 text-gray-800";
     }
   };
 
   const getStatusIcon = (status: string) => {
     switch (status) {
-      case "pago": return <CheckCircle className="w-4 h-4" />;
-      case "pendente": return <Clock className="w-4 h-4" />;
-      case "vencido": return <AlertCircle className="w-4 h-4" />;
-      case "cancelado": return <AlertCircle className="w-4 h-4" />;
-      default: return <FileText className="w-4 h-4" />;
+      case "pago":
+        return <CheckCircle className="w-4 h-4" />;
+      case "pendente":
+        return <Clock className="w-4 h-4" />;
+      case "vencido":
+        return <AlertCircle className="w-4 h-4" />;
+      case "cancelado":
+        return <AlertCircle className="w-4 h-4" />;
+      default:
+        return <FileText className="w-4 h-4" />;
     }
   };
 
   const formatCurrency = (value: number) => {
-    return new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL'
+    return new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
     }).format(value);
   };
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('pt-BR');
+    return new Date(dateString).toLocaleDateString("pt-BR");
   };
 
-  const filteredFaturas = faturas.filter(fatura => {
-    const matchesSearch = fatura.numero.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         fatura.projeto.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         fatura.freelancer.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesStatus = statusFilter === "todos" || fatura.status === statusFilter;
+  const filteredFaturas = faturas.filter((fatura) => {
+    const matchesSearch =
+      fatura.numero.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      fatura.projeto.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      fatura.freelancer.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesStatus =
+      statusFilter === "todos" || fatura.status === statusFilter;
     return matchesSearch && matchesStatus;
   });
 
-  const totalPendente = faturas.filter(f => f.status === "pendente").reduce((sum, f) => sum + f.valor, 0);
-  const totalPago = faturas.filter(f => f.status === "pago").reduce((sum, f) => sum + f.valor, 0);
-  const totalVencido = faturas.filter(f => f.status === "vencido").reduce((sum, f) => sum + f.valor, 0);
+  const totalPendente = faturas
+    .filter((f) => f.status === "pendente")
+    .reduce((sum, f) => sum + f.valor, 0);
+  const totalPago = faturas
+    .filter((f) => f.status === "pago")
+    .reduce((sum, f) => sum + f.valor, 0);
+  const totalVencido = faturas
+    .filter((f) => f.status === "vencido")
+    .reduce((sum, f) => sum + f.valor, 0);
 
   const handlePayment = (fatura: Invoice) => {
     alert(`Redirecionando para pagamento da fatura ${fatura.numero}...`);
@@ -220,10 +250,10 @@ export default function ClientInvoices() {
               <div className="flex items-center">
                 <Clock className="h-8 w-8 text-yellow-600" />
                 <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">
-                    Pendentes
+                  <p className="text-sm font-medium text-gray-600">Pendentes</p>
+                  <p className="text-2xl font-bold text-gray-900">
+                    {formatCurrency(totalPendente)}
                   </p>
-                  <p className="text-2xl font-bold text-gray-900">{formatCurrency(totalPendente)}</p>
                 </div>
               </div>
             </CardContent>
@@ -234,10 +264,10 @@ export default function ClientInvoices() {
               <div className="flex items-center">
                 <CheckCircle className="h-8 w-8 text-green-600" />
                 <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">
-                    Pagas
+                  <p className="text-sm font-medium text-gray-600">Pagas</p>
+                  <p className="text-2xl font-bold text-gray-900">
+                    {formatCurrency(totalPago)}
                   </p>
-                  <p className="text-2xl font-bold text-gray-900">{formatCurrency(totalPago)}</p>
                 </div>
               </div>
             </CardContent>
@@ -248,10 +278,10 @@ export default function ClientInvoices() {
               <div className="flex items-center">
                 <AlertCircle className="h-8 w-8 text-red-600" />
                 <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">
-                    Vencidas
+                  <p className="text-sm font-medium text-gray-600">Vencidas</p>
+                  <p className="text-2xl font-bold text-gray-900">
+                    {formatCurrency(totalVencido)}
                   </p>
-                  <p className="text-2xl font-bold text-gray-900">{formatCurrency(totalVencido)}</p>
                 </div>
               </div>
             </CardContent>
@@ -262,10 +292,10 @@ export default function ClientInvoices() {
               <div className="flex items-center">
                 <DollarSign className="h-8 w-8 text-blue-600" />
                 <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">
-                    Total
+                  <p className="text-sm font-medium text-gray-600">Total</p>
+                  <p className="text-2xl font-bold text-gray-900">
+                    {formatCurrency(totalPendente + totalPago + totalVencido)}
                   </p>
-                  <p className="text-2xl font-bold text-gray-900">{formatCurrency(totalPendente + totalPago + totalVencido)}</p>
                 </div>
               </div>
             </CardContent>
@@ -278,8 +308,8 @@ export default function ClientInvoices() {
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="relative flex-1">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-                <Input 
-                  placeholder="Buscar por número, projeto ou freelancer..." 
+                <Input
+                  placeholder="Buscar por número, projeto ou freelancer..."
                   className="pl-10"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
@@ -317,11 +347,12 @@ export default function ClientInvoices() {
                       <Badge className={getStatusColor(fatura.status)}>
                         <span className="flex items-center gap-1">
                           {getStatusIcon(fatura.status)}
-                          {fatura.status.charAt(0).toUpperCase() + fatura.status.slice(1)}
+                          {fatura.status.charAt(0).toUpperCase() +
+                            fatura.status.slice(1)}
                         </span>
                       </Badge>
                     </div>
-                    
+
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm text-gray-600">
                       <div>
                         <p className="font-medium">Projeto:</p>
@@ -333,26 +364,36 @@ export default function ClientInvoices() {
                       </div>
                       <div>
                         <p className="font-medium">Valor:</p>
-                        <p className="text-lg font-bold text-gray-900">{formatCurrency(fatura.valor)}</p>
+                        <p className="text-lg font-bold text-gray-900">
+                          {formatCurrency(fatura.valor)}
+                        </p>
                       </div>
                       <div>
                         <p className="font-medium">Vencimento:</p>
-                        <p className={fatura.status === "vencido" ? "text-red-600 font-medium" : ""}>
+                        <p
+                          className={
+                            fatura.status === "vencido"
+                              ? "text-red-600 font-medium"
+                              : ""
+                          }
+                        >
                           {formatDate(fatura.dataVencimento)}
                         </p>
                       </div>
                     </div>
 
                     <div className="mt-3">
-                      <p className="text-sm text-gray-600">{fatura.descricao}</p>
+                      <p className="text-sm text-gray-600">
+                        {fatura.descricao}
+                      </p>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-2 ml-4">
                     <Dialog>
                       <DialogTrigger asChild>
-                        <Button 
-                          variant="outline" 
+                        <Button
+                          variant="outline"
                           size="sm"
                           onClick={() => setSelectedInvoice(fatura)}
                         >
@@ -362,7 +403,9 @@ export default function ClientInvoices() {
                       </DialogTrigger>
                       <DialogContent className="max-w-2xl">
                         <DialogHeader>
-                          <DialogTitle>Detalhes da Fatura {selectedInvoice?.numero}</DialogTitle>
+                          <DialogTitle>
+                            Detalhes da Fatura {selectedInvoice?.numero}
+                          </DialogTitle>
                           <DialogDescription>
                             Informações completas da fatura
                           </DialogDescription>
@@ -371,19 +414,29 @@ export default function ClientInvoices() {
                           <div className="space-y-6">
                             <div className="grid grid-cols-2 gap-4">
                               <div>
-                                <p className="text-sm font-medium text-gray-600">Data de Emissão</p>
+                                <p className="text-sm font-medium text-gray-600">
+                                  Data de Emissão
+                                </p>
                                 <p>{formatDate(selectedInvoice.dataEmissao)}</p>
                               </div>
                               <div>
-                                <p className="text-sm font-medium text-gray-600">Data de Vencimento</p>
-                                <p>{formatDate(selectedInvoice.dataVencimento)}</p>
+                                <p className="text-sm font-medium text-gray-600">
+                                  Data de Vencimento
+                                </p>
+                                <p>
+                                  {formatDate(selectedInvoice.dataVencimento)}
+                                </p>
                               </div>
                               <div>
-                                <p className="text-sm font-medium text-gray-600">Projeto</p>
+                                <p className="text-sm font-medium text-gray-600">
+                                  Projeto
+                                </p>
                                 <p>{selectedInvoice.projeto}</p>
                               </div>
                               <div>
-                                <p className="text-sm font-medium text-gray-600">Freelancer</p>
+                                <p className="text-sm font-medium text-gray-600">
+                                  Freelancer
+                                </p>
                                 <p>{selectedInvoice.freelancer}</p>
                               </div>
                             </div>
@@ -394,27 +447,53 @@ export default function ClientInvoices() {
                                 <table className="w-full">
                                   <thead className="bg-gray-50">
                                     <tr>
-                                      <th className="text-left p-3 text-sm font-medium">Descrição</th>
-                                      <th className="text-right p-3 text-sm font-medium">Qtd</th>
-                                      <th className="text-right p-3 text-sm font-medium">Valor Unit.</th>
-                                      <th className="text-right p-3 text-sm font-medium">Total</th>
+                                      <th className="text-left p-3 text-sm font-medium">
+                                        Descrição
+                                      </th>
+                                      <th className="text-right p-3 text-sm font-medium">
+                                        Qtd
+                                      </th>
+                                      <th className="text-right p-3 text-sm font-medium">
+                                        Valor Unit.
+                                      </th>
+                                      <th className="text-right p-3 text-sm font-medium">
+                                        Total
+                                      </th>
                                     </tr>
                                   </thead>
                                   <tbody>
-                                    {selectedInvoice.servicos.map((servico, index) => (
-                                      <tr key={index} className="border-t">
-                                        <td className="p-3">{servico.descricao}</td>
-                                        <td className="p-3 text-right">{servico.quantidade}</td>
-                                        <td className="p-3 text-right">{formatCurrency(servico.valorUnitario)}</td>
-                                        <td className="p-3 text-right font-medium">
-                                          {formatCurrency(servico.quantidade * servico.valorUnitario)}
-                                        </td>
-                                      </tr>
-                                    ))}
+                                    {selectedInvoice.servicos.map(
+                                      (servico, index) => (
+                                        <tr key={index} className="border-t">
+                                          <td className="p-3">
+                                            {servico.descricao}
+                                          </td>
+                                          <td className="p-3 text-right">
+                                            {servico.quantidade}
+                                          </td>
+                                          <td className="p-3 text-right">
+                                            {formatCurrency(
+                                              servico.valorUnitario,
+                                            )}
+                                          </td>
+                                          <td className="p-3 text-right font-medium">
+                                            {formatCurrency(
+                                              servico.quantidade *
+                                                servico.valorUnitario,
+                                            )}
+                                          </td>
+                                        </tr>
+                                      ),
+                                    )}
                                   </tbody>
                                   <tfoot className="bg-gray-50 border-t">
                                     <tr>
-                                      <td colSpan={3} className="p-3 font-medium">Total</td>
+                                      <td
+                                        colSpan={3}
+                                        className="p-3 font-medium"
+                                      >
+                                        Total
+                                      </td>
                                       <td className="p-3 text-right font-bold text-lg">
                                         {formatCurrency(selectedInvoice.valor)}
                                       </td>
@@ -427,7 +506,8 @@ export default function ClientInvoices() {
                             {selectedInvoice.dataPagamento && (
                               <div className="bg-green-50 p-4 rounded-lg">
                                 <p className="text-sm font-medium text-green-800">
-                                  ✓ Pago em {formatDate(selectedInvoice.dataPagamento)}
+                                  ✓ Pago em{" "}
+                                  {formatDate(selectedInvoice.dataPagamento)}
                                 </p>
                               </div>
                             )}
@@ -442,7 +522,7 @@ export default function ClientInvoices() {
                     </Button>
 
                     {fatura.status === "pendente" && (
-                      <Button 
+                      <Button
                         size="sm"
                         onClick={() => handlePayment(fatura)}
                         className="bg-green-600 hover:bg-green-700"
@@ -453,7 +533,7 @@ export default function ClientInvoices() {
                     )}
 
                     {fatura.status === "vencido" && (
-                      <Button 
+                      <Button
                         size="sm"
                         onClick={() => handlePayment(fatura)}
                         className="bg-red-600 hover:bg-red-700"
