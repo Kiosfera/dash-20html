@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faturas e Pagamentos - TalentHub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#e5e7eb',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M11 3L13 10L11 17L7 10L11 3Z"/>
+                        </svg>
+                    </div>
+                    <span class="text-xl font-bold text-gray-900">TalentHub</span>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <button class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">
+                        Dashboard
+                    </button>
+                    <button class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium flex items-center">
+                        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"/>
+                        </svg>
+                        Mensagens
+                    </button>
+                    <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
+                        <span class="text-sm font-medium text-gray-700">CL</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-6 py-8">
+        <!-- Page Header -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">
+                Faturas e Pagamentos
+            </h1>
+            <p class="text-gray-600">
+                Gerencie suas faturas e realize pagamentos
+            </p>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white rounded-lg border border-gray-200 p-6">
+                <div class="flex items-center">
+                    <div class="h-8 w-8 text-yellow-600">
+                        <svg fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">Pendentes</p>
+                        <p class="text-2xl font-bold text-gray-900">R$ 3.100,00</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg border border-gray-200 p-6">
+                <div class="flex items-center">
+                    <div class="h-8 w-8 text-green-600">
+                        <svg fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">Pagas</p>
+                        <p class="text-2xl font-bold text-gray-900">R$ 800,00</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg border border-gray-200 p-6">
+                <div class="flex items-center">
+                    <div class="h-8 w-8 text-red-600">
+                        <svg fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">Vencidas</p>
+                        <p class="text-2xl font-bold text-gray-900">R$ 1.500,00</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg border border-gray-200 p-6">
+                <div class="flex items-center">
+                    <div class="h-8 w-8 text-blue-600">
+                        <svg fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"/>
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">Total</p>
+                        <p class="text-2xl font-bold text-gray-900">R$ 5.400,00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6 mb-6">
+            <div class="flex flex-col sm:flex-row gap-4">
+                <div class="relative flex-1">
+                    <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/>
+                    </svg>
+                    <input type="text" placeholder="Buscar por número, projeto ou freelancer..." class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                </div>
+                <select class="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                    <option value="todos">Todos</option>
+                    <option value="pendente">Pendente</option>
+                    <option value="pago">Pago</option>
+                    <option value="vencido">Vencido</option>
+                    <option value="cancelado">Cancelado</option>
+                </select>
+                <button class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent flex items-center">
+                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clip-rule="evenodd"/>
+                    </svg>
+                    Filtros
+                </button>
+            </div>
+        </div>
+
+        <!-- Invoices List -->
+        <div class="space-y-4">
+            <!-- Invoice 1 - Pendente -->
+            <div class="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow">
+                <div class="flex items-center justify-between">
+                    <div class="flex-1">
+                        <div class="flex items-center gap-3 mb-2">
+                            <h3 class="text-lg font-semibold">FAT-2024-001</h3>
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                                </svg>
+                                Pendente
+                            </span>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm text-gray-600">
+                            <div>
+                                <p class="font-medium">Projeto:</p>
+                                <p>Desenvolvimento de App Mobile</p>
+                            </div>
+                            <div>
+                                <p class="font-medium">Freelancer:</p>
+                                <p>Ana Silva</p>
+                            </div>
+                            <div>
+                                <p class="font-medium">Valor:</p>
+                                <p class="text-lg font-bold text-gray-900">R$ 2.500,00</p>
+                            </div>
+                            <div>
+                                <p class="font-medium">Vencimento:</p>
+                                <p>15/01/2024</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-3">
+                            <p class="text-sm text-gray-600">Primeira etapa do desenvolvimento - UI/UX Design</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-2 ml-4">
+                        <button class="px-3 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent flex items-center">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+                                <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
+                            </svg>
+                            Ver Detalhes
+                        </button>
+                        
+                        <button class="px-3 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent flex items-center">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1v-2zM3 3a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V3zm0 6a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V9z" clip-rule="evenodd"/>
+                            </svg>
+                            PDF
+                        </button>
+
+                        <button onclick="handlePayment('FAT-2024-001')" class="px-3 py-2 bg-green-600 text-white rounded-md text-sm font-medium hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent flex items-center">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"/>
+                                <path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clip-rule="evenodd"/>
+                            </svg>
+                            Pagar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Invoice 2 - Pago -->
+            <div class="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow">
+                <div class="flex items-center justify-between">
+                    <div class="flex-1">
+                        <div class="flex items-center gap-3 mb-2">
+                            <h3 class="text-lg font-semibold">FAT-2024-002</h3>
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                </svg>
+                                Pago
+                            </span>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm text-gray-600">
+                            <div>
+                                <p class="font-medium">Projeto:</p>
+                                <p>Design de Logo e Identidade Visual</p>
+                            </div>
+                            <div>
+                                <p class="font-medium">Freelancer:</p>
+                                <p>Carlos Oliveira</p>
+                            </div>
+                            <div>
+                                <p class="font-medium">Valor:</p>
+                                <p class="text-lg font-bold text-gray-900">R$ 800,00</p>
+                            </div>
+                            <div>
+                                <p class="font-medium">Pago em:</p>
+                                <p class="text-green-600 font-medium">08/01/2024</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-3">
+                            <p class="text-sm text-gray-600">Desenvolvimento completo da identidade visual</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-2 ml-4">
+                        <button class="px-3 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent flex items-center">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+                                <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
+                            </svg>
+                            Ver Detalhes
+                        </button>
+                        
+                        <button class="px-3 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent flex items-center">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1v-2zM3 3a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V3zm0 6a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V9z" clip-rule="evenodd"/>
+                            </svg>
+                            PDF
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Invoice 3 - Vencida -->
+            <div class="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow">
+                <div class="flex items-center justify-between">
+                    <div class="flex-1">
+                        <div class="flex items-center gap-3 mb-2">
+                            <h3 class="text-lg font-semibold">FAT-2024-003</h3>
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                                </svg>
+                                Vencida
+                            </span>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm text-gray-600">
+                            <div>
+                                <p class="font-medium">Projeto:</p>
+                                <p>Criação de Site WordPress</p>
+                            </div>
+                            <div>
+                                <p class="font-medium">Freelancer:</p>
+                                <p>João Santos</p>
+                            </div>
+                            <div>
+                                <p class="font-medium">Valor:</p>
+                                <p class="text-lg font-bold text-gray-900">R$ 1.500,00</p>
+                            </div>
+                            <div>
+                                <p class="font-medium">Vencimento:</p>
+                                <p class="text-red-600 font-medium">20/12/2023</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-3">
+                            <p class="text-sm text-gray-600">Desenvolvimento e configuração do site</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-2 ml-4">
+                        <button class="px-3 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent flex items-center">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+                                <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
+                            </svg>
+                            Ver Detalhes
+                        </button>
+                        
+                        <button class="px-3 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent flex items-center">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1v-2zM3 3a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V3zm0 6a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V9z" clip-rule="evenodd"/>
+                            </svg>
+                            PDF
+                        </button>
+
+                        <button onclick="handlePayment('FAT-2024-003')" class="px-3 py-2 bg-red-600 text-white rounded-md text-sm font-medium hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent flex items-center">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"/>
+                                <path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clip-rule="evenodd"/>
+                            </svg>
+                            Pagar Agora
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Invoice 4 - Pendente -->
+            <div class="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow">
+                <div class="flex items-center justify-between">
+                    <div class="flex-1">
+                        <div class="flex items-center gap-3 mb-2">
+                            <h3 class="text-lg font-semibold">FAT-2024-004</h3>
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                                </svg>
+                                Pendente
+                            </span>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm text-gray-600">
+                            <div>
+                                <p class="font-medium">Projeto:</p>
+                                <p>Consultoria em Marketing Digital</p>
+                            </div>
+                            <div>
+                                <p class="font-medium">Freelancer:</p>
+                                <p>Maria Costa</p>
+                            </div>
+                            <div>
+                                <p class="font-medium">Valor:</p>
+                                <p class="text-lg font-bold text-gray-900">R$ 600,00</p>
+                            </div>
+                            <div>
+                                <p class="font-medium">Vencimento:</p>
+                                <p>25/01/2024</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-3">
+                            <p class="text-sm text-gray-600">Consultoria estratégica em marketing digital</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-2 ml-4">
+                        <button class="px-3 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent flex items-center">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+                                <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
+                            </svg>
+                            Ver Detalhes
+                        </button>
+                        
+                        <button class="px-3 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent flex items-center">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1v-2zM3 3a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V3zm0 6a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V9z" clip-rule="evenodd"/>
+                            </svg>
+                            PDF
+                        </button>
+
+                        <button onclick="handlePayment('FAT-2024-004')" class="px-3 py-2 bg-green-600 text-white rounded-md text-sm font-medium hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent flex items-center">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"/>
+                                <path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clip-rule="evenodd"/>
+                            </svg>
+                            Pagar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Detalhes da Fatura (Hidden por padrão) -->
+    <div id="invoiceModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
+        <div class="relative top-20 mx-auto p-5 border w-11/12 md:w-3/4 lg:w-1/2 shadow-lg rounded-md bg-white">
+            <div class="mt-3">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold text-gray-900" id="modalTitle">Detalhes da Fatura</h3>
+                    <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <p class="text-sm font-medium text-gray-600">Data de Emissão</p>
+                            <p id="modalEmissionDate">01/01/2024</p>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium text-gray-600">Data de Vencimento</p>
+                            <p id="modalDueDate">15/01/2024</p>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium text-gray-600">Projeto</p>
+                            <p id="modalProject">Desenvolvimento de App Mobile</p>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium text-gray-600">Freelancer</p>
+                            <p id="modalFreelancer">Ana Silva</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="font-medium mb-3">Serviços</h4>
+                        <div class="border rounded-lg overflow-hidden">
+                            <table class="w-full">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="text-left p-3 text-sm font-medium">Descrição</th>
+                                        <th class="text-right p-3 text-sm font-medium">Qtd</th>
+                                        <th class="text-right p-3 text-sm font-medium">Valor Unit.</th>
+                                        <th class="text-right p-3 text-sm font-medium">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="modalServicesTable">
+                                    <tr class="border-t">
+                                        <td class="p-3">Design de interfaces</td>
+                                        <td class="p-3 text-right">1</td>
+                                        <td class="p-3 text-right">R$ 1.500,00</td>
+                                        <td class="p-3 text-right font-medium">R$ 1.500,00</td>
+                                    </tr>
+                                    <tr class="border-t">
+                                        <td class="p-3">Prototipagem</td>
+                                        <td class="p-3 text-right">1</td>
+                                        <td class="p-3 text-right">R$ 1.000,00</td>
+                                        <td class="p-3 text-right font-medium">R$ 1.000,00</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot class="bg-gray-50 border-t">
+                                    <tr>
+                                        <td colspan="3" class="p-3 font-medium">Total</td>
+                                        <td class="p-3 text-right font-bold text-lg" id="modalTotal">R$ 2.500,00</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function handlePayment(invoiceNumber) {
+            alert(`Redirecionando para pagamento da fatura ${invoiceNumber}...`);
+            // Aqui você integraria com um gateway de pagamento real
+        }
+
+        function openModal(invoiceData) {
+            document.getElementById('invoiceModal').classList.remove('hidden');
+            // Atualizar os dados do modal com as informações da fatura
+        }
+
+        function closeModal() {
+            document.getElementById('invoiceModal').classList.add('hidden');
+        }
+
+        // Fechar modal ao clicar fora dele
+        window.onclick = function(event) {
+            const modal = document.getElementById('invoiceModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Funcionalidade de filtro
+        const searchInput = document.querySelector('input[type="text"]');
+        const statusSelect = document.querySelector('select');
+        
+        function filterInvoices() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const statusFilter = statusSelect.value;
+            const invoices = document.querySelectorAll('.space-y-4 > div');
+            
+            invoices.forEach(invoice => {
+                const text = invoice.textContent.toLowerCase();
+                const matchesSearch = text.includes(searchTerm);
+                const invoiceStatus = invoice.querySelector('.inline-flex').textContent.toLowerCase().trim();
+                const matchesStatus = statusFilter === 'todos' || invoiceStatus.includes(statusFilter);
+                
+                if (matchesSearch && matchesStatus) {
+                    invoice.style.display = 'block';
+                } else {
+                    invoice.style.display = 'none';
+                }
+            });
+        }
+
+        searchInput.addEventListener('input', filterInvoices);
+        statusSelect.addEventListener('change', filterInvoices);
+    </script>
+</body>
+</html>
