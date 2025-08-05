@@ -108,6 +108,12 @@ export default function ClientDashboard() {
             </Link>
 
             <div className="flex items-center space-x-4">
+              <Link to="/faturas">
+                <Button variant="ghost" size="sm">
+                  <FileText className="w-4 h-4 mr-2" />
+                  Faturas
+                </Button>
+              </Link>
               <Link to="/mensagens">
                 <Button variant="ghost" size="sm">
                   <MessageSquare className="w-4 h-4 mr-2" />
