@@ -16,10 +16,11 @@ import CheckoutBoleto from "./pages/CheckoutBoleto";
 import PedidoConfirmado from "./pages/PedidoConfirmado";
 import Login from "./pages/Login";
 import Cadastro from "./pages/Cadastro";
+import ClientInvoices from "./pages/ClientInvoices";
 import NotFound from "./pages/NotFound";
+import { createRoot } from "react-dom/client";
 
 const queryClient = new QueryClient();
-
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
@@ -37,7 +38,9 @@ export default function App() {
             <Route path="/criar-projeto" element={<CreateProject />} />
             <Route path="/mensagens" element={<Messages />} />
             <Route path="/completar-perfil" element={<CompleteProfile />} />
-            <Route path="/checkout" element={<Checkout />} />
+              <Route path="/faturas" element={<ClientInvoices />} />
+
+              <Route path="/checkout" element={<Checkout />} />
             <Route path="/checkout/pix" element={<CheckoutPix />} />
             <Route path="/checkout/cartao" element={<CheckoutCartao />} />
             <Route path="/checkout/boleto" element={<CheckoutBoleto />} />
@@ -52,3 +55,4 @@ export default function App() {
     </QueryClientProvider>
   );
 }
+createRoot(document.getElementById("root")!).render(<App />);
