@@ -1,0 +1,789 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pagamento via Boleto - Homeflip</title>
+    <link rel="stylesheet" href="checkout-base.css" />
+    <style>
+      .step-number {
+        background-color: var(--primary);
+        color: white;
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        font-weight: bold;
+        flex-shrink: 0;
+      }
+
+      .boleto-code {
+        background-color: #f9fafb;
+        border: 1px solid #e5e7eb;
+        border-radius: var(--radius);
+        padding: var(--spacing-4);
+        font-family: "Courier New", monospace;
+        font-size: 1.125rem;
+        word-break: break-all;
+        user-select: all;
+        cursor: text;
+        text-align: center;
+        letter-spacing: 1px;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .error-message {
+        color: var(--destructive);
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+      }
+
+      .success-state {
+        animation: fadeInUp 0.5s ease-out;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .action-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 1rem;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background-color: white;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        text-decoration: none;
+        color: var(--foreground);
+      }
+
+      .action-button:hover {
+        background-color: var(--secondary);
+        border-color: var(--primary);
+      }
+
+      .info-card {
+        background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+        border: 1px solid #bfdbfe;
+        border-radius: var(--radius-lg);
+        padding: 1rem;
+      }
+
+      .warning-card {
+        background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
+        border: 1px solid #fed7aa;
+        border-radius: var(--radius-lg);
+        padding: 1rem;
+      }
+
+      .cpf-input {
+        position: relative;
+      }
+
+      .generating-overlay {
+        position: fixed;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+      }
+
+      .generating-card {
+        background-color: white;
+        border-radius: var(--radius-lg);
+        padding: 2rem;
+        text-align: center;
+        box-shadow: var(--shadow-lg);
+        max-width: 400px;
+        margin: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="min-h-screen bg-gray-50 py-8">
+      <div class="container">
+        <!-- Header -->
+        <div class="mb-8">
+          <button
+            onclick="window.location.href='checkout.html'"
+            class="btn btn-ghost mb-4 flex items-center gap-2"
+          >
+            <svg class="icon icon-sm" viewBox="0 0 24 24">
+              <path d="m12 19-7-7 7-7" />
+              <path d="M19 12H5" />
+            </svg>
+            Voltar
+          </button>
+          <h1 class="text-3xl font-bold text-gray-900">Pagamento via Boleto</h1>
+          <p class="text-gray-600 mt-2" id="pageSubtitle">
+            Preencha seus dados para gerar o boleto
+          </p>
+        </div>
+
+        <!-- Form State -->
+        <div id="formState" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <!-- Boleto Form -->
+          <div class="lg:col-span-2">
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title flex items-center gap-2">
+                  <svg class="icon" viewBox="0 0 24 24">
+                    <path
+                      d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"
+                    />
+                    <polyline points="14,2 14,8 20,8" />
+                  </svg>
+                  Gerar Boleto Bancário
+                </h2>
+                <p class="card-description">
+                  Informe seus dados para gerar o boleto de pagamento
+                </p>
+              </div>
+              <div class="card-content">
+                <form id="boletoForm" class="space-y-6">
+                  <!-- CPF -->
+                  <div class="form-group">
+                    <label for="cpf" class="label">CPF</label>
+                    <input
+                      type="text"
+                      id="cpf"
+                      class="input"
+                      placeholder="000.000.000-00"
+                      maxlength="14"
+                      required
+                    />
+                    <div id="cpfError" class="error-message hidden"></div>
+                  </div>
+
+                  <!-- Email -->
+                  <div class="form-group">
+                    <label for="email" class="label">Email</label>
+                    <input
+                      type="email"
+                      id="email"
+                      class="input"
+                      placeholder="seu@email.com"
+                      required
+                    />
+                    <div id="emailError" class="error-message hidden"></div>
+                    <p class="text-sm text-gray-600 mt-1">
+                      O boleto será enviado para este email
+                    </p>
+                  </div>
+
+                  <!-- Info -->
+                  <div class="info-card">
+                    <div class="flex items-start gap-3">
+                      <svg
+                        class="icon text-blue-600 mt-0.5"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"
+                        />
+                        <polyline points="14,2 14,8 20,8" />
+                      </svg>
+                      <div>
+                        <h4 class="font-medium text-blue-900">
+                          Sobre o Boleto Bancário
+                        </h4>
+                        <ul class="text-sm text-blue-700 mt-2 space-y-1">
+                          <li>• Vencimento em 3 dias úteis</li>
+                          <li>
+                            • Pode ser pago em qualquer banco, lotérica ou app
+                            bancário
+                          </li>
+                          <li>
+                            • Após o pagamento, a confirmação pode levar até 3
+                            dias úteis
+                          </li>
+                          <li>• Desconto de 2% no valor total</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    class="btn btn-primary w-full btn-lg flex items-center justify-center gap-2"
+                  >
+                    <svg class="icon icon-sm" viewBox="0 0 24 24">
+                      <path
+                        d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"
+                      />
+                      <polyline points="14,2 14,8 20,8" />
+                    </svg>
+                    Gerar Boleto
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- Order Summary -->
+          <div>
+            <div class="card sticky top-8">
+              <div class="card-header">
+                <h2 class="card-title">Resumo do Pedido</h2>
+              </div>
+              <div class="card-content space-y-4">
+                <div class="space-y-2">
+                  <div class="flex justify-between">
+                    <span>Subtotal</span>
+                    <span>R$ 299,90</span>
+                  </div>
+                  <div class="flex justify-between text-green-600">
+                    <span>Desconto</span>
+                    <span>-R$ 14,99</span>
+                  </div>
+                  <div class="flex justify-between text-green-600">
+                    <span>Desconto Boleto (2%)</span>
+                    <span>-R$ 5,70</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Frete</span>
+                    <span class="text-green-600">GRÁTIS</span>
+                  </div>
+                </div>
+
+                <div class="separator"></div>
+
+                <div class="flex justify-between font-semibold text-lg">
+                  <span>Total</span>
+                  <span>R$ 279,21</span>
+                </div>
+
+                <div class="bg-orange-50 p-4 rounded-lg">
+                  <div class="flex items-center gap-2 text-orange-700">
+                    <svg class="icon icon-sm" viewBox="0 0 24 24">
+                      <path
+                        d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"
+                      />
+                      <polyline points="14,2 14,8 20,8" />
+                    </svg>
+                    <span class="font-medium">Boleto Bancário</span>
+                  </div>
+                  <p class="text-sm text-orange-600 mt-1">
+                    Vencimento em 3 dias úteis • 2% de desconto
+                  </p>
+                </div>
+
+                <div class="space-y-2">
+                  <div class="flex items-center gap-2 text-sm text-gray-600">
+                    <svg
+                      class="icon icon-sm text-green-600"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M9 12l2 2 4-4" />
+                      <circle cx="12" cy="12" r="10" />
+                    </svg>
+                    <span>Pague em qualquer banco</span>
+                  </div>
+                  <div class="flex items-center gap-2 text-sm text-gray-600">
+                    <svg
+                      class="icon icon-sm text-green-600"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M9 12l2 2 4-4" />
+                      <circle cx="12" cy="12" r="10" />
+                    </svg>
+                    <span>Sem taxa adicional</span>
+                  </div>
+                  <div class="flex items-center gap-2 text-sm text-gray-600">
+                    <svg
+                      class="icon icon-sm text-green-600"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M9 12l2 2 4-4" />
+                      <circle cx="12" cy="12" r="10" />
+                    </svg>
+                    <span>Confirmação automática</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Success State -->
+        <div
+          id="successState"
+          class="hidden grid grid-cols-1 lg:grid-cols-3 gap-8"
+        >
+          <!-- Boleto Details -->
+          <div class="lg:col-span-2 space-y-6">
+            <!-- Success Message -->
+            <div class="card border-green-200 bg-green-50">
+              <div class="card-content pt-6">
+                <div class="flex items-center gap-3">
+                  <svg class="icon w-6 h-6 text-green-600" viewBox="0 0 24 24">
+                    <path d="M9 12l2 2 4-4" />
+                    <circle cx="12" cy="12" r="10" />
+                  </svg>
+                  <div>
+                    <h3 class="font-semibold text-green-900">
+                      Boleto gerado com sucesso!
+                    </h3>
+                    <p class="text-sm text-green-700">
+                      Você pode imprimir, baixar ou pagar online em qualquer
+                      banco
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Due Date Warning -->
+            <div class="warning-card">
+              <div class="flex items-center gap-3">
+                <svg class="icon w-6 h-6 text-orange-600" viewBox="0 0 24 24">
+                  <path
+                    d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"
+                  />
+                </svg>
+                <div>
+                  <h3 class="font-semibold text-orange-900">
+                    Atenção ao Vencimento
+                  </h3>
+                  <p class="text-sm text-orange-700">
+                    Vencimento: <span id="dueDate"></span> - Pague até esta data
+                    para garantir o processamento
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Boleto Code -->
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title flex items-center gap-2">
+                  <svg class="icon" viewBox="0 0 24 24">
+                    <path
+                      d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"
+                    />
+                    <polyline points="14,2 14,8 20,8" />
+                  </svg>
+                  Código de Barras
+                </h2>
+                <p class="card-description">
+                  Use este código para pagar em qualquer banco ou app bancário
+                </p>
+              </div>
+              <div class="card-content">
+                <div class="boleto-code" id="boletoCode">
+                  34191.09008 64000.000003 30000.009007 8 99770000027921
+                </div>
+                <button
+                  onclick="copyBoletoCode()"
+                  class="btn btn-outline w-full mt-4 flex items-center justify-center gap-2"
+                >
+                  <svg class="icon icon-sm" viewBox="0 0 24 24">
+                    <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                    <path
+                      d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"
+                    />
+                  </svg>
+                  Copiar Código de Barras
+                </button>
+              </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Ações do Boleto</h2>
+                <p class="card-description">
+                  Baixe, imprima ou visualize seu boleto
+                </p>
+              </div>
+              <div class="card-content">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <button onclick="downloadBoleto()" class="action-button">
+                    <svg class="icon icon-sm" viewBox="0 0 24 24">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                      <polyline points="7,10 12,15 17,10" />
+                      <line x1="12" x2="12" y1="15" y2="3" />
+                    </svg>
+                    Baixar PDF
+                  </button>
+                  <button onclick="printBoleto()" class="action-button">
+                    <svg class="icon icon-sm" viewBox="0 0 24 24">
+                      <polyline points="6,9 6,2 18,2 18,9" />
+                      <path
+                        d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"
+                      />
+                      <rect width="12" height="8" x="6" y="14" />
+                    </svg>
+                    Imprimir
+                  </button>
+                  <button onclick="resendEmail()" class="action-button">
+                    <svg class="icon icon-sm" viewBox="0 0 24 24">
+                      <path
+                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                      />
+                      <polyline points="22,6 12,13 2,6" />
+                    </svg>
+                    Reenviar Email
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Payment Instructions -->
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Como Pagar o Boleto</h2>
+              </div>
+              <div class="card-content">
+                <div class="space-y-4">
+                  <div class="flex items-start gap-3">
+                    <div class="step-number">1</div>
+                    <div>
+                      <p class="font-medium">Internet Banking</p>
+                      <p class="text-sm text-gray-600">
+                        Acesse sua conta bancária online e digite o código de
+                        barras na opção "Pagar Boleto"
+                      </p>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-3">
+                    <div class="step-number">2</div>
+                    <div>
+                      <p class="font-medium">App do Banco</p>
+                      <p class="text-sm text-gray-600">
+                        Escaneie o código de barras usando a câmera do app do
+                        seu banco
+                      </p>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-3">
+                    <div class="step-number">3</div>
+                    <div>
+                      <p class="font-medium">Agência Bancária</p>
+                      <p class="text-sm text-gray-600">
+                        Leve o boleto impresso em qualquer agência bancária ou
+                        lotérica
+                      </p>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-3">
+                    <div class="step-number">4</div>
+                    <div>
+                      <p class="font-medium">Caixas Eletrônicos</p>
+                      <p class="text-sm text-gray-600">
+                        Digite o código de barras em qualquer caixa eletrônico
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Success Order Summary -->
+          <div>
+            <div class="card sticky top-8">
+              <div class="card-header">
+                <h2 class="card-title">Resumo do Pedido</h2>
+              </div>
+              <div class="card-content space-y-4">
+                <div class="space-y-2">
+                  <div class="flex justify-between">
+                    <span>Subtotal</span>
+                    <span>R$ 299,90</span>
+                  </div>
+                  <div class="flex justify-between text-green-600">
+                    <span>Desconto</span>
+                    <span>-R$ 14,99</span>
+                  </div>
+                  <div class="flex justify-between text-green-600">
+                    <span>Desconto Boleto (2%)</span>
+                    <span>-R$ 5,70</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Frete</span>
+                    <span class="text-green-600">GRÁTIS</span>
+                  </div>
+                </div>
+
+                <div class="separator"></div>
+
+                <div class="flex justify-between font-semibold text-lg">
+                  <span>Total</span>
+                  <span>R$ 279,21</span>
+                </div>
+
+                <div class="bg-blue-50 p-4 rounded-lg">
+                  <div class="flex items-center gap-2 text-blue-700">
+                    <svg class="icon icon-sm" viewBox="0 0 24 24">
+                      <path
+                        d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"
+                      />
+                      <polyline points="14,2 14,8 20,8" />
+                    </svg>
+                    <span class="font-medium">Boleto Bancário</span>
+                  </div>
+                  <div class="mt-2 space-y-1">
+                    <p class="text-sm text-blue-600">
+                      Vencimento: <span id="dueDateSummary"></span>
+                    </p>
+                    <p class="text-sm text-blue-600">Valor: R$ 279,21</p>
+                  </div>
+                </div>
+
+                <div class="bg-orange-50 p-4 rounded-lg">
+                  <div class="flex items-center gap-2">
+                    <svg
+                      class="icon icon-sm text-orange-600"
+                      viewBox="0 0 24 24"
+                    >
+                      <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
+                      <line x1="16" x2="16" y1="2" y2="6" />
+                      <line x1="8" x2="8" y1="2" y2="6" />
+                      <line x1="3" x2="21" y1="10" y2="10" />
+                    </svg>
+                    <span class="font-medium text-orange-700"
+                      >Prazo de Pagamento</span
+                    >
+                  </div>
+                  <p class="text-sm text-orange-600 mt-1">
+                    Pague até o vencimento para garantir o processamento do
+                    pedido
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Generating Overlay -->
+    <div id="generatingOverlay" class="generating-overlay hidden">
+      <div class="generating-card">
+        <svg
+          class="icon w-12 h-12 animate-pulse text-primary mx-auto mb-4"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"
+          />
+          <polyline points="14,2 14,8 20,8" />
+        </svg>
+        <h3 class="text-lg font-semibold mb-2">Gerando Boleto</h3>
+        <p class="text-gray-600 text-sm">
+          Por favor, aguarde enquanto geramos seu boleto...
+        </p>
+      </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast hidden">
+      <div class="flex items-center gap-3">
+        <svg id="toastIcon" class="icon" viewBox="0 0 24 24"></svg>
+        <span id="toastMessage"></span>
+      </div>
+    </div>
+
+    <script>
+      // Format CPF
+      function formatCPF(value) {
+        const cleaned = value.replace(/\D/g, "");
+        return cleaned.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+      }
+
+      // Validate CPF
+      function validateCPF(cpf) {
+        const cleaned = cpf.replace(/\D/g, "");
+        return cleaned.length === 11;
+      }
+
+      // Validate email
+      function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+      }
+
+      // Show/hide error
+      function showError(elementId, message) {
+        const errorElement = document.getElementById(elementId);
+        errorElement.textContent = message;
+        errorElement.classList.remove("hidden");
+      }
+
+      function hideError(elementId) {
+        const errorElement = document.getElementById(elementId);
+        errorElement.classList.add("hidden");
+      }
+
+      // Validate form
+      function validateForm() {
+        let isValid = true;
+
+        const cpf = document.getElementById("cpf").value;
+        if (!validateCPF(cpf)) {
+          showError("cpfError", "CPF inválido");
+          isValid = false;
+        } else {
+          hideError("cpfError");
+        }
+
+        const email = document.getElementById("email").value;
+        if (!validateEmail(email)) {
+          showError("emailError", "Email inválido");
+          isValid = false;
+        } else {
+          hideError("emailError");
+        }
+
+        return isValid;
+      }
+
+      // Show success state
+      function showSuccessState() {
+        document.getElementById("formState").classList.add("hidden");
+        document.getElementById("successState").classList.remove("hidden");
+        document.getElementById("pageSubtitle").textContent =
+          "Seu boleto foi gerado com sucesso";
+
+        // Set due date (3 business days from now)
+        const dueDate = new Date();
+        dueDate.setDate(dueDate.getDate() + 3);
+        const formattedDate = dueDate.toLocaleDateString("pt-BR");
+
+        document.getElementById("dueDate").textContent = formattedDate;
+        document.getElementById("dueDateSummary").textContent = formattedDate;
+      }
+
+      // Copy boleto code
+      function copyBoletoCode() {
+        const boletoCode = document.getElementById("boletoCode").textContent;
+        navigator.clipboard.writeText(boletoCode).then(() => {
+          showToast("Código de barras copiado!", "success");
+        });
+      }
+
+      // Download boleto
+      function downloadBoleto() {
+        showToast("Download iniciado!", "success");
+        // Here you would trigger the actual download
+      }
+
+      // Print boleto
+      function printBoleto() {
+        window.print();
+      }
+
+      // Resend email
+      function resendEmail() {
+        showToast("Email reenviado com sucesso!", "success");
+      }
+
+      // Setup form
+      function setupForm() {
+        const form = document.getElementById("boletoForm");
+        const cpfInput = document.getElementById("cpf");
+
+        // CPF formatting
+        cpfInput.addEventListener("input", (e) => {
+          e.target.value = formatCPF(e.target.value);
+        });
+
+        // Form submission
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          if (!validateForm()) {
+            return;
+          }
+
+          // Show generating overlay
+          document
+            .getElementById("generatingOverlay")
+            .classList.remove("hidden");
+
+          try {
+            // Simulate boleto generation
+            await new Promise((resolve) => setTimeout(resolve, 2000));
+
+            document
+              .getElementById("generatingOverlay")
+              .classList.add("hidden");
+            showSuccessState();
+            showToast("Boleto gerado com sucesso!", "success");
+
+            const email = document.getElementById("email").value;
+            if (email) {
+              setTimeout(() => {
+                showToast("Boleto enviado para seu email!", "success");
+              }, 1000);
+            }
+          } catch (error) {
+            document
+              .getElementById("generatingOverlay")
+              .classList.add("hidden");
+            showToast("Erro ao gerar boleto. Tente novamente.", "error");
+          }
+        });
+      }
+
+      // Toast function
+      function showToast(message, type = "success") {
+        const toast = document.getElementById("toast");
+        const toastMessage = document.getElementById("toastMessage");
+        const toastIcon = document.getElementById("toastIcon");
+
+        toastMessage.textContent = message;
+
+        // Update icon based on type
+        if (type === "success") {
+          toastIcon.innerHTML =
+            '<path d="M9 12l2 2 4-4" /><circle cx="12" cy="12" r="10" />';
+          toastIcon.className = "icon text-green-600";
+        } else if (type === "error") {
+          toastIcon.innerHTML =
+            '<circle cx="12" cy="12" r="10" /><line x1="15" x2="9" y1="9" y2="15" /><line x1="9" x2="15" y1="9" y2="15" />';
+          toastIcon.className = "icon text-red-600";
+        }
+
+        toast.className = `toast toast-${type}`;
+        toast.classList.remove("hidden");
+
+        setTimeout(() => {
+          toast.classList.add("show");
+        }, 100);
+
+        setTimeout(() => {
+          toast.classList.remove("show");
+          setTimeout(() => {
+            toast.classList.add("hidden");
+          }, 300);
+        }, 3000);
+      }
+
+      // Initialize page
+      document.addEventListener("DOMContentLoaded", () => {
+        setupForm();
+      });
+    </script>
+  </body>
+</html>

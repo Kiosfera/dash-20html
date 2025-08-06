@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homeflip - Escolha seu dashboard</title>
+    <link rel="stylesheet" href="checkout-base.css" />
+    <style>
+      .gradient-bg {
+        background: linear-gradient(to bottom right, #eff6ff, #ffffff, #f0fdf4);
+      }
+
+      .dashboard-card {
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 2rem;
+        box-shadow: var(--shadow-sm);
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        height: 100%;
+      }
+
+      .dashboard-card:hover {
+        box-shadow: var(--shadow-lg);
+        transform: translateY(-2px);
+      }
+
+      .icon-container {
+        width: 5rem;
+        height: 5rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .client-icon {
+        background: rgba(37, 99, 235, 0.1);
+      }
+
+      .freelancer-icon {
+        background: rgba(5, 150, 105, 0.1);
+      }
+
+      .dashboard-card:hover .client-icon {
+        background: rgba(37, 99, 235, 0.2);
+      }
+
+      .dashboard-card:hover .freelancer-icon {
+        background: rgba(5, 150, 105, 0.2);
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        max-width: 32rem;
+        margin: 0 auto;
+      }
+
+      .stat-item {
+        text-align: center;
+      }
+
+      .stat-number {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #111827;
+        margin-bottom: 0.25rem;
+      }
+
+      .stat-label {
+        font-size: 0.875rem;
+        color: #6b7280;
+      }
+
+      .logo-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .logo-icon {
+        width: 3rem;
+        height: 3rem;
+        background: var(--primary);
+        border-radius: var(--radius-lg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body class="gradient-bg min-h-screen flex items-center justify-center">
+    <div class="container mx-auto px-6 py-16 max-w-4xl">
+      <!-- Logo and Title -->
+      <div class="text-center mb-12">
+        <div class="logo-container">
+          <div class="logo-icon">
+            <svg
+              class="w-7 h-7 text-white"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2" />
+            </svg>
+          </div>
+          <span class="text-3xl font-bold text-gray-900">Homeflip</span>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          Escolha seu dashboard
+        </h1>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+          Acesse sua área de trabalho personalizada
+        </p>
+      </div>
+
+      <!-- Dashboard Selection -->
+      <div class="grid md:grid-cols-2 gap-8">
+        <a href="client-dashboard.html" class="dashboard-card group">
+          <div class="text-center">
+            <div class="icon-container client-icon">
+              <svg
+                class="w-10 h-10 text-primary"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.35-4.35" />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-semibold mb-4">Dashboard do Cliente</h3>
+            <p class="text-gray-600 mb-8 leading-relaxed">
+              Gerencie seus projetos, contrate freelancers e acompanhe o
+              progresso dos trabalhos.
+            </p>
+            <div class="btn btn-primary w-full group-hover:bg-primary-hover">
+              Acessar como Cliente
+              <svg
+                class="w-5 h-5 ml-2"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M5 12h14" />
+                <path d="M12 5l7 7-7 7" />
+              </svg>
+            </div>
+          </div>
+        </a>
+
+        <a href="freelancer-dashboard.html" class="dashboard-card group">
+          <div class="text-center">
+            <div class="icon-container freelancer-icon">
+              <svg
+                class="w-10 h-10 text-accent"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="8.5" cy="7" r="4" />
+                <line x1="20" x2="20" y1="8" y2="14" />
+                <line x1="23" x2="17" y1="11" y2="11" />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-semibold mb-4">Dashboard do Freelancer</h3>
+            <p class="text-gray-600 mb-8 leading-relaxed">
+              Encontre trabalhos, gerencie projetos e acompanhe seus ganhos e
+              estatísticas.
+            </p>
+            <div
+              class="btn btn-outline w-full group-hover:bg-accent group-hover:text-white group-hover:border-accent"
+            >
+              Acessar como Freelancer
+              <svg
+                class="w-5 h-5 ml-2"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M5 12h14" />
+                <path d="M12 5l7 7-7 7" />
+              </svg>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Quick Stats -->
+      <div class="mt-16 text-center">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number">500k+</div>
+            <div class="stat-label">Freelancers</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">100k+</div>
+            <div class="stat-label">Projetos</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">4.9★</div>
+            <div class="stat-label">Avaliação</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Links -->
+      <div class="text-center mt-8">
+        <div class="flex justify-center gap-4 text-sm">
+          <a
+            href="login.html"
+            class="text-primary hover:text-primary-hover transition-colors"
+          >
+            Fazer Login
+          </a>
+          <span class="text-gray-400">•</span>
+          <a
+            href="cadastro.html"
+            class="text-primary hover:text-primary-hover transition-colors"
+          >
+            Criar Conta
+          </a>
+          <span class="text-gray-400">•</span>
+          <a
+            href="checkout.html"
+            class="text-primary hover:text-primary-hover transition-colors"
+          >
+            Ver Demo
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

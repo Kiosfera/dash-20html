@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Finalizar Pedido - Homeflip</title>
+    <link rel="stylesheet" href="checkout-base.css" />
+    <style>
+      .payment-method {
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+      }
+
+      .payment-method:hover {
+        border-color: #d1d5db;
+      }
+
+      .payment-method.selected {
+        border-color: var(--primary);
+        background-color: rgba(37, 99, 235, 0.05);
+      }
+
+      .payment-method.selected .payment-icon {
+        background-color: var(--primary);
+        color: white;
+      }
+
+      .payment-method .payment-icon {
+        background-color: #f3f4f6;
+        color: #6b7280;
+        transition: all 0.2s ease-in-out;
+      }
+
+      .radio-button {
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        border: 2px solid #d1d5db;
+        position: relative;
+        transition: all 0.2s ease-in-out;
+      }
+
+      .radio-button.selected {
+        border-color: var(--primary);
+        background-color: var(--primary);
+      }
+
+      .radio-button.selected::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 0.5rem;
+        height: 0.5rem;
+        background-color: white;
+        border-radius: 50%;
+      }
+
+      .toast {
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .toast.show {
+        transform: translateX(0);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="min-h-screen bg-gray-50 py-8">
+      <div class="container grid gap-8">
+        <!-- Header -->
+        <div class="mb-8">
+          <button
+            onclick="history.back()"
+            class="btn btn-ghost mb-4 flex items-center gap-2"
+          >
+            <svg class="icon icon-sm" viewBox="0 0 24 24">
+              <path d="m12 19-7-7 7-7" />
+              <path d="M19 12H5" />
+            </svg>
+            Voltar
+          </button>
+          <h1 class="text-3xl font-bold text-gray-900">Finalizar Pedido</h1>
+          <p class="text-gray-600 mt-2">
+            Escolha sua forma de pagamento preferida
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <!-- Payment Methods -->
+          <div class="lg:col-span-2">
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title flex items-center gap-2">
+                  <svg class="icon text-green-600" viewBox="0 0 24 24">
+                    <path d="M9 12l2 2 4-4" />
+                    <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3" />
+                    <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3" />
+                    <path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2" />
+                  </svg>
+                  Métodos de Pagamento
+                </h2>
+                <p class="card-description">
+                  Selecione a forma de pagamento que preferir. Todas as
+                  transações são seguras e criptografadas.
+                </p>
+              </div>
+              <div class="card-content space-y-4">
+                <!-- PIX -->
+                <div
+                  class="payment-method p-4 border rounded-lg"
+                  data-method="pix"
+                >
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                      <div class="payment-icon p-2 rounded-full">
+                        <svg class="icon" viewBox="0 0 24 24">
+                          <path
+                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                          />
+                        </svg>
+                      </div>
+                      <div>
+                        <div class="flex items-center gap-2">
+                          <h3 class="font-semibold">PIX</h3>
+                          <span class="badge badge-secondary">Instantâneo</span>
+                        </div>
+                        <p class="text-sm text-gray-600">
+                          Pagamento instantâneo via PIX
+                        </p>
+                        <p class="text-sm text-green-600 font-medium">
+                          5% de desconto
+                        </p>
+                      </div>
+                    </div>
+                    <div class="radio-button"></div>
+                  </div>
+                </div>
+
+                <!-- Cartão de Crédito -->
+                <div
+                  class="payment-method p-4 border rounded-lg"
+                  data-method="credit-card"
+                >
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                      <div class="payment-icon p-2 rounded-full">
+                        <svg class="icon" viewBox="0 0 24 24">
+                          <rect width="20" height="14" x="2" y="5" rx="2" />
+                          <line x1="2" x2="22" y1="10" y2="10" />
+                        </svg>
+                      </div>
+                      <div>
+                        <div class="flex items-center gap-2">
+                          <h3 class="font-semibold">Cartão de Crédito</h3>
+                          <span class="badge badge-secondary">Parcelado</span>
+                        </div>
+                        <p class="text-sm text-gray-600">
+                          Visa, Mastercard, Elo, American Express
+                        </p>
+                        <p class="text-sm text-green-600 font-medium">
+                          Em até 12x sem juros
+                        </p>
+                      </div>
+                    </div>
+                    <div class="radio-button"></div>
+                  </div>
+                </div>
+
+                <!-- Boleto -->
+                <div
+                  class="payment-method p-4 border rounded-lg"
+                  data-method="boleto"
+                >
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                      <div class="payment-icon p-2 rounded-full">
+                        <svg class="icon" viewBox="0 0 24 24">
+                          <path
+                            d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"
+                          />
+                          <polyline points="14,2 14,8 20,8" />
+                        </svg>
+                      </div>
+                      <div>
+                        <div class="flex items-center gap-2">
+                          <h3 class="font-semibold">Boleto Bancário</h3>
+                          <span class="badge badge-secondary"
+                            >3 dias úteis</span
+                          >
+                        </div>
+                        <p class="text-sm text-gray-600">
+                          Pagamento através de boleto bancário
+                        </p>
+                        <p class="text-sm text-green-600 font-medium">
+                          2% de desconto
+                        </p>
+                      </div>
+                    </div>
+                    <div class="radio-button"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Security Info -->
+            <div class="card mt-6">
+              <div class="card-content pt-6">
+                <div class="flex items-center gap-3 text-sm text-gray-600">
+                  <svg class="icon text-green-600" viewBox="0 0 24 24">
+                    <path d="M9 12l2 2 4-4" />
+                    <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3" />
+                    <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3" />
+                    <path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2" />
+                  </svg>
+                  <span
+                    >Suas informações estão protegidas com criptografia SSL de
+                    256 bits</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Order Summary -->
+          <div>
+            <div class="card sticky top-8">
+              <div class="card-header">
+                <h2 class="card-title">Resumo do Pedido</h2>
+              </div>
+              <div class="card-content space-y-4">
+                <div class="space-y-2">
+                  <div class="flex justify-between">
+                    <span>Subtotal</span>
+                    <span>R$ 299,90</span>
+                  </div>
+                  <div class="flex justify-between text-green-600">
+                    <span>Desconto</span>
+                    <span>-R$ 14,99</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Frete</span>
+                    <span class="text-green-600">GRÁTIS</span>
+                  </div>
+                </div>
+
+                <div class="separator"></div>
+
+                <div class="flex justify-between font-semibold text-lg">
+                  <span>Total</span>
+                  <span>R$ 284,91</span>
+                </div>
+
+                <button
+                  id="continueBtn"
+                  class="btn btn-primary w-full btn-lg"
+                  disabled
+                >
+                  Continuar para Pagamento
+                </button>
+
+                <div class="text-center">
+                  <div
+                    class="flex items-center justify-center gap-1 text-sm text-gray-600"
+                  >
+                    <svg
+                      class="icon icon-sm fill-yellow-400 text-yellow-400"
+                      viewBox="0 0 24 24"
+                    >
+                      <polygon
+                        points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
+                      />
+                    </svg>
+                    <span>Compra 100% segura e garantida</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast hidden">
+      <div class="flex items-center gap-3">
+        <svg class="icon text-green-600" viewBox="0 0 24 24">
+          <path d="M9 12l2 2 4-4" />
+          <circle cx="12" cy="12" r="10" />
+        </svg>
+        <span id="toastMessage"></span>
+      </div>
+    </div>
+
+    <script>
+      // Payment method selection
+      let selectedPayment = "";
+
+      const paymentMethods = document.querySelectorAll(".payment-method");
+      const continueBtn = document.getElementById("continueBtn");
+
+      paymentMethods.forEach((method) => {
+        method.addEventListener("click", () => {
+          // Remove selection from all methods
+          paymentMethods.forEach((m) => {
+            m.classList.remove("selected");
+            m.querySelector(".radio-button").classList.remove("selected");
+          });
+
+          // Add selection to clicked method
+          method.classList.add("selected");
+          method.querySelector(".radio-button").classList.add("selected");
+
+          selectedPayment = method.dataset.method;
+          continueBtn.disabled = false;
+        });
+      });
+
+      // Continue button click
+      continueBtn.addEventListener("click", () => {
+        if (!selectedPayment) return;
+
+        const routes = {
+          pix: "checkout-pix.html",
+          "credit-card": "checkout-cartao.html",
+          boleto: "checkout-boleto.html",
+        };
+
+        if (routes[selectedPayment]) {
+          window.location.href = routes[selectedPayment];
+        }
+      });
+
+      // Toast function
+      function showToast(message, type = "success") {
+        const toast = document.getElementById("toast");
+        const toastMessage = document.getElementById("toastMessage");
+
+        toastMessage.textContent = message;
+
+        // Add type-specific classes
+        toast.className = `toast toast-${type}`;
+        toast.classList.remove("hidden");
+
+        setTimeout(() => {
+          toast.classList.add("show");
+        }, 100);
+
+        setTimeout(() => {
+          toast.classList.remove("show");
+          setTimeout(() => {
+            toast.classList.add("hidden");
+          }, 300);
+        }, 3000);
+      }
+    </script>
+  </body>
+</html>

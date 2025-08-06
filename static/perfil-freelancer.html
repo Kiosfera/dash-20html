@@ -1,0 +1,852 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ana Silva - Perfil do Freelancer - TalentHub</title>
+    <link rel="stylesheet" href="checkout-base.css" />
+    <style>
+      .profile-hero {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 3rem 0;
+      }
+
+      .profile-container {
+        display: grid;
+        grid-template-columns: 1fr 300px;
+        gap: 2rem;
+        margin-top: -2rem;
+        position: relative;
+        z-index: 10;
+      }
+
+      .profile-main {
+        background: white;
+        border-radius: var(--radius-xl);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+
+      .profile-sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .profile-header {
+        padding: 2rem;
+        background: white;
+        border-radius: var(--radius-xl);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+
+      .profile-avatar {
+        width: 6rem;
+        height: 6rem;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary) 0%, #3b82f6 100%);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 700;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        border: 4px solid white;
+        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+      }
+
+      .profile-name {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+
+      .profile-title {
+        color: var(--muted-foreground);
+        margin-bottom: 1rem;
+      }
+
+      .profile-rating {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .star-rating {
+        display: flex;
+        gap: 0.25rem;
+      }
+
+      .star {
+        width: 1rem;
+        height: 1rem;
+        fill: #fbbf24;
+        color: #fbbf24;
+      }
+
+      .star.empty {
+        fill: #e5e7eb;
+        color: #e5e7eb;
+      }
+
+      .profile-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .contact-info {
+        background: white;
+        border-radius: var(--radius-xl);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        padding: 1.5rem;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .contact-item:last-child {
+        border-bottom: none;
+      }
+
+      .contact-icon {
+        width: 1rem;
+        height: 1rem;
+        color: var(--muted-foreground);
+      }
+
+      .stats-card {
+        background: white;
+        border-radius: var(--radius-xl);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        padding: 1.5rem;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      .stat-item {
+        text-align: center;
+        padding: 1rem;
+        background: var(--muted);
+        border-radius: var(--radius-lg);
+      }
+
+      .stat-value {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      .stat-label {
+        font-size: 0.75rem;
+        color: var(--muted-foreground);
+        margin-top: 0.25rem;
+      }
+
+      .section {
+        padding: 2rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .section:last-child {
+        border-bottom: none;
+      }
+
+      .section-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .section-icon {
+        width: 1.25rem;
+        height: 1.25rem;
+        color: var(--primary);
+      }
+
+      .skills-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+
+      .skill-tag {
+        background: rgba(37, 99, 235, 0.1);
+        color: var(--primary);
+        padding: 0.5rem 1rem;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        border: 1px solid rgba(37, 99, 235, 0.2);
+      }
+
+      .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .portfolio-item {
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        border: 1px solid var(--border);
+        transition: transform 0.2s;
+        cursor: pointer;
+      }
+
+      .portfolio-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+      }
+
+      .portfolio-image {
+        width: 100%;
+        height: 150px;
+        background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--muted-foreground);
+      }
+
+      .portfolio-content {
+        padding: 1rem;
+      }
+
+      .portfolio-title {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+
+      .portfolio-description {
+        font-size: 0.875rem;
+        color: var(--muted-foreground);
+      }
+
+      .review-item {
+        padding: 1.5rem;
+        background: var(--muted);
+        border-radius: var(--radius-lg);
+        margin-bottom: 1rem;
+      }
+
+      .review-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        margin-bottom: 1rem;
+      }
+
+      .review-author {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .review-avatar {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 600;
+        font-size: 0.875rem;
+      }
+
+      .review-name {
+        font-weight: 600;
+        font-size: 0.875rem;
+      }
+
+      .review-date {
+        font-size: 0.75rem;
+        color: var(--muted-foreground);
+      }
+
+      .review-rating {
+        display: flex;
+        gap: 0.125rem;
+      }
+
+      .review-text {
+        font-size: 0.875rem;
+        line-height: 1.6;
+        color: var(--muted-foreground);
+      }
+
+      .price-section {
+        background: var(--muted);
+        border-radius: var(--radius-lg);
+        padding: 1.5rem;
+        text-align: center;
+      }
+
+      .price-value {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 0.5rem;
+      }
+
+      .price-label {
+        color: var(--muted-foreground);
+        font-size: 0.875rem;
+      }
+
+      @media (max-width: 1024px) {
+        .profile-container {
+          grid-template-columns: 1fr;
+        }
+
+        .profile-sidebar {
+          order: -1;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .portfolio-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .stats-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="bg-white border-b">
+      <div class="container mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+          <a href="index-homeflip.html" class="flex items-center space-x-2">
+            <div
+              class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center"
+            >
+              <svg
+                class="w-5 h-5 text-white"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2" />
+              </svg>
+            </div>
+            <span class="text-xl font-bold text-gray-900">TalentHub</span>
+          </a>
+
+          <div class="flex items-center space-x-4">
+            <a href="buscar-freelancers.html" class="btn-ghost"
+              >← Voltar à busca</a
+            >
+            <a href="messages.html" class="btn-ghost flex items-center">
+              <svg
+                class="w-4 h-4 mr-2"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                />
+              </svg>
+              Mensagens
+            </a>
+            <div class="avatar">
+              <span class="avatar-fallback">CL</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Profile Hero -->
+    <div class="profile-hero">
+      <div class="container mx-auto px-6">
+        <div class="text-center">
+          <h1 class="text-2xl font-bold mb-2">Perfil do Freelancer</h1>
+          <p class="text-white/90">Veja o perfil completo e portfólio</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container mx-auto px-6 pb-8">
+      <div class="profile-container">
+        <!-- Main Content -->
+        <div class="profile-main">
+          <!-- About Section -->
+          <div class="section">
+            <h2 class="section-title">
+              <svg
+                class="section-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+              Sobre mim
+            </h2>
+            <p class="text-gray-600 leading-relaxed">
+              Sou uma UI/UX Designer apaixonada por criar experiências digitais
+              excepcionais. Com mais de 5 anos de experiência, já trabalhei com
+              empresas de diversos segmentos, desde startups até grandes
+              corporações. Meu foco está em design centrado no usuário,
+              utilizando metodologias como Design Thinking e prototipagem
+              rápida.
+            </p>
+            <p class="text-gray-600 leading-relaxed mt-4">
+              Especializo-me em pesquisa de usuário, arquitetura da informação,
+              wireframing, prototipagem e testes de usabilidade. Trabalho
+              principalmente com Figma, Adobe XD e tenho conhecimentos sólidos
+              em front-end para garantir que meus designs sejam viáveis
+              tecnicamente.
+            </p>
+          </div>
+
+          <!-- Skills Section -->
+          <div class="section">
+            <h2 class="section-title">
+              <svg
+                class="section-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+                />
+              </svg>
+              Habilidades
+            </h2>
+            <div class="skills-grid">
+              <span class="skill-tag">UI/UX Design</span>
+              <span class="skill-tag">Figma</span>
+              <span class="skill-tag">Adobe XD</span>
+              <span class="skill-tag">Sketch</span>
+              <span class="skill-tag">Prototipagem</span>
+              <span class="skill-tag">Design System</span>
+              <span class="skill-tag">Pesquisa de Usuário</span>
+              <span class="skill-tag">Wireframing</span>
+              <span class="skill-tag">HTML/CSS</span>
+              <span class="skill-tag">React Básico</span>
+              <span class="skill-tag">Design Thinking</span>
+              <span class="skill-tag">Usabilidade</span>
+            </div>
+          </div>
+
+          <!-- Portfolio Section -->
+          <div class="section">
+            <h2 class="section-title">
+              <svg
+                class="section-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                <circle cx="9" cy="9" r="2" />
+                <path d="M21 15l-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
+              </svg>
+              Portfólio
+            </h2>
+            <div class="portfolio-grid">
+              <div class="portfolio-item" onclick="viewPortfolio(1)">
+                <div class="portfolio-image">
+                  <svg
+                    width="40"
+                    height="40"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                    <circle cx="9" cy="9" r="2" />
+                    <path d="M21 15l-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
+                  </svg>
+                </div>
+                <div class="portfolio-content">
+                  <h3 class="portfolio-title">App de Delivery</h3>
+                  <p class="portfolio-description">
+                    Design completo de aplicativo para delivery de comida,
+                    incluindo pesquisa de usuário e prototipagem.
+                  </p>
+                </div>
+              </div>
+
+              <div class="portfolio-item" onclick="viewPortfolio(2)">
+                <div class="portfolio-image">
+                  <svg
+                    width="40"
+                    height="40"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                    <circle cx="9" cy="9" r="2" />
+                    <path d="M21 15l-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
+                  </svg>
+                </div>
+                <div class="portfolio-content">
+                  <h3 class="portfolio-title">Dashboard Analytics</h3>
+                  <p class="portfolio-description">
+                    Interface de dashboard para análise de dados com foco em
+                    usabilidade e visualização clara.
+                  </p>
+                </div>
+              </div>
+
+              <div class="portfolio-item" onclick="viewPortfolio(3)">
+                <div class="portfolio-image">
+                  <svg
+                    width="40"
+                    height="40"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                    <circle cx="9" cy="9" r="2" />
+                    <path d="M21 15l-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
+                  </svg>
+                </div>
+                <div class="portfolio-content">
+                  <h3 class="portfolio-title">E-commerce Fashion</h3>
+                  <p class="portfolio-description">
+                    Redesign completo de loja virtual de moda, melhorando
+                    conversão em 40%.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reviews Section -->
+          <div class="section">
+            <h2 class="section-title">
+              <svg
+                class="section-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polygon
+                  points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
+                />
+              </svg>
+              Avaliações (127)
+            </h2>
+
+            <div class="review-item">
+              <div class="review-header">
+                <div class="review-author">
+                  <div class="review-avatar">RC</div>
+                  <div>
+                    <div class="review-name">Roberto Carlos</div>
+                    <div class="review-date">15 de dezembro, 2023</div>
+                  </div>
+                </div>
+                <div class="review-rating">
+                  <svg class="star" viewBox="0 0 24 24">
+                    <polygon
+                      points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
+                    />
+                  </svg>
+                  <svg class="star" viewBox="0 0 24 24">
+                    <polygon
+                      points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
+                    />
+                  </svg>
+                  <svg class="star" viewBox="0 0 24 24">
+                    <polygon
+                      points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
+                    />
+                  </svg>
+                  <svg class="star" viewBox="0 0 24 24">
+                    <polygon
+                      points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
+                    />
+                  </svg>
+                  <svg class="star" viewBox="0 0 24 24">
+                    <polygon
+                      points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <p class="review-text">
+                Trabalho excepcional! Ana entregou um design muito além das
+                minhas expectativas. A comunicação foi excelente durante todo o
+                projeto e ela sempre esteve disponível para ajustes e melhorias.
+                Definitivamente vou contratar novamente.
+              </p>
+            </div>
+
+            <div class="review-item">
+              <div class="review-header">
+                <div class="review-author">
+                  <div class="review-avatar">MS</div>
+                  <div>
+                    <div class="review-name">Maria Santos</div>
+                    <div class="review-date">8 de dezembro, 2023</div>
+                  </div>
+                </div>
+                <div class="review-rating">
+                  <svg class="star" viewBox="0 0 24 24">
+                    <polygon
+                      points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
+                    />
+                  </svg>
+                  <svg class="star" viewBox="0 0 24 24">
+                    <polygon
+                      points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
+                    />
+                  </svg>
+                  <svg class="star" viewBox="0 0 24 24">
+                    <polygon
+                      points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
+                    />
+                  </svg>
+                  <svg class="star" viewBox="0 0 24 24">
+                    <polygon
+                      points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
+                    />
+                  </svg>
+                  <svg class="star" viewBox="0 0 24 24">
+                    <polygon
+                      points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <p class="review-text">
+                Profissional incrível! Entendeu perfeitamente nossa necessidade
+                e criou um design moderno e funcional. O processo foi muito
+                colaborativo e o resultado final superou nossas expectativas.
+                Recomendo sem hesitar!
+              </p>
+            </div>
+
+            <div class="text-center mt-4">
+              <button class="btn btn-outline">Ver todas as avaliações</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="profile-sidebar">
+          <!-- Profile Header -->
+          <div class="profile-header">
+            <div class="profile-avatar">AS</div>
+            <h1 class="profile-name">Ana Silva</h1>
+            <p class="profile-title">UI/UX Designer</p>
+
+            <div class="profile-rating">
+              <div class="star-rating">
+                <svg class="star" viewBox="0 0 24 24">
+                  <polygon
+                    points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
+                  />
+                </svg>
+                <svg class="star" viewBox="0 0 24 24">
+                  <polygon
+                    points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
+                  />
+                </svg>
+                <svg class="star" viewBox="0 0 24 24">
+                  <polygon
+                    points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
+                  />
+                </svg>
+                <svg class="star" viewBox="0 0 24 24">
+                  <polygon
+                    points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
+                  />
+                </svg>
+                <svg class="star" viewBox="0 0 24 24">
+                  <polygon
+                    points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
+                  />
+                </svg>
+              </div>
+              <span class="text-sm">4.9 (127 avaliações)</span>
+            </div>
+
+            <div class="price-section">
+              <div class="price-value">R$ 45</div>
+              <div class="price-label">por hora</div>
+            </div>
+
+            <div class="profile-actions">
+              <button class="btn btn-primary" onclick="sendProposal()">
+                <svg
+                  class="w-4 h-4 mr-2"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                  />
+                </svg>
+                Contratar
+              </button>
+              <button class="btn btn-outline" onclick="sendMessage()">
+                <svg
+                  class="w-4 h-4 mr-2"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                  />
+                </svg>
+                Enviar Mensagem
+              </button>
+              <button class="btn btn-ghost">
+                <svg
+                  class="w-4 h-4 mr-2"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                  />
+                </svg>
+                Salvar
+              </button>
+            </div>
+          </div>
+
+          <!-- Contact Info -->
+          <div class="contact-info">
+            <h3 class="font-semibold mb-3">Informações de Contato</h3>
+            <div class="contact-item">
+              <svg
+                class="contact-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              <span class="text-sm">São Paulo, SP</span>
+            </div>
+            <div class="contact-item">
+              <svg
+                class="contact-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12,6 12,12 16,14" />
+              </svg>
+              <span class="text-sm">Responde em até 2 horas</span>
+            </div>
+            <div class="contact-item">
+              <svg
+                class="contact-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M2 3h6l1 2v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3zM22 3h-6l-1 2v7a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2V3z"
+                />
+              </svg>
+              <span class="text-sm">Português, Inglês</span>
+            </div>
+          </div>
+
+          <!-- Stats -->
+          <div class="stats-card">
+            <h3 class="font-semibold mb-3">Estatísticas</h3>
+            <div class="stats-grid">
+              <div class="stat-item">
+                <div class="stat-value">156</div>
+                <div class="stat-label">Projetos concluídos</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">98%</div>
+                <div class="stat-label">Taxa de conclusão</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">15</div>
+                <div class="stat-label">Dias médios</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">95%</div>
+                <div class="stat-label">Recontratação</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function sendProposal() {
+        window.location.href = "create-project.html?freelancer=ana-silva";
+      }
+
+      function sendMessage() {
+        window.location.href = "messages.html?user=ana-silva";
+      }
+
+      function viewPortfolio(id) {
+        console.log(`Viewing portfolio item ${id}`);
+        // Could open a modal or navigate to a detailed view
+      }
+
+      // Get freelancer ID from URL params
+      const urlParams = new URLSearchParams(window.location.search);
+      const freelancerId = urlParams.get("id");
+
+      if (freelancerId) {
+        console.log(`Loading profile for freelancer: ${freelancerId}`);
+        // Here you would typically load the actual freelancer data
+      }
+    </script>
+  </body>
+</html>

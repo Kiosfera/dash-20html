@@ -1,0 +1,554 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redefinir Senha - TalentHub</title>
+    <link rel="stylesheet" href="checkout-base.css" />
+    <style>
+      .gradient-bg {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        position: relative;
+      }
+
+      .gradient-bg::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="20" cy="60" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+        opacity: 0.3;
+      }
+
+      .auth-card {
+        width: 100%;
+        max-width: 28rem;
+        background: white;
+        border-radius: var(--radius-xl);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        padding: 2rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .logo-section {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .logo {
+        width: 3rem;
+        height: 3rem;
+        background: linear-gradient(135deg, var(--primary) 0%, #3b82f6 100%);
+        border-radius: var(--radius-lg);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+      }
+
+      .auth-title {
+        font-size: 1.875rem;
+        font-weight: 700;
+        color: var(--foreground);
+        margin-bottom: 0.5rem;
+      }
+
+      .auth-subtitle {
+        color: var(--muted-foreground);
+        font-size: 0.875rem;
+        line-height: 1.5;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .input-with-icon {
+        position: relative;
+      }
+
+      .input-icon {
+        position: absolute;
+        left: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #9ca3af;
+        pointer-events: none;
+        width: 1rem;
+        height: 1rem;
+      }
+
+      .input-with-icon input {
+        padding-left: 2.5rem;
+      }
+
+      .password-toggle {
+        position: absolute;
+        right: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #9ca3af;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 0;
+        width: 1rem;
+        height: 1rem;
+        transition: color 0.2s;
+      }
+
+      .password-toggle:hover {
+        color: var(--primary);
+      }
+
+      .form-error {
+        color: #dc2626;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+        display: none;
+      }
+
+      .input.error {
+        border-color: #dc2626;
+      }
+
+      .password-requirements {
+        background: var(--muted);
+        border-radius: var(--radius);
+        padding: 1rem;
+        margin-top: 0.5rem;
+        font-size: 0.875rem;
+      }
+
+      .password-requirements h4 {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--foreground);
+      }
+
+      .requirement {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.25rem;
+        color: var(--muted-foreground);
+      }
+
+      .requirement.valid {
+        color: #16a34a;
+      }
+
+      .requirement svg {
+        width: 1rem;
+        height: 1rem;
+      }
+
+      .password-strength {
+        margin-top: 0.5rem;
+        font-size: 0.75rem;
+      }
+
+      .strength-weak {
+        color: #dc2626;
+      }
+      .strength-medium {
+        color: #f59e0b;
+      }
+      .strength-strong {
+        color: #10b981;
+      }
+
+      .success-message {
+        background: #dcfce7;
+        border: 1px solid #16a34a;
+        color: #15803d;
+        padding: 1rem;
+        border-radius: var(--radius);
+        margin-bottom: 1.5rem;
+        display: none;
+        font-size: 0.875rem;
+        line-height: 1.5;
+        text-align: center;
+      }
+
+      .success-message svg {
+        width: 1rem;
+        height: 1rem;
+        margin-right: 0.5rem;
+        vertical-align: middle;
+      }
+
+      .login-link {
+        text-align: center;
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+      }
+
+      .login-link p {
+        color: var(--muted-foreground);
+        font-size: 0.875rem;
+      }
+
+      .login-link a {
+        color: var(--primary);
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .login-link a:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 480px) {
+        .auth-card {
+          padding: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="gradient-bg">
+      <div class="auth-card">
+        <div class="logo-section">
+          <div class="logo">
+            <svg
+              class="w-6 h-6 text-white"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2" />
+            </svg>
+          </div>
+          <h1 class="auth-title">Redefinir senha</h1>
+          <p class="auth-subtitle">Crie uma nova senha segura para sua conta</p>
+        </div>
+
+        <div class="success-message" id="successMessage">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M9 12l2 2 4-4" />
+            <circle cx="12" cy="12" r="10" />
+          </svg>
+          Senha redefinida com sucesso! Redirecionando para o login...
+        </div>
+
+        <form id="resetForm" novalidate>
+          <div class="form-group">
+            <div class="input-with-icon">
+              <svg
+                class="input-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                <circle cx="12" cy="16" r="1" />
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+              </svg>
+              <input
+                type="password"
+                id="password"
+                class="input"
+                placeholder="Nova senha"
+                required
+                oninput="validatePassword()"
+              />
+              <button
+                type="button"
+                class="password-toggle"
+                onclick="togglePassword('password', 'eyeIcon1')"
+              >
+                <svg
+                  id="eyeIcon1"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+              </button>
+            </div>
+            <div class="form-error" id="passwordError">
+              Nova senha é obrigatória
+            </div>
+
+            <div class="password-requirements">
+              <h4>Requisitos da senha:</h4>
+              <div class="requirement" id="req-length">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M8 12l2 2 4-4" />
+                </svg>
+                Pelo menos 8 caracteres
+              </div>
+              <div class="requirement" id="req-lowercase">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M8 12l2 2 4-4" />
+                </svg>
+                Uma letra minúscula
+              </div>
+              <div class="requirement" id="req-uppercase">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M8 12l2 2 4-4" />
+                </svg>
+                Uma letra maiúscula
+              </div>
+              <div class="requirement" id="req-number">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M8 12l2 2 4-4" />
+                </svg>
+                Um número
+              </div>
+              <div class="requirement" id="req-special">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M8 12l2 2 4-4" />
+                </svg>
+                Um caractere especial
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-with-icon">
+              <svg
+                class="input-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                <circle cx="12" cy="16" r="1" />
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+              </svg>
+              <input
+                type="password"
+                id="confirmPassword"
+                class="input"
+                placeholder="Confirmar nova senha"
+                required
+                oninput="validateConfirmPassword()"
+              />
+              <button
+                type="button"
+                class="password-toggle"
+                onclick="togglePassword('confirmPassword', 'eyeIcon2')"
+              >
+                <svg
+                  id="eyeIcon2"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+              </button>
+            </div>
+            <div class="form-error" id="confirmPasswordError">
+              Confirmação de senha é obrigatória
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            class="btn btn-primary w-full"
+            id="submitButton"
+          >
+            Redefinir senha
+          </button>
+        </form>
+
+        <div class="login-link">
+          <p>Lembrou da senha? <a href="login.html">Voltar ao login</a></p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function togglePassword(inputId, iconId) {
+        const input = document.getElementById(inputId);
+        const eyeIcon = document.getElementById(iconId);
+
+        if (input.type === "password") {
+          input.type = "text";
+          eyeIcon.innerHTML =
+            '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>';
+        } else {
+          input.type = "password";
+          eyeIcon.innerHTML =
+            '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>';
+        }
+      }
+
+      function validatePassword() {
+        const password = document.getElementById("password").value;
+
+        // Check requirements
+        const requirements = {
+          "req-length": password.length >= 8,
+          "req-lowercase": /[a-z]/.test(password),
+          "req-uppercase": /[A-Z]/.test(password),
+          "req-number": /[0-9]/.test(password),
+          "req-special": /[^A-Za-z0-9]/.test(password),
+        };
+
+        // Update requirement checkmarks
+        Object.keys(requirements).forEach((reqId) => {
+          const element = document.getElementById(reqId);
+          if (requirements[reqId]) {
+            element.classList.add("valid");
+          } else {
+            element.classList.remove("valid");
+          }
+        });
+
+        // Update submit button state
+        const allValid = Object.values(requirements).every((valid) => valid);
+        const submitButton = document.getElementById("submitButton");
+        submitButton.disabled = !allValid;
+
+        return allValid;
+      }
+
+      function validateConfirmPassword() {
+        const password = document.getElementById("password").value;
+        const confirmPassword =
+          document.getElementById("confirmPassword").value;
+        const confirmError = document.getElementById("confirmPasswordError");
+        const confirmInput = document.getElementById("confirmPassword");
+
+        if (confirmPassword && password !== confirmPassword) {
+          confirmError.textContent = "Senhas não coincidem";
+          confirmError.style.display = "block";
+          confirmInput.classList.add("error");
+          return false;
+        } else {
+          confirmError.style.display = "none";
+          confirmInput.classList.remove("error");
+          return true;
+        }
+      }
+
+      document
+        .getElementById("resetForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const password = document.getElementById("password");
+          const confirmPassword = document.getElementById("confirmPassword");
+          let hasErrors = false;
+
+          // Reset errors
+          document
+            .querySelectorAll(".form-error")
+            .forEach((error) => (error.style.display = "none"));
+          document
+            .querySelectorAll(".input")
+            .forEach((input) => input.classList.remove("error"));
+
+          // Validate password
+          if (!validatePassword()) {
+            document.getElementById("passwordError").textContent =
+              "Senha deve atender todos os requisitos";
+            document.getElementById("passwordError").style.display = "block";
+            password.classList.add("error");
+            hasErrors = true;
+          }
+
+          // Validate password confirmation
+          if (!confirmPassword.value.trim()) {
+            document.getElementById("confirmPasswordError").style.display =
+              "block";
+            confirmPassword.classList.add("error");
+            hasErrors = true;
+          } else if (!validateConfirmPassword()) {
+            hasErrors = true;
+          }
+
+          if (!hasErrors) {
+            // Simulate password reset
+            const submitBtn = document.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = "Redefinindo...";
+            submitBtn.disabled = true;
+
+            setTimeout(() => {
+              // Show success message
+              document.getElementById("successMessage").style.display = "block";
+              document.getElementById("resetForm").style.display = "none";
+
+              // Redirect to login after 3 seconds
+              setTimeout(() => {
+                window.location.href = "login.html";
+              }, 3000);
+            }, 1000);
+          }
+        });
+
+      // Auto-focus password input
+      document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("password").focus();
+
+        // Check if token is valid (simulate)
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get("token");
+
+        if (!token) {
+          alert(
+            "Link inválido ou expirado. Redirecionando para recuperação de senha...",
+          );
+          window.location.href = "recuperar-senha.html";
+        }
+      });
+    </script>
+  </body>
+</html>
