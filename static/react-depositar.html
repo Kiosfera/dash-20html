@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Depositar Saldo - TalentHub</title>
+    <link rel="stylesheet" href="base-styles.css" />
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  </head>
+  <body>
+    <div class="min-h-screen bg-gray-50">
+      <!-- Header -->
+      <header class="bg-white border-b">
+        <div class="container mx-auto px-6 py-4">
+          <div class="flex items-center justify-between">
+            <a href="react-index.html" class="flex items-center space-x-2">
+              <div
+                class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center"
+              >
+                <i data-lucide="zap" class="w-5 h-5 text-white"></i>
+              </div>
+              <span class="text-xl font-bold text-gray-900">TalentHub</span>
+            </a>
+
+            <div class="flex items-center space-x-4">
+              <a href="react-saldo.html">
+                <button class="button button-ghost button-sm">
+                  <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i>
+                  Voltar ao Saldo
+                </button>
+              </a>
+              <div class="avatar">
+                <img src="placeholder.svg" alt="Avatar" class="avatar-image" />
+                <div class="avatar-fallback">CL</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="container mx-auto px-6 py-8 max-w-2xl">
+        <div class="mb-8">
+          <h1 class="text-3xl font-bold text-gray-900 mb-2">Depositar Saldo</h1>
+          <p class="text-gray-600">
+            Escolha o valor e forma de pagamento para adicionar saldo à sua
+            conta
+          </p>
+        </div>
+
+        <div class="space-y-6">
+          <!-- Valor do Depósito -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title flex items-center">
+                <i data-lucide="dollar-sign" class="w-5 h-5 mr-2"></i>
+                Valor do Depósito
+              </h3>
+            </div>
+            <div class="card-content space-y-4">
+              <div>
+                <label for="valor" class="label">Digite o valor</label>
+                <div class="relative mt-1">
+                  <span
+                    class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"
+                  >
+                    R$
+                  </span>
+                  <input
+                    id="valor"
+                    type="number"
+                    placeholder="0,00"
+                    class="input pl-10 text-lg"
+                    min="1"
+                    step="0.01"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label class="label">Valores rápidos</label>
+                <div class="grid grid-cols-5 gap-2 mt-2">
+                  <button
+                    class="button button-outline h-12 valor-rapido"
+                    data-valor="50"
+                  >
+                    R$ 50
+                  </button>
+                  <button
+                    class="button button-outline h-12 valor-rapido"
+                    data-valor="100"
+                  >
+                    R$ 100
+                  </button>
+                  <button
+                    class="button button-outline h-12 valor-rapido"
+                    data-valor="200"
+                  >
+                    R$ 200
+                  </button>
+                  <button
+                    class="button button-outline h-12 valor-rapido"
+                    data-valor="500"
+                  >
+                    R$ 500
+                  </button>
+                  <button
+                    class="button button-outline h-12 valor-rapido"
+                    data-valor="1000"
+                  >
+                    R$ 1000
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Método de Pagamento -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Método de Pagamento</h3>
+            </div>
+            <div class="card-content">
+              <div class="space-y-4">
+                <div
+                  class="metodo-pagamento flex items-center space-x-3 p-4 border rounded-lg hover:bg-gray-50 cursor-pointer"
+                  data-metodo="pix"
+                >
+                  <input
+                    type="radio"
+                    name="metodo"
+                    value="pix"
+                    id="pix"
+                    checked
+                  />
+                  <label
+                    for="pix"
+                    class="flex items-center space-x-3 flex-1 cursor-pointer"
+                  >
+                    <div
+                      class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center"
+                    >
+                      <i
+                        data-lucide="smartphone"
+                        class="w-4 h-4 text-green-600"
+                      ></i>
+                    </div>
+                    <div class="flex-1">
+                      <p class="font-medium">PIX</p>
+                      <p class="text-sm text-gray-600">
+                        Transferência instantânea
+                      </p>
+                    </div>
+                    <span
+                      class="badge badge-secondary bg-green-100 text-green-700"
+                    >
+                      Sem taxa
+                    </span>
+                  </label>
+                </div>
+
+                <div
+                  class="metodo-pagamento flex items-center space-x-3 p-4 border rounded-lg hover:bg-gray-50 cursor-pointer"
+                  data-metodo="cartao"
+                >
+                  <input
+                    type="radio"
+                    name="metodo"
+                    value="cartao"
+                    id="cartao"
+                  />
+                  <label
+                    for="cartao"
+                    class="flex items-center space-x-3 flex-1 cursor-pointer"
+                  >
+                    <div
+                      class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center"
+                    >
+                      <i
+                        data-lucide="credit-card"
+                        class="w-4 h-4 text-blue-600"
+                      ></i>
+                    </div>
+                    <div class="flex-1">
+                      <p class="font-medium">Cartão de Crédito</p>
+                      <p class="text-sm text-gray-600">Débito/Crédito</p>
+                    </div>
+                    <span class="badge badge-secondary">Taxa 2,9%</span>
+                  </label>
+                </div>
+
+                <div
+                  class="metodo-pagamento flex items-center space-x-3 p-4 border rounded-lg hover:bg-gray-50 cursor-pointer"
+                  data-metodo="boleto"
+                >
+                  <input
+                    type="radio"
+                    name="metodo"
+                    value="boleto"
+                    id="boleto"
+                  />
+                  <label
+                    for="boleto"
+                    class="flex items-center space-x-3 flex-1 cursor-pointer"
+                  >
+                    <div
+                      class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center"
+                    >
+                      <i
+                        data-lucide="file-text"
+                        class="w-4 h-4 text-orange-600"
+                      ></i>
+                    </div>
+                    <div class="flex-1">
+                      <p class="font-medium">Boleto Bancário</p>
+                      <p class="text-sm text-gray-600">
+                        Compensação em 1-2 dias úteis
+                      </p>
+                    </div>
+                    <span
+                      class="badge badge-secondary bg-green-100 text-green-700"
+                    >
+                      Sem taxa
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Resumo do Depósito -->
+          <div class="card" id="resumoCard" style="display: none">
+            <div class="card-header">
+              <h3 class="card-title">Resumo do Depósito</h3>
+            </div>
+            <div class="card-content space-y-3">
+              <div class="flex justify-between">
+                <span class="text-gray-600">Valor do depósito</span>
+                <span class="font-medium" id="valorDeposito">R$ 0,00</span>
+              </div>
+
+              <div
+                class="flex justify-between"
+                id="taxaRow"
+                style="display: none"
+              >
+                <span class="text-gray-600">Taxa de processamento</span>
+                <span class="text-red-600" id="valorTaxa">- R$ 0,00</span>
+              </div>
+
+              <hr />
+
+              <div class="flex justify-between text-lg font-semibold">
+                <span>Valor a ser creditado</span>
+                <span class="text-green-600" id="valorFinal">R$ 0,00</span>
+              </div>
+
+              <div
+                class="flex items-start space-x-2 p-3 bg-yellow-50 rounded-lg"
+                id="alertaTaxa"
+                style="display: none"
+              >
+                <i
+                  data-lucide="alert-circle"
+                  class="w-4 h-4 text-yellow-600 mt-0.5 flex-shrink-0"
+                ></i>
+                <p class="text-sm text-yellow-800">
+                  Uma taxa de processamento será descontada do valor depositado
+                  via cartão de crédito.
+                </p>
+              </div>
+
+              <button
+                id="confirmarDeposito"
+                class="button button-primary w-full h-12 text-lg"
+                disabled
+              >
+                <i data-lucide="check" class="w-5 h-5 mr-2"></i>
+                Confirmar Depósito
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      lucide.createIcons();
+
+      let valorAtual = 0;
+      let metodoAtual = "pix";
+
+      // Valores rápidos
+      document.querySelectorAll(".valor-rapido").forEach((button) => {
+        button.addEventListener("click", function () {
+          const valor = this.dataset.valor;
+          document.getElementById("valor").value = valor;
+          valorAtual = parseFloat(valor);
+
+          // Remove active class from all buttons
+          document.querySelectorAll(".valor-rapido").forEach((btn) => {
+            btn.classList.remove("button-primary");
+            btn.classList.add("button-outline");
+          });
+
+          // Add active class to clicked button
+          this.classList.remove("button-outline");
+          this.classList.add("button-primary");
+
+          atualizarResumo();
+        });
+      });
+
+      // Input de valor
+      document.getElementById("valor").addEventListener("input", function () {
+        valorAtual = parseFloat(this.value) || 0;
+
+        // Remove active from quick buttons
+        document.querySelectorAll(".valor-rapido").forEach((btn) => {
+          btn.classList.remove("button-primary");
+          btn.classList.add("button-outline");
+        });
+
+        atualizarResumo();
+      });
+
+      // Métodos de pagamento
+      document.querySelectorAll(".metodo-pagamento").forEach((metodo) => {
+        metodo.addEventListener("click", function () {
+          const radio = this.querySelector('input[type="radio"]');
+          radio.checked = true;
+          metodoAtual = radio.value;
+          atualizarResumo();
+        });
+      });
+
+      // Atualizar resumo
+      function atualizarResumo() {
+        const resumoCard = document.getElementById("resumoCard");
+        const confirmarBtn = document.getElementById("confirmarDeposito");
+
+        if (valorAtual > 0) {
+          resumoCard.style.display = "block";
+
+          const taxa = metodoAtual === "cartao" ? valorAtual * 0.029 : 0;
+          const valorFinal = valorAtual - taxa;
+
+          document.getElementById("valorDeposito").textContent =
+            `R$ ${valorAtual.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`;
+
+          const taxaRow = document.getElementById("taxaRow");
+          const alertaTaxa = document.getElementById("alertaTaxa");
+
+          if (taxa > 0) {
+            taxaRow.style.display = "flex";
+            alertaTaxa.style.display = "flex";
+            document.getElementById("valorTaxa").textContent =
+              `- R$ ${taxa.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`;
+          } else {
+            taxaRow.style.display = "none";
+            alertaTaxa.style.display = "none";
+          }
+
+          document.getElementById("valorFinal").textContent =
+            `R$ ${valorFinal.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`;
+
+          confirmarBtn.disabled = false;
+        } else {
+          resumoCard.style.display = "none";
+          confirmarBtn.disabled = true;
+        }
+      }
+
+      // Confirmar depósito
+      document
+        .getElementById("confirmarDeposito")
+        .addEventListener("click", function () {
+          if (valorAtual <= 0) {
+            alert("Por favor, insira um valor válido");
+            return;
+          }
+
+          const button = this;
+          button.innerHTML =
+            '<i data-lucide="loader-2" class="w-5 h-5 mr-2 animate-spin"></i> Processando...';
+          button.disabled = true;
+          lucide.createIcons();
+
+          setTimeout(() => {
+            // Simulate redirect to checkout
+            let checkoutUrl = "";
+            switch (metodoAtual) {
+              case "pix":
+                checkoutUrl = "checkout-pix.html";
+                break;
+              case "cartao":
+                checkoutUrl = "checkout-cartao.html";
+                break;
+              case "boleto":
+                checkoutUrl = "checkout-boleto.html";
+                break;
+            }
+
+            // Store deposit info in localStorage for checkout page
+            localStorage.setItem(
+              "depositInfo",
+              JSON.stringify({
+                valor: valorAtual,
+                metodo: metodoAtual,
+                tipo: "deposito",
+              }),
+            );
+
+            window.location.href = checkoutUrl;
+          }, 1500);
+        });
+
+      // Initialize
+      atualizarResumo();
+    </script>
+
+    <style>
+      .animate-spin {
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .bg-green-100 {
+        background-color: hsl(142, 76%, 94%);
+      }
+
+      .text-green-600 {
+        color: hsl(142, 76%, 36%);
+      }
+
+      .text-green-700 {
+        color: hsl(142, 76%, 26%);
+      }
+
+      .bg-blue-100 {
+        background-color: hsl(216, 87%, 94%);
+      }
+
+      .text-blue-600 {
+        color: hsl(216, 87%, 52%);
+      }
+
+      .bg-orange-100 {
+        background-color: hsl(35, 100%, 94%);
+      }
+
+      .text-orange-600 {
+        color: hsl(35, 100%, 52%);
+      }
+
+      .bg-yellow-50 {
+        background-color: hsl(45, 100%, 97%);
+      }
+
+      .text-yellow-600 {
+        color: hsl(45, 93%, 47%);
+      }
+
+      .text-yellow-800 {
+        color: hsl(45, 93%, 27%);
+      }
+
+      .h-12 {
+        height: 48px;
+      }
+
+      .mt-0\.5 {
+        margin-top: 2px;
+      }
+
+      .flex-shrink-0 {
+        flex-shrink: 0;
+      }
+    </style>
+  </body>
+</html>

@@ -17,8 +17,9 @@ import PedidoConfirmado from "./pages/PedidoConfirmado";
 import Login from "./pages/Login";
 import Cadastro from "./pages/Cadastro";
 import ClientInvoices from "./pages/ClientInvoices";
+import Saldo from "./pages/Saldo";
+import Depositar from "./pages/Depositar";
 import NotFound from "./pages/NotFound";
-import { createRoot } from "react-dom/client";
 
 const queryClient = new QueryClient();
 export default function App() {
@@ -38,15 +39,17 @@ export default function App() {
             <Route path="/criar-projeto" element={<CreateProject />} />
             <Route path="/mensagens" element={<Messages />} />
             <Route path="/completar-perfil" element={<CompleteProfile />} />
-              <Route path="/faturas" element={<ClientInvoices />} />
+            <Route path="/faturas" element={<ClientInvoices />} />
 
-              <Route path="/checkout" element={<Checkout />} />
+            <Route path="/checkout" element={<Checkout />} />
             <Route path="/checkout/pix" element={<CheckoutPix />} />
             <Route path="/checkout/cartao" element={<CheckoutCartao />} />
             <Route path="/checkout/boleto" element={<CheckoutBoleto />} />
             <Route path="/pedido-confirmado" element={<PedidoConfirmado />} />
             <Route path="/login" element={<Login />} />
             <Route path="/cadastro" element={<Cadastro />} />
+            <Route path="/saldo" element={<Saldo />} />
+            <Route path="/depositar" element={<Depositar />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
@@ -55,4 +58,3 @@ export default function App() {
     </QueryClientProvider>
   );
 }
-createRoot(document.getElementById("root")!).render(<App />);

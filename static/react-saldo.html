@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meu Saldo - TalentHub</title>
+    <link rel="stylesheet" href="base-styles.css" />
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  </head>
+  <body>
+    <div class="min-h-screen bg-gray-50">
+      <!-- Header -->
+      <header class="bg-white border-b">
+        <div class="container mx-auto px-6 py-4">
+          <div class="flex items-center justify-between">
+            <a href="react-index.html" class="flex items-center space-x-2">
+              <div
+                class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center"
+              >
+                <i data-lucide="zap" class="w-5 h-5 text-white"></i>
+              </div>
+              <span class="text-xl font-bold text-gray-900">TalentHub</span>
+            </a>
+
+            <div class="flex items-center space-x-4">
+              <a href="react-client-dashboard.html">
+                <button class="button button-ghost button-sm">Dashboard</button>
+              </a>
+              <div class="avatar">
+                <img src="placeholder.svg" alt="Avatar" class="avatar-image" />
+                <div class="avatar-fallback">CL</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="container mx-auto px-6 py-8">
+        <div class="mb-8">
+          <h1 class="text-3xl font-bold text-gray-900 mb-2">Meu Saldo</h1>
+          <p class="text-gray-600">
+            Gerencie seu saldo e visualize suas transações
+          </p>
+        </div>
+
+        <!-- Cartão de Saldo Principal -->
+        <div
+          class="card mb-8 bg-gradient-to-br from-blue-600 to-blue-700 text-white"
+        >
+          <div class="card-content p-8">
+            <div class="flex items-center justify-between mb-6">
+              <div>
+                <p class="text-blue-100 mb-2">Saldo disponível</p>
+                <div class="flex items-center space-x-3">
+                  <h2 class="text-4xl font-bold" id="saldoDisplay">
+                    R$ 2.547,83
+                  </h2>
+                  <button
+                    id="toggleSaldo"
+                    class="button button-ghost text-white hover:bg-blue-600"
+                  >
+                    <i data-lucide="eye-off" class="w-5 h-5"></i>
+                  </button>
+                </div>
+              </div>
+              <i data-lucide="dollar-sign" class="w-16 h-16 text-blue-200"></i>
+            </div>
+
+            <div class="flex space-x-4">
+              <a href="react-depositar.html" class="flex-1">
+                <button
+                  class="button w-full bg-white text-blue-600 hover:bg-gray-100"
+                >
+                  <i data-lucide="plus" class="w-4 h-4 mr-2"></i>
+                  Depositar
+                </button>
+              </a>
+              <button
+                class="button button-outline flex-1 border-white text-white hover:bg-blue-600"
+              >
+                <i data-lucide="minus" class="w-4 h-4 mr-2"></i>
+                Sacar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cards de Estatísticas -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div class="card">
+            <div class="card-content p-6">
+              <div class="flex items-center">
+                <i data-lucide="trending-up" class="h-8 w-8 text-green-600"></i>
+                <div class="ml-4">
+                  <p class="text-sm font-medium text-gray-600">
+                    Total Recebido (30 dias)
+                  </p>
+                  <p class="text-2xl font-bold text-gray-900">R$ 3.450</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-content p-6">
+              <div class="flex items-center">
+                <i data-lucide="trending-down" class="h-8 w-8 text-red-600"></i>
+                <div class="ml-4">
+                  <p class="text-sm font-medium text-gray-600">
+                    Total Gasto (30 dias)
+                  </p>
+                  <p class="text-2xl font-bold text-gray-900">R$ 1.200</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-content p-6">
+              <div class="flex items-center">
+                <i data-lucide="credit-card" class="h-8 w-8 text-blue-600"></i>
+                <div class="ml-4">
+                  <p class="text-sm font-medium text-gray-600">
+                    Transações este mês
+                  </p>
+                  <p class="text-2xl font-bold text-gray-900">24</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Histórico de Transações -->
+        <div class="card">
+          <div class="card-header">
+            <div class="flex items-center justify-between">
+              <h3 class="card-title flex items-center">
+                <i data-lucide="history" class="w-5 h-5 mr-2"></i>
+                Últimas Transações
+              </h3>
+              <button class="button button-outline button-sm">Ver todas</button>
+            </div>
+          </div>
+          <div class="card-content">
+            <div class="space-y-4">
+              <div
+                class="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50"
+              >
+                <div class="flex items-center space-x-4">
+                  <div
+                    class="w-10 h-10 rounded-full flex items-center justify-center bg-green-100 text-green-600"
+                  >
+                    <i data-lucide="trending-up" class="w-5 h-5"></i>
+                  </div>
+                  <div>
+                    <p class="font-medium text-gray-900">Depósito via PIX</p>
+                    <p class="text-sm text-gray-600">Hoje, 14:30</p>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <p class="font-semibold text-green-600">+R$ 500,00</p>
+                  <span class="badge badge-default text-xs">Concluído</span>
+                </div>
+              </div>
+
+              <div
+                class="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50"
+              >
+                <div class="flex items-center space-x-4">
+                  <div
+                    class="w-10 h-10 rounded-full flex items-center justify-center bg-blue-100 text-blue-600"
+                  >
+                    <i data-lucide="credit-card" class="w-5 h-5"></i>
+                  </div>
+                  <div>
+                    <p class="font-medium text-gray-900">
+                      Pagamento - João Santos
+                    </p>
+                    <p class="text-sm text-gray-600">Ontem, 09:15</p>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <p class="font-semibold text-red-600">-R$ 150,00</p>
+                  <span class="badge badge-default text-xs">Concluído</span>
+                </div>
+              </div>
+
+              <div
+                class="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50"
+              >
+                <div class="flex items-center space-x-4">
+                  <div
+                    class="w-10 h-10 rounded-full flex items-center justify-center bg-green-100 text-green-600"
+                  >
+                    <i data-lucide="trending-up" class="w-5 h-5"></i>
+                  </div>
+                  <div>
+                    <p class="font-medium text-gray-900">Depósito via Cartão</p>
+                    <p class="text-sm text-gray-600">05/01/2024</p>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <p class="font-semibold text-green-600">+R$ 1.000,00</p>
+                  <span class="badge badge-default text-xs">Concluído</span>
+                </div>
+              </div>
+
+              <div
+                class="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50"
+              >
+                <div class="flex items-center space-x-4">
+                  <div
+                    class="w-10 h-10 rounded-full flex items-center justify-center bg-red-100 text-red-600"
+                  >
+                    <i data-lucide="trending-down" class="w-5 h-5"></i>
+                  </div>
+                  <div>
+                    <p class="font-medium text-gray-900">
+                      Saque para conta bancária
+                    </p>
+                    <p class="text-sm text-gray-600">03/01/2024</p>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <p class="font-semibold text-red-600">-R$ 200,00</p>
+                  <span class="badge badge-secondary text-xs">Processando</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      lucide.createIcons();
+
+      // Toggle saldo visibility
+      let showBalance = true;
+      const saldoValue = "R$ 2.547,83";
+      const hiddenValue = "R$ ••••••";
+
+      document
+        .getElementById("toggleSaldo")
+        .addEventListener("click", function () {
+          const saldoDisplay = document.getElementById("saldoDisplay");
+          const icon = this.querySelector("i");
+
+          showBalance = !showBalance;
+
+          if (showBalance) {
+            saldoDisplay.textContent = saldoValue;
+            icon.setAttribute("data-lucide", "eye-off");
+          } else {
+            saldoDisplay.textContent = hiddenValue;
+            icon.setAttribute("data-lucide", "eye");
+          }
+
+          lucide.createIcons();
+        });
+    </script>
+
+    <style>
+      .from-blue-600 {
+        background: linear-gradient(
+          135deg,
+          hsl(216, 87%, 52%) 0%,
+          hsl(216, 87%, 42%) 100%
+        );
+      }
+
+      .to-blue-700 {
+        background: linear-gradient(
+          135deg,
+          hsl(216, 87%, 52%) 0%,
+          hsl(216, 87%, 42%) 100%
+        );
+      }
+
+      .text-blue-100 {
+        color: hsl(216, 87%, 90%);
+      }
+
+      .text-blue-200 {
+        color: hsl(216, 87%, 80%);
+      }
+    </style>
+  </body>
+</html>
