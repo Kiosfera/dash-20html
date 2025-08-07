@@ -44,13 +44,19 @@ export default function Depositar() {
 
     switch (metodo) {
       case "pix":
-        navigate("/checkout/pix", { state: { valor: parseFloat(valor), tipo: "deposito" } });
+        navigate("/checkout/pix", {
+          state: { valor: parseFloat(valor), tipo: "deposito" },
+        });
         break;
       case "cartao":
-        navigate("/checkout/cartao", { state: { valor: parseFloat(valor), tipo: "deposito" } });
+        navigate("/checkout/cartao", {
+          state: { valor: parseFloat(valor), tipo: "deposito" },
+        });
         break;
       case "boleto":
-        navigate("/checkout/boleto", { state: { valor: parseFloat(valor), tipo: "deposito" } });
+        navigate("/checkout/boleto", {
+          state: { valor: parseFloat(valor), tipo: "deposito" },
+        });
         break;
     }
   };
@@ -90,9 +96,12 @@ export default function Depositar() {
 
       <div className="container mx-auto px-6 py-8 max-w-2xl">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Depositar Saldo</h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            Depositar Saldo
+          </h1>
           <p className="text-gray-600">
-            Escolha o valor e forma de pagamento para adicionar saldo à sua conta
+            Escolha o valor e forma de pagamento para adicionar saldo à sua
+            conta
           </p>
         </div>
 
@@ -131,7 +140,11 @@ export default function Depositar() {
                   {valoresRapidos.map((valorRapido) => (
                     <Button
                       key={valorRapido}
-                      variant={valorSelecionado === valorRapido.toString() ? "default" : "outline"}
+                      variant={
+                        valorSelecionado === valorRapido.toString()
+                          ? "default"
+                          : "outline"
+                      }
                       onClick={() => handleValorRapido(valorRapido)}
                       className="h-12"
                     >
@@ -149,18 +162,30 @@ export default function Depositar() {
               <CardTitle>Método de Pagamento</CardTitle>
             </CardHeader>
             <CardContent>
-              <RadioGroup value={metodo} onValueChange={setMetodo} className="space-y-4">
+              <RadioGroup
+                value={metodo}
+                onValueChange={setMetodo}
+                className="space-y-4"
+              >
                 <div className="flex items-center space-x-3 p-4 border rounded-lg hover:bg-gray-50">
                   <RadioGroupItem value="pix" id="pix" />
-                  <Label htmlFor="pix" className="flex items-center space-x-3 flex-1 cursor-pointer">
+                  <Label
+                    htmlFor="pix"
+                    className="flex items-center space-x-3 flex-1 cursor-pointer"
+                  >
                     <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
                       <Smartphone className="w-4 h-4 text-green-600" />
                     </div>
                     <div className="flex-1">
                       <p className="font-medium">PIX</p>
-                      <p className="text-sm text-gray-600">Transferência instantânea</p>
+                      <p className="text-sm text-gray-600">
+                        Transferência instantânea
+                      </p>
                     </div>
-                    <Badge variant="secondary" className="bg-green-100 text-green-700">
+                    <Badge
+                      variant="secondary"
+                      className="bg-green-100 text-green-700"
+                    >
                       Sem taxa
                     </Badge>
                   </Label>
@@ -168,7 +193,10 @@ export default function Depositar() {
 
                 <div className="flex items-center space-x-3 p-4 border rounded-lg hover:bg-gray-50">
                   <RadioGroupItem value="cartao" id="cartao" />
-                  <Label htmlFor="cartao" className="flex items-center space-x-3 flex-1 cursor-pointer">
+                  <Label
+                    htmlFor="cartao"
+                    className="flex items-center space-x-3 flex-1 cursor-pointer"
+                  >
                     <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
                       <CreditCard className="w-4 h-4 text-blue-600" />
                     </div>
@@ -176,23 +204,29 @@ export default function Depositar() {
                       <p className="font-medium">Cartão de Crédito</p>
                       <p className="text-sm text-gray-600">Débito/Crédito</p>
                     </div>
-                    <Badge variant="secondary">
-                      Taxa 2,9%
-                    </Badge>
+                    <Badge variant="secondary">Taxa 2,9%</Badge>
                   </Label>
                 </div>
 
                 <div className="flex items-center space-x-3 p-4 border rounded-lg hover:bg-gray-50">
                   <RadioGroupItem value="boleto" id="boleto" />
-                  <Label htmlFor="boleto" className="flex items-center space-x-3 flex-1 cursor-pointer">
+                  <Label
+                    htmlFor="boleto"
+                    className="flex items-center space-x-3 flex-1 cursor-pointer"
+                  >
                     <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
                       <FileText className="w-4 h-4 text-orange-600" />
                     </div>
                     <div className="flex-1">
                       <p className="font-medium">Boleto Bancário</p>
-                      <p className="text-sm text-gray-600">Compensação em 1-2 dias úteis</p>
+                      <p className="text-sm text-gray-600">
+                        Compensação em 1-2 dias úteis
+                      </p>
                     </div>
-                    <Badge variant="secondary" className="bg-green-100 text-green-700">
+                    <Badge
+                      variant="secondary"
+                      className="bg-green-100 text-green-700"
+                    >
                       Sem taxa
                     </Badge>
                   </Label>
@@ -210,33 +244,49 @@ export default function Depositar() {
               <CardContent className="space-y-3">
                 <div className="flex justify-between">
                   <span className="text-gray-600">Valor do depósito</span>
-                  <span className="font-medium">R$ {valorNumerico.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span>
+                  <span className="font-medium">
+                    R${" "}
+                    {valorNumerico.toLocaleString("pt-BR", {
+                      minimumFractionDigits: 2,
+                    })}
+                  </span>
                 </div>
-                
+
                 {taxa > 0 && (
                   <div className="flex justify-between">
                     <span className="text-gray-600">Taxa de processamento</span>
-                    <span className="text-red-600">- R$ {taxa.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span>
+                    <span className="text-red-600">
+                      - R${" "}
+                      {taxa.toLocaleString("pt-BR", {
+                        minimumFractionDigits: 2,
+                      })}
+                    </span>
                   </div>
                 )}
-                
+
                 <hr />
-                
+
                 <div className="flex justify-between text-lg font-semibold">
                   <span>Valor a ser creditado</span>
-                  <span className="text-green-600">R$ {valorFinal.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span>
+                  <span className="text-green-600">
+                    R${" "}
+                    {valorFinal.toLocaleString("pt-BR", {
+                      minimumFractionDigits: 2,
+                    })}
+                  </span>
                 </div>
 
                 {taxa > 0 && (
                   <div className="flex items-start space-x-2 p-3 bg-yellow-50 rounded-lg">
                     <AlertCircle className="w-4 h-4 text-yellow-600 mt-0.5 flex-shrink-0" />
                     <p className="text-sm text-yellow-800">
-                      Uma taxa de processamento será descontada do valor depositado via cartão de crédito.
+                      Uma taxa de processamento será descontada do valor
+                      depositado via cartão de crédito.
                     </p>
                   </div>
                 )}
 
-                <Button 
+                <Button
                   onClick={handleDepositar}
                   className="w-full h-12 text-lg"
                   disabled={!valor || valorNumerico <= 0}

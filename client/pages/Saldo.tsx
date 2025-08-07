@@ -19,40 +19,40 @@ import { useState } from "react";
 
 export default function Saldo() {
   const [showBalance, setShowBalance] = useState(true);
-  
+
   const saldoAtual = 2547.83;
   const ultimasTransacoes = [
     {
       id: 1,
       tipo: "deposito",
-      valor: 500.00,
+      valor: 500.0,
       descricao: "Depósito via PIX",
       data: "Hoje, 14:30",
-      status: "concluido"
+      status: "concluido",
     },
     {
       id: 2,
       tipo: "pagamento",
-      valor: -150.00,
+      valor: -150.0,
       descricao: "Pagamento - João Santos",
       data: "Ontem, 09:15",
-      status: "concluido"
+      status: "concluido",
     },
     {
       id: 3,
       tipo: "deposito",
-      valor: 1000.00,
+      valor: 1000.0,
       descricao: "Depósito via Cartão",
       data: "05/01/2024",
-      status: "concluido"
+      status: "concluido",
     },
     {
       id: 4,
       tipo: "saque",
-      valor: -200.00,
+      valor: -200.0,
       descricao: "Saque para conta bancária",
       data: "03/01/2024",
-      status: "processando"
+      status: "processando",
     },
   ];
 
@@ -101,7 +101,10 @@ export default function Saldo() {
                 <div className="flex items-center space-x-3">
                   {showBalance ? (
                     <h2 className="text-4xl font-bold">
-                      R$ {saldoAtual.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                      R${" "}
+                      {saldoAtual.toLocaleString("pt-BR", {
+                        minimumFractionDigits: 2,
+                      })}
                     </h2>
                   ) : (
                     <h2 className="text-4xl font-bold">R$ ••••••</h2>
@@ -112,7 +115,11 @@ export default function Saldo() {
                     onClick={() => setShowBalance(!showBalance)}
                     className="text-white hover:bg-blue-600"
                   >
-                    {showBalance ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                    {showBalance ? (
+                      <EyeOff className="w-5 h-5" />
+                    ) : (
+                      <Eye className="w-5 h-5" />
+                    )}
                   </Button>
                 </div>
               </div>
@@ -126,8 +133,8 @@ export default function Saldo() {
                   Depositar
                 </Button>
               </Link>
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 className="flex-1 border-white text-white hover:bg-blue-600"
               >
                 <Minus className="w-4 h-4 mr-2" />
@@ -203,33 +210,54 @@ export default function Saldo() {
                   className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50"
                 >
                   <div className="flex items-center space-x-4">
-                    <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                      transacao.tipo === 'deposito' 
-                        ? 'bg-green-100 text-green-600' 
-                        : transacao.tipo === 'pagamento'
-                        ? 'bg-blue-100 text-blue-600'
-                        : 'bg-red-100 text-red-600'
-                    }`}>
-                      {transacao.tipo === 'deposito' && <TrendingUp className="w-5 h-5" />}
-                      {transacao.tipo === 'pagamento' && <CreditCard className="w-5 h-5" />}
-                      {transacao.tipo === 'saque' && <TrendingDown className="w-5 h-5" />}
+                    <div
+                      className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                        transacao.tipo === "deposito"
+                          ? "bg-green-100 text-green-600"
+                          : transacao.tipo === "pagamento"
+                            ? "bg-blue-100 text-blue-600"
+                            : "bg-red-100 text-red-600"
+                      }`}
+                    >
+                      {transacao.tipo === "deposito" && (
+                        <TrendingUp className="w-5 h-5" />
+                      )}
+                      {transacao.tipo === "pagamento" && (
+                        <CreditCard className="w-5 h-5" />
+                      )}
+                      {transacao.tipo === "saque" && (
+                        <TrendingDown className="w-5 h-5" />
+                      )}
                     </div>
                     <div>
-                      <p className="font-medium text-gray-900">{transacao.descricao}</p>
+                      <p className="font-medium text-gray-900">
+                        {transacao.descricao}
+                      </p>
                       <p className="text-sm text-gray-600">{transacao.data}</p>
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className={`font-semibold ${
-                      transacao.valor > 0 ? 'text-green-600' : 'text-red-600'
-                    }`}>
-                      {transacao.valor > 0 ? '+' : ''}R$ {Math.abs(transacao.valor).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                    <p
+                      className={`font-semibold ${
+                        transacao.valor > 0 ? "text-green-600" : "text-red-600"
+                      }`}
+                    >
+                      {transacao.valor > 0 ? "+" : ""}R${" "}
+                      {Math.abs(transacao.valor).toLocaleString("pt-BR", {
+                        minimumFractionDigits: 2,
+                      })}
                     </p>
-                    <Badge 
-                      variant={transacao.status === 'concluido' ? 'default' : 'secondary'}
+                    <Badge
+                      variant={
+                        transacao.status === "concluido"
+                          ? "default"
+                          : "secondary"
+                      }
                       className="text-xs"
                     >
-                      {transacao.status === 'concluido' ? 'Concluído' : 'Processando'}
+                      {transacao.status === "concluido"
+                        ? "Concluído"
+                        : "Processando"}
                     </Badge>
                   </div>
                 </div>

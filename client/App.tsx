@@ -40,9 +40,9 @@ export default function App() {
             <Route path="/criar-projeto" element={<CreateProject />} />
             <Route path="/mensagens" element={<Messages />} />
             <Route path="/completar-perfil" element={<CompleteProfile />} />
-              <Route path="/faturas" element={<ClientInvoices />} />
+            <Route path="/faturas" element={<ClientInvoices />} />
 
-              <Route path="/checkout" element={<Checkout />} />
+            <Route path="/checkout" element={<Checkout />} />
             <Route path="/checkout/pix" element={<CheckoutPix />} />
             <Route path="/checkout/cartao" element={<CheckoutCartao />} />
             <Route path="/checkout/boleto" element={<CheckoutBoleto />} />
