@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TalentHub - Escolha seu dashboard</title>
+    <link rel="stylesheet" href="base-styles.css">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body>
+    <div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 flex items-center justify-center">
+        <div class="container mx-auto px-6 py-16 max-w-4xl">
+            <!-- Logo and Title -->
+            <div class="text-center mb-12">
+                <div class="flex items-center justify-center space-x-3 mb-6">
+                    <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
+                        <i data-lucide="zap" class="w-7 h-7 text-white"></i>
+                    </div>
+                    <span class="text-3xl font-bold text-gray-900">TalentHub</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                    Escolha seu dashboard
+                </h1>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Acesse sua área de trabalho personalizada
+                </p>
+            </div>
+
+            <!-- Dashboard Selection -->
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="card p-8 hover:shadow-lg transition-all duration-300 cursor-pointer group">
+                    <a href="client-dashboard.html">
+                        <div class="card-content p-0 text-center">
+                            <div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/20 transition-colors">
+                                <i data-lucide="search" class="w-10 h-10 text-primary"></i>
+                            </div>
+                            <h3 class="text-2xl font-semibold mb-4">
+                                Dashboard do Cliente
+                            </h3>
+                            <p class="text-gray-600 mb-8 leading-relaxed">
+                                Gerencie seus projetos, contrate freelancers e acompanhe o
+                                progresso dos trabalhos.
+                            </p>
+                            <button class="button button-primary w-full group-hover:bg-primary group-hover:text-white button-lg">
+                                Acessar como Cliente
+                                <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
+                            </button>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="card p-8 hover:shadow-lg transition-all duration-300 cursor-pointer group">
+                    <a href="freelancer-dashboard.html">
+                        <div class="card-content p-0 text-center">
+                            <div class="w-20 h-20 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-accent/20 transition-colors">
+                                <i data-lucide="users" class="w-10 h-10 text-accent"></i>
+                            </div>
+                            <h3 class="text-2xl font-semibold mb-4">
+                                Dashboard do Freelancer
+                            </h3>
+                            <p class="text-gray-600 mb-8 leading-relaxed">
+                                Encontre trabalhos, gerencie projetos e acompanhe seus ganhos
+                                e estatísticas.
+                            </p>
+                            <button class="button button-outline w-full group-hover:bg-accent group-hover:text-white group-hover:border-accent button-lg">
+                                Acessar como Freelancer
+                                <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
+                            </button>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="mt-16 text-center">
+                <div class="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
+                    <div>
+                        <div class="text-2xl font-bold text-gray-900">500k+</div>
+                        <div class="text-sm text-gray-600">Freelancers</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-gray-900">100k+</div>
+                        <div class="text-sm text-gray-600">Projetos</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-gray-900">4.9★</div>
+                        <div class="text-sm text-gray-600">Avaliação</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
