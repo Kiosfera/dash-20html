@@ -49,6 +49,8 @@ export default function App() {
             <Route path="/pedido-confirmado" element={<PedidoConfirmado />} />
             <Route path="/login" element={<Login />} />
             <Route path="/cadastro" element={<Cadastro />} />
+            <Route path="/saldo" element={<Saldo />} />
+            <Route path="/depositar" element={<Depositar />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
