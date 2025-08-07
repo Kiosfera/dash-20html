@@ -20,7 +20,6 @@ import ClientInvoices from "./pages/ClientInvoices";
 import Saldo from "./pages/Saldo";
 import Depositar from "./pages/Depositar";
 import NotFound from "./pages/NotFound";
-import { createRoot } from "react-dom/client";
 
 const queryClient = new QueryClient();
 export default function App() {
@@ -59,4 +58,3 @@ export default function App() {
     </QueryClientProvider>
   );
 }
-createRoot(document.getElementById("root")!).render(<App />);
