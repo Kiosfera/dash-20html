@@ -17,6 +17,8 @@ import PedidoConfirmado from "./pages/PedidoConfirmado";
 import Login from "./pages/Login";
 import Cadastro from "./pages/Cadastro";
 import ClientInvoices from "./pages/ClientInvoices";
+import Saldo from "./pages/Saldo";
+import Depositar from "./pages/Depositar";
 import NotFound from "./pages/NotFound";
 import { createRoot } from "react-dom/client";
 
