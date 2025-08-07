@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard do Cliente - TalentHub</title>
+    <link rel="stylesheet" href="base-styles.css">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body>
+    <div class="min-h-screen bg-gray-50">
+        <!-- Header -->
+        <header class="bg-white border-b">
+            <div class="container mx-auto px-6 py-4">
+                <div class="flex items-center justify-between">
+                    <a href="react-index.html" class="flex items-center space-x-2">
+                        <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                            <i data-lucide="zap" class="w-5 h-5 text-white"></i>
+                        </div>
+                        <span class="text-xl font-bold text-gray-900">TalentHub</span>
+                    </a>
+
+                    <div class="flex items-center space-x-4">
+                        <a href="react-client-invoices.html">
+                            <button class="button button-ghost button-sm">
+                                <i data-lucide="file-text" class="w-4 h-4 mr-2"></i>
+                                Faturas
+                            </button>
+                        </a>
+                        <a href="react-messages.html">
+                            <button class="button button-ghost button-sm">
+                                <i data-lucide="message-square" class="w-4 h-4 mr-2"></i>
+                                Mensagens
+                            </button>
+                        </a>
+                        <a href="react-saldo.html">
+                            <button class="button button-ghost button-sm">
+                                <i data-lucide="dollar-sign" class="w-4 h-4 mr-2"></i>
+                                Saldo
+                            </button>
+                        </a>
+                        <div class="avatar">
+                            <img src="placeholder.svg" alt="Avatar" class="avatar-image">
+                            <div class="avatar-fallback">CL</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="container mx-auto px-6 py-8">
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-gray-900 mb-2">
+                    Dashboard do Cliente
+                </h1>
+                <p class="text-gray-600">
+                    Gerencie seus projetos e contrate os melhores talentos
+                </p>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <div class="card">
+                    <div class="card-content p-6">
+                        <div class="flex items-center">
+                            <i data-lucide="file-text" class="h-8 w-8 text-blue-600"></i>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-600">
+                                    Projetos Ativos
+                                </p>
+                                <p class="text-2xl font-bold text-gray-900">3</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content p-6">
+                        <div class="flex items-center">
+                            <i data-lucide="users" class="h-8 w-8 text-green-600"></i>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-600">
+                                    Freelancers
+                                </p>
+                                <p class="text-2xl font-bold text-gray-900">8</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content p-6">
+                        <div class="flex items-center">
+                            <i data-lucide="dollar-sign" class="h-8 w-8 text-yellow-600"></i>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-600">
+                                    Gasto Total
+                                </p>
+                                <p class="text-2xl font-bold text-gray-900">R$ 12.5k</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content p-6">
+                        <div class="flex items-center">
+                            <i data-lucide="star" class="h-8 w-8 text-purple-600"></i>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-600">
+                                    Avaliação Média
+                                </p>
+                                <p class="text-2xl font-bold text-gray-900">4.8</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="tabs">
+                <div class="flex items-center justify-between">
+                    <div class="tabs-list">
+                        <button class="tabs-trigger active" data-tab="projetos">Meus Projetos</button>
+                        <button class="tabs-trigger" data-tab="freelancers">Freelancers</button>
+                        <button class="tabs-trigger" data-tab="propostas">Propostas</button>
+                        <button class="tabs-trigger" data-tab="configuracoes">Configurações</button>
+                    </div>
+
+                    <a href="react-create-project.html">
+                        <button class="button button-primary">
+                            <i data-lucide="plus" class="w-4 h-4 mr-2"></i>
+                            Novo Projeto
+                        </button>
+                    </a>
+                </div>
+
+                <div class="tabs-content" id="projetos">
+                    <!-- Filters -->
+                    <div class="flex flex-col sm:flex-row gap-4 mb-6">
+                        <div class="relative flex-1">
+                            <i data-lucide="search" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4"></i>
+                            <input placeholder="Buscar projetos..." class="input pl-10">
+                        </div>
+                        <select class="input" style="width: 192px;">
+                            <option>Todos</option>
+                            <option>Ativo</option>
+                            <option>Em andamento</option>
+                            <option>Concluído</option>
+                        </select>
+                        <button class="button button-outline">
+                            <i data-lucide="filter" class="w-4 h-4 mr-2"></i>
+                            Filtros
+                        </button>
+                    </div>
+
+                    <!-- Projects List -->
+                    <div class="space-y-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex-1">
+                                        <div class="flex items-center gap-3 mb-2">
+                                            <h3 class="card-title text-lg">
+                                                Desenvolvimento de App Mobile
+                                            </h3>
+                                            <span class="badge badge-default">Ativo</span>
+                                        </div>
+                                        <div class="flex items-center gap-4 text-sm text-gray-600">
+                                            <span>Desenvolvimento</span>
+                                            <span>•</span>
+                                            <span>R$ 5.000 - R$ 8.000</span>
+                                            <span>•</span>
+                                            <span>30 dias</span>
+                                        </div>
+                                    </div>
+                                    <button class="button button-ghost button-sm">
+                                        <i data-lucide="more-horizontal" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="space-y-4">
+                                    <p class="text-gray-600">Preciso desenvolver um aplicativo mobile para iOS e Android...</p>
+
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-4">
+                                            <div class="flex items-center text-sm text-gray-600">
+                                                <i data-lucide="users" class="w-4 h-4 mr-1"></i>
+                                                12 propostas
+                                            </div>
+                                        </div>
+
+                                        <div class="flex items-center gap-2">
+                                            <button class="button button-outline button-sm">
+                                                <i data-lucide="eye" class="w-4 h-4 mr-2"></i>
+                                                Ver
+                                            </button>
+                                            <button class="button button-outline button-sm">
+                                                <i data-lucide="edit" class="w-4 h-4 mr-2"></i>
+                                                Editar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex-1">
+                                        <div class="flex items-center gap-3 mb-2">
+                                            <h3 class="card-title text-lg">
+                                                Design de Logo e Identidade Visual
+                                            </h3>
+                                            <span class="badge badge-secondary">Em andamento</span>
+                                        </div>
+                                        <div class="flex items-center gap-4 text-sm text-gray-600">
+                                            <span>Design</span>
+                                            <span>•</span>
+                                            <span>R$ 800 - R$ 1.500</span>
+                                            <span>•</span>
+                                            <span>15 dias</span>
+                                        </div>
+                                    </div>
+                                    <button class="button button-ghost button-sm">
+                                        <i data-lucide="more-horizontal" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="space-y-4">
+                                    <p class="text-gray-600">Criação de identidade visual completa para empresa...</p>
+
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-4">
+                                            <div class="flex items-center text-sm text-gray-600">
+                                                <div class="avatar w-6 h-6 mr-2">
+                                                    <div class="avatar-fallback text-xs">AS</div>
+                                                </div>
+                                                Ana Silva
+                                            </div>
+                                            <div class="flex items-center text-sm text-gray-600">
+                                                <span>Progresso: 60%</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex items-center gap-2">
+                                            <button class="button button-outline button-sm">
+                                                <i data-lucide="eye" class="w-4 h-4 mr-2"></i>
+                                                Ver
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex-1">
+                                        <div class="flex items-center gap-3 mb-2">
+                                            <h3 class="card-title text-lg">
+                                                Criação de Site WordPress
+                                            </h3>
+                                            <span class="badge badge-outline">Concluído</span>
+                                        </div>
+                                        <div class="flex items-center gap-4 text-sm text-gray-600">
+                                            <span>Desenvolvimento Web</span>
+                                            <span>•</span>
+                                            <span>R$ 2.500</span>
+                                            <span>•</span>
+                                            <span>20 dias</span>
+                                        </div>
+                                    </div>
+                                    <button class="button button-ghost button-sm">
+                                        <i data-lucide="more-horizontal" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="space-y-4">
+                                    <p class="text-gray-600">Website institucional desenvolvido em WordPress...</p>
+
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-4">
+                                            <div class="flex items-center text-sm text-gray-600">
+                                                <div class="avatar w-6 h-6 mr-2">
+                                                    <div class="avatar-fallback text-xs">JS</div>
+                                                </div>
+                                                João Santos
+                                            </div>
+                                            <div class="flex items-center text-sm text-gray-600">
+                                                <i data-lucide="star" class="w-4 h-4 mr-1 fill-yellow-400 text-yellow-400"></i>
+                                                5.0
+                                            </div>
+                                        </div>
+
+                                        <div class="flex items-center gap-2">
+                                            <button class="button button-outline button-sm">
+                                                <i data-lucide="eye" class="w-4 h-4 mr-2"></i>
+                                                Ver
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tabs-content hidden" id="freelancers">
+                    <div class="grid gap-6">
+                        <div class="card">
+                            <div class="card-content p-6">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-4">
+                                        <div class="avatar w-16 h-16">
+                                            <img src="placeholder.svg" alt="Avatar" class="avatar-image">
+                                            <div class="avatar-fallback">AS</div>
+                                        </div>
+                                        <div>
+                                            <h3 class="text-lg font-semibold">Ana Silva</h3>
+                                            <p class="text-gray-600">UI/UX Designer</p>
+                                            <div class="flex items-center space-x-4 mt-2">
+                                                <div class="flex items-center">
+                                                    <i data-lucide="star" class="w-4 h-4 fill-yellow-400 text-yellow-400 mr-1"></i>
+                                                    <span class="text-sm">4.9</span>
+                                                </div>
+                                                <span class="text-sm text-gray-600">156 projetos</span>
+                                                <span class="text-sm text-gray-600">R$ 45/hora</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-center space-x-2">
+                                        <span class="badge badge-default">Trabalhando</span>
+                                        <button class="button button-outline button-sm">
+                                            <i data-lucide="message-square" class="w-4 h-4 mr-2"></i>
+                                            Mensagem
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-content p-6">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-4">
+                                        <div class="avatar w-16 h-16">
+                                            <img src="placeholder.svg" alt="Avatar" class="avatar-image">
+                                            <div class="avatar-fallback">JS</div>
+                                        </div>
+                                        <div>
+                                            <h3 class="text-lg font-semibold">João Santos</h3>
+                                            <p class="text-gray-600">Desenvolvedor Full Stack</p>
+                                            <div class="flex items-center space-x-4 mt-2">
+                                                <div class="flex items-center">
+                                                    <i data-lucide="star" class="w-4 h-4 fill-yellow-400 text-yellow-400 mr-1"></i>
+                                                    <span class="text-sm">4.8</span>
+                                                </div>
+                                                <span class="text-sm text-gray-600">203 projetos</span>
+                                                <span class="text-sm text-gray-600">R$ 65/hora</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-center space-x-2">
+                                        <span class="badge badge-secondary">Disponível</span>
+                                        <button class="button button-outline button-sm">
+                                            <i data-lucide="message-square" class="w-4 h-4 mr-2"></i>
+                                            Mensagem
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tabs-content hidden" id="propostas">
+                    <div class="card">
+                        <div class="card-content p-8 text-center">
+                            <i data-lucide="file-text" class="w-12 h-12 text-gray-400 mx-auto mb-4"></i>
+                            <h3 class="text-lg font-semibold mb-2">
+                                Nenhuma proposta nova
+                            </h3>
+                            <p class="text-gray-600 mb-4">
+                                Você não tem propostas pendentes no momento.
+                            </p>
+                            <button class="button button-primary">Criar novo projeto</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tabs-content hidden" id="configuracoes">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Configurações da Conta</h3>
+                        </div>
+                        <div class="card-content space-y-6">
+                            <div>
+                                <label class="label">Nome da empresa</label>
+                                <input
+                                    placeholder="Digite o nome da sua empresa"
+                                    class="input mt-1"
+                                />
+                            </div>
+                            <div>
+                                <label class="label">Email</label>
+                                <input placeholder="seu@email.com" class="input mt-1" />
+                            </div>
+                            <div>
+                                <label class="label">Biografia</label>
+                                <textarea
+                                    placeholder="Conte um pouco sobre sua empresa..."
+                                    class="textarea mt-1"
+                                ></textarea>
+                            </div>
+                            <button class="button button-primary">Salvar alterações</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // Tab functionality
+        document.querySelectorAll('.tabs-trigger').forEach(trigger => {
+            trigger.addEventListener('click', function() {
+                const tabId = this.dataset.tab;
+                
+                // Remove active class from all triggers
+                document.querySelectorAll('.tabs-trigger').forEach(t => {
+                    t.classList.remove('active');
+                });
+                
+                // Add active class to clicked trigger
+                this.classList.add('active');
+                
+                // Hide all tab contents
+                document.querySelectorAll('.tabs-content').forEach(content => {
+                    content.classList.add('hidden');
+                });
+                
+                // Show selected tab content
+                document.getElementById(tabId).classList.remove('hidden');
+            });
+        });
+    </script>
+
+    <style>
+        .w-6 {
+            width: 24px;
+        }
+        
+        .h-6 {
+            height: 24px;
+        }
+        
+        .w-7 {
+            width: 28px;
+        }
+        
+        .h-7 {
+            height: 28px;
+        }
+        
+        .w-16 {
+            width: 64px;
+        }
+        
+        .h-16 {
+            height: 64px;
+        }
+        
+        .text-xs {
+            font-size: 0.75rem;
+            line-height: 1rem;
+        }
+        
+        .fill-yellow-400 {
+            fill: hsl(45, 93%, 47%);
+        }
+        
+        .text-yellow-400 {
+            color: hsl(45, 93%, 47%);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .w-px {
+            width: 1px;
+        }
+        
+        .h-6 {
+            height: 24px;
+        }
+        
+        .bg-gray-300 {
+            background-color: hsl(214, 32%, 85%);
+        }
+    </style>
+</body>
+</html>
