@@ -939,9 +939,7 @@ body {
   margin-top: 16px;
 }
 
-.leading-relaxed {
-  line-height: 1.625;
-}
+
 
 .flex-1 {
   flex: 1 1 0%;
