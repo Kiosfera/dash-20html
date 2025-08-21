@@ -20,6 +20,7 @@ import ClientInvoices from "./pages/ClientInvoices";
 import Saldo from "./pages/Saldo";
 import Depositar from "./pages/Depositar";
 import NotFound from "./pages/NotFound";
+import ComoFunciona from "./pages/ComoFunciona";
 
 const queryClient = new QueryClient();
 export default function App() {
@@ -31,6 +32,7 @@ export default function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/como-funciona" element={<ComoFunciona />} />
             <Route path="/dashboard/cliente" element={<ClientDashboard />} />
             <Route
               path="/dashboard/freelancer"
