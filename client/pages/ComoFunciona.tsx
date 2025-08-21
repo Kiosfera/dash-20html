@@ -13,55 +13,9 @@ import {
   BarChart3,
   Globe,
   Star,
-  ChevronLeft,
-  ChevronRight,
   ArrowRight,
 } from "lucide-react";
-import { useState } from "react";
-
 export default function ComoFunciona() {
-  const [currentTestimonial, setCurrentTestimonial] = useState(0);
-
-  const testimonials = [
-    {
-      name: "Ana Silva",
-      role: "CEO, StartupTech",
-      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b647?w=150&h=150&fit=crop&crop=face",
-      comment: "Encontrei desenvolvedores incríveis em questão de horas. A plataforma é segura e muito fácil de usar.",
-    },
-    {
-      name: "Carlos Oliveira",
-      role: "Designer Freelancer",
-      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
-      comment: "A Kiosferajobs me conectou a projetos que mudaram minha carreira. Pagamentos sempre pontuais e seguros.",
-    },
-    {
-      name: "Maria Santos",
-      role: "Gerente de Marketing",
-      avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
-      comment: "Conseguimos uma equipe completa para nosso projeto. A qualidade dos profissionais é excepcional.",
-    },
-    {
-      name: "João Pereira",
-      role: "Desenvolvedor Full Stack",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
-      comment: "Plataforma confiável com projetos interessantes. Interface intuitiva e suporte excelente.",
-    },
-    {
-      name: "Luciana Costa",
-      role: "Diretora Comercial",
-      avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face",
-      comment: "O sistema de escrow nos deu total segurança. Encontramos especialistas que entregaram além do esperado.",
-    },
-  ];
-
-  const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const prevTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -328,59 +282,6 @@ export default function ComoFunciona() {
         </div>
       </section>
 
-      {/* Depoimentos / Prova Social */}
-      <section className="py-20 bg-gradient-to-r from-blue-50 to-green-50">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">O que dizem nossos usuários</h2>
-          </div>
-          <div className="max-w-4xl mx-auto relative">
-            <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
-              <div className="flex items-center justify-between mb-8">
-                <button
-                  onClick={prevTestimonial}
-                  className="p-2 rounded-full hover:bg-gray-100 transition-colors"
-                >
-                  <ChevronLeft className="w-6 h-6" />
-                </button>
-                <button
-                  onClick={nextTestimonial}
-                  className="p-2 rounded-full hover:bg-gray-100 transition-colors"
-                >
-                  <ChevronRight className="w-6 h-6" />
-                </button>
-              </div>
-              
-              <div className="text-center">
-                <img
-                  src={testimonials[currentTestimonial].avatar}
-                  alt={testimonials[currentTestimonial].name}
-                  className="w-20 h-20 rounded-full mx-auto mb-6 object-cover"
-                />
-                <blockquote className="text-xl italic text-gray-700 mb-6 leading-relaxed">
-                  "{testimonials[currentTestimonial].comment}"
-                </blockquote>
-                <div className="font-semibold text-gray-900">
-                  {testimonials[currentTestimonial].name}
-                </div>
-                <div className="text-gray-600">{testimonials[currentTestimonial].role}</div>
-              </div>
-            </div>
-            
-            <div className="flex justify-center mt-8 space-x-2">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentTestimonial(index)}
-                  className={`w-3 h-3 rounded-full transition-colors ${
-                    index === currentTestimonial ? "bg-primary" : "bg-gray-300"
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* CTA Final */}
       <section className="py-20 bg-gradient-to-br from-primary to-accent text-white">
