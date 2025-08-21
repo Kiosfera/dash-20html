@@ -15,6 +15,7 @@ import {
   Star,
   ChevronLeft,
   ChevronRight,
+  ArrowRight,
 } from "lucide-react";
 import { useState } from "react";
 
