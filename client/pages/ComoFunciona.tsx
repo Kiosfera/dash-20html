@@ -350,9 +350,10 @@ export default function ComoFunciona() {
             Pagamento Seguro com <span className="text-primary">Escrow</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-8">
-            O sistema de escrow da Kiosferajobs garante que seu dinheiro fique protegido até a conclusão
-            satisfatória do projeto. Segurança total para empresas e profissionais, com transparência em
-            cada etapa do processo.
+            O sistema de escrow da Kiosferajobs garante que seu dinheiro fique
+            protegido até a conclusão satisfatória do projeto. Segurança total
+            para empresas e profissionais, com transparência em cada etapa do
+            processo.
           </p>
           <div className="flex justify-center">
             <img
@@ -372,7 +373,8 @@ export default function ComoFunciona() {
               Como Funciona o Sistema Escrow
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Um processo simples e seguro em 4 etapas que protege tanto empresas quanto profissionais
+              Um processo simples e seguro em 4 etapas que protege tanto
+              empresas quanto profissionais
             </p>
           </div>
 
@@ -386,10 +388,13 @@ export default function ComoFunciona() {
                 <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-blue-500 group-hover:scale-110 transition-all">
                   <CreditCard className="w-10 h-10 text-blue-500 group-hover:text-white" />
                 </div>
-                <h3 className="text-xl font-bold mb-4">Empresa Deposita o Valor</h3>
+                <h3 className="text-xl font-bold mb-4">
+                  Empresa Deposita o Valor
+                </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  A empresa realiza o depósito do valor acordado em nossa conta escrow segura.
-                  O dinheiro fica protegido até a conclusão do projeto.
+                  A empresa realiza o depósito do valor acordado em nossa conta
+                  escrow segura. O dinheiro fica protegido até a conclusão do
+                  projeto.
                 </p>
               </CardContent>
             </Card>
@@ -403,10 +408,13 @@ export default function ComoFunciona() {
                 <div className="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-orange-500 group-hover:scale-110 transition-all">
                   <Wrench className="w-10 h-10 text-orange-500 group-hover:text-white" />
                 </div>
-                <h3 className="text-xl font-bold mb-4">Profissional Realiza o Projeto</h3>
+                <h3 className="text-xl font-bold mb-4">
+                  Profissional Realiza o Projeto
+                </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  O freelancer desenvolve o trabalho com total tranquilidade, sabendo que
-                  o pagamento está garantido após a entrega aprovada.
+                  O freelancer desenvolve o trabalho com total tranquilidade,
+                  sabendo que o pagamento está garantido após a entrega
+                  aprovada.
                 </p>
               </CardContent>
             </Card>
@@ -422,8 +430,8 @@ export default function ComoFunciona() {
                 </div>
                 <h3 className="text-xl font-bold mb-4">Entrega e Aprovação</h3>
                 <p className="text-gray-600 leading-relaxed">
-                  A empresa avalia o trabalho entregue. Após aprovação, o pagamento
-                  é liberado automaticamente para o profissional.
+                  A empresa avalia o trabalho entregue. Após aprovação, o
+                  pagamento é liberado automaticamente para o profissional.
                 </p>
               </CardContent>
             </Card>
@@ -437,10 +445,12 @@ export default function ComoFunciona() {
                 <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-purple-500 group-hover:scale-110 transition-all">
                   <Scale className="w-10 h-10 text-purple-500 group-hover:text-white" />
                 </div>
-                <h3 className="text-xl font-bold mb-4">Proteção para Disputas</h3>
+                <h3 className="text-xl font-bold mb-4">
+                  Proteção para Disputas
+                </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  Em caso de conflitos, nossa equipe de mediação atua de forma imparcial
-                  para resolver questões e proteger ambas as partes.
+                  Em caso de conflitos, nossa equipe de mediação atua de forma
+                  imparcial para resolver questões e proteger ambas as partes.
                 </p>
               </CardContent>
             </Card>
@@ -456,7 +466,8 @@ export default function ComoFunciona() {
               Benefícios do Sistema Escrow
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Por que milhares de empresas e profissionais confiam no nosso sistema de pagamento seguro
+              Por que milhares de empresas e profissionais confiam no nosso
+              sistema de pagamento seguro
             </p>
           </div>
 
@@ -467,7 +478,8 @@ export default function ComoFunciona() {
               </div>
               <h3 className="text-xl font-bold mb-4">Segurança</h3>
               <p className="text-gray-600 leading-relaxed">
-                Seus recursos ficam protegidos em conta segregada até a conclusão satisfatória do projeto
+                Seus recursos ficam protegidos em conta segregada até a
+                conclusão satisfatória do projeto
               </p>
             </div>
 
@@ -477,7 +489,8 @@ export default function ComoFunciona() {
               </div>
               <h3 className="text-xl font-bold mb-4">Agilidade</h3>
               <p className="text-gray-600 leading-relaxed">
-                Processo automatizado que libera pagamentos rapidamente após aprovação das entregas
+                Processo automatizado que libera pagamentos rapidamente após
+                aprovação das entregas
               </p>
             </div>
 
@@ -487,7 +500,8 @@ export default function ComoFunciona() {
               </div>
               <h3 className="text-xl font-bold mb-4">Confiança</h3>
               <p className="text-gray-600 leading-relaxed">
-                Relacionamento mais sólido entre empresas e profissionais com garantias mútuas
+                Relacionamento mais sólido entre empresas e profissionais com
+                garantias mútuas
               </p>
             </div>
 
@@ -497,7 +511,8 @@ export default function ComoFunciona() {
               </div>
               <h3 className="text-xl font-bold mb-4">Transparência</h3>
               <p className="text-gray-600 leading-relaxed">
-                Acompanhamento em tempo real do status dos pagamentos e projetos na plataforma
+                Acompanhamento em tempo real do status dos pagamentos e projetos
+                na plataforma
               </p>
             </div>
           </div>
@@ -508,7 +523,9 @@ export default function ComoFunciona() {
       <section className="py-20">
         <div className="container mx-auto px-6">
           <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-12 text-white text-center">
-            <h2 className="text-3xl font-bold mb-6">Proteção Total com Escrow</h2>
+            <h2 className="text-3xl font-bold mb-6">
+              Proteção Total com Escrow
+            </h2>
             <div className="grid md:grid-cols-3 gap-8 mb-8">
               <div>
                 <div className="text-4xl font-bold">100%</div>
@@ -520,12 +537,14 @@ export default function ComoFunciona() {
               </div>
               <div>
                 <div className="text-4xl font-bold">R$ 0</div>
-                <div className="text-lg opacity-90">Taxa para usar o escrow</div>
+                <div className="text-lg opacity-90">
+                  Taxa para usar o escrow
+                </div>
               </div>
             </div>
             <p className="text-xl opacity-90 max-w-3xl mx-auto">
-              Nossa tecnologia de ponta e equipe especializada garantem que suas transações sejam
-              sempre seguras, rápidas e transparentes.
+              Nossa tecnologia de ponta e equipe especializada garantem que suas
+              transações sejam sempre seguras, rápidas e transparentes.
             </p>
           </div>
         </div>
@@ -538,14 +557,16 @@ export default function ComoFunciona() {
             Comece agora na Kiosferajobs
           </h2>
           <p className="text-xl opacity-90 mb-12 max-w-2xl mx-auto">
-            Junte-se a milhares de empresas e profissionais que já confiam no nosso sistema de pagamento seguro
+            Junte-se a milhares de empresas e profissionais que já confiam no
+            nosso sistema de pagamento seguro
           </p>
 
           <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
             <div className="space-y-6">
               <h3 className="text-2xl font-semibold">Para Empresas</h3>
               <p className="text-lg opacity-90">
-                Contrate com total segurança e pague apenas após aprovação do trabalho
+                Contrate com total segurança e pague apenas após aprovação do
+                trabalho
               </p>
               <Button
                 size="lg"
@@ -560,7 +581,8 @@ export default function ComoFunciona() {
             <div className="space-y-6">
               <h3 className="text-2xl font-semibold">Para Profissionais</h3>
               <p className="text-lg opacity-90">
-                Trabalhe com tranquilidade sabendo que seu pagamento está garantido
+                Trabalhe com tranquilidade sabendo que seu pagamento está
+                garantido
               </p>
               <Button
                 size="lg"
