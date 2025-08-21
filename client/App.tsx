@@ -21,6 +21,7 @@ import Saldo from "./pages/Saldo";
 import Depositar from "./pages/Depositar";
 import NotFound from "./pages/NotFound";
 import ComoFunciona from "./pages/ComoFunciona";
+import Escrow from "./pages/Escrow";
 
 const queryClient = new QueryClient();
 export default function App() {
@@ -33,6 +34,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/como-funciona" element={<ComoFunciona />} />
+            <Route path="/escrow" element={<Escrow />} />
             <Route path="/dashboard/cliente" element={<ClientDashboard />} />
             <Route
               path="/dashboard/freelancer"
