@@ -16,7 +16,6 @@ import {
   ArrowRight,
 } from "lucide-react";
 export default function ComoFunciona() {
-
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -29,14 +28,19 @@ export default function ComoFunciona() {
                 <span className="text-primary">em minutos</span>
               </h1>
               <p className="text-xl text-gray-600 leading-relaxed">
-                Na Kiosferajobs, você encontra freelancers confiáveis ou projetos que combinam com suas habilidades. 
-                Segurança, agilidade e qualidade em um só lugar.
+                Na Kiosferajobs, você encontra freelancers confiáveis ou
+                projetos que combinam com suas habilidades. Segurança, agilidade
+                e qualidade em um só lugar.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" className="text-lg px-8 py-4">
                   Quero contratar
                 </Button>
-                <Button size="lg" variant="outline" className="text-lg px-8 py-4">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="text-lg px-8 py-4"
+                >
                   Quero trabalhar
                 </Button>
               </div>
@@ -50,7 +54,9 @@ export default function ComoFunciona() {
               <div className="absolute -bottom-4 -left-4 bg-white p-4 rounded-xl shadow-lg">
                 <div className="flex items-center gap-2">
                   <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                  <span className="text-sm font-medium">1000+ projetos ativos</span>
+                  <span className="text-sm font-medium">
+                    1000+ projetos ativos
+                  </span>
                 </div>
               </div>
             </div>
@@ -62,7 +68,9 @@ export default function ComoFunciona() {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Como Funciona para Empresas</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Como Funciona para Empresas
+            </h2>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             <Card className="group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
@@ -72,7 +80,8 @@ export default function ComoFunciona() {
                 </div>
                 <h3 className="text-xl font-bold mb-4">Publique seu projeto</h3>
                 <p className="text-gray-600 leading-relaxed">
-                  Descreva sua necessidade, prazo e orçamento. Nosso sistema conecta você a profissionais qualificados rapidamente.
+                  Descreva sua necessidade, prazo e orçamento. Nosso sistema
+                  conecta você a profissionais qualificados rapidamente.
                 </p>
               </CardContent>
             </Card>
@@ -82,9 +91,12 @@ export default function ComoFunciona() {
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary group-hover:text-white transition-all">
                   <MessageSquare className="w-8 h-8 text-primary group-hover:text-white" />
                 </div>
-                <h3 className="text-xl font-bold mb-4">Receba propostas de profissionais</h3>
+                <h3 className="text-xl font-bold mb-4">
+                  Receba propostas de profissionais
+                </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  Compare portfólios, preços e qualificações. Converse com os candidatos via chat seguro da plataforma.
+                  Compare portfólios, preços e qualificações. Converse com os
+                  candidatos via chat seguro da plataforma.
                 </p>
               </CardContent>
             </Card>
@@ -94,9 +106,12 @@ export default function ComoFunciona() {
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary group-hover:text-white transition-all">
                   <Shield className="w-8 h-8 text-primary group-hover:text-white" />
                 </div>
-                <h3 className="text-xl font-bold mb-4">Contrate com segurança</h3>
+                <h3 className="text-xl font-bold mb-4">
+                  Contrate com segurança
+                </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  Pagamento seguro somente após aprovação da entrega. Gestão de projetos integrada.
+                  Pagamento seguro somente após aprovação da entrega. Gestão de
+                  projetos integrada.
                 </p>
               </CardContent>
             </Card>
@@ -108,7 +123,9 @@ export default function ComoFunciona() {
       <section className="py-20">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Como Funciona para Profissionais</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Como Funciona para Profissionais
+            </h2>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             <Card className="group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
@@ -116,9 +133,12 @@ export default function ComoFunciona() {
                 <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-accent group-hover:text-white transition-all">
                   <UserPlus className="w-8 h-8 text-accent group-hover:text-white" />
                 </div>
-                <h3 className="text-xl font-bold mb-4">Crie seu perfil gratuito</h3>
+                <h3 className="text-xl font-bold mb-4">
+                  Crie seu perfil gratuito
+                </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  Adicione suas habilidades, experiências e portfólio para ser descoberto por empresas.
+                  Adicione suas habilidades, experiências e portfólio para ser
+                  descoberto por empresas.
                 </p>
               </CardContent>
             </Card>
@@ -128,9 +148,12 @@ export default function ComoFunciona() {
                 <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-accent group-hover:text-white transition-all">
                   <Rocket className="w-8 h-8 text-accent group-hover:text-white" />
                 </div>
-                <h3 className="text-xl font-bold mb-4">Candidate-se a oportunidades</h3>
+                <h3 className="text-xl font-bold mb-4">
+                  Candidate-se a oportunidades
+                </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  Encontre projetos que combinam com seu perfil e envie propostas personalizadas.
+                  Encontre projetos que combinam com seu perfil e envie
+                  propostas personalizadas.
                 </p>
               </CardContent>
             </Card>
@@ -140,9 +163,12 @@ export default function ComoFunciona() {
                 <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-accent group-hover:text-white transition-all">
                   <DollarSign className="w-8 h-8 text-accent group-hover:text-white" />
                 </div>
-                <h3 className="text-xl font-bold mb-4">Trabalhe e receba com segurança</h3>
+                <h3 className="text-xl font-bold mb-4">
+                  Trabalhe e receba com segurança
+                </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  Receba pagamentos garantidos após aprovação do trabalho. Construa reputação na plataforma.
+                  Receba pagamentos garantidos após aprovação do trabalho.
+                  Construa reputação na plataforma.
                 </p>
               </CardContent>
             </Card>
@@ -154,46 +180,66 @@ export default function ComoFunciona() {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Por que escolher a Kiosferajobs?</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Por que escolher a Kiosferajobs?
+            </h2>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="group text-center p-6 hover:bg-white hover:shadow-lg rounded-xl transition-all duration-300">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary group-hover:text-white transition-all">
                 <Lock className="w-8 h-8 text-primary group-hover:text-white" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Segurança nos pagamentos</h3>
-              <p className="text-gray-600">Sistema de escrow protege todas as transações</p>
+              <h3 className="text-lg font-semibold mb-2">
+                Segurança nos pagamentos
+              </h3>
+              <p className="text-gray-600">
+                Sistema de escrow protege todas as transações
+              </p>
             </div>
 
             <div className="group text-center p-6 hover:bg-white hover:shadow-lg rounded-xl transition-all duration-300">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary group-hover:text-white transition-all">
                 <Zap className="w-8 h-8 text-primary group-hover:text-white" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Plataforma simples e rápida</h3>
-              <p className="text-gray-600">Interface intuitiva e processos otimizados</p>
+              <h3 className="text-lg font-semibold mb-2">
+                Plataforma simples e rápida
+              </h3>
+              <p className="text-gray-600">
+                Interface intuitiva e processos otimizados
+              </p>
             </div>
 
             <div className="group text-center p-6 hover:bg-white hover:shadow-lg rounded-xl transition-all duration-300">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary group-hover:text-white transition-all">
                 <Target className="w-8 h-8 text-primary group-hover:text-white" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Profissionais qualificados</h3>
-              <p className="text-gray-600">Especialistas verificados em diversas áreas</p>
+              <h3 className="text-lg font-semibold mb-2">
+                Profissionais qualificados
+              </h3>
+              <p className="text-gray-600">
+                Especialistas verificados em diversas áreas
+              </p>
             </div>
 
             <div className="group text-center p-6 hover:bg-white hover:shadow-lg rounded-xl transition-all duration-300">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary group-hover:text-white transition-all">
                 <BarChart3 className="w-8 h-8 text-primary group-hover:text-white" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Gestão de projetos integrada</h3>
-              <p className="text-gray-600">Acompanhe o progresso em tempo real</p>
+              <h3 className="text-lg font-semibold mb-2">
+                Gestão de projetos integrada
+              </h3>
+              <p className="text-gray-600">
+                Acompanhe o progresso em tempo real
+              </p>
             </div>
 
             <div className="group text-center p-6 hover:bg-white hover:shadow-lg rounded-xl transition-all duration-300">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary group-hover:text-white transition-all">
                 <Globe className="w-8 h-8 text-primary group-hover:text-white" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Flexibilidade total</h3>
+              <h3 className="text-lg font-semibold mb-2">
+                Flexibilidade total
+              </h3>
               <p className="text-gray-600">Trabalho remoto ou presencial</p>
             </div>
 
@@ -201,7 +247,9 @@ export default function ComoFunciona() {
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary group-hover:text-white transition-all">
                 <Star className="w-8 h-8 text-primary group-hover:text-white" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Sistema de reputação</h3>
+              <h3 className="text-lg font-semibold mb-2">
+                Sistema de reputação
+              </h3>
               <p className="text-gray-600">Feedback transparente e confiável</p>
             </div>
           </div>
@@ -212,7 +260,9 @@ export default function ComoFunciona() {
       <section className="py-20">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Quem pode usar a Kiosferajobs?</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Quem pode usar a Kiosferajobs?
+            </h2>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <Card className="group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden">
@@ -226,7 +276,8 @@ export default function ComoFunciona() {
               <CardContent className="p-6">
                 <h3 className="text-lg font-semibold mb-2">Startups</h3>
                 <p className="text-gray-600 text-sm">
-                  Encontre desenvolvedores, designers e especialistas para impulsionar seu negócio
+                  Encontre desenvolvedores, designers e especialistas para
+                  impulsionar seu negócio
                 </p>
               </CardContent>
             </Card>
@@ -240,7 +291,9 @@ export default function ComoFunciona() {
                 />
               </div>
               <CardContent className="p-6">
-                <h3 className="text-lg font-semibold mb-2">Pequenas Empresas</h3>
+                <h3 className="text-lg font-semibold mb-2">
+                  Pequenas Empresas
+                </h3>
                 <p className="text-gray-600 text-sm">
                   Solucione demandas pontuais com profissionais especializados
                 </p>
@@ -256,7 +309,9 @@ export default function ComoFunciona() {
                 />
               </div>
               <CardContent className="p-6">
-                <h3 className="text-lg font-semibold mb-2">Profissionais Autônomos</h3>
+                <h3 className="text-lg font-semibold mb-2">
+                  Profissionais Autônomos
+                </h3>
                 <p className="text-gray-600 text-sm">
                   Expanda sua carteira de clientes e encontre novos projetos
                 </p>
@@ -282,15 +337,18 @@ export default function ComoFunciona() {
         </div>
       </section>
 
-
       {/* CTA Final */}
       <section className="py-20 bg-gradient-to-br from-primary to-accent text-white">
         <div className="container mx-auto px-6 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">Comece agora na Kiosferajobs</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            Comece agora na Kiosferajobs
+          </h2>
           <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
             <div className="space-y-4">
               <h3 className="text-2xl font-semibold">Para Empresas</h3>
-              <p className="text-lg opacity-90">Publique seu primeiro projeto grátis</p>
+              <p className="text-lg opacity-90">
+                Publique seu primeiro projeto grátis
+              </p>
               <Button
                 size="lg"
                 variant="secondary"
@@ -302,7 +360,9 @@ export default function ComoFunciona() {
             </div>
             <div className="space-y-4">
               <h3 className="text-2xl font-semibold">Para Profissionais</h3>
-              <p className="text-lg opacity-90">Crie seu perfil agora e comece a receber propostas</p>
+              <p className="text-lg opacity-90">
+                Crie seu perfil agora e comece a receber propostas
+              </p>
               <Button
                 size="lg"
                 variant="outline"
