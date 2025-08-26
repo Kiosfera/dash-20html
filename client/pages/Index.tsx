@@ -37,7 +37,7 @@ export default function Index() {
     { icon: Lock, text: "Pagamentos mais seguros – proteção contra inadimplência" },
     { icon: BookOpen, text: "Cursos e materiais exclusivos – aprenda técnicas para cobrar mais e vender melhor" },
     { icon: BarChart3, text: "Relatórios de desempenho – acompanhe sua evolução e saiba o que melhorar" },
-    { icon: FileText, text: "Aux��lio em propostas – modelos prontos e dicas para enviar mensagens que realmente fecham" },
+    { icon: FileText, text: "Auxílio em propostas – modelos prontos e dicas para enviar mensagens que realmente fecham" },
     { icon: TrendingUp, text: "Destaque em recomendações – mais chances de ser sugerido automaticamente para clientes" },
     { icon: Crown, text: "Ranking de freelancers – apareça no topo e conquiste mais visibilidade" },
     { icon: CheckCircle, text: "Certificados de conclusão de projetos – fortaleça seu portfólio com provas de entrega" },
@@ -79,7 +79,7 @@ export default function Index() {
           
           <div className="bg-white rounded-xl p-8 shadow-lg border border-gray-100 mb-12">
             <h2 className="text-2xl font-semibold mb-6 text-gray-900 font-montserrat">
-              👉 Com um de nossos Planos de Benefícios, você garante:
+              Com um de nossos Planos de Benefícios, você garante:
             </h2>
             <div className="grid md:grid-cols-2 gap-4 text-left">
               <div className="flex items-center space-x-3">
@@ -103,11 +103,11 @@ export default function Index() {
 
           <div className="mb-12">
             <p className="text-lg text-gray-700 mb-6">
-              🔥 <strong>Invista em você!</strong> Um pequeno valor por mês pode significar mais contratos fechados, mais renda e mais liberdade.
+              <strong>Invista em você!</strong> Um pequeno valor por mês pode significar mais contratos fechados, mais renda e mais liberdade.
             </p>
             <Button size="lg" className="text-xl px-12 py-6 bg-primary hover:bg-primary/90">
               <Rocket className="w-6 h-6 mr-3" />
-              Quero ativar meu plano agora 🚀
+              Quero ativar meu plano agora
             </Button>
           </div>
         </div>
@@ -116,7 +116,7 @@ export default function Index() {
         <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-xl p-8 mb-16 border border-orange-200">
           <div className="text-center max-w-3xl mx-auto">
             <h2 className="text-3xl font-bold text-gray-900 mb-6 font-montserrat">
-              ⚡️ Os melhores projetos não esperam!
+              Os melhores projetos não esperam!
             </h2>
             <p className="text-lg text-gray-700 mb-6">
               Na KiosferaJobs, as oportunidades mais atrativas são disputadas rapidamente. 
@@ -124,7 +124,7 @@ export default function Index() {
             </p>
             <div className="bg-white rounded-lg p-6 mb-8 shadow-sm">
               <p className="text-gray-800 mb-4">
-                👉 Se você ainda não ativou seu plano, está deixando os melhores clientes passarem na frente.
+                Se você ainda não ativou seu plano, está deixando os melhores clientes passarem na frente.
               </p>
               <div className="grid md:grid-cols-3 gap-4 text-left">
                 <div className="flex items-center space-x-2">
@@ -142,10 +142,10 @@ export default function Index() {
               </div>
             </div>
             <p className="text-lg font-semibold text-gray-800 mb-6">
-              💡 Quem ativa o plano primeiro, conquista mais rápido.
+              Quem ativa o plano primeiro, conquista mais rápido.
             </p>
             <Button size="lg" className="text-xl px-12 py-6 bg-orange-500 hover:bg-orange-600">
-              🔑 Ativar meu plano agora e sair na frente
+              Ativar meu plano agora e sair na frente
             </Button>
           </div>
         </div>
@@ -154,7 +154,7 @@ export default function Index() {
         <div className="mb-16">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4 font-montserrat">
-              Vantagens de assinar um plano na KiosferaJobs 🧑‍💻
+              Vantagens de assinar um plano na KiosferaJobs
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Com os Planos de Benefícios da KiosferaJobs, você não apenas encontra projetos: 
