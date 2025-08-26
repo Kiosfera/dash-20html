@@ -66,22 +66,22 @@ export default function Index() {
       </div>
 
       {/* Hero Section */}
-      <div className="container mx-auto px-6 py-16">
-        <div className="text-center mb-16 max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight font-montserrat">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+        <div className="text-center mb-12 sm:mb-16 max-w-4xl mx-auto">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight font-montserrat">
             Transforme seu talento em{" "}
             <span className="text-primary">oportunidades reais!</span>
           </h1>
-          <p className="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed">
-            Na KiosferaJobs, você não perde tempo com promessas vazias. Aqui os clientes são verificados, 
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-6 sm:mb-8 leading-relaxed px-2">
+            Na KiosferaJobs, você não perde tempo com promessas vazias. Aqui os clientes são verificados,
             os projetos são sérios e você tem todo o suporte para crescer como profissional independente.
           </p>
           
-          <div className="bg-white rounded-xl p-8 shadow-lg border border-gray-100 mb-12">
-            <h2 className="text-2xl font-semibold mb-6 text-gray-900 font-montserrat">
+          <div className="bg-white rounded-xl p-4 sm:p-6 lg:p-8 shadow-lg border border-gray-100 mb-8 sm:mb-12">
+            <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-gray-900 font-montserrat">
               Com um de nossos Planos de Benefícios, você garante:
             </h2>
-            <div className="grid md:grid-cols-2 gap-4 text-left">
+            <div className="grid sm:grid-cols-2 gap-3 sm:gap-4 text-left">
               <div className="flex items-center space-x-3">
                 <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
                 <span className="text-gray-700">Mais visibilidade para seu perfil nos projetos</span>
