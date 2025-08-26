@@ -101,28 +101,28 @@ export default function Index() {
             </div>
           </div>
 
-          <div className="mb-12">
-            <p className="text-lg text-gray-700 mb-6">
+          <div className="mb-8 sm:mb-12">
+            <p className="text-base sm:text-lg text-gray-700 mb-4 sm:mb-6">
               <strong>Invista em você!</strong> Um pequeno valor por mês pode significar mais contratos fechados, mais renda e mais liberdade.
             </p>
-            <Button size="lg" className="text-xl px-12 py-6 bg-primary hover:bg-primary/90">
-              <Rocket className="w-6 h-6 mr-3" />
+            <Button size="lg" className="text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-6 bg-primary hover:bg-primary/90 w-full sm:w-auto">
+              <Rocket className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3" />
               Quero ativar meu plano agora
             </Button>
           </div>
         </div>
 
         {/* Urgency Section */}
-        <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-xl p-8 mb-16 border border-orange-200">
+        <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-xl p-4 sm:p-6 lg:p-8 mb-12 sm:mb-16 border border-orange-200">
           <div className="text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6 font-montserrat">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6 font-montserrat">
               Os melhores projetos não esperam!
             </h2>
-            <p className="text-lg text-gray-700 mb-6">
-              Na KiosferaJobs, as oportunidades mais atrativas são disputadas rapidamente. 
+            <p className="text-base sm:text-lg text-gray-700 mb-4 sm:mb-6">
+              Na KiosferaJobs, as oportunidades mais atrativas são disputadas rapidamente.
               Quem tem plano ativo tem prioridade para visualizar e se candidatar primeiro.
             </p>
-            <div className="bg-white rounded-lg p-6 mb-8 shadow-sm">
+            <div className="bg-white rounded-lg p-4 sm:p-6 mb-6 sm:mb-8 shadow-sm">
               <p className="text-gray-800 mb-4">
                 Se você ainda não ativou seu plano, está deixando os melhores clientes passarem na frente.
               </p>
