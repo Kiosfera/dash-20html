@@ -43,7 +43,7 @@ export default function PlanosBeneficios() {
     },
     {
       name: "Pro",
-      price: "R$ 29",
+      price: "R$ 89",
       period: "/mês",
       description: "Para freelancers que querem crescer rapidamente",
       icon: TrendingUp,
@@ -67,7 +67,7 @@ export default function PlanosBeneficios() {
     },
     {
       name: "Elite",
-      price: "R$ 99",
+      price: "R$ 159",
       period: "/mês",
       description: "Pensado para freelancers de alto nível e pequenas agências que querem escala, status e previsibilidade",
       icon: Crown,
