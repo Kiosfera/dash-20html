@@ -21,6 +21,7 @@ import Saldo from "./pages/Saldo";
 import Depositar from "./pages/Depositar";
 import NotFound from "./pages/NotFound";
 import ComoFunciona from "./pages/ComoFunciona";
+import PlanosBeneficios from "./pages/PlanosBeneficios";
 
 const queryClient = new QueryClient();
 export default function App() {
