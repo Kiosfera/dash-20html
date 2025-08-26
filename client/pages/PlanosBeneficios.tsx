@@ -53,12 +53,12 @@ export default function PlanosBeneficios() {
       buttonVariant: "default" as const,
       popular: false,
       features: [
-        { name: "✨ Propostas ilimitadas", included: true },
+        { name: "✨ 50 propostas por mês", included: true },
         { name: "✨ Taxa de 7% por projeto", included: true },
         { name: "✨ Recebimento mais rápido (3 dias úteis ao invés de 7)", included: true },
         { name: "✨ Ferramentas de gestão (contratos digitais, entregas e prazos)", included: true },
         { name: "✨ Suporte prioritário por chat", included: true },
-        { name: "✨ Relatórios de performance (visualizações, taxa de resposta)", included: true },
+        { name: "��� Relatórios de performance (visualizações, taxa de resposta)", included: true },
         { name: "✨ Possibilidade de criar 'Pacotes de Serviços' (ofertas fixas)", included: true },
         { name: "✨ Selo de verificação básico", included: true },
         { name: "Convites para projetos premium", included: false },
@@ -77,6 +77,7 @@ export default function PlanosBeneficios() {
       buttonVariant: "default" as const,
       popular: true,
       features: [
+        { name: "👑 Propostas ilimitadas", included: true },
         { name: "👑 Taxa mínima fixa de 5%", included: true },
         { name: "👑 Pagamentos antecipados ou garantidos pela plataforma", included: true },
         { name: "👑 Badge de 'Freelancer Verificado' (mais confiança)", included: true },
