@@ -21,6 +21,7 @@ import Saldo from "./pages/Saldo";
 import Depositar from "./pages/Depositar";
 import NotFound from "./pages/NotFound";
 import ComoFunciona from "./pages/ComoFunciona";
+import PlanosBeneficios from "./pages/PlanosBeneficios";
 
 const queryClient = new QueryClient();
 export default function App() {
@@ -52,6 +53,7 @@ export default function App() {
             <Route path="/cadastro" element={<Cadastro />} />
             <Route path="/saldo" element={<Saldo />} />
             <Route path="/depositar" element={<Depositar />} />
+            <Route path="/planos-beneficios" element={<PlanosBeneficios />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

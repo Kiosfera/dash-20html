@@ -85,11 +85,19 @@ export default function FreelancerDashboard() {
                 Gerencie seus projetos e acompanhe seu desempenho
               </p>
             </div>
-            <Link to="/completar-perfil">
-              <Button className="bg-accent hover:bg-accent/90">
-                Completar Perfil
-              </Button>
-            </Link>
+            <div className="flex space-x-3">
+              <Link to="/planos-beneficios">
+                <Button variant="outline">
+                  <Award className="w-4 h-4 mr-2" />
+                  Planos de Benefício
+                </Button>
+              </Link>
+              <Link to="/completar-perfil">
+                <Button className="bg-accent hover:bg-accent/90">
+                  Completar Perfil
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
 
