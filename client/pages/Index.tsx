@@ -56,12 +56,12 @@ export default function Index() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
       {/* Header */}
-      <div className="container mx-auto px-6 py-8">
-        <div className="flex items-center justify-center space-x-3 mb-12">
-          <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
-            <Briefcase className="w-7 h-7 text-white" />
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+        <div className="flex items-center justify-center space-x-3 mb-8 sm:mb-12">
+          <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary rounded-lg flex items-center justify-center">
+            <Briefcase className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
           </div>
-          <span className="text-3xl font-bold text-gray-900 font-montserrat">KiosferaJobs</span>
+          <span className="text-2xl sm:text-3xl font-bold text-gray-900 font-montserrat">KiosferaJobs</span>
         </div>
       </div>
 
