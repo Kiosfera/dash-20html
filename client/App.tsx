@@ -53,6 +53,7 @@ export default function App() {
             <Route path="/cadastro" element={<Cadastro />} />
             <Route path="/saldo" element={<Saldo />} />
             <Route path="/depositar" element={<Depositar />} />
+            <Route path="/planos-beneficios" element={<PlanosBeneficios />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
