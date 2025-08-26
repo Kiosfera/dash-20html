@@ -37,7 +37,7 @@ export default function Index() {
     { icon: Lock, text: "Pagamentos mais seguros – proteção contra inadimplência" },
     { icon: BookOpen, text: "Cursos e materiais exclusivos – aprenda técnicas para cobrar mais e vender melhor" },
     { icon: BarChart3, text: "Relatórios de desempenho – acompanhe sua evolução e saiba o que melhorar" },
-    { icon: FileText, text: "Auxílio em propostas – modelos prontos e dicas para enviar mensagens que realmente fecham" },
+    { icon: FileText, text: "Aux��lio em propostas – modelos prontos e dicas para enviar mensagens que realmente fecham" },
     { icon: TrendingUp, text: "Destaque em recomendações – mais chances de ser sugerido automaticamente para clientes" },
     { icon: Crown, text: "Ranking de freelancers – apareça no topo e conquiste mais visibilidade" },
     { icon: CheckCircle, text: "Certificados de conclusão de projetos – fortaleça seu portfólio com provas de entrega" },
@@ -61,14 +61,14 @@ export default function Index() {
           <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
             <Briefcase className="w-7 h-7 text-white" />
           </div>
-          <span className="text-3xl font-bold text-gray-900">KiosferaJobs</span>
+          <span className="text-3xl font-bold text-gray-900 font-montserrat">KiosferaJobs</span>
         </div>
       </div>
 
       {/* Hero Section */}
       <div className="container mx-auto px-6 py-16">
         <div className="text-center mb-16 max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight font-montserrat">
             Transforme seu talento em{" "}
             <span className="text-primary">oportunidades reais!</span>
           </h1>
@@ -78,7 +78,7 @@ export default function Index() {
           </p>
           
           <div className="bg-white rounded-xl p-8 shadow-lg border border-gray-100 mb-12">
-            <h2 className="text-2xl font-semibold mb-6 text-gray-900">
+            <h2 className="text-2xl font-semibold mb-6 text-gray-900 font-montserrat">
               👉 Com um de nossos Planos de Benefícios, você garante:
             </h2>
             <div className="grid md:grid-cols-2 gap-4 text-left">
@@ -115,7 +115,7 @@ export default function Index() {
         {/* Urgency Section */}
         <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-xl p-8 mb-16 border border-orange-200">
           <div className="text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl font-bold text-gray-900 mb-6 font-montserrat">
               ⚡️ Os melhores projetos não esperam!
             </h2>
             <p className="text-lg text-gray-700 mb-6">
@@ -153,7 +153,7 @@ export default function Index() {
         {/* Benefits Section */}
         <div className="mb-16">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 font-montserrat">
               Vantagens de assinar um plano na KiosferaJobs 🧑‍💻
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -189,7 +189,7 @@ export default function Index() {
 
         {/* Final CTA Section */}
         <div className="bg-gradient-to-r from-primary to-accent rounded-xl p-12 text-center text-white">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 font-montserrat">
             Não deixe as melhores oportunidades escaparem!
           </h2>
           <p className="text-xl mb-8 opacity-90">
