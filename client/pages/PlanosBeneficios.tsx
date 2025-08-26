@@ -1,19 +1,19 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { 
-  Zap, 
-  Crown, 
-  Star, 
-  Check, 
-  X, 
+import {
+  Zap,
+  Crown,
+  Star,
+  Check,
+  X,
   ArrowLeft,
   Shield,
   TrendingUp,
   Users,
   Award,
   Clock,
-  MessageSquare
+  MessageSquare,
 } from "lucide-react";
 
 export default function PlanosBeneficios() {
@@ -39,7 +39,7 @@ export default function PlanosBeneficios() {
         { name: "Selo de verificação", included: false },
         { name: "Prioridade em propostas", included: false },
         { name: "Suporte prioritário", included: false },
-      ]
+      ],
     },
     {
       name: "Pro",
@@ -62,7 +62,7 @@ export default function PlanosBeneficios() {
         { name: "Suporte prioritário", included: true },
         { name: "Prioridade em propostas", included: false },
         { name: "Gerente de conta dedicado", included: false },
-      ]
+      ],
     },
     {
       name: "Elite",
@@ -85,8 +85,8 @@ export default function PlanosBeneficios() {
         { name: "Prioridade máxima em propostas", included: true },
         { name: "Gerente de conta dedicado", included: true },
         { name: "Suporte 24/7", included: true },
-      ]
-    }
+      ],
+    },
   ];
 
   return (
@@ -94,7 +94,7 @@ export default function PlanosBeneficios() {
       <div className="container mx-auto px-6 py-8 max-w-7xl">
         {/* Header */}
         <div className="flex items-center mb-8">
-          <Link 
+          <Link
             to="/dashboard/freelancer"
             className="flex items-center text-gray-600 hover:text-gray-900 transition-colors"
           >
@@ -115,7 +115,8 @@ export default function PlanosBeneficios() {
             Planos de Benefício Freelancer
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Escolha o plano ideal para impulsionar sua carreira como freelancer e maximizar seus ganhos
+            Escolha o plano ideal para impulsionar sua carreira como freelancer
+            e maximizar seus ganhos
           </p>
         </div>
 
@@ -124,9 +125,9 @@ export default function PlanosBeneficios() {
           {plans.map((plan, index) => {
             const IconComponent = plan.icon;
             return (
-              <Card 
+              <Card
                 key={plan.name}
-                className={`relative ${plan.borderColor} ${plan.popular ? 'ring-2 ring-primary ring-offset-4' : ''} hover:shadow-xl transition-all duration-300`}
+                className={`relative ${plan.borderColor} ${plan.popular ? "ring-2 ring-primary ring-offset-4" : ""} hover:shadow-xl transition-all duration-300`}
               >
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
@@ -136,22 +137,30 @@ export default function PlanosBeneficios() {
                     </div>
                   </div>
                 )}
-                
+
                 <CardHeader className="text-center pb-4">
-                  <div className={`w-16 h-16 ${plan.bgColor} rounded-full flex items-center justify-center mx-auto mb-4`}>
+                  <div
+                    className={`w-16 h-16 ${plan.bgColor} rounded-full flex items-center justify-center mx-auto mb-4`}
+                  >
                     <IconComponent className={`w-8 h-8 ${plan.color}`} />
                   </div>
-                  <CardTitle className="text-2xl font-bold">{plan.name}</CardTitle>
+                  <CardTitle className="text-2xl font-bold">
+                    {plan.name}
+                  </CardTitle>
                   <div className="text-4xl font-bold text-gray-900 mt-2">
                     {plan.price}
-                    <span className="text-lg font-normal text-gray-600">{plan.period}</span>
+                    <span className="text-lg font-normal text-gray-600">
+                      {plan.period}
+                    </span>
                   </div>
-                  <p className="text-gray-600 text-sm mt-2">{plan.description}</p>
+                  <p className="text-gray-600 text-sm mt-2">
+                    {plan.description}
+                  </p>
                 </CardHeader>
 
                 <CardContent className="space-y-4">
-                  <Button 
-                    className="w-full" 
+                  <Button
+                    className="w-full"
                     variant={plan.buttonVariant}
                     size="lg"
                   >
@@ -166,7 +175,9 @@ export default function PlanosBeneficios() {
                         ) : (
                           <X className="w-5 h-5 text-gray-300 mr-3 flex-shrink-0" />
                         )}
-                        <span className={`text-sm ${feature.included ? 'text-gray-900' : 'text-gray-400'}`}>
+                        <span
+                          className={`text-sm ${feature.included ? "text-gray-900" : "text-gray-400"}`}
+                        >
                           {feature.name}
                         </span>
                       </div>
@@ -183,7 +194,7 @@ export default function PlanosBeneficios() {
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">
             Benefícios Exclusivos para Freelancers
           </h2>
-          
+
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -191,7 +202,8 @@ export default function PlanosBeneficios() {
               </div>
               <h3 className="text-xl font-semibold mb-2">Pagamentos Seguros</h3>
               <p className="text-gray-600">
-                Sistema de pagamento protegido com garantia de recebimento para todos os projetos concluídos.
+                Sistema de pagamento protegido com garantia de recebimento para
+                todos os projetos concluídos.
               </p>
             </div>
 
@@ -201,7 +213,8 @@ export default function PlanosBeneficios() {
               </div>
               <h3 className="text-xl font-semibold mb-2">Rede de Qualidade</h3>
               <p className="text-gray-600">
-                Acesso a uma rede exclusiva de clientes verificados e projetos de alta qualidade.
+                Acesso a uma rede exclusiva de clientes verificados e projetos
+                de alta qualidade.
               </p>
             </div>
 
@@ -209,9 +222,12 @@ export default function PlanosBeneficios() {
               <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <MessageSquare className="w-8 h-8 text-purple-600" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Suporte Especializado</h3>
+              <h3 className="text-xl font-semibold mb-2">
+                Suporte Especializado
+              </h3>
               <p className="text-gray-600">
-                Equipe de suporte dedicada para ajudar freelancers a crescer e ter sucesso na plataforma.
+                Equipe de suporte dedicada para ajudar freelancers a crescer e
+                ter sucesso na plataforma.
               </p>
             </div>
           </div>
@@ -223,7 +239,8 @@ export default function PlanosBeneficios() {
             Tem dúvidas sobre os planos?
           </h3>
           <p className="text-gray-600 mb-6">
-            Nossa equipe está pronta para ajudar você a escolher o melhor plano para suas necessidades.
+            Nossa equipe está pronta para ajudar você a escolher o melhor plano
+            para suas necessidades.
           </p>
           <Button variant="outline" size="lg">
             Falar com Suporte
