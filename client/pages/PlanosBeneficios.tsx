@@ -55,11 +55,23 @@ export default function PlanosBeneficios() {
       features: [
         { name: "✨ 50 propostas por mês", included: true },
         { name: "✨ Taxa de 7% por projeto", included: true },
-        { name: "✨ Recebimento mais rápido (3 dias úteis ao invés de 7)", included: true },
-        { name: "✨ Ferramentas de gestão (contratos digitais, entregas e prazos)", included: true },
+        {
+          name: "✨ Recebimento mais rápido (3 dias úteis ao invés de 7)",
+          included: true,
+        },
+        {
+          name: "✨ Ferramentas de gestão (contratos digitais, entregas e prazos)",
+          included: true,
+        },
         { name: "✨ Suporte prioritário por chat", included: true },
-        { name: "��� Relatórios de performance (visualizações, taxa de resposta)", included: true },
-        { name: "✨ Possibilidade de criar 'Pacotes de Serviços' (ofertas fixas)", included: true },
+        {
+          name: "��� Relatórios de performance (visualizações, taxa de resposta)",
+          included: true,
+        },
+        {
+          name: "✨ Possibilidade de criar 'Pacotes de Serviços' (ofertas fixas)",
+          included: true,
+        },
         { name: "✨ Selo de verificação básico", included: true },
         { name: "Convites para projetos premium", included: false },
         { name: "Gestor de conta dedicado", included: false },
@@ -69,7 +81,8 @@ export default function PlanosBeneficios() {
       name: "Elite",
       price: "R$ 159",
       period: "/mês",
-      description: "Pensado para freelancers de alto nível e pequenas agências que querem escala, status e previsibilidade",
+      description:
+        "Pensado para freelancers de alto nível e pequenas agências que querem escala, status e previsibilidade",
       icon: Crown,
       color: "text-yellow-600",
       bgColor: "bg-yellow-50",
@@ -79,15 +92,33 @@ export default function PlanosBeneficios() {
       features: [
         { name: "👑 Propostas ilimitadas", included: true },
         { name: "👑 Taxa mínima fixa de 5%", included: true },
-        { name: "👑 Pagamentos antecipados ou garantidos pela plataforma", included: true },
-        { name: "👑 Badge de 'Freelancer Verificado' (mais confiança)", included: true },
-        { name: "👑 Convites exclusivos para projetos premium/corporativos", included: true },
+        {
+          name: "👑 Pagamentos antecipados ou garantidos pela plataforma",
+          included: true,
+        },
+        {
+          name: "👑 Badge de 'Freelancer Verificado' (mais confiança)",
+          included: true,
+        },
+        {
+          name: "👑 Convites exclusivos para projetos premium/corporativos",
+          included: true,
+        },
         { name: "👑 Destaque fixo no topo da busca", included: true },
         { name: "👑 Mentorias e treinamentos exclusivos", included: true },
-        { name: "👑 Ferramentas avançadas de marketing (LinkedIn, portfólio)", included: true },
+        {
+          name: "👑 Ferramentas avançadas de marketing (LinkedIn, portfólio)",
+          included: true,
+        },
         { name: "👑 Gestor de conta dedicado (suporte 1:1)", included: true },
-        { name: "👑 Possibilidade de oferecer equipe/mini-agência", included: true },
-        { name: "👑 Descontos em serviços parceiros (coworking, softwares)", included: true },
+        {
+          name: "👑 Possibilidade de oferecer equipe/mini-agência",
+          included: true,
+        },
+        {
+          name: "👑 Descontos em serviços parceiros (coworking, softwares)",
+          included: true,
+        },
       ],
     },
   ];
