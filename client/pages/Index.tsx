@@ -167,7 +167,7 @@ export default function Index() {
             {benefits.map((benefit, index) => {
               const IconComponent = benefit.icon;
               return (
-                <Card key={index} className="p-6 hover:shadow-lg transition-all duration-300 border border-gray-100">
+                <Card key={index} className="p-4 sm:p-6 hover:shadow-lg transition-all duration-300 border border-gray-100">
                   <CardContent className="p-0">
                     <div className="flex items-start space-x-4">
                       <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -188,21 +188,21 @@ export default function Index() {
         </div>
 
         {/* Final CTA Section */}
-        <div className="bg-gradient-to-r from-primary to-accent rounded-xl p-12 text-center text-white">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 font-montserrat">
+        <div className="bg-gradient-to-r from-primary to-accent rounded-xl p-6 sm:p-8 lg:p-12 text-center text-white">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 font-montserrat">
             Não deixe as melhores oportunidades escaparem!
           </h2>
-          <p className="text-xl mb-8 opacity-90">
-            Junte-se aos milhares de freelancers que já estão aproveitando todos os benefícios 
+          <p className="text-base sm:text-lg lg:text-xl mb-6 sm:mb-8 opacity-90 px-2">
+            Junte-se aos milhares de freelancers que já estão aproveitando todos os benefícios
             e conquistando os melhores projetos na KiosferaJobs.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" className="text-xl px-12 py-6">
-              <Crown className="w-6 h-6 mr-3" />
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+            <Button size="lg" variant="secondary" className="text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-6 w-full sm:w-auto">
+              <Crown className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3" />
               Ver Planos e Preços
             </Button>
-            <Button size="lg" variant="outline" className="text-xl px-12 py-6 bg-white text-primary hover:bg-gray-50">
-              <Users className="w-6 h-6 mr-3" />
+            <Button size="lg" variant="outline" className="text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-6 bg-white text-primary hover:bg-gray-50 w-full sm:w-auto">
+              <Users className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3" />
               Começar Gratuitamente
             </Button>
           </div>
@@ -210,22 +210,22 @@ export default function Index() {
 
         {/* Quick Stats */}
         <div className="mt-16 text-center">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 max-w-4xl mx-auto">
             <div>
-              <div className="text-3xl font-bold text-primary">50k+</div>
-              <div className="text-sm text-gray-600">Freelancers Ativos</div>
+              <div className="text-2xl sm:text-3xl font-bold text-primary">50k+</div>
+              <div className="text-xs sm:text-sm text-gray-600">Freelancers Ativos</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-primary">15k+</div>
-              <div className="text-sm text-gray-600">Projetos Concluídos</div>
+              <div className="text-2xl sm:text-3xl font-bold text-primary">15k+</div>
+              <div className="text-xs sm:text-sm text-gray-600">Projetos Concluídos</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-primary">4.9★</div>
-              <div className="text-sm text-gray-600">Avaliação Média</div>
+              <div className="text-2xl sm:text-3xl font-bold text-primary">4.9★</div>
+              <div className="text-xs sm:text-sm text-gray-600">Avaliação Média</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-primary">98%</div>
-              <div className="text-sm text-gray-600">Satisfação</div>
+              <div className="text-2xl sm:text-3xl font-bold text-primary">98%</div>
+              <div className="text-xs sm:text-sm text-gray-600">Satisfação</div>
             </div>
           </div>
         </div>
