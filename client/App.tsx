@@ -34,6 +34,7 @@ export default function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/freelancers" element={<Freelancers />} />
             <Route path="/como-funciona" element={<ComoFunciona />} />
             <Route path="/dashboard/cliente" element={<ClientDashboard />} />
             <Route
