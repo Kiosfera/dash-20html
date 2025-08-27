@@ -126,7 +126,7 @@ export default function Index() {
               <p className="text-gray-800 mb-4">
                 Se você ainda não ativou seu plano, está deixando os melhores clientes passarem na frente.
               </p>
-              <div className="grid md:grid-cols-3 gap-4 text-left">
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 text-left">
                 <div className="flex items-center space-x-2">
                   <Clock className="w-5 h-5 text-orange-500" />
                   <span className="text-sm">Acesso antecipado às vagas mais bem pagas</span>
@@ -141,10 +141,10 @@ export default function Index() {
                 </div>
               </div>
             </div>
-            <p className="text-lg font-semibold text-gray-800 mb-6">
+            <p className="text-base sm:text-lg font-semibold text-gray-800 mb-4 sm:mb-6">
               Quem ativa o plano primeiro, conquista mais rápido.
             </p>
-            <Button size="lg" className="text-xl px-12 py-6 bg-orange-500 hover:bg-orange-600">
+            <Button size="lg" className="text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-6 bg-orange-500 hover:bg-orange-600 w-full sm:w-auto">
               Ativar meu plano agora e sair na frente
             </Button>
           </div>
@@ -153,17 +153,17 @@ export default function Index() {
         {/* Benefits Section */}
         <div className="mb-16">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4 font-montserrat">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 font-montserrat">
               Vantagens de assinar um plano na KiosferaJobs
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Com os Planos de Benefícios da KiosferaJobs, você não apenas encontra projetos: 
-              você conquista visibilidade, segurança, credibilidade e ferramentas que aumentam suas chances 
+            <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto px-2">
+              Com os Planos de Benefícios da KiosferaJobs, você não apenas encontra projetos:
+              você conquista visibilidade, segurança, credibilidade e ferramentas que aumentam suas chances
               de fechar contratos melhores e mais rápidos.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {benefits.map((benefit, index) => {
               const IconComponent = benefit.icon;
               return (
