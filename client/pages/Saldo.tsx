@@ -133,13 +133,15 @@ export default function Saldo() {
                   Depositar
                 </Button>
               </Link>
-              <Button
-                variant="outline"
-                className="flex-1 border-white text-white hover:bg-blue-600"
-              >
-                <Minus className="w-4 h-4 mr-2" />
-                Sacar
-              </Button>
+              <Link to="/saque" className="flex-1">
+                <Button
+                  variant="outline"
+                  className="w-full border-white text-white hover:bg-blue-600"
+                >
+                  <Minus className="w-4 h-4 mr-2" />
+                  Sacar
+                </Button>
+              </Link>
             </div>
           </CardContent>
         </Card>
