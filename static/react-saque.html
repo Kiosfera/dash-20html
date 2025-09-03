@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Solicitar Saque - TalentHub</title>
+    <link rel="stylesheet" href="base-styles.css" />
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  </head>
+  <body>
+    <div class="min-h-screen bg-gray-50">
+      <header class="bg-white border-b">
+        <div class="container mx-auto px-6 py-4">
+          <div class="flex items-center justify-between">
+            <a href="react-index.html" class="flex items-center space-x-2">
+              <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                <i data-lucide="zap" class="w-5 h-5 text-white"></i>
+              </div>
+              <span class="text-xl font-bold text-gray-900">TalentHub</span>
+            </a>
+
+            <div class="flex items-center space-x-4">
+              <button class="button button-ghost button-sm" onclick="history.back()">
+                <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i>
+                Voltar
+              </button>
+              <div class="avatar">
+                <img src="placeholder.svg" alt="Avatar" class="avatar-image" />
+                <div class="avatar-fallback">CL</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="container mx-auto px-6 py-8 max-w-2xl">
+        <div class="mb-8">
+          <h1 class="text-3xl font-bold text-gray-900 mb-2">Solicitar Saque</h1>
+          <p class="text-gray-600">Escolha sua chave PIX, informe o valor e confira as taxas.</p>
+        </div>
+
+        <div class="space-y-6">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title flex items-center">
+                <i data-lucide="key-round" class="w-5 h-5 mr-2"></i>
+                Chave PIX
+              </h3>
+            </div>
+            <div class="card-content space-y-3">
+              <div id="alertaSemChaves" class="p-4 border rounded-lg bg-yellow-50 text-yellow-900" style="display:none">
+                Você ainda não tem chaves cadastradas. <a href="react-cadastro-chave-pix.html" class="underline font-medium">Cadastrar chave PIX</a>
+              </div>
+              <div>
+                <label class="label">Selecionar chave</label>
+                <select id="selectChave" class="input mt-1"></select>
+              </div>
+              <div>
+                <a href="react-cadastro-chave-pix.html" class="button button-outline mt-2">Cadastrar nova chave</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title flex items-center">
+                <i data-lucide="dollar-sign" class="w-5 h-5 mr-2"></i>
+                Valor do saque
+              </h3>
+            </div>
+            <div class="card-content space-y-4">
+              <div>
+                <label for="valor" class="label">Digite o valor</label>
+                <div class="relative mt-1">
+                  <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">R$</span>
+                  <input id="valor" type="number" min="1" step="0.01" class="input pl-10 text-lg" placeholder="0,00" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" id="resumoCard" style="display:none">
+            <div class="card-header">
+              <h3 class="card-title">Resumo do Saque</h3>
+            </div>
+            <div class="card-content space-y-3">
+              <div class="flex justify-between">
+                <span class="text-gray-600">Valor solicitado</span>
+                <span class="font-medium" id="valorSolicitado">R$ 0,00</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-600">Taxa fixa</span>
+                <span class="text-red-600" id="taxaFixa">- R$ 0,00</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-600">Taxa percentual (<span id="taxaPercLbl">0</span>%)</span>
+                <span class="text-red-600" id="taxaPerc">- R$ 0,00</span>
+              </div>
+              <hr />
+              <div class="flex justify-between text-lg font-semibold">
+                <span>Valor a ser creditado</span>
+                <span class="text-green-600" id="valorLiquido">R$ 0,00</span>
+              </div>
+              <div class="flex items-start gap-2 p-3 bg-blue-50 rounded-lg">
+                <i data-lucide="info" class="w-4 h-4 text-blue-600 mt-0.5"></i>
+                <p class="text-sm text-blue-900">As taxas são aplicadas ao valor solicitado e o líquido será enviado para a chave selecionada.</p>
+              </div>
+              <button id="solicitar" class="button button-primary w-full h-12 text-lg" disabled>
+                <i data-lucide="wallet" class="w-5 h-5 mr-2"></i>
+                Solicitar saque
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      lucide.createIcons();
+      const STORAGE_KEY = 'pixKeys';
+      const TAXA_FIXA = 0;
+      const TAXA_PERCENTUAL = 0;
+
+      function carregarChaves(){ try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch { return []; } }
+
+      function formatar(valor){ return `R$ ${valor.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`; }
+
+      const select = document.getElementById('selectChave');
+      const alerta = document.getElementById('alertaSemChaves');
+      const resumo = document.getElementById('resumoCard');
+      const inputValor = document.getElementById('valor');
+      const solicitarBtn = document.getElementById('solicitar');
+
+      const valorSolicitado = document.getElementById('valorSolicitado');
+      const taxaFixa = document.getElementById('taxaFixa');
+      const taxaPerc = document.getElementById('taxaPerc');
+      const taxaPercLbl = document.getElementById('taxaPercLbl');
+      const valorLiquido = document.getElementById('valorLiquido');
+
+      function atualizarChaves(){
+        const chaves = carregarChaves();
+        select.innerHTML = '';
+        if (chaves.length === 0){
+          alerta.style.display = 'block';
+          select.disabled = true;
+        } else {
+          alerta.style.display = 'none';
+          select.disabled = false;
+          chaves.forEach(c => {
+            const opt = document.createElement('option');
+            opt.value = c.id; opt.textContent = c.value; select.appendChild(opt);
+          });
+        }
+      }
+
+      function atualizarResumo(){
+        const valor = parseFloat(inputValor.value) || 0;
+        if (valor > 0){
+          resumo.style.display = 'block';
+          const tPerc = (TAXA_PERCENTUAL/100) * valor;
+          const tTotal = TAXA_FIXA + tPerc;
+          const liquido = Math.max(0, valor - tTotal);
+          valorSolicitado.textContent = formatar(valor);
+          taxaFixa.textContent = `- ${formatar(TAXA_FIXA)}`;
+          taxaPercLbl.textContent = TAXA_PERCENTUAL;
+          taxaPerc.textContent = `- ${formatar(tPerc)}`;
+          valorLiquido.textContent = formatar(liquido);
+          solicitarBtn.disabled = select.disabled || !select.value || valor <= 0;
+        } else {
+          resumo.style.display = 'none';
+          solicitarBtn.disabled = true;
+        }
+      }
+
+      inputValor.addEventListener('input', atualizarResumo);
+      select.addEventListener('change', atualizarResumo);
+
+      solicitarBtn.addEventListener('click', function(){
+        solicitarBtn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 mr-2 animate-spin"></i> Processando...';
+        solicitarBtn.disabled = true; lucide.createIcons();
+        setTimeout(() => { window.location.href = 'react-saldo.html'; }, 1500);
+      });
+
+      atualizarChaves();
+      atualizarResumo();
+    </script>
+
+    <style>
+      .animate-spin { animation: spin 1s linear infinite; }
+      @keyframes spin { from { transform: rotate(0deg);} to { transform: rotate(360deg);} }
+      .bg-yellow-50 { background-color: hsl(45, 100%, 97%);} .text-yellow-900{ color: hsl(45, 100%, 20%);} .bg-blue-50{ background-color: hsl(212, 100%, 97%);} .text-blue-600{ color: hsl(212, 90%, 45%);} .text-green-600{ color: hsl(142, 76%, 36%);} 
+    </style>
+  </body>
+</html>
