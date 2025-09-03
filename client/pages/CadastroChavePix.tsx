@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useToast } from "@/hooks/use-toast";
-import { KeyRound, Mail, Smartphone, IdCard, Zap, ArrowLeft, PlusCircle, RefreshCw, Trash2 } from "lucide-react";
+import { KeyRound, Mail, Smartphone, IdCard, Zap, ArrowLeft, PlusCircle, Trash2 } from "lucide-react";
 import { PixKey, PixKeyType, addPixKey, deletePixKey, generateRandomPixKey, loadPixKeys, validatePixValue } from "@/lib/pix";
 
 export default function CadastroChavePix() {
