@@ -27,10 +27,16 @@ export function savePixKeys(keys: PixKey[]) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(keys));
 }
 
-export function addPixKey(key: Omit<PixKey, "id" | "createdAt"> & { id?: string; createdAt?: string }): PixKey[] {
+export function addPixKey(
+  key: Omit<PixKey, "id" | "createdAt"> & { id?: string; createdAt?: string },
+): PixKey[] {
   const keys = loadPixKeys();
   const newKey: PixKey = {
-    id: key.id ?? (typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : String(Date.now() + Math.random())),
+    id:
+      key.id ??
+      (typeof crypto !== "undefined" && "randomUUID" in crypto
+        ? crypto.randomUUID()
+        : String(Date.now() + Math.random())),
     createdAt: key.createdAt ?? new Date().toISOString(),
     type: key.type,
     value: key.value.trim(),
@@ -47,9 +53,12 @@ export function deletePixKey(id: string): PixKey[] {
 }
 
 export function generateRandomPixKey(): string {
-  if (typeof crypto !== "undefined" && "randomUUID" in crypto) return crypto.randomUUID();
+  if (typeof crypto !== "undefined" && "randomUUID" in crypto)
+    return crypto.randomUUID();
   // Fallback simple random string
-  return Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2);
+  return (
+    Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2)
+  );
 }
 
 export function validatePixValue(type: PixKeyType, value: string): boolean {
@@ -68,7 +77,12 @@ export function validatePixValue(type: PixKeyType, value: string): boolean {
     case "celular": {
       const digits = v.replace(/\D/g, "");
       // BR: 10 or 11 digits (without country), allow 12/13 with 55 country code
-      return digits.length === 10 || digits.length === 11 || digits.length === 12 || digits.length === 13;
+      return (
+        digits.length === 10 ||
+        digits.length === 11 ||
+        digits.length === 12 ||
+        digits.length === 13
+      );
     }
     default:
       return false;

@@ -7,8 +7,25 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useToast } from "@/hooks/use-toast";
-import { KeyRound, Mail, Smartphone, IdCard, Zap, ArrowLeft, PlusCircle, Trash2 } from "lucide-react";
-import { PixKey, PixKeyType, addPixKey, deletePixKey, generateRandomPixKey, loadPixKeys, validatePixValue } from "@/lib/pix";
+import {
+  KeyRound,
+  Mail,
+  Smartphone,
+  IdCard,
+  Zap,
+  ArrowLeft,
+  PlusCircle,
+  Trash2,
+} from "lucide-react";
+import {
+  PixKey,
+  PixKeyType,
+  addPixKey,
+  deletePixKey,
+  generateRandomPixKey,
+  loadPixKeys,
+  validatePixValue,
+} from "@/lib/pix";
 
 export default function CadastroChavePix() {
   const navigate = useNavigate();
@@ -50,7 +67,10 @@ export default function CadastroChavePix() {
     }
     const lista = addPixKey({ type: tipo, value: valor });
     setChaves(lista);
-    toast({ title: "Chave PIX salva", description: "Sua chave foi cadastrada com sucesso." });
+    toast({
+      title: "Chave PIX salva",
+      description: "Sua chave foi cadastrada com sucesso.",
+    });
     setValor(tipo === "aleatoria" ? generateRandomPixKey() : "");
   };
 
@@ -90,8 +110,12 @@ export default function CadastroChavePix() {
 
       <div className="container mx-auto px-6 py-8 max-w-2xl">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Cadastrar Chave PIX</h1>
-          <p className="text-gray-600">Cadastre uma nova chave para saques e recebimentos.</p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            Cadastrar Chave PIX
+          </h1>
+          <p className="text-gray-600">
+            Cadastre uma nova chave para saques e recebimentos.
+          </p>
         </div>
 
         <div className="space-y-6">
@@ -104,7 +128,11 @@ export default function CadastroChavePix() {
             <CardContent className="space-y-4">
               <div>
                 <Label>Tipo de chave</Label>
-                <RadioGroup value={tipo} onValueChange={(v) => setTipo(v as PixKeyType)} className="grid grid-cols-2 gap-3 mt-2">
+                <RadioGroup
+                  value={tipo}
+                  onValueChange={(v) => setTipo(v as PixKeyType)}
+                  className="grid grid-cols-2 gap-3 mt-2"
+                >
                   <label className="flex items-center space-x-2 p-3 border rounded-lg cursor-pointer">
                     <RadioGroupItem value="aleatoria" id="t-aleatoria" />
                     <span>Chave aleatória</span>
@@ -130,12 +158,21 @@ export default function CadastroChavePix() {
                   <div className="w-9 h-9 rounded-md bg-gray-100 flex items-center justify-center text-gray-600">
                     {iconePorTipo}
                   </div>
-                  <Input id="valor" placeholder={
-                    tipo === "email" ? "seuemail@dominio.com" :
-                    tipo === "cpf_cnpj" ? "Somente números (CPF ou CNPJ)" :
-                    tipo === "celular" ? "+55 (DDD) 9XXXX-XXXX" :
-                    "Chave aleatória"
-                  } value={valor} onChange={(e) => setValor(e.target.value)} disabled={tipo === "aleatoria"} />
+                  <Input
+                    id="valor"
+                    placeholder={
+                      tipo === "email"
+                        ? "seuemail@dominio.com"
+                        : tipo === "cpf_cnpj"
+                          ? "Somente números (CPF ou CNPJ)"
+                          : tipo === "celular"
+                            ? "+55 (DDD) 9XXXX-XXXX"
+                            : "Chave aleatória"
+                    }
+                    value={valor}
+                    onChange={(e) => setValor(e.target.value)}
+                    disabled={tipo === "aleatoria"}
+                  />
                 </div>
               </div>
 
@@ -151,21 +188,40 @@ export default function CadastroChavePix() {
             </CardHeader>
             <CardContent>
               {chaves.length === 0 ? (
-                <p className="text-sm text-gray-600">Você ainda não possui chaves cadastradas.</p>
+                <p className="text-sm text-gray-600">
+                  Você ainda não possui chaves cadastradas.
+                </p>
               ) : (
                 <div className="space-y-3">
                   {chaves.map((c) => (
-                    <div key={c.id} className="flex items-center justify-between p-3 border rounded-lg bg-white">
+                    <div
+                      key={c.id}
+                      className="flex items-center justify-between p-3 border rounded-lg bg-white"
+                    >
                       <div className="flex items-center space-x-3">
                         <div className="w-9 h-9 rounded-md bg-gray-100 flex items-center justify-center text-gray-600">
-                          {c.type === "email" ? <Mail className="w-4 h-4" /> : c.type === "cpf_cnpj" ? <IdCard className="w-4 h-4" /> : c.type === "celular" ? <Smartphone className="w-4 h-4" /> : <KeyRound className="w-4 h-4" />}
+                          {c.type === "email" ? (
+                            <Mail className="w-4 h-4" />
+                          ) : c.type === "cpf_cnpj" ? (
+                            <IdCard className="w-4 h-4" />
+                          ) : c.type === "celular" ? (
+                            <Smartphone className="w-4 h-4" />
+                          ) : (
+                            <KeyRound className="w-4 h-4" />
+                          )}
                         </div>
                         <div>
                           <p className="font-medium text-gray-900">{c.value}</p>
-                          <p className="text-xs text-gray-500 capitalize">{c.type.replace("_", "/")}</p>
+                          <p className="text-xs text-gray-500 capitalize">
+                            {c.type.replace("_", "/")}
+                          </p>
                         </div>
                       </div>
-                      <Button variant="ghost" size="icon" onClick={() => removerChave(c.id)}>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={() => removerChave(c.id)}
+                      >
                         <Trash2 className="w-4 h-4" />
                       </Button>
                     </div>

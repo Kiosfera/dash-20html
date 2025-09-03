@@ -13,14 +13,19 @@
         <div class="container mx-auto px-6 py-4">
           <div class="flex items-center justify-between">
             <a href="react-index.html" class="flex items-center space-x-2">
-              <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+              <div
+                class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center"
+              >
                 <i data-lucide="zap" class="w-5 h-5 text-white"></i>
               </div>
               <span class="text-xl font-bold text-gray-900">TalentHub</span>
             </a>
 
             <div class="flex items-center space-x-4">
-              <button class="button button-ghost button-sm" onclick="history.back()">
+              <button
+                class="button button-ghost button-sm"
+                onclick="history.back()"
+              >
                 <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i>
                 Voltar
               </button>
@@ -35,8 +40,12 @@
 
       <div class="container mx-auto px-6 py-8 max-w-2xl">
         <div class="mb-8">
-          <h1 class="text-3xl font-bold text-gray-900 mb-2">Cadastrar Chave PIX</h1>
-          <p class="text-gray-600">Cadastre uma nova chave para saques e recebimentos.</p>
+          <h1 class="text-3xl font-bold text-gray-900 mb-2">
+            Cadastrar Chave PIX
+          </h1>
+          <p class="text-gray-600">
+            Cadastre uma nova chave para saques e recebimentos.
+          </p>
         </div>
 
         <div class="space-y-6">
@@ -51,19 +60,27 @@
               <div>
                 <label class="label">Tipo de chave</label>
                 <div class="grid grid-cols-2 gap-3 mt-2" id="tipoContainer">
-                  <label class="flex items-center space-x-2 p-3 border rounded-lg cursor-pointer">
+                  <label
+                    class="flex items-center space-x-2 p-3 border rounded-lg cursor-pointer"
+                  >
                     <input type="radio" name="tipo" value="aleatoria" checked />
                     <span>Chave aleatória</span>
                   </label>
-                  <label class="flex items-center space-x-2 p-3 border rounded-lg cursor-pointer">
+                  <label
+                    class="flex items-center space-x-2 p-3 border rounded-lg cursor-pointer"
+                  >
                     <input type="radio" name="tipo" value="email" />
                     <span>E-mail</span>
                   </label>
-                  <label class="flex items-center space-x-2 p-3 border rounded-lg cursor-pointer">
+                  <label
+                    class="flex items-center space-x-2 p-3 border rounded-lg cursor-pointer"
+                  >
                     <input type="radio" name="tipo" value="cpf_cnpj" />
                     <span>CPF/CNPJ</span>
                   </label>
-                  <label class="flex items-center space-x-2 p-3 border rounded-lg cursor-pointer">
+                  <label
+                    class="flex items-center space-x-2 p-3 border rounded-lg cursor-pointer"
+                  >
                     <input type="radio" name="tipo" value="celular" />
                     <span>Celular</span>
                   </label>
@@ -73,18 +90,33 @@
               <div>
                 <label for="valor" class="label">Valor da chave</label>
                 <div class="flex items-center mt-1 gap-2">
-                  <div class="w-9 h-9 rounded-md bg-gray-100 flex items-center justify-center text-gray-600">
-                    <i id="iconTipo" data-lucide="key-round" class="w-4 h-4"></i>
+                  <div
+                    class="w-9 h-9 rounded-md bg-gray-100 flex items-center justify-center text-gray-600"
+                  >
+                    <i
+                      id="iconTipo"
+                      data-lucide="key-round"
+                      class="w-4 h-4"
+                    ></i>
                   </div>
-                  <input id="valor" class="input" placeholder="Chave aleatória" />
+                  <input
+                    id="valor"
+                    class="input"
+                    placeholder="Chave aleatória"
+                  />
                 </div>
               </div>
 
-              <button id="salvar" class="button button-primary w-full h-12 text-lg">
+              <button
+                id="salvar"
+                class="button button-primary w-full h-12 text-lg"
+              >
                 <i data-lucide="plus-circle" class="w-5 h-5 mr-2"></i>
                 Salvar chave
               </button>
-              <p id="msg" class="text-sm text-green-700" style="display:none">Chave salva com sucesso.</p>
+              <p id="msg" class="text-sm text-green-700" style="display: none">
+                Chave salva com sucesso.
+              </p>
             </div>
           </div>
 
@@ -94,7 +126,9 @@
             </div>
             <div class="card-content">
               <div id="listaChaves" class="space-y-3"></div>
-              <p id="semChaves" class="text-sm text-gray-600">Você ainda não possui chaves cadastradas.</p>
+              <p id="semChaves" class="text-sm text-gray-600">
+                Você ainda não possui chaves cadastradas.
+              </p>
             </div>
           </div>
         </div>
@@ -108,54 +142,80 @@
 
       function uuid() {
         if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
-        return (Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2));
+        return (
+          Math.random().toString(36).slice(2) +
+          Math.random().toString(36).slice(2)
+        );
       }
 
-      function gerarAleatoria() { return uuid(); }
+      function gerarAleatoria() {
+        return uuid();
+      }
 
       function carregarChaves() {
         try {
           return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-        } catch { return []; }
+        } catch {
+          return [];
+        }
       }
-      function salvarChaves(chaves) { localStorage.setItem(STORAGE_KEY, JSON.stringify(chaves)); }
+      function salvarChaves(chaves) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(chaves));
+      }
 
       function validar(tipo, valor) {
         const v = (valor || "").trim();
         if (tipo === "aleatoria") return v.length >= 10;
         if (tipo === "email") return /[^\s@]+@[^\s@]+\.[^\s@]{2,}/i.test(v);
-        if (tipo === "cpf_cnpj") { const d = v.replace(/\D/g,""); return d.length===11 || d.length===14; }
-        if (tipo === "celular") { const d = v.replace(/\D/g,""); return [10,11,12,13].includes(d.length); }
+        if (tipo === "cpf_cnpj") {
+          const d = v.replace(/\D/g, "");
+          return d.length === 11 || d.length === 14;
+        }
+        if (tipo === "celular") {
+          const d = v.replace(/\D/g, "");
+          return [10, 11, 12, 13].includes(d.length);
+        }
         return false;
       }
 
-      const valorInput = document.getElementById('valor');
-      const iconTipo = document.getElementById('iconTipo');
-      const msg = document.getElementById('msg');
+      const valorInput = document.getElementById("valor");
+      const iconTipo = document.getElementById("iconTipo");
+      const msg = document.getElementById("msg");
 
-      function atualizarIcone(tipo){
-        const map = { aleatoria: 'key-round', email: 'mail', cpf_cnpj: 'id-card', celular: 'smartphone' };
-        iconTipo.setAttribute('data-lucide', map[tipo] || 'key-round');
+      function atualizarIcone(tipo) {
+        const map = {
+          aleatoria: "key-round",
+          email: "mail",
+          cpf_cnpj: "id-card",
+          celular: "smartphone",
+        };
+        iconTipo.setAttribute("data-lucide", map[tipo] || "key-round");
         lucide.createIcons();
       }
 
       function renderLista() {
-        const wrap = document.getElementById('listaChaves');
-        const vazio = document.getElementById('semChaves');
+        const wrap = document.getElementById("listaChaves");
+        const vazio = document.getElementById("semChaves");
         const chaves = carregarChaves();
-        wrap.innerHTML = '';
-        if (chaves.length === 0) { vazio.style.display = 'block'; return; } else { vazio.style.display = 'none'; }
-        chaves.forEach(c => {
-          const row = document.createElement('div');
-          row.className = 'flex items-center justify-between p-3 border rounded-lg bg-white';
+        wrap.innerHTML = "";
+        if (chaves.length === 0) {
+          vazio.style.display = "block";
+          return;
+        } else {
+          vazio.style.display = "none";
+        }
+        chaves.forEach((c) => {
+          const row = document.createElement("div");
+          row.className =
+            "flex items-center justify-between p-3 border rounded-lg bg-white";
           row.innerHTML = `
             <div class="flex items-center gap-3">
               <div class="w-9 h-9 rounded-md bg-gray-100 flex items-center justify-center text-gray-600">
-                <i data-lucide="${c.type==='email'?'mail':c.type==='cpf_cnpj'?'id-card':c.type==='celular'?'smartphone':'key-round'}" class="w-4 h-4"></i>
+                <i data-lucide="${c.type === "email" ? "mail" : c.type === "cpf_cnpj" ? "id-card" : c.type === "celular" ? "smartphone" : "key-round"}" class="w-4 h-4"></i>
               </div>
               <div>
                 <p class="font-medium text-gray-900">${c.value}</p>
-                <p class="text-xs text-gray-500">${c.type.replace('_','/')}</p>
+                <p class="text-xs text-gray-500">${c.type.replace("_", "/")}</p>
               </div>
             </div>
             <button class="button button-ghost button-icon" data-id="${c.id}">
@@ -164,10 +224,10 @@
           wrap.appendChild(row);
         });
         lucide.createIcons();
-        wrap.querySelectorAll('button[data-id]').forEach(btn => {
-          btn.addEventListener('click', () => {
-            const id = btn.getAttribute('data-id');
-            const rest = carregarChaves().filter(k => k.id !== id);
+        wrap.querySelectorAll("button[data-id]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const id = btn.getAttribute("data-id");
+            const rest = carregarChaves().filter((k) => k.id !== id);
             salvarChaves(rest);
             renderLista();
           });
@@ -177,31 +237,50 @@
       function onTipoChange() {
         const tipo = document.querySelector('input[name="tipo"]:checked').value;
         atualizarIcone(tipo);
-        if (tipo === 'aleatoria') {
+        if (tipo === "aleatoria") {
           valorInput.value = gerarAleatoria();
           valorInput.disabled = true;
-          valorInput.placeholder = 'Chave aleatória';
+          valorInput.placeholder = "Chave aleatória";
         } else {
           valorInput.disabled = false;
-          valorInput.value = '';
-          valorInput.placeholder = tipo === 'email' ? 'seuemail@dominio.com' : tipo === 'cpf_cnpj' ? 'Somente números (CPF ou CNPJ)' : '+55 (DDD) 9XXXX-XXXX';
+          valorInput.value = "";
+          valorInput.placeholder =
+            tipo === "email"
+              ? "seuemail@dominio.com"
+              : tipo === "cpf_cnpj"
+                ? "Somente números (CPF ou CNPJ)"
+                : "+55 (DDD) 9XXXX-XXXX";
         }
       }
 
-      document.querySelectorAll('input[name="tipo"]').forEach(r => r.addEventListener('change', onTipoChange));
+      document
+        .querySelectorAll('input[name="tipo"]')
+        .forEach((r) => r.addEventListener("change", onTipoChange));
       onTipoChange();
 
-      document.getElementById('salvar').addEventListener('click', () => {
+      document.getElementById("salvar").addEventListener("click", () => {
         const tipo = document.querySelector('input[name="tipo"]:checked').value;
         const valor = valorInput.value.trim();
-        if (!validar(tipo, valor)) { alert('Dados inválidos. Verifique o valor informado.'); return; }
+        if (!validar(tipo, valor)) {
+          alert("Dados inválidos. Verifique o valor informado.");
+          return;
+        }
         const lista = carregarChaves();
-        const novo = { id: uuid(), type: tipo, value: valor, createdAt: new Date().toISOString() };
+        const novo = {
+          id: uuid(),
+          type: tipo,
+          value: valor,
+          createdAt: new Date().toISOString(),
+        };
         lista.unshift(novo);
         salvarChaves(lista);
-        msg.style.display = 'block';
-        setTimeout(() => msg.style.display = 'none', 2000);
-        if (tipo === 'aleatoria') { valorInput.value = gerarAleatoria(); } else { valorInput.value = ''; }
+        msg.style.display = "block";
+        setTimeout(() => (msg.style.display = "none"), 2000);
+        if (tipo === "aleatoria") {
+          valorInput.value = gerarAleatoria();
+        } else {
+          valorInput.value = "";
+        }
         renderLista();
       });
 

@@ -4,10 +4,23 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useToast } from "@/hooks/use-toast";
-import { Wallet, ArrowLeft, Zap, DollarSign, KeyRound, Info } from "lucide-react";
+import {
+  Wallet,
+  ArrowLeft,
+  Zap,
+  DollarSign,
+  KeyRound,
+  Info,
+} from "lucide-react";
 import { PixKey, loadPixKeys } from "@/lib/pix";
 
 const TAXA_FIXA = 0; // R$
@@ -26,7 +39,10 @@ export default function Saque() {
     if (lista.length > 0) setChaveId(lista[0].id);
   }, []);
 
-  const chaveSelecionada = useMemo(() => chaves.find((c) => c.id === chaveId), [chaves, chaveId]);
+  const chaveSelecionada = useMemo(
+    () => chaves.find((c) => c.id === chaveId),
+    [chaves, chaveId],
+  );
 
   const valorNumber = parseFloat(valor) || 0;
   const taxaPercentualValor = (TAXA_PERCENTUAL / 100) * valorNumber;
@@ -77,8 +93,12 @@ export default function Saque() {
 
       <div className="container mx-auto px-6 py-8 max-w-2xl">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Solicitar Saque</h1>
-          <p className="text-gray-600">Escolha sua chave PIX, informe o valor e confira as taxas.</p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            Solicitar Saque
+          </h1>
+          <p className="text-gray-600">
+            Escolha sua chave PIX, informe o valor e confira as taxas.
+          </p>
         </div>
 
         <div className="space-y-6">
@@ -91,7 +111,13 @@ export default function Saque() {
             <CardContent className="space-y-3">
               {chaves.length === 0 ? (
                 <div className="p-4 border rounded-lg bg-yellow-50 text-yellow-900">
-                  Você ainda não tem chaves cadastradas. <Link to="/cadastro-chave-pix" className="underline font-medium">Cadastrar chave PIX</Link>
+                  Você ainda não tem chaves cadastradas.{" "}
+                  <Link
+                    to="/cadastro-chave-pix"
+                    className="underline font-medium"
+                  >
+                    Cadastrar chave PIX
+                  </Link>
                 </div>
               ) : (
                 <div>
@@ -112,7 +138,9 @@ export default function Saque() {
               )}
               <div>
                 <Link to="/cadastro-chave-pix">
-                  <Button variant="outline" className="mt-2">Cadastrar nova chave</Button>
+                  <Button variant="outline" className="mt-2">
+                    Cadastrar nova chave
+                  </Button>
                 </Link>
               </div>
             </CardContent>
@@ -128,8 +156,19 @@ export default function Saque() {
               <div>
                 <Label htmlFor="valor">Digite o valor</Label>
                 <div className="relative mt-1">
-                  <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">R$</span>
-                  <Input id="valor" type="number" min="1" step="0.01" className="pl-10 text-lg" placeholder="0,00" value={valor} onChange={(e) => setValor(e.target.value)} />
+                  <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">
+                    R$
+                  </span>
+                  <Input
+                    id="valor"
+                    type="number"
+                    min="1"
+                    step="0.01"
+                    className="pl-10 text-lg"
+                    placeholder="0,00"
+                    value={valor}
+                    onChange={(e) => setValor(e.target.value)}
+                  />
                 </div>
               </div>
             </CardContent>
@@ -143,26 +182,55 @@ export default function Saque() {
               <CardContent className="space-y-3">
                 <div className="flex justify-between">
                   <span className="text-gray-600">Valor solicitado</span>
-                  <span className="font-medium">R$ {valorNumber.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</span>
+                  <span className="font-medium">
+                    R${" "}
+                    {valorNumber.toLocaleString("pt-BR", {
+                      minimumFractionDigits: 2,
+                    })}
+                  </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Taxa fixa</span>
-                  <span className="text-red-600">- R$ {TAXA_FIXA.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</span>
+                  <span className="text-red-600">
+                    - R${" "}
+                    {TAXA_FIXA.toLocaleString("pt-BR", {
+                      minimumFractionDigits: 2,
+                    })}
+                  </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Taxa percentual ({TAXA_PERCENTUAL}%)</span>
-                  <span className="text-red-600">- R$ {taxaPercentualValor.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</span>
+                  <span className="text-gray-600">
+                    Taxa percentual ({TAXA_PERCENTUAL}%)
+                  </span>
+                  <span className="text-red-600">
+                    - R${" "}
+                    {taxaPercentualValor.toLocaleString("pt-BR", {
+                      minimumFractionDigits: 2,
+                    })}
+                  </span>
                 </div>
                 <hr />
                 <div className="flex justify-between text-lg font-semibold">
                   <span>Valor a ser creditado</span>
-                  <span className="text-green-600">R$ {valorLiquido.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</span>
+                  <span className="text-green-600">
+                    R${" "}
+                    {valorLiquido.toLocaleString("pt-BR", {
+                      minimumFractionDigits: 2,
+                    })}
+                  </span>
                 </div>
                 <div className="flex items-start space-x-2 p-3 bg-blue-50 rounded-lg">
                   <Info className="w-4 h-4 text-blue-600 mt-0.5" />
-                  <p className="text-sm text-blue-900">As taxas são aplicadas ao valor solicitado e o líquido será enviado para a chave selecionada.</p>
+                  <p className="text-sm text-blue-900">
+                    As taxas são aplicadas ao valor solicitado e o líquido será
+                    enviado para a chave selecionada.
+                  </p>
                 </div>
-                <Button className="w-full h-12 text-lg" onClick={solicitarSaque} disabled={!chaveSelecionada || valorNumber <= 0}>
+                <Button
+                  className="w-full h-12 text-lg"
+                  onClick={solicitarSaque}
+                  disabled={!chaveSelecionada || valorNumber <= 0}
+                >
                   <Wallet className="w-5 h-5 mr-2" /> Solicitar saque
                 </Button>
               </CardContent>
