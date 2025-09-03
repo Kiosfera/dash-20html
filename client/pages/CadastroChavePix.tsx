@@ -136,11 +136,6 @@ export default function CadastroChavePix() {
                     tipo === "celular" ? "+55 (DDD) 9XXXX-XXXX" :
                     "Chave aleatória"
                   } value={valor} onChange={(e) => setValor(e.target.value)} disabled={tipo === "aleatoria"} />
-                  {tipo === "aleatoria" && (
-                    <Button type="button" variant="outline" onClick={handleGerar} className="shrink-0">
-                      <RefreshCw className="w-4 h-4 mr-2" /> Gerar
-                    </Button>
-                  )}
                 </div>
               </div>
 
